@@ -1,0 +1,56 @@
+  <section class="view" id="v-signal" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 4</span></div>
+        <h1>Cell signaling</h1>
+        <p class="lede">Cells talk to each other with chemical messages. The message never has to enter the cell: the receiving cell converts it into an internal signal.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Cell communication has three stages. In <b>reception</b>, a signaling molecule (<b>ligand</b>) binds a specific receptor protein, usually on the cell surface (small nonpolar signals such as steroid hormones can cross the membrane and bind receptors inside). In <b>transduction</b>, the receptor changes shape and starts a chain of molecules, often a <b>phosphorylation cascade</b> in which protein kinases activate one another. Second messengers such as cAMP and Ca²⁺ spread the signal quickly. In the <b>response</b>, the cell changes what it does: turns genes on or off, activates an enzyme, or reshapes its cytoskeleton.</p>
+        <p>Cascades <b>amplify</b> the signal because each activated enzyme activates many molecules in the next step, so a few ligand molecules can trigger a huge response. Signals are <b>specific</b> because only cells with the right receptor respond. Signals act over different distances: direct contact (cell junctions), <b>paracrine</b> (local), <b>synaptic</b> (neurons) and <b>endocrine</b> (hormones in blood). A mutation in any step can block or constantly activate a pathway, which is a common cause of cancer.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a message had to enter a cell to be received</dd><dt>So we didn't need</dt><dd>that a receptor can turn an outside signal into an inside one</dd><dt>Now</dt><dd>how a tiny signal causes a large response, and what goes wrong in disease</dd><dt>So we need</dt><dd>reception, transduction, response and amplification</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>ligand + receptor → shape change</span><small>reception</small></div><div class="eqn"><span>kinase cascade: each step activates many molecules</span><small>transduction and amplification</small></div><div class="eqn"><span>response: gene expression, enzyme activity, movement</span><small>response</small></div><div class="eqn"><span>mutation can block or lock on a pathway</span><small>disease</small></div></div>
+      <div class="lab" id="sg-lab">
+        <div class="labbar"><span class="title">A signal pathway</span></div>
+        <div class="row"><button type="button" class="btn" id="sg-prev">Previous</button><button type="button" class="btn primary" id="sg-next">Next stage</button><button type="button" class="btn" id="sg-play">Play</button></div>
+        <canvas id="sg-canvas" aria-label="A cell surface receptor binds a ligand, starts a phosphorylation cascade inside the cell and triggers a response."></canvas>
+        <div class="controls"><div class="ctl"><label for="sg-st"><span>Stage</span> <output id="sg-st-out"></output></label><input type="range" id="sg-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="sg-name">—</strong></div><div><span>what is happening</span><strong class="" id="sg-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="sg-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Amplification and mutations</span></div>
+        <div class="ctl"><span class="lbl">Cell</span><div class="seg" id="sg-mut" role="group" aria-label="Cell"><button type="button" data-k="norm" aria-pressed="true">normal</button><button type="button" data-k="blk" aria-pressed="false">receptor cannot bind</button><button type="button" data-k="stk" aria-pressed="false">receptor stuck "on"</button></div></div>
+        <canvas id="sg-canvas2" aria-label="Bars showing how many molecules are active at each step of a three-step cascade."></canvas>
+        <div class="controls"><div class="ctl"><label for="sg-n"><span>Ligand molecules</span> <output id="sg-n-out"></output></label><input type="range" id="sg-n" min="1" max="20" step="1" value="3"></div><div class="ctl"><label for="sg-a"><span>Amplification per step</span> <output id="sg-a-out"></output></label><input type="range" id="sg-a" min="2" max="50" step="1" value="10"></div></div>
+        <div class="readout"><div><span>active molecules at the end</span><strong class="x" id="sg-end">—</strong></div><div><span>response</span><strong class="" id="sg-resp">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the cascade stage. Why does each step increase the signal? <button type="button" class="btn link" data-show='[["#sg-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Each activated kinase phosphorylates many copies of the next protein, so the number of active molecules multiplies at each step.</p></details></li>
+        <li><p>Choose "stuck on" with 1 ligand. What happens? <button type="button" class="btn link" data-show='[["click", "#sg-mut [data-k=stk]"], ["#sg-n", 1]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The pathway runs at full strength with no ligand: the cell responds as if the signal were always present, a typical mechanism of cancer.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A signal activates a receptor. The receptor activates 20 kinase A molecules; each kinase A activates 20 kinase B molecules; each kinase B activates 20 enzymes. How many active enzymes result from 1 ligand-bound receptor?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Step 1.</b> 1 receptor → 20 kinase A.</li>
+          <li hidden><b>Step 2.</b> 20 × 20 = 400 kinase B.</li>
+          <li hidden><b>Step 3.</b> 400 × 20 = 8,000 active enzymes.</li>
+          <li hidden><b>Meaning.</b> One signaling event becomes a response of thousands of molecules: amplification.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the ligand enters the cell and causes the response directly (true only for small nonpolar ligands, and then it binds an internal receptor).</li>
+        <li>Thinking the signal is amplified at reception only.</li>
+        <li>Forgetting that specificity comes from the receptor.</li>
+        <li>Calling a response "transduction". Transduction is the relay.</li>
+        <li>Believing that more ligand always gives a bigger response (receptors can saturate).</li>
+      </ul></div>
+      <div class="prose"><h2>Predicting what a mutation does</h2>
+        <p>Name the step affected. If the receptor cannot bind, no response. If a kinase is stuck on, a response without signal. If the cascade is blocked downstream, the ligand binds but nothing happens. Describe the effect on the response and on the cell.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Without the specific receptor the cell cannot detect the signal.">
+        <p class="q">Check yourself: A cell lacks the receptor for a hormone. What is the most likely result when the hormone is present?</p>
+        <div class="opts"><button type="button">no response from that cell</button><button type="button">a response in all nearby cells</button><button type="button">a stronger response</button><button type="button">the cell makes more hormone</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,54 @@
+  <section class="view" id="v-cycleregs" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 4</span></div>
+        <h1>Cell cycle control & cancer</h1>
+        <p class="lede">Cells do not divide just because they can. A series of checkpoints decides whether a cell should go ahead, and cancer is what happens when the checkpoints fail.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The cycle is controlled by <b>cyclins</b> and <b>cyclin-dependent kinases (CDKs)</b>. A CDK is only active when bound to its cyclin, whose level rises and falls through the cycle. Three main <b>checkpoints</b> stop the cycle unless conditions are right: <b>G₁ checkpoint</b> (is the cell big enough, are nutrients and growth factors present, is the DNA undamaged?), <b>G₂ checkpoint</b> (has the DNA been copied accurately?) and the <b>M (spindle) checkpoint</b> (are all chromosomes attached to the spindle before anaphase?). Cells that stop can enter G₀ (a resting state).</p>
+        <p>The protein <b>p53</b> halts the cycle when DNA is damaged and triggers repair, or <b>apoptosis</b> (programmed cell death) if the damage is too great. Cancer arises when mutations break this control. Mutations that make <b>proto-oncogenes</b> overactive (oncogenes) act like a stuck accelerator; mutations that disable <b>tumor suppressor genes</b> (such as p53) remove the brakes. Usually several mutations are needed. Cancer cells divide without signals and ignore apoptosis.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>division was simply on or off</dd><dt>So we didn't need</dt><dd>that checkpoints check conditions and can pause or cancel division</dd><dt>Now</dt><dd>how cancer can be explained as damaged control of the cell cycle</dd><dt>So we need</dt><dd>checkpoints, cyclins and CDKs, and oncogenes vs tumor suppressors</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>cyclin + CDK → active kinase</span><small>drives the cell through a checkpoint</small></div><div class="eqn"><span>G₁, G₂, M checkpoints</span><small>conditions must be met to continue</small></div><div class="eqn"><span>proto-oncogene → oncogene</span><small>stuck accelerator</small></div><div class="eqn"><span>tumor suppressor (p53) lost</span><small>no brakes, no apoptosis</small></div></div>
+      <div class="lab" id="cr-lab" data-reset="own">
+        <div class="labbar"><span class="title">Will the cell divide?</span></div>
+        <div class="ctl"><span class="lbl">Growth factor</span><div class="seg" id="cr-gf" role="group" aria-label="Growth factor"><button type="button" data-k="on" aria-pressed="true">present</button><button type="button" data-k="off" aria-pressed="false">absent</button></div></div>
+        <div class="row"><button type="button" class="btn" id="cr-dmg" aria-pressed="false">DNA damage: no</button><button type="button" class="btn" id="cr-p53" aria-pressed="true">p53: working</button><button type="button" class="btn" id="cr-spin" aria-pressed="true">Spindle attached: yes</button></div>
+        <canvas id="cr-canvas" aria-label="A loop of the cell cycle with three checkpoint gates. The cell proceeds or stops depending on the conditions you choose."></canvas>
+        <div class="readout"><div><span>outcome</span><strong class="x" id="cr-res">—</strong></div><div><span>why</span><strong class="" id="cr-why">—</strong></div></div>
+      </div>
+      <div class="lab" id="cr-lab2" data-reset="own">
+        <div class="labbar"><span class="title">How fast can a tumor grow?</span></div>
+        <canvas id="cr-canvas2" aria-label="Graph of the number of cells over time for the chosen doubling time, compared with a cell population that does not divide."></canvas>
+        <div class="controls"><div class="ctl"><label for="cr-dt"><span>Doubling time (hours)</span> <output id="cr-dt-out"></output></label><input type="range" id="cr-dt" min="12" max="72" step="1" value="24"></div><div class="ctl"><label for="cr-days"><span>Time (days)</span> <output id="cr-days-out"></output></label><input type="range" id="cr-days" min="1" max="30" step="1" value="14"></div></div>
+        <div class="readout"><div><span>cells after that time</span><strong class="x" id="cr-n">—</strong></div><div><span>increase</span><strong class="a" id="cr-x">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Turn on DNA damage while p53 is working. What happens? <button type="button" class="btn link" data-show='[["click", "#cr-dmg"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The G₁ checkpoint stops the cycle; p53 triggers repair and, if damage is too great, apoptosis.</p></details></li>
+        <li><p>Now turn p53 off (mutated) while the DNA is damaged. <button type="button" class="btn link" data-show='[["click", "#cr-p53"]]'>Turn p53 off</button></p><details><summary>What you should see</summary><p>The cell passes the checkpoint with damaged DNA and divides, passing the damage on: a step toward cancer.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A tumor cell population starts with 1 cell and doubles every 24 hours. How many cells after 10 days, assuming no cell death?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Doublings.</b> 10 days × 24 h / 24 h = 10 doublings.</li>
+          <li hidden><b>Cells.</b> 2<sup>10</sup> = 1,024 cells.</li>
+          <li hidden><b>Note.</b> Real tumors slow down because of limited nutrients and blood supply.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the checkpoints are only in mitosis.</li>
+        <li>Thinking cancer cells divide faster because the cell cycle is shorter (the main problem is loss of control).</li>
+        <li>Confusing oncogenes (gain of function) with tumor suppressor mutations (loss of function).</li>
+        <li>Saying p53 causes cancer. Mutated p53 fails to stop it.</li>
+        <li>Thinking one mutation causes cancer.</li>
+      </ul></div>
+      <div class="prose"><h2>Explain-it template</h2>
+        <p>Pick the checkpoint, say what it normally checks, say what the mutation changes, and say the consequence: "A mutation that disables p53 means damaged DNA is not detected at the G₁ checkpoint, so the cell divides and passes on mutations."</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Tumor suppressor genes normally restrain division, so losing them removes a brake.">
+        <p class="q">Check yourself: A mutation inactivates a tumor suppressor gene. The most likely effect is</p>
+        <div class="opts"><button type="button">loss of a brake on cell division</button><button type="button">a protein that is always active as an accelerator</button><button type="button">faster apoptosis</button><button type="button">shorter G₀</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

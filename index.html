@@ -2146,6 +2146,232 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-signal" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 4</span></div>
+        <h1>Cell signaling</h1>
+        <p class="lede">Cells talk to each other with chemical messages. The message never has to enter the cell: the receiving cell converts it into an internal signal.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Cell communication has three stages. In <b>reception</b>, a signaling molecule (<b>ligand</b>) binds a specific receptor protein, usually on the cell surface (small nonpolar signals such as steroid hormones can cross the membrane and bind receptors inside). In <b>transduction</b>, the receptor changes shape and starts a chain of molecules, often a <b>phosphorylation cascade</b> in which protein kinases activate one another. Second messengers such as cAMP and Ca²⁺ spread the signal quickly. In the <b>response</b>, the cell changes what it does: turns genes on or off, activates an enzyme, or reshapes its cytoskeleton.</p>
+        <p>Cascades <b>amplify</b> the signal because each activated enzyme activates many molecules in the next step, so a few ligand molecules can trigger a huge response. Signals are <b>specific</b> because only cells with the right receptor respond. Signals act over different distances: direct contact (cell junctions), <b>paracrine</b> (local), <b>synaptic</b> (neurons) and <b>endocrine</b> (hormones in blood). A mutation in any step can block or constantly activate a pathway, which is a common cause of cancer.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a message had to enter a cell to be received</dd><dt>So we didn't need</dt><dd>that a receptor can turn an outside signal into an inside one</dd><dt>Now</dt><dd>how a tiny signal causes a large response, and what goes wrong in disease</dd><dt>So we need</dt><dd>reception, transduction, response and amplification</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>ligand + receptor → shape change</span><small>reception</small></div><div class="eqn"><span>kinase cascade: each step activates many molecules</span><small>transduction and amplification</small></div><div class="eqn"><span>response: gene expression, enzyme activity, movement</span><small>response</small></div><div class="eqn"><span>mutation can block or lock on a pathway</span><small>disease</small></div></div>
+      <div class="lab" id="sg-lab">
+        <div class="labbar"><span class="title">A signal pathway</span></div>
+        <div class="row"><button type="button" class="btn" id="sg-prev">Previous</button><button type="button" class="btn primary" id="sg-next">Next stage</button><button type="button" class="btn" id="sg-play">Play</button></div>
+        <canvas id="sg-canvas" aria-label="A cell surface receptor binds a ligand, starts a phosphorylation cascade inside the cell and triggers a response."></canvas>
+        <div class="controls"><div class="ctl"><label for="sg-st"><span>Stage</span> <output id="sg-st-out"></output></label><input type="range" id="sg-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="sg-name">—</strong></div><div><span>what is happening</span><strong class="" id="sg-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="sg-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Amplification and mutations</span></div>
+        <div class="ctl"><span class="lbl">Cell</span><div class="seg" id="sg-mut" role="group" aria-label="Cell"><button type="button" data-k="norm" aria-pressed="true">normal</button><button type="button" data-k="blk" aria-pressed="false">receptor cannot bind</button><button type="button" data-k="stk" aria-pressed="false">receptor stuck "on"</button></div></div>
+        <canvas id="sg-canvas2" aria-label="Bars showing how many molecules are active at each step of a three-step cascade."></canvas>
+        <div class="controls"><div class="ctl"><label for="sg-n"><span>Ligand molecules</span> <output id="sg-n-out"></output></label><input type="range" id="sg-n" min="1" max="20" step="1" value="3"></div><div class="ctl"><label for="sg-a"><span>Amplification per step</span> <output id="sg-a-out"></output></label><input type="range" id="sg-a" min="2" max="50" step="1" value="10"></div></div>
+        <div class="readout"><div><span>active molecules at the end</span><strong class="x" id="sg-end">—</strong></div><div><span>response</span><strong class="" id="sg-resp">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the cascade stage. Why does each step increase the signal? <button type="button" class="btn link" data-show='[["#sg-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Each activated kinase phosphorylates many copies of the next protein, so the number of active molecules multiplies at each step.</p></details></li>
+        <li><p>Choose "stuck on" with 1 ligand. What happens? <button type="button" class="btn link" data-show='[["click", "#sg-mut [data-k=stk]"], ["#sg-n", 1]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The pathway runs at full strength with no ligand: the cell responds as if the signal were always present, a typical mechanism of cancer.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A signal activates a receptor. The receptor activates 20 kinase A molecules; each kinase A activates 20 kinase B molecules; each kinase B activates 20 enzymes. How many active enzymes result from 1 ligand-bound receptor?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Step 1.</b> 1 receptor → 20 kinase A.</li>
+          <li hidden><b>Step 2.</b> 20 × 20 = 400 kinase B.</li>
+          <li hidden><b>Step 3.</b> 400 × 20 = 8,000 active enzymes.</li>
+          <li hidden><b>Meaning.</b> One signaling event becomes a response of thousands of molecules: amplification.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the ligand enters the cell and causes the response directly (true only for small nonpolar ligands, and then it binds an internal receptor).</li>
+        <li>Thinking the signal is amplified at reception only.</li>
+        <li>Forgetting that specificity comes from the receptor.</li>
+        <li>Calling a response "transduction". Transduction is the relay.</li>
+        <li>Believing that more ligand always gives a bigger response (receptors can saturate).</li>
+      </ul></div>
+      <div class="prose"><h2>Predicting what a mutation does</h2>
+        <p>Name the step affected. If the receptor cannot bind, no response. If a kinase is stuck on, a response without signal. If the cascade is blocked downstream, the ligand binds but nothing happens. Describe the effect on the response and on the cell.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Without the specific receptor the cell cannot detect the signal.">
+        <p class="q">Check yourself: A cell lacks the receptor for a hormone. What is the most likely result when the hormone is present?</p>
+        <div class="opts"><button type="button">no response from that cell</button><button type="button">a response in all nearby cells</button><button type="button">a stronger response</button><button type="button">the cell makes more hormone</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-feedback" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 4</span></div>
+        <h1>Feedback & homeostasis</h1>
+        <p class="lede">Living things keep conditions steady by measuring them and correcting any drift. Occasionally they do the opposite on purpose.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Negative feedback</b> reverses a change and brings a variable back to its <b>set point</b>: body temperature, blood glucose, blood pH and water balance. A sensor detects a change, a control center compares it with the set point, and an effector acts to oppose it. For blood glucose, high glucose makes the pancreas release <b>insulin</b> (cells take up glucose, liver stores glycogen); low glucose makes it release <b>glucagon</b> (liver releases glucose).</p>
+        <p><b>Positive feedback</b> amplifies the change and pushes the system away from where it started until something ends it. Examples: oxytocin and uterine contractions during childbirth, ripening fruit releasing ethylene that speeds ripening, and blood clotting. Positive feedback is not a failure of homeostasis; it drives a process to completion. Without any feedback a variable drifts toward the surroundings.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a system just responded to conditions as they were</dd><dt>So we didn't need</dt><dd>that outputs can feed back to change the process</dd><dt>Now</dt><dd>how organisms stay stable, and how some processes snowball</dd><dt>So we need</dt><dd>negative and positive feedback loops</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>negative feedback: change → response that opposes it</span><small>stabilizes</small></div><div class="eqn"><span>positive feedback: change → response that amplifies it</span><small>drives to completion</small></div><div class="eqn"><span>sensor → control center → effector</span><small>loop parts</small></div><div class="eqn"><span>insulin lowers blood glucose; glucagon raises it</span><small>example of negative feedback</small></div></div>
+      <div class="lab" id="fb-lab" data-reset="own">
+        <div class="labbar"><span class="title">Keep the temperature steady</span></div>
+        <div class="ctl"><span class="lbl">Feedback</span><div class="seg" id="fb-kind" role="group" aria-label="Feedback"><button type="button" data-k="none" aria-pressed="true">none</button><button type="button" data-k="neg" aria-pressed="false">negative</button><button type="button" data-k="pos" aria-pressed="false">positive</button></div></div>
+        <div class="row"><button type="button" class="btn" id="fb-reset">Restart</button></div>
+        <canvas id="fb-canvas" aria-label="A graph of a variable over time with a dashed set point line. The behaviour changes with the type of feedback and the surrounding temperature."></canvas>
+        <div class="controls"><div class="ctl"><label for="fb-amb"><span>Surrounding temperature</span> <output id="fb-amb-out"></output></label><input type="range" id="fb-amb" min="0" max="40" step="1" value="15"></div></div>
+        <div class="readout"><div><span>current value</span><strong class="x" id="fb-now">—</strong></div><div><span>difference from set point (37)</span><strong class="a" id="fb-dev">—</strong></div><div><span>what is happening</span><strong class="" id="fb-msg">—</strong></div></div>
+      </div>
+      <div class="lab" id="fb-lab2">
+        <div class="labbar"><span class="title">Blood glucose after a meal</span></div>
+        <div class="row"><button type="button" class="btn" id="bg-prev">Previous</button><button type="button" class="btn primary" id="bg-next">Next stage</button><button type="button" class="btn" id="bg-play">Play</button></div>
+        <canvas id="fb-canvas2" aria-label="A graph of blood glucose over time with the hormone response at each stage."></canvas>
+        <div class="controls"><div class="ctl"><label for="bg-st"><span>Stage</span> <output id="bg-st-out"></output></label><input type="range" id="bg-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="bg-name">—</strong></div><div><span>what is happening</span><strong class="" id="bg-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose negative feedback with the surroundings at 15 °C. What happens to the value? <button type="button" class="btn link" data-show='[["click", "#fb-kind [data-k=neg]"], ["#fb-amb", 15]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It settles near the set point despite the cold: the effector (heat production) opposes the drift.</p></details></li>
+        <li><p>Choose positive feedback. What happens? <button type="button" class="btn link" data-show='[["click", "#fb-kind [data-k=pos]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The value runs away from the set point (up or down), because each change makes the next change bigger.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Blood glucose rises after a meal. Describe the feedback loop that returns it to normal.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Sensor.</b> Pancreatic beta cells detect high blood glucose.</li>
+          <li hidden><b>Response.</b> They release insulin into the blood.</li>
+          <li hidden><b>Effectors.</b> Body cells take up glucose and the liver converts it to glycogen.</li>
+          <li hidden><b>Result.</b> Blood glucose falls toward the set point and insulin release decreases: negative feedback.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Calling negative feedback "bad". It means the response opposes the change.</li>
+        <li>Thinking positive feedback means a good result.</li>
+        <li>Saying positive feedback maintains homeostasis. It amplifies a change.</li>
+        <li>Forgetting that insulin and glucagon act oppositely.</li>
+        <li>Not identifying the effector.</li>
+      </ul></div>
+      <div class="prose"><h2>Naming the loop on the exam</h2>
+        <p>Say what changed, what detected it, what responded, and whether the response reduced the change (negative) or increased it (positive). Label examples: temperature, glucose, blood pressure (negative); childbirth, fruit ripening, clotting (positive).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The response (contractions) causes more oxytocin release, amplifying the change.">
+        <p class="q">Check yourself: The release of oxytocin during childbirth that increases contractions is an example of</p>
+        <div class="opts"><button type="button">positive feedback</button><button type="button">negative feedback</button><button type="button">a set point</button><button type="button">a receptor</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-cellcycle" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 4</span></div>
+        <h1>The cell cycle & mitosis</h1>
+        <p class="lede">Before a cell divides it has to copy all of its DNA and then split the copies evenly. Mitosis is the splitting.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The cycle has two main parts. <b>Interphase</b> (most of the time) includes G₁ (growth), S (DNA is replicated, so each chromosome becomes two identical <b>sister chromatids</b>) and G₂ (more growth and preparation). <b>M phase</b> is mitosis followed by <b>cytokinesis</b> (division of the cytoplasm).</p>
+        <p>Mitosis has four stages. <b>Prophase</b>: chromosomes condense, the spindle forms and the nuclear envelope breaks down. <b>Metaphase</b>: chromosomes line up at the middle. <b>Anaphase</b>: sister chromatids separate and move to opposite poles. <b>Telophase</b>: nuclei re-form and the chromosomes relax. The two daughter cells are genetically identical to the parent and to each other. Mitosis is used for growth, repair and (in many organisms) asexual reproduction. In animal cells cytokinesis pinches the cell (cleavage furrow); in plant cells a cell plate forms.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>cells just divided in two</dd><dt>So we didn't need</dt><dd>that the DNA must first be copied and then separated exactly</dd><dt>Now</dt><dd>why daughter cells are identical copies</dd><dt>So we need</dt><dd>phases of interphase and mitosis</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>G₁ → S → G₂ → M</span><small>cell cycle order</small></div><div class="eqn"><span>prophase, metaphase, anaphase, telophase</span><small>PMAT</small></div><div class="eqn"><span>DNA content: 2C → 4C in S → 2C after division</span><small>per cell</small></div><div class="eqn"><span>fraction of cells in a stage ≈ fraction of time</span><small>used in root-tip counts</small></div></div>
+      <div class="lab" id="cc-lab">
+        <div class="labbar"><span class="title">Phases of the cell cycle</span></div>
+        <div class="row"><button type="button" class="btn" id="cc-prev">Previous</button><button type="button" class="btn primary" id="cc-next">Next stage</button><button type="button" class="btn" id="cc-play">Play</button></div>
+        <canvas id="cc-canvas" aria-label="A cell with four chromosomes drawn at each stage of interphase and mitosis, with the DNA amount shown."></canvas>
+        <div class="controls"><div class="ctl"><label for="cc-st"><span>Stage</span> <output id="cc-st-out"></output></label><input type="range" id="cc-st" min="0" max="6" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="cc-name">—</strong></div><div><span>what is happening</span><strong class="" id="cc-txt">—</strong></div><div><span>DNA per cell</span><strong class="a" id="cc-dna">—</strong></div></div>
+      </div>
+      <div class="lab" id="cc-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Counting cells in a root tip</span></div>
+        <canvas id="cc-canvas2" aria-label="Bars showing the hours a cell spends in each stage, calculated from counts of cells in each stage."></canvas>
+        <div class="controls"><div class="ctl"><label for="cc-i"><span>Cells in interphase</span> <output id="cc-i-out"></output></label><input type="range" id="cc-i" min="0" max="200" step="1" value="142"></div><div class="ctl"><label for="cc-p"><span>Cells in prophase</span> <output id="cc-p-out"></output></label><input type="range" id="cc-p" min="0" max="100" step="1" value="22"></div><div class="ctl"><label for="cc-m"><span>Cells in metaphase</span> <output id="cc-m-out"></output></label><input type="range" id="cc-m" min="0" max="100" step="1" value="10"></div><div class="ctl"><label for="cc-a"><span>Cells in anaphase</span> <output id="cc-a-out"></output></label><input type="range" id="cc-a" min="0" max="100" step="1" value="8"></div><div class="ctl"><label for="cc-t"><span>Cells in telophase</span> <output id="cc-t-out"></output></label><input type="range" id="cc-t" min="0" max="100" step="1" value="18"></div><div class="ctl"><label for="cc-d"><span>Cell cycle duration (hours)</span> <output id="cc-d-out"></output></label><input type="range" id="cc-d" min="6" max="36" step="1" value="24"></div></div>
+        <div class="readout"><div><span>cells counted</span><strong class="x" id="cc-n">—</strong></div><div><span>interphase</span><strong class="a" id="cc-ih">—</strong></div><div><span>mitosis in total</span><strong class="v" id="cc-mh">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to anaphase. What separates, and what does each pole get? <button type="button" class="btn link" data-show='[["#cc-st", 5]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Sister chromatids separate (each is now a chromosome) and each pole receives a complete set of chromosomes.</p></details></li>
+        <li><p>Go to S phase. What happens to the DNA amount? <button type="button" class="btn link" data-show='[["#cc-st", 1]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It doubles (from 2C to 4C) as every chromosome is copied. The chromosome number stays the same until anaphase.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In a root tip squash, 200 cells are counted: 160 in interphase, 20 in prophase, 8 in metaphase, 4 in anaphase and 8 in telophase. If the cell cycle takes 24 hours, how long is spent in interphase and in mitosis?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Fractions.</b> Interphase 160/200 = 0.80; mitosis 40/200 = 0.20.</li>
+          <li hidden><b>Interphase time.</b> 0.80 × 24 h = 19.2 h.</li>
+          <li hidden><b>Mitosis time.</b> 0.20 × 24 h = 4.8 h.</li>
+          <li hidden><b>Assumption.</b> Cells are evenly distributed through the cycle (an asynchronous population).</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying chromosomes double in number in S phase (the number of chromosomes stays the same; each now has two chromatids).</li>
+        <li>Mixing up the order of anaphase and metaphase.</li>
+        <li>Forgetting cytokinesis is separate from mitosis.</li>
+        <li>Saying daughter cells differ genetically.</li>
+        <li>Thinking DNA replication happens in prophase.</li>
+      </ul></div>
+      <div class="prose"><h2>Chromosomes and chromatids</h2>
+        <p>Count chromosomes by centromeres. A cell with 4 chromosomes has 8 chromatids after S phase until anaphase, when each chromatid is counted as a chromosome (so 8 chromosomes briefly). After cytokinesis each daughter has 4 chromosomes and no sister chromatids.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Sister chromatids separate and move to opposite poles in anaphase.">
+        <p class="q">Check yourself: During which stage do sister chromatids separate?</p>
+        <div class="opts"><button type="button">anaphase</button><button type="button">metaphase</button><button type="button">prophase</button><button type="button">S phase</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-cycleregs" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 4</span></div>
+        <h1>Cell cycle control & cancer</h1>
+        <p class="lede">Cells do not divide just because they can. A series of checkpoints decides whether a cell should go ahead, and cancer is what happens when the checkpoints fail.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The cycle is controlled by <b>cyclins</b> and <b>cyclin-dependent kinases (CDKs)</b>. A CDK is only active when bound to its cyclin, whose level rises and falls through the cycle. Three main <b>checkpoints</b> stop the cycle unless conditions are right: <b>G₁ checkpoint</b> (is the cell big enough, are nutrients and growth factors present, is the DNA undamaged?), <b>G₂ checkpoint</b> (has the DNA been copied accurately?) and the <b>M (spindle) checkpoint</b> (are all chromosomes attached to the spindle before anaphase?). Cells that stop can enter G₀ (a resting state).</p>
+        <p>The protein <b>p53</b> halts the cycle when DNA is damaged and triggers repair, or <b>apoptosis</b> (programmed cell death) if the damage is too great. Cancer arises when mutations break this control. Mutations that make <b>proto-oncogenes</b> overactive (oncogenes) act like a stuck accelerator; mutations that disable <b>tumor suppressor genes</b> (such as p53) remove the brakes. Usually several mutations are needed. Cancer cells divide without signals and ignore apoptosis.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>division was simply on or off</dd><dt>So we didn't need</dt><dd>that checkpoints check conditions and can pause or cancel division</dd><dt>Now</dt><dd>how cancer can be explained as damaged control of the cell cycle</dd><dt>So we need</dt><dd>checkpoints, cyclins and CDKs, and oncogenes vs tumor suppressors</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>cyclin + CDK → active kinase</span><small>drives the cell through a checkpoint</small></div><div class="eqn"><span>G₁, G₂, M checkpoints</span><small>conditions must be met to continue</small></div><div class="eqn"><span>proto-oncogene → oncogene</span><small>stuck accelerator</small></div><div class="eqn"><span>tumor suppressor (p53) lost</span><small>no brakes, no apoptosis</small></div></div>
+      <div class="lab" id="cr-lab" data-reset="own">
+        <div class="labbar"><span class="title">Will the cell divide?</span></div>
+        <div class="ctl"><span class="lbl">Growth factor</span><div class="seg" id="cr-gf" role="group" aria-label="Growth factor"><button type="button" data-k="on" aria-pressed="true">present</button><button type="button" data-k="off" aria-pressed="false">absent</button></div></div>
+        <div class="row"><button type="button" class="btn" id="cr-dmg" aria-pressed="false">DNA damage: no</button><button type="button" class="btn" id="cr-p53" aria-pressed="true">p53: working</button><button type="button" class="btn" id="cr-spin" aria-pressed="true">Spindle attached: yes</button></div>
+        <canvas id="cr-canvas" aria-label="A loop of the cell cycle with three checkpoint gates. The cell proceeds or stops depending on the conditions you choose."></canvas>
+        <div class="readout"><div><span>outcome</span><strong class="x" id="cr-res">—</strong></div><div><span>why</span><strong class="" id="cr-why">—</strong></div></div>
+      </div>
+      <div class="lab" id="cr-lab2" data-reset="own">
+        <div class="labbar"><span class="title">How fast can a tumor grow?</span></div>
+        <canvas id="cr-canvas2" aria-label="Graph of the number of cells over time for the chosen doubling time, compared with a cell population that does not divide."></canvas>
+        <div class="controls"><div class="ctl"><label for="cr-dt"><span>Doubling time (hours)</span> <output id="cr-dt-out"></output></label><input type="range" id="cr-dt" min="12" max="72" step="1" value="24"></div><div class="ctl"><label for="cr-days"><span>Time (days)</span> <output id="cr-days-out"></output></label><input type="range" id="cr-days" min="1" max="30" step="1" value="14"></div></div>
+        <div class="readout"><div><span>cells after that time</span><strong class="x" id="cr-n">—</strong></div><div><span>increase</span><strong class="a" id="cr-x">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Turn on DNA damage while p53 is working. What happens? <button type="button" class="btn link" data-show='[["click", "#cr-dmg"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The G₁ checkpoint stops the cycle; p53 triggers repair and, if damage is too great, apoptosis.</p></details></li>
+        <li><p>Now turn p53 off (mutated) while the DNA is damaged. <button type="button" class="btn link" data-show='[["click", "#cr-p53"]]'>Turn p53 off</button></p><details><summary>What you should see</summary><p>The cell passes the checkpoint with damaged DNA and divides, passing the damage on: a step toward cancer.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A tumor cell population starts with 1 cell and doubles every 24 hours. How many cells after 10 days, assuming no cell death?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Doublings.</b> 10 days × 24 h / 24 h = 10 doublings.</li>
+          <li hidden><b>Cells.</b> 2<sup>10</sup> = 1,024 cells.</li>
+          <li hidden><b>Note.</b> Real tumors slow down because of limited nutrients and blood supply.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the checkpoints are only in mitosis.</li>
+        <li>Thinking cancer cells divide faster because the cell cycle is shorter (the main problem is loss of control).</li>
+        <li>Confusing oncogenes (gain of function) with tumor suppressor mutations (loss of function).</li>
+        <li>Saying p53 causes cancer. Mutated p53 fails to stop it.</li>
+        <li>Thinking one mutation causes cancer.</li>
+      </ul></div>
+      <div class="prose"><h2>Explain-it template</h2>
+        <p>Pick the checkpoint, say what it normally checks, say what the mutation changes, and say the consequence: "A mutation that disables p53 means damaged DNA is not detected at the G₁ checkpoint, so the cell divides and passes on mutations."</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Tumor suppressor genes normally restrain division, so losing them removes a brake.">
+        <p class="q">Check yourself: A mutation inactivates a tumor suppressor gene. The most likely effect is</p>
+        <div class="opts"><button type="button">loss of a brake on cell division</button><button type="button">a protein that is always active as an accelerator</button><button type="button">faster apoptosis</button><button type="button">shorter G₀</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-practice" hidden>
     <div class="wrap">
       <div class="head">
@@ -2398,8 +2624,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"], "soon": []}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -3330,7 +3556,7 @@ function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillSt
     if(i===0){arrow(ctx,xs[0]-30,8,xs[0]-4,yb-18,T.ce);label(ctx,'light',xs[0]-34,14,T.ce,'right','middle',MONO);label(ctx,'2H₂O → O₂ + 4H⁺',xs[0],my-th/2+34,T.cx,'center','middle',MONO);arrow(ctx,xs[0]+36,yb,xs[1]-36,yb,T.ink);}
     if(i===1){arrow(ctx,xs[0]+36,yb,xs[1]-36,yb,T.ink,true);arrow(ctx,xs[1]-14,yb+40,xs[1]-14,yb+12,T.cx);arrow(ctx,xs[1]+14,yb-10,xs[1]+14,my-6,T.cx);label(ctx,'H⁺ pumped in',xs[1]+22,my-6,T.cx,'left','middle',MONO);for(let k=0;k<8;k++)dot2(ctx,xs[1]+50+k*14,my-8+Math.sin(k+t)*4,T.cx,3);}
     if(i===2){arrow(ctx,xs[1]+36,yb,xs[2]-36,yb,T.ink);label(ctx,'light',xs[2]-30,yb-34,T.ce,'right','middle',MONO);arrow(ctx,xs[2]-24,yb-48,xs[2]-6,yb-18,T.ce);arrow(ctx,xs[2],yb+16,xs[2],yb+52,T.ink);label(ctx,'NADP⁺ → NADPH',xs[2]+12,yb+66,T.ca,'left','middle',MONO);}
-    if(i===3){for(let k=0;k<10;k++)dot2(ctx,xs[3]-60+k*10,my-4+Math.sin(k*2+t)*4,T.cx,3);arrow(ctx,xs[3],my+2,xs[3],yb+46,T.cx);label(ctx,'H⁺ flows out',xs[3]+10,yb+30,T.cx,'left','middle',MONO);label(ctx,'ADP + Pi → ATP',xs[3],yb+64,T.hot,'center','middle',MONO);}
+    if(i===3){for(let k=0;k<10;k++)dot2(ctx,xs[3]-60+k*10,my-4+Math.sin(k*2+t)*4,T.cx,3);arrow(ctx,xs[3],my+2,xs[3],yb+46,T.cx);label(ctx,'H⁺ flows out',xs[3]-8,yb+30,T.cx,'right','middle',MONO);label(ctx,'ADP + Pi → ATP',xs[3],yb+64,T.hot,'center','middle',MONO);}
     if(i>=4){const cx=w*.5,cy=h*.74,r=Math.min(40,h*.12);ctx.beginPath();ctx.arc(cx,cy,r,0,6.283);ctx.strokeStyle=T.cv;ctx.lineWidth=3;ctx.stroke();label(ctx,'Calvin cycle',cx,cy,T.ink,'center','middle',MONO);
       if(i===4){arrow(ctx,cx-r-60,cy-14,cx-r-4,cy-6,T.ink);label(ctx,'CO₂',cx-r-64,cy-22,T.ink,'right','middle',MONO);label(ctx,'rubisco: CO₂ + RuBP → 2 × 3-PGA',cx+r+10,cy,T.cv,'left','middle',MONO);}
       if(i===5){arrow(ctx,cx-r-60,cy+16,cx-r-4,cy+6,T.hot);label(ctx,'ATP, NADPH',cx-r-64,cy+24,T.hot,'right','middle',MONO);arrow(ctx,cx+r+4,cy,cx+r+54,cy,T.ce);label(ctx,'G3P → glucose',cx+r+58,cy,T.ce,'left','middle',MONO);}}
@@ -3428,6 +3654,158 @@ function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillSt
   const q=[['The main purpose of fermentation is to','regenerate NAD⁺ so glycolysis can continue',['make a large amount of ATP','produce oxygen','break down ATP']],['Yeast fermentation produces','ethanol and CO₂',['lactate','CO₂ and water','pyruvate only']],['Human muscle cells in hard exercise with too little oxygen produce','lactate',['ethanol','CO₂ and water','glucose']],['Compared with aerobic respiration, fermentation yields','much less ATP per glucose',['more ATP per glucose','the same ATP per glucose','no ATP']]];
   PROBS.push({id:'fe-fact',topic:'ferment',title:'Fermentation facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall that glycolysis is the only ATP source.',sol:`<b>${p[1]}</b>.`};}});
   PROBS.push({id:'fe-ratio',topic:'ferment',title:'How much less efficient?',gen(){const ans=15;return {q:'About how many times more glucose must a cell use to make the same ATP by fermentation (2 ATP per glucose) than by aerobic respiration (about 30 ATP per glucose)?',ans,unit:'times',tol:0,chk:30/2,hint:'Divide the two yields.',sol:`30 / 2 = <b>15</b>.`};}});
+})();
+
+/* ===== modules/signal.js ===== */
+/* ---------------- Cell signaling ---------------- */
+(function signal(){
+  const cv=$('#sg-canvas');if(!cv)return;
+  const ST=[{n:'1 · reception',t:'A signaling molecule (ligand) binds to its specific receptor on the cell surface.'},{n:'2 · receptor activates a relay',t:'Binding changes the receptor\'s shape. It activates a protein inside the cell, starting transduction.'},{n:'3 · transduction cascade',t:'A phosphorylation cascade: each kinase activates several copies of the next, amplifying the signal.'},{n:'4 · response',t:'The signal reaches its target: for example a transcription factor enters the nucleus and turns on a gene.'}];
+  function dots(ctx,x,y,n,col,sp=10){for(let k=0;k<n;k++)dot2(ctx,x+(k-(n-1)/2)*sp,y,col,4);}
+  const sc=stageLab('sg','sg-canvas',ST,(ctx,w,h,i,t)=>{const my=h*.3,cx=w*.3;
+    ctx.fillStyle=alpha(T.ce,.35);ctx.fillRect(6,my-12,w-12,24);ctx.strokeStyle=T.ce;ctx.lineWidth=2;ctx.strokeRect(6,my-12,w-12,24);
+    label(ctx,'outside',12,12,T.muted,'left','middle',MONO);label(ctx,'cytoplasm',12,my+30,T.muted,'left','middle',MONO);
+    ctx.save();ctx.translate(cx,my);ctx.rotate(i>=1?.25:0);ctx.fillStyle=alpha(T.ca,.7);ctx.strokeStyle=T.ca;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-18,-34);ctx.lineTo(-6,-14);ctx.lineTo(6,-14);ctx.lineTo(18,-34);ctx.lineTo(10,-34);ctx.lineTo(0,-20);ctx.lineTo(-10,-34);ctx.closePath();ctx.fill();ctx.stroke();ctx.fillRect(-6,-14,12,40);ctx.strokeRect(-6,-14,12,40);ctx.restore();
+    if(i===0){const ly=my-48+Math.sin(t*2)*3;dot2(ctx,cx,ly,T.cv,9);label(ctx,'ligand',cx+16,ly,T.ink,'left','middle',MONO);}else dot2(ctx,cx,my-40,T.cv,9);
+    if(i>=1){dot2(ctx,cx+20,my+36,T.accent,10);label(ctx,'relay protein',cx+36,my+36,T.ink,'left','middle',MONO);}
+    if(i===2){const x0=w*.62;[[1,'kinase A'],[3,'kinase B'],[9,'kinase C']].forEach(([n,nm],k)=>{const y=my+30+k*38;dots(ctx,x0,y,n,T.accent,9);label(ctx,nm+' ×'+n,x0+n*5+16,y,T.muted,'left','middle',MONO);});}
+    if(i===3){const nx=w*.65,ny=h*.75;ctx.beginPath();ctx.arc(nx,ny,34,0,6.283);ctx.fillStyle=alpha(T.cx,.2);ctx.fill();ctx.strokeStyle=T.cx;ctx.lineWidth=2.4;ctx.stroke();label(ctx,'nucleus',nx,ny-8,T.ink,'center','middle',MONO);label(ctx,'gene on',nx,ny+8,T.cx,'center','middle',MONO);ctx.strokeStyle=T.accent;ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(cx+30,my+40);ctx.bezierCurveTo(cx+90,my+60,nx-80,ny-30,nx-36,ny);ctx.stroke();label(ctx,'→ new protein / changed activity',nx-30,ny+54,T.muted,'center','middle',MONO);}
+    },{h:w=>clamp(w*.46,230,300)});
+  $('#sg-lab').addEventListener('labreset',()=>sc.go(0));
+  let mut='norm',n=3,A=10;
+  const vals=()=>{if(mut==='blk')return [0,0,0,0];const s=mut==='stk'?20:n;return [s,s*A,s*A*A,s*A*A*A];};
+  const sim=sim2d($('#sg-canvas2'),{h:w=>clamp(w*.36,190,250),draw(ctx,w,h){const v=vals(),mx=Math.log10(20*50*50*50+1),L=14,R=w-14,bh=22,gap=10;['ligand-bound receptors','active kinase A','active kinase B','active enzymes (response)'].forEach((nm,k)=>{const y=14+k*(bh+gap),wd=(R-L)*Math.log10(v[k]+1)/mx;ctx.fillStyle=alpha(T.accent,.2+.2*k);ctx.fillRect(L,y,Math.max(wd,2),bh);ctx.strokeStyle=T.accent;ctx.lineWidth=1.6;ctx.strokeRect(L,y,Math.max(wd,2),bh);label(ctx,nm+': '+fmt(v[k],0),L+4,y+bh/2,T.ink,'left','middle',MONO);});
+      label(ctx,'bar length is on a log scale',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){const v=vals();setText('sg-end',fmt(v[3],0));setText('sg-resp',mut==='blk'?'none: the cell cannot detect the signal':mut==='stk'?'continuous response even without ligand':v[3]>1e4?'very large, from just '+n+' ligand molecules':'proportional to the signal, amplified');sim.render();}
+  segBind('sg-mut','k',v=>{mut=v;upd();});bindRange('sg-n',v=>String(v),v=>{n=v;upd();});bindRange('sg-a',v=>'×'+v,v=>{A=v;upd();});
+  $('#sg-lab2').addEventListener('labreset',()=>{mut='norm';n=3;A=10;segSet('sg-mut',0);setCtl('sg-n',3);setCtl('sg-a',10,v=>'×'+v);upd();});upd();
+  drawers.signal=()=>{sc.render();sim.render();};
+  KEYS['sg-canvas']=['Pink: receptor. Green: ligand. Orange: relay molecules in the cell.',[['ca','receptor'],['cv','ligand'],['accent','relay molecules']]];
+  KEYS['sg-canvas2']=['Each bar is one step of a three-step cascade. The scale is logarithmic.',[['accent','active molecules']]];
+  TIPS['sg-a']=()=>'Each active molecule activates this many in the next step, so the total grows as this number cubed over three steps.';
+  GLOSS['ligand']='A molecule that binds to a specific receptor and carries a signal.';GLOSS['receptor']='A protein that binds a specific signal and changes shape in response.';GLOSS['signal transduction']='The series of steps that relays a signal from the receptor to the response.';GLOSS['second messenger']='A small molecule (such as cAMP or Ca²⁺) that spreads a signal inside the cell.';GLOSS['kinase']='An enzyme that adds a phosphate group to another protein.';
+  TT.signal='Ask where in the pathway each given mutation acts and what the cell would do.';
+})();
+(function(){
+  PROBS.push({id:'sg-amp',topic:'signal',title:'Cascade amplification',gen(){const a=pick([5,10,20]),s=randInt(2,4),n=pick([1,2,5]),ans=n*Math.pow(a,s);return {q:`${n} activated receptor${n>1?'s':''} start a cascade of ${s} steps. At each step every active molecule activates ${a} molecules of the next protein. How many molecules are active after the last step?`,ans,unit:'molecules',tol:0,chk:n*a**s,hint:'Multiply by the amplification at each step.',sol:`${n} × ${a}<sup>${s}</sup> = <b>${fmt(ans,0)}</b>.`};}});
+  const q=[['A signaling molecule binds a receptor on the cell surface. This stage is called','reception',['transduction','response','amplification only']],['A series of kinases activating one another is part of','signal transduction',['reception','the response only','diffusion']],['A hormone affects only some cells in the body because','only those cells have the specific receptor',['the hormone can only reach those cells','other cells destroy it','only those cells have DNA']],['A mutation makes a receptor active even without its ligand. The likely result is','the pathway is on all the time',['the pathway is off all the time','no change','faster ligand production']],['A small nonpolar steroid hormone typically binds','a receptor inside the cell',['a receptor on the cell surface only','the cell wall','no receptor']]];
+  PROBS.push({id:'sg-fact',topic:'signal',title:'Signaling facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Reception, transduction, response.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/feedback.js ===== */
+/* ---------------- Feedback & homeostasis ---------------- */
+(function feedback(){
+  const cv=$('#fb-canvas');if(!cv)return;
+  let kind='none',amb=15,Tv=36.5;const hist=[];const SET=37;
+  function restart(){Tv=36.5;hist.length=0;}
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),
+    step(dt){const sub=8;for(let k=0;k<4;k++){const d=dt/4*sub;let u=0;if(kind==='neg')u=clamp(.5*(SET-Tv),-4,4);else if(kind==='pos')u=.1*(Tv-SET);Tv=clamp(Tv+(-.04*(Tv-amb)+u)*d,-5,70);}
+      hist.push(Tv);if(hist.length>240)hist.shift();upd(true);},
+    draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:240,y0:0,y1:60,yt:10,yl:'value',xl:'time →'});ctx.setLineDash([6,4]);ctx.strokeStyle=T.good;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(A.L,A.Y(SET));ctx.lineTo(A.R,A.Y(SET));ctx.stroke();ctx.setLineDash([]);label(ctx,'set point 37',A.R-4,A.Y(SET)-9,T.good,'right','middle',MONO);
+      ctx.strokeStyle=T.ca;ctx.lineWidth=2.6;ctx.beginPath();hist.forEach((v,i)=>{const x=A.X(240-hist.length+i),y=A.Y(clamp(v,0,60));i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();dot2(ctx,A.X(240),A.Y(clamp(Tv,0,60)),T.ca,5);}});
+  function upd(skip){setText('fb-now',fmt(Tv,1));setText('fb-dev',(Tv-SET>0?'+':'')+fmt(Tv-SET,1));const d=Math.abs(Tv-SET);setText('fb-msg',kind==='neg'?(d<2.5?'held close to the set point by a correcting response':'correcting: the response opposes the change'):kind==='pos'?(d>4?'running away from the set point: each change amplifies the next':'starting to move away'):(d>3?'drifting toward the surroundings: nothing corrects it':'holding for now'));if(!skip)sim.render();}
+  segBind('fb-kind','k',v=>{kind=v;restart();upd();});bindRange('fb-amb',v=>v+' °C',v=>{amb=v;upd();});$('#fb-reset').addEventListener('click',()=>{restart();upd();});
+  $('#fb-lab').addEventListener('labreset',()=>{kind='none';amb=15;segSet('fb-kind',0);setCtl('fb-amb',15,v=>v+' °C');restart();upd();});upd();
+  /* glucose */
+  const ST=[{n:'1 · glucose rises',t:'After a meal, glucose enters the blood and blood glucose rises above the set point.'},{n:'2 · insulin released',t:'Pancreatic beta cells detect the rise and release insulin.'},{n:'3 · glucose taken up',t:'Body cells take up glucose and the liver stores it as glycogen, so blood glucose falls.'},{n:'4 · back to normal',t:'As glucose returns to normal, insulin release drops (negative feedback). If glucose falls too low, glucagon raises it again.'}];
+  const g=x=>90+60*Math.exp(-Math.pow((x-.22)/(x<.22?.08:.2),2))-9*Math.exp(-Math.pow((x-.78)/.1,2));
+  const pos=[.1,.22,.45,.85];
+  const sc=stageLab('bg','fb-canvas2',ST,(ctx,w,h,i)=>{const A=axes2(ctx,w,h,{x0:0,x1:1,y0:60,y1:170,yt:20,yl:'blood glucose (mg/dL)',xl:'time after meal →',L:56});curve2(ctx,A,g,0,1,T.ca);
+    ctx.setLineDash([5,4]);ctx.strokeStyle=T.good;ctx.beginPath();ctx.moveTo(A.L,A.Y(90));ctx.lineTo(A.R,A.Y(90));ctx.stroke();ctx.setLineDash([]);label(ctx,'set point ≈ 90',A.R-4,A.Y(90)+12,T.good,'right','middle',MONO);
+    dot2(ctx,A.X(pos[i]),A.Y(g(pos[i])),T.accent,8);const lbl=['glucose ↑','insulin released','cells take up glucose','back to set point'][i];label(ctx,lbl,clamp(A.X(pos[i])+14,A.L+10,A.R-110),A.Y(g(pos[i]))-18,T.ink,'left','middle',MONO);},{h:w=>clamp(w*.4,210,270)});
+  $('#fb-lab2').addEventListener('labreset',()=>sc.go(0));
+  drawers.feedback=()=>{sim.render();sc.render();};
+  KEYS['fb-canvas']=['Pink line: the variable over time. Green dashed line: the set point (37). Compare the three feedback types.',[['ca','the variable'],['good','set point']]];
+  KEYS['fb-canvas2']=['The dot marks the stage. Pink is blood glucose; green dashed is the set point.',[['ca','blood glucose'],['good','set point']]];
+  TIPS['fb-kind']=()=>'Negative: response opposes the change. Positive: response increases the change.';
+  GLOSS['negative feedback']='A response that reduces the original change, returning a variable toward its set point.';GLOSS['positive feedback']='A response that amplifies the original change.';GLOSS['homeostasis']='Maintaining a relatively stable internal environment.';GLOSS['set point']='The target value a feedback system tries to maintain.';GLOSS['insulin']='A hormone from the pancreas that lowers blood glucose.';GLOSS['glucagon']='A hormone from the pancreas that raises blood glucose.';
+  TT.feedback='Ask students to name sensor, control center and effector for each example.';
+})();
+(function(){
+  const ex=[['Blood glucose rises and the pancreas releases insulin, which lowers glucose.','negative feedback'],['During childbirth, stretching of the cervix stimulates oxytocin release, which increases contractions, which stretch the cervix more.','positive feedback'],['Body temperature rises and sweating cools the body.','negative feedback'],['Ripening fruit releases ethylene, which speeds the ripening of nearby fruit.','positive feedback'],['Blood glucose falls and glucagon is released, raising glucose.','negative feedback'],['A damaged blood vessel releases clotting factors, which activate more clotting factors.','positive feedback']];
+  PROBS.push({id:'fb-type',topic:'feedback',title:'Type of feedback',gen(){const p=pick(ex),m=mcq(p[1],['negative feedback','positive feedback','no feedback','an open-loop system'].filter(x=>x!==p[1]));return {q:p[0]+' This is an example of',choices:m.choices,ans:m.ans,hint:'Does the response reduce or increase the original change?',sol:`<b>${p[1]}</b>.`};}});
+  const h=[['Which hormone lowers blood glucose?','insulin',['glucagon','oxytocin','ethylene']],['Which hormone raises blood glucose?','glucagon',['insulin','oxytocin','thyroxine']],['In a feedback loop, the part that carries out the corrective response is the','effector',['sensor','set point','signal only']]];
+  PROBS.push({id:'fb-fact',topic:'feedback',title:'Feedback facts',gen(){const p=pick(h),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall the pancreas hormones and the loop parts.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/cellcycle.js ===== */
+/* ---------------- The cell cycle & mitosis ---------------- */
+(function cellcycle(){
+  const cv=$('#cc-canvas');if(!cv)return;
+  const ST=[{n:'G₁ (interphase)',t:'The cell grows and carries out its normal functions. Each chromosome is a single DNA molecule.',d:'2C: one copy of each chromosome'},{n:'S (interphase)',t:'DNA is replicated. Each chromosome becomes two identical sister chromatids joined at the centromere.',d:'2C → 4C while replicating'},{n:'G₂ (interphase)',t:'The cell grows more and checks its copied DNA before dividing.',d:'4C: two chromatids per chromosome'},{n:'prophase',t:'Chromosomes condense, the spindle forms and the nuclear envelope breaks down.',d:'4C'},{n:'metaphase',t:'Chromosomes line up at the middle of the cell, attached to spindle fibers.',d:'4C'},{n:'anaphase',t:'Sister chromatids separate and are pulled to opposite poles.',d:'4C in the cell, 2C at each pole'},{n:'telophase and cytokinesis',t:'Nuclei re-form around each set, chromosomes relax, and the cytoplasm divides.',d:'2C in each daughter cell'}];
+  const COL=[T.cx,T.cx,T.ca,T.ca];
+  function rod(ctx,x,y,len,ang,col,rep){ctx.save();ctx.translate(x,y);ctx.rotate(ang);ctx.strokeStyle=col;ctx.lineWidth=5;ctx.lineCap='round';if(rep===2){ctx.beginPath();ctx.moveTo(-len/2,-4);ctx.lineTo(len/2,-4);ctx.moveTo(-len/2,4);ctx.lineTo(len/2,4);ctx.stroke();}else if(rep===1.5){ctx.beginPath();ctx.moveTo(-len/2,0);ctx.lineTo(len/2,0);ctx.stroke();ctx.globalAlpha=.4;ctx.beginPath();ctx.moveTo(-len/2,8);ctx.lineTo(len/2,8);ctx.stroke();}else{ctx.beginPath();ctx.moveTo(-len/2,0);ctx.lineTo(len/2,0);ctx.stroke();}ctx.restore();}
+  const LEN=[34,34,22,22];
+  const sc=stageLab('cc','cc-canvas',ST,(ctx,w,h,i,t)=>{const cx=w/2,cy=h/2,R=Math.min(h*.42,w*.24);
+    function cell(x,y,rx,ry){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,6.283);ctx.fillStyle=alpha(T.sunk,.6);ctx.fill();ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.stroke();}
+    if(i===6){const d=R*.62;cell(cx-d,cy,R*.78,R*.82);cell(cx+d,cy,R*.78,R*.82);[-1,1].forEach(s=>{ctx.beginPath();ctx.arc(cx+s*(d+R*.1),cy,R*.45,0,6.283);ctx.strokeStyle=T.cx;ctx.lineWidth=2;ctx.stroke();for(let k=0;k<4;k++)rod(ctx,cx+s*(d+R*.1)+(k-1.5)*8,cy+(k%2?6:-6),LEN[k]*.8,1.57,COL[k],1);});}
+    else{cell(cx,cy,R*1.35,R);
+      if(i<=2){ctx.beginPath();ctx.arc(cx,cy,R*.62,0,6.283);ctx.strokeStyle=T.cx;ctx.lineWidth=2.4;ctx.stroke();for(let k=0;k<4;k++)rod(ctx,cx+(k-1.5)*14,cy+(k%2?10:-10),LEN[k]*.9,1.2+k*.3,COL[k],i===0?1:i===1?1.5:2);}
+      if(i===3){ctx.setLineDash([4,4]);ctx.beginPath();ctx.arc(cx,cy,R*.78,0,6.283);ctx.strokeStyle=T.cx;ctx.lineWidth=1.6;ctx.stroke();ctx.setLineDash([]);[[-1,0],[1,0]].forEach(([s])=>{dot2(ctx,cx+s*R*1.15,cy,T.accent,5);});for(let k=0;k<4;k++)rod(ctx,cx+(k-1.5)*18,cy+(k%2?14:-14),LEN[k],.8+k*.7,COL[k],2);}
+      if(i===4){[-1,1].forEach(s=>{dot2(ctx,cx+s*R*1.2,cy,T.accent,5);for(let k=0;k<4;k++){ctx.strokeStyle=alpha(T.muted,.6);ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(cx+s*R*1.2,cy);ctx.lineTo(cx,cy+(k-1.5)*14);ctx.stroke();}});for(let k=0;k<4;k++)rod(ctx,cx,cy+(k-1.5)*14,LEN[k]*.9,0,COL[k],2);}
+      if(i===5){[-1,1].forEach(s=>{dot2(ctx,cx+s*R*1.2,cy,T.accent,5);for(let k=0;k<4;k++){ctx.strokeStyle=alpha(T.muted,.6);ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(cx+s*R*1.2,cy);ctx.lineTo(cx+s*R*.5,cy+(k-1.5)*14);ctx.stroke();rod(ctx,cx+s*R*.45,cy+(k-1.5)*14,LEN[k]*.7,1.57,COL[k],1);}});}}
+    label(ctx,'2n = 4: two long and two short chromosomes',w/2,h-10,T.muted,'center','middle',MONO);},{h:w=>clamp(w*.44,240,320),onStage:i=>setText('cc-dna',ST[i].d)});
+  $('#cc-lab').addEventListener('labreset',()=>sc.go(0));
+  let c={i:142,p:22,m:10,a:8,t:18},dur=24;
+  const sim=sim2d($('#cc-canvas2'),{h:w=>clamp(w*.4,200,260),draw(ctx,w,h){const n=c.i+c.p+c.m+c.a+c.t,rows=[['interphase',c.i,T.cx],['prophase',c.p,T.ca],['metaphase',c.m,T.hot],['anaphase',c.a,T.ce],['telophase',c.t,T.cv]],L=100,R=w-16,bh=20,mx=Math.max(dur*.9,1);
+    rows.forEach(([nm,v,col],k)=>{const hrs=n?v/n*dur:0,y=14+k*(bh+10),wd=(R-L)*hrs/dur;ctx.fillStyle=alpha(col,.7);ctx.fillRect(L,y,Math.max(wd,1),bh);ctx.strokeStyle=col;ctx.lineWidth=1.6;ctx.strokeRect(L,y,Math.max(wd,1),bh);label(ctx,nm,L-8,y+bh/2,T.ink,'right','middle',MONO);label(ctx,fmt(hrs,1)+' h',L+wd+6,y+bh/2,T.ink,'left','middle',MONO);});
+    label(ctx,'hours = (cells in stage / total cells) × cycle length',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){const n=c.i+c.p+c.m+c.a+c.t;setText('cc-n',String(n));setText('cc-ih',n?fmt(c.i/n*dur,1)+' h':'—');setText('cc-mh',n?fmt((c.p+c.m+c.a+c.t)/n*dur,1)+' h':'—');sim.render();}
+  [['cc-i','i'],['cc-p','p'],['cc-m','m'],['cc-a','a'],['cc-t','t']].forEach(([id,k])=>bindRange(id,v=>String(v),v=>{c[k]=v;upd();}));bindRange('cc-d',v=>v+' h',v=>{dur=v;upd();});
+  $('#cc-lab2').addEventListener('labreset',()=>{c={i:142,p:22,m:10,a:8,t:18};dur=24;[['cc-i',142],['cc-p',22],['cc-m',10],['cc-a',8],['cc-t',18]].forEach(([id,v])=>setCtl(id,v));setCtl('cc-d',24,v=>v+' h');upd();});upd();
+  drawers.cellcycle=()=>{sc.render();sim.render();};
+  KEYS['cc-canvas']=['Blue and pink rods are chromosomes. Orange dots are spindle poles.',[['cx','long chromosomes'],['ca','short chromosomes'],['accent','spindle pole']]];
+  KEYS['cc-canvas2']=['Bars show hours per stage from the counts you set.',[['cx','interphase'],['ca','prophase'],['hot','metaphase'],['ce','anaphase'],['cv','telophase']]];
+  TIPS['cc-st']=()=>'Interphase = G₁, S, G₂. Mitosis = prophase, metaphase, anaphase, telophase.';
+  GLOSS['sister chromatids']='The two identical copies of a replicated chromosome, joined at the centromere.';GLOSS['interphase']='The period between divisions: G₁, S and G₂.';GLOSS['cytokinesis']='Division of the cytoplasm after mitosis.';GLOSS['centromere']='The region where sister chromatids are joined.';GLOSS['spindle']='The structure of microtubules that moves chromosomes during division.';
+  TT.cellcycle='Ask students to count chromosomes and chromatids at each stage.';
+})();
+(function(){
+  PROBS.push({id:'cc-time',topic:'cellcycle',title:'Time in a stage',gen(){const tot=pick([100,200,250,400]),f=pick([.05,.08,.1,.12,.15,.2]),n=Math.round(tot*f),dur=pick([12,18,24,30]),ans=n/tot*dur,names=['prophase','metaphase','anaphase','telophase'];const nm=pick(names);return {q:`In a root tip squash, ${tot} cells were counted and ${n} were in ${nm}. If one cell cycle takes ${dur} hours, how many hours does a cell spend in ${nm}?`,ans,unit:'hours',abs:.02,chk:n*dur/tot,hint:'Time = (cells in stage / total cells) × length of the cycle.',sol:`${n}/${tot} × ${dur} = <b>${fmt(ans,2)} hours</b>.`};}});
+  PROBS.push({id:'cc-chr',topic:'cellcycle',title:'Chromosomes and chromatids',gen(){const n=pick([4,6,8,10,12,46]),st=pick([['G₁',n,'chromosomes'],['G₂ (after S)',2*n,'chromatids'],['metaphase',n,'chromosomes'],['anaphase (just after separation)',2*n,'chromosomes']]);return {q:`A diploid cell has ${n} chromosomes in G₁. How many ${st[2]} does it have in ${st[0]}?`,ans:st[1],unit:'',tol:0,chk:st[1],hint:'S phase doubles the chromatids, not the chromosome count. In anaphase each chromatid counts as a chromosome.',sol:`<b>${st[1]}</b>.`};}});
+  const q=[['Sister chromatids are separated during','anaphase',['prophase','metaphase','S phase']],['DNA is replicated during','S phase',['G₁','G₂','prophase']],['Chromosomes line up at the cell\'s equator in','metaphase',['prophase','anaphase','telophase']],['A cell plate forms during cytokinesis in','plant cells',['animal cells','all eukaryotes','bacteria only']],['Mitosis produces daughter cells that are','genetically identical to the parent',['genetically different from each other','haploid','half the size and half the chromosomes']]];
+  PROBS.push({id:'cc-fact',topic:'cellcycle',title:'Mitosis facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Think about what each stage does to the chromosomes.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/cycleregs.js ===== */
+/* ---------------- Cell cycle control & cancer ---------------- */
+(function cycleregs(){
+  const cv=$('#cr-canvas');if(!cv)return;
+  let gf='on',dmg=false,p53=true,spin=true;
+  function outcome(){if(gf==='off')return {stop:0,r:'stops at the G₁ checkpoint (enters G₀)',w:'no growth factor: the cell does not get the signal to divide'};
+    if(dmg)return p53?{stop:0,r:'stops at the checkpoint: repair or apoptosis',w:'p53 detects the damage, halts the cycle and triggers repair; severe damage leads to apoptosis'}:{stop:-1,r:'passes the checkpoint and divides with damaged DNA',w:'without working p53 the damage is not detected, so mutations are passed on (a step toward cancer)'};
+    if(!spin)return {stop:2,r:'stops at the M (spindle) checkpoint',w:'chromosomes are not all attached to the spindle, so anaphase is blocked'};
+    return {stop:-1,r:'passes all checkpoints and divides normally',w:'conditions are right: growth signal present, DNA intact, spindle attached'};}
+  const GATES=[{a:20,nm:'G₁'},{a:200,nm:'G₂'},{a:250,nm:'M'}];
+  const sim=sim2d(cv,{h:w=>clamp(w*.44,240,310),draw(ctx,w,h,t){const cx=w/2,cy=h/2,R=Math.min(h*.36,w*.22),o=outcome(),rad=a=>(a-90)*Math.PI/180;
+    [[-70,20,'G₁',T.cx],[20,130,'S',T.ce],[130,200,'G₂',T.cv],[200,290,'M',T.ca]].forEach(([a0,a1,nm,col])=>{ctx.beginPath();ctx.arc(cx,cy,R,rad(a0+90-90+0),rad(a1));ctx.strokeStyle=col;ctx.lineWidth=14;ctx.stroke();const m=(a0+a1)/2;label(ctx,nm,cx+Math.cos(rad(m))*(R+28),cy+Math.sin(rad(m))*(R+28),T.ink,'center','middle',MONO);});
+    GATES.forEach((g,k)=>{const x=cx+Math.cos(rad(g.a))*R,y=cy+Math.sin(rad(g.a))*R,blocked=(o.stop===0&&(k===0))||(o.stop===2&&k===2);ctx.fillStyle=blocked?T.bad:T.good;ctx.beginPath();ctx.arc(x,y,9,0,6.283);ctx.fill();ctx.strokeStyle=T.surface;ctx.lineWidth=2;ctx.stroke();label(ctx,blocked?'✕':'✓',x,y,T.surface,'center','middle',MONO);});
+    let a;if(o.stop===0)a=20-8;else if(o.stop===2)a=250-8;else a=(t*50)%360-70;const x=cx+Math.cos(rad(a))*R,y=cy+Math.sin(rad(a))*R;dot2(ctx,x,y,T.accent,8);
+    if(!p53)label(ctx,'p53 mutated',cx,cy-6,T.bad,'center','middle',MONO);if(dmg)label(ctx,'DNA damage',cx,cy+10,T.bad,'center','middle',MONO);
+    label(ctx,'green = checkpoint passed, red = blocked',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){const o=outcome();setText('cr-res',o.r);setText('cr-why',o.w);sim.render();}
+  function tog(id,f,txtFn){const b=$('#'+id);b.addEventListener('click',()=>{f();b.setAttribute('aria-pressed',String(b.getAttribute('aria-pressed')!=='true'));b.textContent=txtFn();upd();});}
+  segBind('cr-gf','k',v=>{gf=v;upd();});
+  tog('cr-dmg',()=>{dmg=!dmg;},()=>'DNA damage: '+(dmg?'yes':'no'));tog('cr-p53',()=>{p53=!p53;},()=>'p53: '+(p53?'working':'mutated'));tog('cr-spin',()=>{spin=!spin;},()=>'Spindle attached: '+(spin?'yes':'no'));
+  $('#cr-lab').addEventListener('labreset',()=>{gf='on';dmg=false;p53=true;spin=true;segSet('cr-gf',0);$('#cr-dmg').textContent='DNA damage: no';$('#cr-dmg').setAttribute('aria-pressed','false');$('#cr-p53').textContent='p53: working';$('#cr-p53').setAttribute('aria-pressed','true');$('#cr-spin').textContent='Spindle attached: yes';$('#cr-spin').setAttribute('aria-pressed','true');upd();});upd();
+  let dt=24,days=14;
+  const N=(d,t0)=>Math.pow(2,d*24/t0);
+  const sim2=sim2d($('#cr-canvas2'),{h:w=>clamp(w*.42,210,270),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:30,y0:0,y1:18,xt:5,yt:3,xl:'days',yl:'log₁₀ (cells)',L:44});ctx.setLineDash([5,4]);ctx.strokeStyle=T.muted;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(A.X(0),A.Y(0));ctx.lineTo(A.X(30),A.Y(0));ctx.stroke();ctx.setLineDash([]);label(ctx,'no division',A.R-4,A.Y(0)-8,T.muted,'right','middle',MONO);
+      curve2(ctx,A,d=>Math.log10(N(d,dt)),0,30,T.ca);dot2(ctx,A.X(days),A.Y(Math.log10(N(days,dt))),T.accent,6);}});
+  function upd2(){const n=N(days,dt);setText('cr-n',fmt(n,0));setText('cr-x',fmt(days*24/dt,1)+' doublings');sim2.render();}
+  bindRange('cr-dt',v=>v+' h',v=>{dt=v;upd2();});bindRange('cr-days',v=>String(v),v=>{days=v;upd2();});
+  $('#cr-lab2').addEventListener('labreset',()=>{dt=24;days=14;setCtl('cr-dt',24,v=>v+' h');setCtl('cr-days',14);upd2();});upd2();
+  drawers.cycleregs=()=>{sim.render();sim2.render();};
+  KEYS['cr-canvas']=['Colored arcs are the phases. Circles are the three checkpoints. The orange dot is the cell.',[['cx','G₁'],['ce','S'],['cv','G₂'],['ca','M'],['good','checkpoint passed'],['bad','checkpoint blocked']]];
+  KEYS['cr-canvas2']=['Pink: a population starting from one cell that keeps dividing (log scale). Dashed: one cell that does not divide.',[['ca','dividing cells']]];
+  TIPS['cr-p53']=()=>'p53 is a tumor suppressor: it stops cells with damaged DNA.';
+  GLOSS['checkpoint']='A point in the cell cycle where the cell checks conditions before continuing.';GLOSS['cyclin']='A protein whose level rises and falls and activates CDKs.';GLOSS['cdk']='Cyclin-dependent kinase: an enzyme active only when bound to a cyclin, driving the cell cycle.';GLOSS['p53']='A tumor suppressor protein that halts the cell cycle after DNA damage.';GLOSS['apoptosis']='Programmed cell death.';GLOSS['oncogene']='A mutated, overactive version of a proto-oncogene that promotes division.';GLOSS['tumor suppressor']='A gene whose product restrains cell division. Loss of function removes a brake.';
+  TT.cycleregs='Ask students to assign each mutation to "stuck accelerator" or "broken brake".';
+})();
+(function(){
+  PROBS.push({id:'cr-dbl',topic:'cycleregs',title:'Doubling cells',gen(){const [t,d]=pick([[12,2],[12,3],[24,2],[24,4],[24,6],[24,8],[48,4],[48,6],[36,3],[36,6]]),k=d*24/t;const n0=pick([1,2,5]),ans=n0*Math.pow(2,k);return {q:`A cell population starts with ${n0} cell${n0>1?'s':''} and doubles every ${t} hours with no cell death. How many cells are there after ${d} days?`,ans,unit:'cells',tol:0,chk:n0*Math.pow(2,d*24/t),hint:'Number of doublings = time / doubling time. Cells = start × 2^doublings.',sol:`Doublings = ${d*24}/${t} = ${k}. Cells = ${n0} × 2<sup>${k}</sup> = <b>${fmt(ans,0)}</b>.`};}});
+  const q=[['A mutation inactivates p53 in a cell with damaged DNA. The most likely result is','the cell divides with damaged DNA',['the cell stops at the G₁ checkpoint','the cell dies by apoptosis','the cell repairs its DNA faster']],['A mutated gene that is always "on" and promotes division is called a(n)','oncogene',['tumor suppressor gene','checkpoint','proto-oncogene']],['A gene whose normal product restrains the cell cycle is a','tumor suppressor gene',['proto-oncogene','oncogene','cyclin only']],['The M (spindle) checkpoint ensures that','all chromosomes are attached to spindle fibers before anaphase',['DNA is replicated accurately','the cell has grown enough','growth factor is present']],['A CDK is active only when it is bound to','a cyclin',['p53','ATP only','DNA']]];
+  PROBS.push({id:'cr-fact',topic:'cycleregs',title:'Cycle control facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Name the checkpoint or gene type first.',sol:`<b>${p[1]}</b>.`};}});
 })();
 
 /* ===== overview.js ===== */

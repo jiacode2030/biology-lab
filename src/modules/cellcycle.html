@@ -1,0 +1,55 @@
+  <section class="view" id="v-cellcycle" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 4</span></div>
+        <h1>The cell cycle & mitosis</h1>
+        <p class="lede">Before a cell divides it has to copy all of its DNA and then split the copies evenly. Mitosis is the splitting.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The cycle has two main parts. <b>Interphase</b> (most of the time) includes G₁ (growth), S (DNA is replicated, so each chromosome becomes two identical <b>sister chromatids</b>) and G₂ (more growth and preparation). <b>M phase</b> is mitosis followed by <b>cytokinesis</b> (division of the cytoplasm).</p>
+        <p>Mitosis has four stages. <b>Prophase</b>: chromosomes condense, the spindle forms and the nuclear envelope breaks down. <b>Metaphase</b>: chromosomes line up at the middle. <b>Anaphase</b>: sister chromatids separate and move to opposite poles. <b>Telophase</b>: nuclei re-form and the chromosomes relax. The two daughter cells are genetically identical to the parent and to each other. Mitosis is used for growth, repair and (in many organisms) asexual reproduction. In animal cells cytokinesis pinches the cell (cleavage furrow); in plant cells a cell plate forms.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>cells just divided in two</dd><dt>So we didn't need</dt><dd>that the DNA must first be copied and then separated exactly</dd><dt>Now</dt><dd>why daughter cells are identical copies</dd><dt>So we need</dt><dd>phases of interphase and mitosis</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>G₁ → S → G₂ → M</span><small>cell cycle order</small></div><div class="eqn"><span>prophase, metaphase, anaphase, telophase</span><small>PMAT</small></div><div class="eqn"><span>DNA content: 2C → 4C in S → 2C after division</span><small>per cell</small></div><div class="eqn"><span>fraction of cells in a stage ≈ fraction of time</span><small>used in root-tip counts</small></div></div>
+      <div class="lab" id="cc-lab">
+        <div class="labbar"><span class="title">Phases of the cell cycle</span></div>
+        <div class="row"><button type="button" class="btn" id="cc-prev">Previous</button><button type="button" class="btn primary" id="cc-next">Next stage</button><button type="button" class="btn" id="cc-play">Play</button></div>
+        <canvas id="cc-canvas" aria-label="A cell with four chromosomes drawn at each stage of interphase and mitosis, with the DNA amount shown."></canvas>
+        <div class="controls"><div class="ctl"><label for="cc-st"><span>Stage</span> <output id="cc-st-out"></output></label><input type="range" id="cc-st" min="0" max="6" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="cc-name">—</strong></div><div><span>what is happening</span><strong class="" id="cc-txt">—</strong></div><div><span>DNA per cell</span><strong class="a" id="cc-dna">—</strong></div></div>
+      </div>
+      <div class="lab" id="cc-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Counting cells in a root tip</span></div>
+        <canvas id="cc-canvas2" aria-label="Bars showing the hours a cell spends in each stage, calculated from counts of cells in each stage."></canvas>
+        <div class="controls"><div class="ctl"><label for="cc-i"><span>Cells in interphase</span> <output id="cc-i-out"></output></label><input type="range" id="cc-i" min="0" max="200" step="1" value="142"></div><div class="ctl"><label for="cc-p"><span>Cells in prophase</span> <output id="cc-p-out"></output></label><input type="range" id="cc-p" min="0" max="100" step="1" value="22"></div><div class="ctl"><label for="cc-m"><span>Cells in metaphase</span> <output id="cc-m-out"></output></label><input type="range" id="cc-m" min="0" max="100" step="1" value="10"></div><div class="ctl"><label for="cc-a"><span>Cells in anaphase</span> <output id="cc-a-out"></output></label><input type="range" id="cc-a" min="0" max="100" step="1" value="8"></div><div class="ctl"><label for="cc-t"><span>Cells in telophase</span> <output id="cc-t-out"></output></label><input type="range" id="cc-t" min="0" max="100" step="1" value="18"></div><div class="ctl"><label for="cc-d"><span>Cell cycle duration (hours)</span> <output id="cc-d-out"></output></label><input type="range" id="cc-d" min="6" max="36" step="1" value="24"></div></div>
+        <div class="readout"><div><span>cells counted</span><strong class="x" id="cc-n">—</strong></div><div><span>interphase</span><strong class="a" id="cc-ih">—</strong></div><div><span>mitosis in total</span><strong class="v" id="cc-mh">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to anaphase. What separates, and what does each pole get? <button type="button" class="btn link" data-show='[["#cc-st", 5]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Sister chromatids separate (each is now a chromosome) and each pole receives a complete set of chromosomes.</p></details></li>
+        <li><p>Go to S phase. What happens to the DNA amount? <button type="button" class="btn link" data-show='[["#cc-st", 1]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It doubles (from 2C to 4C) as every chromosome is copied. The chromosome number stays the same until anaphase.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In a root tip squash, 200 cells are counted: 160 in interphase, 20 in prophase, 8 in metaphase, 4 in anaphase and 8 in telophase. If the cell cycle takes 24 hours, how long is spent in interphase and in mitosis?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Fractions.</b> Interphase 160/200 = 0.80; mitosis 40/200 = 0.20.</li>
+          <li hidden><b>Interphase time.</b> 0.80 × 24 h = 19.2 h.</li>
+          <li hidden><b>Mitosis time.</b> 0.20 × 24 h = 4.8 h.</li>
+          <li hidden><b>Assumption.</b> Cells are evenly distributed through the cycle (an asynchronous population).</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying chromosomes double in number in S phase (the number of chromosomes stays the same; each now has two chromatids).</li>
+        <li>Mixing up the order of anaphase and metaphase.</li>
+        <li>Forgetting cytokinesis is separate from mitosis.</li>
+        <li>Saying daughter cells differ genetically.</li>
+        <li>Thinking DNA replication happens in prophase.</li>
+      </ul></div>
+      <div class="prose"><h2>Chromosomes and chromatids</h2>
+        <p>Count chromosomes by centromeres. A cell with 4 chromosomes has 8 chromatids after S phase until anaphase, when each chromatid is counted as a chromosome (so 8 chromosomes briefly). After cytokinesis each daughter has 4 chromosomes and no sister chromatids.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Sister chromatids separate and move to opposite poles in anaphase.">
+        <p class="q">Check yourself: During which stage do sister chromatids separate?</p>
+        <div class="opts"><button type="button">anaphase</button><button type="button">metaphase</button><button type="button">prophase</button><button type="button">S phase</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

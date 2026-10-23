@@ -1,0 +1,57 @@
+  <section class="view" id="v-feedback" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 4</span></div>
+        <h1>Feedback & homeostasis</h1>
+        <p class="lede">Living things keep conditions steady by measuring them and correcting any drift. Occasionally they do the opposite on purpose.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Negative feedback</b> reverses a change and brings a variable back to its <b>set point</b>: body temperature, blood glucose, blood pH and water balance. A sensor detects a change, a control center compares it with the set point, and an effector acts to oppose it. For blood glucose, high glucose makes the pancreas release <b>insulin</b> (cells take up glucose, liver stores glycogen); low glucose makes it release <b>glucagon</b> (liver releases glucose).</p>
+        <p><b>Positive feedback</b> amplifies the change and pushes the system away from where it started until something ends it. Examples: oxytocin and uterine contractions during childbirth, ripening fruit releasing ethylene that speeds ripening, and blood clotting. Positive feedback is not a failure of homeostasis; it drives a process to completion. Without any feedback a variable drifts toward the surroundings.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a system just responded to conditions as they were</dd><dt>So we didn't need</dt><dd>that outputs can feed back to change the process</dd><dt>Now</dt><dd>how organisms stay stable, and how some processes snowball</dd><dt>So we need</dt><dd>negative and positive feedback loops</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>negative feedback: change → response that opposes it</span><small>stabilizes</small></div><div class="eqn"><span>positive feedback: change → response that amplifies it</span><small>drives to completion</small></div><div class="eqn"><span>sensor → control center → effector</span><small>loop parts</small></div><div class="eqn"><span>insulin lowers blood glucose; glucagon raises it</span><small>example of negative feedback</small></div></div>
+      <div class="lab" id="fb-lab" data-reset="own">
+        <div class="labbar"><span class="title">Keep the temperature steady</span></div>
+        <div class="ctl"><span class="lbl">Feedback</span><div class="seg" id="fb-kind" role="group" aria-label="Feedback"><button type="button" data-k="none" aria-pressed="true">none</button><button type="button" data-k="neg" aria-pressed="false">negative</button><button type="button" data-k="pos" aria-pressed="false">positive</button></div></div>
+        <div class="row"><button type="button" class="btn" id="fb-reset">Restart</button></div>
+        <canvas id="fb-canvas" aria-label="A graph of a variable over time with a dashed set point line. The behaviour changes with the type of feedback and the surrounding temperature."></canvas>
+        <div class="controls"><div class="ctl"><label for="fb-amb"><span>Surrounding temperature</span> <output id="fb-amb-out"></output></label><input type="range" id="fb-amb" min="0" max="40" step="1" value="15"></div></div>
+        <div class="readout"><div><span>current value</span><strong class="x" id="fb-now">—</strong></div><div><span>difference from set point (37)</span><strong class="a" id="fb-dev">—</strong></div><div><span>what is happening</span><strong class="" id="fb-msg">—</strong></div></div>
+      </div>
+      <div class="lab" id="fb-lab2">
+        <div class="labbar"><span class="title">Blood glucose after a meal</span></div>
+        <div class="row"><button type="button" class="btn" id="bg-prev">Previous</button><button type="button" class="btn primary" id="bg-next">Next stage</button><button type="button" class="btn" id="bg-play">Play</button></div>
+        <canvas id="fb-canvas2" aria-label="A graph of blood glucose over time with the hormone response at each stage."></canvas>
+        <div class="controls"><div class="ctl"><label for="bg-st"><span>Stage</span> <output id="bg-st-out"></output></label><input type="range" id="bg-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="bg-name">—</strong></div><div><span>what is happening</span><strong class="" id="bg-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose negative feedback with the surroundings at 15 °C. What happens to the value? <button type="button" class="btn link" data-show='[["click", "#fb-kind [data-k=neg]"], ["#fb-amb", 15]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It settles near the set point despite the cold: the effector (heat production) opposes the drift.</p></details></li>
+        <li><p>Choose positive feedback. What happens? <button type="button" class="btn link" data-show='[["click", "#fb-kind [data-k=pos]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The value runs away from the set point (up or down), because each change makes the next change bigger.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Blood glucose rises after a meal. Describe the feedback loop that returns it to normal.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Sensor.</b> Pancreatic beta cells detect high blood glucose.</li>
+          <li hidden><b>Response.</b> They release insulin into the blood.</li>
+          <li hidden><b>Effectors.</b> Body cells take up glucose and the liver converts it to glycogen.</li>
+          <li hidden><b>Result.</b> Blood glucose falls toward the set point and insulin release decreases: negative feedback.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Calling negative feedback "bad". It means the response opposes the change.</li>
+        <li>Thinking positive feedback means a good result.</li>
+        <li>Saying positive feedback maintains homeostasis. It amplifies a change.</li>
+        <li>Forgetting that insulin and glucagon act oppositely.</li>
+        <li>Not identifying the effector.</li>
+      </ul></div>
+      <div class="prose"><h2>Naming the loop on the exam</h2>
+        <p>Say what changed, what detected it, what responded, and whether the response reduced the change (negative) or increased it (positive). Label examples: temperature, glucose, blood pressure (negative); childbirth, fruit ripening, clotting (positive).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The response (contractions) causes more oxytocin release, amplifying the change.">
+        <p class="q">Check yourself: The release of oxytocin during childbirth that increases contractions is an example of</p>
+        <div class="opts"><button type="button">positive feedback</button><button type="button">negative feedback</button><button type="button">a set point</button><button type="button">a receptor</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

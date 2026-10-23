@@ -1,0 +1,34 @@
+/* ---------------- Cell signaling ---------------- */
+(function signal(){
+  const cv=$('#sg-canvas');if(!cv)return;
+  const ST=[{n:'1 · reception',t:'A signaling molecule (ligand) binds to its specific receptor on the cell surface.'},{n:'2 · receptor activates a relay',t:'Binding changes the receptor\'s shape. It activates a protein inside the cell, starting transduction.'},{n:'3 · transduction cascade',t:'A phosphorylation cascade: each kinase activates several copies of the next, amplifying the signal.'},{n:'4 · response',t:'The signal reaches its target: for example a transcription factor enters the nucleus and turns on a gene.'}];
+  function dots(ctx,x,y,n,col,sp=10){for(let k=0;k<n;k++)dot2(ctx,x+(k-(n-1)/2)*sp,y,col,4);}
+  const sc=stageLab('sg','sg-canvas',ST,(ctx,w,h,i,t)=>{const my=h*.3,cx=w*.3;
+    ctx.fillStyle=alpha(T.ce,.35);ctx.fillRect(6,my-12,w-12,24);ctx.strokeStyle=T.ce;ctx.lineWidth=2;ctx.strokeRect(6,my-12,w-12,24);
+    label(ctx,'outside',12,12,T.muted,'left','middle',MONO);label(ctx,'cytoplasm',12,my+30,T.muted,'left','middle',MONO);
+    ctx.save();ctx.translate(cx,my);ctx.rotate(i>=1?.25:0);ctx.fillStyle=alpha(T.ca,.7);ctx.strokeStyle=T.ca;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-18,-34);ctx.lineTo(-6,-14);ctx.lineTo(6,-14);ctx.lineTo(18,-34);ctx.lineTo(10,-34);ctx.lineTo(0,-20);ctx.lineTo(-10,-34);ctx.closePath();ctx.fill();ctx.stroke();ctx.fillRect(-6,-14,12,40);ctx.strokeRect(-6,-14,12,40);ctx.restore();
+    if(i===0){const ly=my-48+Math.sin(t*2)*3;dot2(ctx,cx,ly,T.cv,9);label(ctx,'ligand',cx+16,ly,T.ink,'left','middle',MONO);}else dot2(ctx,cx,my-40,T.cv,9);
+    if(i>=1){dot2(ctx,cx+20,my+36,T.accent,10);label(ctx,'relay protein',cx+36,my+36,T.ink,'left','middle',MONO);}
+    if(i===2){const x0=w*.62;[[1,'kinase A'],[3,'kinase B'],[9,'kinase C']].forEach(([n,nm],k)=>{const y=my+30+k*38;dots(ctx,x0,y,n,T.accent,9);label(ctx,nm+' ×'+n,x0+n*5+16,y,T.muted,'left','middle',MONO);});}
+    if(i===3){const nx=w*.65,ny=h*.75;ctx.beginPath();ctx.arc(nx,ny,34,0,6.283);ctx.fillStyle=alpha(T.cx,.2);ctx.fill();ctx.strokeStyle=T.cx;ctx.lineWidth=2.4;ctx.stroke();label(ctx,'nucleus',nx,ny-8,T.ink,'center','middle',MONO);label(ctx,'gene on',nx,ny+8,T.cx,'center','middle',MONO);ctx.strokeStyle=T.accent;ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(cx+30,my+40);ctx.bezierCurveTo(cx+90,my+60,nx-80,ny-30,nx-36,ny);ctx.stroke();label(ctx,'→ new protein / changed activity',nx-30,ny+54,T.muted,'center','middle',MONO);}
+    },{h:w=>clamp(w*.46,230,300)});
+  $('#sg-lab').addEventListener('labreset',()=>sc.go(0));
+  let mut='norm',n=3,A=10;
+  const vals=()=>{if(mut==='blk')return [0,0,0,0];const s=mut==='stk'?20:n;return [s,s*A,s*A*A,s*A*A*A];};
+  const sim=sim2d($('#sg-canvas2'),{h:w=>clamp(w*.36,190,250),draw(ctx,w,h){const v=vals(),mx=Math.log10(20*50*50*50+1),L=14,R=w-14,bh=22,gap=10;['ligand-bound receptors','active kinase A','active kinase B','active enzymes (response)'].forEach((nm,k)=>{const y=14+k*(bh+gap),wd=(R-L)*Math.log10(v[k]+1)/mx;ctx.fillStyle=alpha(T.accent,.2+.2*k);ctx.fillRect(L,y,Math.max(wd,2),bh);ctx.strokeStyle=T.accent;ctx.lineWidth=1.6;ctx.strokeRect(L,y,Math.max(wd,2),bh);label(ctx,nm+': '+fmt(v[k],0),L+4,y+bh/2,T.ink,'left','middle',MONO);});
+      label(ctx,'bar length is on a log scale',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){const v=vals();setText('sg-end',fmt(v[3],0));setText('sg-resp',mut==='blk'?'none: the cell cannot detect the signal':mut==='stk'?'continuous response even without ligand':v[3]>1e4?'very large, from just '+n+' ligand molecules':'proportional to the signal, amplified');sim.render();}
+  segBind('sg-mut','k',v=>{mut=v;upd();});bindRange('sg-n',v=>String(v),v=>{n=v;upd();});bindRange('sg-a',v=>'×'+v,v=>{A=v;upd();});
+  $('#sg-lab2').addEventListener('labreset',()=>{mut='norm';n=3;A=10;segSet('sg-mut',0);setCtl('sg-n',3);setCtl('sg-a',10,v=>'×'+v);upd();});upd();
+  drawers.signal=()=>{sc.render();sim.render();};
+  KEYS['sg-canvas']=['Pink: receptor. Green: ligand. Orange: relay molecules in the cell.',[['ca','receptor'],['cv','ligand'],['accent','relay molecules']]];
+  KEYS['sg-canvas2']=['Each bar is one step of a three-step cascade. The scale is logarithmic.',[['accent','active molecules']]];
+  TIPS['sg-a']=()=>'Each active molecule activates this many in the next step, so the total grows as this number cubed over three steps.';
+  GLOSS['ligand']='A molecule that binds to a specific receptor and carries a signal.';GLOSS['receptor']='A protein that binds a specific signal and changes shape in response.';GLOSS['signal transduction']='The series of steps that relays a signal from the receptor to the response.';GLOSS['second messenger']='A small molecule (such as cAMP or Ca²⁺) that spreads a signal inside the cell.';GLOSS['kinase']='An enzyme that adds a phosphate group to another protein.';
+  TT.signal='Ask where in the pathway each given mutation acts and what the cell would do.';
+})();
+(function(){
+  PROBS.push({id:'sg-amp',topic:'signal',title:'Cascade amplification',gen(){const a=pick([5,10,20]),s=randInt(2,4),n=pick([1,2,5]),ans=n*Math.pow(a,s);return {q:`${n} activated receptor${n>1?'s':''} start a cascade of ${s} steps. At each step every active molecule activates ${a} molecules of the next protein. How many molecules are active after the last step?`,ans,unit:'molecules',tol:0,chk:n*a**s,hint:'Multiply by the amplification at each step.',sol:`${n} × ${a}<sup>${s}</sup> = <b>${fmt(ans,0)}</b>.`};}});
+  const q=[['A signaling molecule binds a receptor on the cell surface. This stage is called','reception',['transduction','response','amplification only']],['A series of kinases activating one another is part of','signal transduction',['reception','the response only','diffusion']],['A hormone affects only some cells in the body because','only those cells have the specific receptor',['the hormone can only reach those cells','other cells destroy it','only those cells have DNA']],['A mutation makes a receptor active even without its ligand. The likely result is','the pathway is on all the time',['the pathway is off all the time','no change','faster ligand production']],['A small nonpolar steroid hormone typically binds','a receptor inside the cell',['a receptor on the cell surface only','the cell wall','no receptor']]];
+  PROBS.push({id:'sg-fact',topic:'signal',title:'Signaling facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Reception, transduction, response.',sol:`<b>${p[1]}</b>.`};}});
+})();
