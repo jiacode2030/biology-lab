@@ -4,6 +4,9 @@ An interactive, intuition-first study site for **AP Biology**: live simulations 
 
 Unofficial study aid. Not affiliated with the College Board. AP and Advanced Placement are trademarks registered by the College Board.
 
+## What is in it
+47 modules across the eight AP units plus a short math-and-practices group (statistics, chi-square, experimental design, rates and dilutions); about 140 randomized problem generators; 10 original FRQs with point-by-point scoring guides; a "which approach?" trainer; an exam builder; equation, genetic-code and table reference sheets.
+
 ## Build and test
 ```
 python3 tools/mk.py   # regenerate module pages from tools/units/*.py

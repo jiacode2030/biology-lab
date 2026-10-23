@@ -18,6 +18,7 @@
         <canvas id="tr-canvas" aria-label="Two chambers separated by a membrane. Dots are solute and water particles. Water levels show osmosis."></canvas>
         <div class="controls"><div class="ctl"><label for="tr-sl"><span>Solute on the left</span> <output id="tr-sl-out"></output></label><input type="range" id="tr-sl" min="0" max="60" step="1" value="40"></div><div class="ctl"><label for="tr-sr"><span>Solute on the right</span> <output id="tr-sr-out"></output></label><input type="range" id="tr-sr" min="0" max="60" step="1" value="10"></div></div>
         <div class="readout"><div><span>left concentration</span><strong class="x" id="tr-cl">—</strong></div><div><span>right concentration</span><strong class="a" id="tr-cr">—</strong></div><div><span>water level, left minus right</span><strong class="v" id="tr-dh">—</strong></div><div><span>what is happening</span><strong class="" id="tr-state">—</strong></div></div>
+        <p class="small" style="margin:8px 0 0">A simplified model: amounts are in arbitrary units, and the pull of osmosis is balanced against the weight of the extra water.</p>
       </div>
       <div class="lab" id="tr-lab2">
         <div class="labbar"><span class="title">A cell in solutions of different strength</span></div>
@@ -26,6 +27,7 @@
         <canvas id="tr-canvas2" aria-label="A cell drawn at the size it takes in a surrounding solution of the chosen strength."></canvas>
         <div class="controls"><div class="ctl"><label for="tr-c"><span>Solute outside the cell</span> <output id="tr-c-out"></output></label><input type="range" id="tr-c" min="0" max="0.6" step="0.01" value="0.15"></div></div>
         <div class="readout"><div><span>outside solution is</span><strong class="x" id="tr-ton">—</strong></div><div><span>net water movement</span><strong class="v" id="tr-mv">—</strong></div><div><span>the cell</span><strong class="" id="tr-look">—</strong></div></div>
+        <p class="small" style="margin:8px 0 0">A simplified model: the size the cell reaches before bursting is an illustration, not a measured value.</p>
       </div>
       <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
         <li><p>Choose <b>blocks solute</b> with 40 on the left and 10 on the right. Where does the water go? <button type="button" class="btn link" data-show='[["click", "#tr-mode [data-k=osm]"], ["#tr-sl", 40], ["#tr-sr", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Toward the left, the side with more solute. The left level rises and the right falls until the extra height pushes back as hard as osmosis pulls.</p></details></li>
