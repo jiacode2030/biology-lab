@@ -1,0 +1,40 @@
+/* ---------------- Natural selection ---------------- */
+(function selection(){
+  const cv=$('#ns-canvas');if(!cv)return;
+  const NB=40;let mode='dir',s=5,gen=0,P=[],P0=[];
+  function init(){P=[];let z=0;for(let i=0;i<NB;i++){const x=(i+.5)*100/NB;P.push(Math.exp(-Math.pow((x-50)/12,2)/2));z+=P[i];}P=P.map(v=>v/z);P0=P.slice();gen=0;}
+  const fit=(x)=>{const z=(x-50)/50;return mode==='dir'?Math.exp(.15*s*z):mode==='sta'?Math.exp(-s*z*z):Math.exp(.6*s*z*z);};
+  function step(){let z=0;const q=P.map((v,i)=>{const w=v*fit((i+.5)*100/NB);z+=w;return w;}).map(v=>v/z);const r=q.map((v,i)=>.1*(q[i-1]||q[i])+.8*v+.1*(q[i+1]||q[i]));let t=0;r.forEach(v=>t+=v);P=r.map(v=>v/t);gen++;}
+  const stats=()=>{let m=0;P.forEach((v,i)=>m+=v*(i+.5)*100/NB);let va=0;P.forEach((v,i)=>va+=v*Math.pow((i+.5)*100/NB-m,2));return [m,Math.sqrt(va)];};
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:100,y0:0,y1:.2,xt:20,xl:'trait value (for example beak depth)',yl:'fraction of population',L:46}),bw=(A.R-A.L)/NB,mx=.2;
+    P.forEach((v,i)=>{const x=A.L+i*bw,hh=(A.B-A.T0)*Math.min(v,mx)/mx;ctx.fillStyle=alpha(T.cx,.65);ctx.fillRect(x+1,A.B-hh,bw-2,hh);});
+    ctx.strokeStyle=T.muted;ctx.lineWidth=2;ctx.setLineDash([5,4]);ctx.beginPath();P0.forEach((v,i)=>{const x=A.L+(i+.5)*bw,y=A.B-(A.B-A.T0)*Math.min(v,mx)/mx;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();ctx.setLineDash([]);
+    const m=stats()[0];ctx.strokeStyle=T.accent;ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(A.X(m),A.T0);ctx.lineTo(A.X(m),A.B);ctx.stroke();label(ctx,'mean',A.X(m)+4,A.T0+8,T.accent,'left','middle',MONO);label(ctx,'dashed: generation 0',A.R-4,A.T0+8,T.muted,'right','middle',MONO);
+    ctx.strokeStyle=alpha(T.good,.9);ctx.lineWidth=2;ctx.beginPath();for(let i=0;i<=60;i++){const x=i/60*100,wv=fit(x)/Math.max(fit(0),fit(50),fit(100)),px=A.X(x),py=A.B-(A.B-A.T0)*.25-wv*(A.B-A.T0)*.15;i?ctx.lineTo(px,py):ctx.moveTo(px,py);}ctx.stroke();label(ctx,'green: fitness of each trait value',A.L+6,A.T0+8,T.good,'left','middle',MONO);}});
+  function upd(){const [m,sd]=stats();setText('ns-gen',String(gen));setText('ns-mean',fmt(m,1));setText('ns-sd',fmt(sd,1));sim.render();}
+  segBind('ns-mode','k',v=>{mode=v;init();upd();});bindRange('ns-s',v=>String(v),v=>{s=v;sim.render();});
+  $('#ns-next').addEventListener('click',()=>{step();upd();});$('#ns-ten').addEventListener('click',()=>{for(let i=0;i<10;i++)step();upd();});$('#ns-reset').addEventListener('click',()=>{init();upd();});
+  $('#ns-lab').addEventListener('labreset',()=>{mode='dir';s=5;segSet('ns-mode',0);setCtl('ns-s',5);init();upd();});init();upd();
+  /* resistance */
+  let p0=.001,sc=.3;
+  const series=()=>{const r=[p0];for(let g=0;g<400&&r[r.length-1]<.9999;g++){const p=r[r.length-1];r.push(p/(p+(1-p)*(1-sc)));}return r;};
+  const sim2=sim2d($('#ns-canvas2'),{h:w=>clamp(w*.42,210,270),draw(ctx,w,h){const r=series(),g50=r.findIndex(v=>v>=.5),gmax=Math.max(10,Math.ceil(r.length*1.05)),A=axes2(ctx,w,h,{x0:0,x1:gmax,y0:0,y1:1,xt:Math.max(1,Math.round(gmax/5)),yt:.25,xl:'generations',yl:'fraction resistant',L:48});
+    ctx.strokeStyle=T.ca;ctx.lineWidth=2.6;ctx.beginPath();r.forEach((v,i)=>{const x=A.X(i),y=A.Y(v);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();if(g50>=0)dot2(ctx,A.X(g50),A.Y(.5),T.accent,6);}});
+  function upd2(){const r=series(),g50=r.findIndex(v=>v>=.5),g99=r.findIndex(v=>v>=.99);setText('ns-g50',g50<0?'more than 400':String(g50));setText('ns-g99',g99<0?'more than 400':String(g99));sim2.render();}
+  bindRange('ns-p0',v=>fmt(v*100,2)+'%',v=>{p0=v;upd2();});bindRange('ns-sc',v=>fmt(v*100,0)+'%',v=>{sc=v;upd2();});
+  $('#ns-lab2').addEventListener('labreset',()=>{p0=.001;sc=.3;setCtl('ns-p0',.001,v=>fmt(v*100,2)+'%');setCtl('ns-sc',.3,v=>fmt(v*100,0)+'%');upd2();});upd2();
+  drawers.selection=()=>{sim.render();sim2.render();};
+  KEYS['ns-canvas']=['Blue bars: the population now. Dashed line: generation 0. Orange line: the mean. Green curve: fitness.',[['cx','population'],['accent','mean'],['good','fitness']]];
+  KEYS['ns-canvas2']=['Pink curve: fraction of resistant bacteria over generations. The dot marks 50%.',[['ca','resistant fraction']]];
+  TIPS['ns-s']=()=>'A bigger value means a bigger difference in survival and reproduction between trait values.';
+  GLOSS['fitness']='An individual\'s contribution of offspring to the next generation.';GLOSS['directional selection']='Selection favoring one extreme, shifting the mean.';GLOSS['stabilizing selection']='Selection favoring intermediate phenotypes.';GLOSS['disruptive selection']='Selection favoring both extremes.';GLOSS['adaptation']='A heritable trait that increases fitness in a particular environment.';GLOSS['heritability']='The fraction of variation in a trait that is due to genetic differences.';
+  TT.selection='Ask students to predict the effect on mean and spread before running the generations.';
+})();
+(function(){
+  const M=[['Large-beaked finches survive a drought because they can crack large seeds, and the average beak size in the next generation increases.','directional selection'],['Babies of very low or very high birth weight have lower survival than babies of average weight.','stabilizing selection'],['Finches with very large or very small beaks eat the available seeds well, while medium beaks eat poorly.','disruptive selection'],['Peahens choose males with larger tails, so tail length increases despite a cost in survival.','sexual selection'],['Farmers breed only the cows that give the most milk.','artificial selection']];
+  PROBS.push({id:'ns-mode',topic:'selection',title:'Mode of selection',gen(){const p=pick(M),m=mcq(p[1],M.map(x=>x[1]).filter(x=>x!==p[1]));return {q:p[0]+' This is an example of',choices:m.choices,ans:m.ans,hint:'Which phenotypes are favored: one extreme, the middle, or both extremes?',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'ns-fit',topic:'selection',title:'Relative fitness',gen(){const a=pick([2,3,4,5,6]),b=pick([6,8,10,12]),hi=Math.max(a,b),lo=Math.min(a,b),ans=lo/hi;return {q:`Over their lifetimes, brown mice leave an average of ${b} offspring and gray mice leave ${a}. Taking the better genotype as the standard, what is the relative fitness of the less successful group? (Give a decimal.)`,ans,unit:'',abs:.011,chk:lo/hi,hint:'Relative fitness = offspring / offspring of the best group.',sol:`${lo}/${hi} = <b>${fmt(ans,2)}</b>.`};}});
+  PROBS.push({id:'ns-sel',topic:'selection',title:'Allele frequency after selection',gen(){const p=pick([.1,.2,.4,.5]),s=pick([.1,.2,.3,.5]),ans=p/(p+(1-p)*(1-s));return {q:`In a haploid population the allele R has frequency ${p}. Sensitive (non-R) individuals have relative fitness ${fmt(1-s,2)}; R individuals have fitness 1. What is the frequency of R after one round of selection? (Three decimals.)`,ans,unit:'',abs:.0011,chk:p*1/(p*1+(1-p)*(1-s)),hint:'New p = p·w₁ / (p·w₁ + q·w₂).',sol:`p′ = ${p}/(${p} + ${fmt(1-p,2)} × ${fmt(1-s,2)}) = <b>${fmt(ans,3)}</b>.`};}});
+  const q=[['Which statement about evolution is correct?','populations evolve, individuals do not',['individuals evolve during their lifetime to fit their environment','organisms change because they need to','acquired traits are inherited']],['Natural selection requires that the trait','is heritable and varies among individuals',['is learned','is always beneficial','is controlled by one gene']],['Why do antibiotic-resistant bacteria become common during treatment?','resistant cells survive and reproduce while sensitive cells die',['the antibiotic causes resistance mutations to help the bacteria','bacteria decide to become resistant','each bacterium adapts during its life and passes it on']]];
+  PROBS.push({id:'ns-fact',topic:'selection',title:'Evolution facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Selection acts on existing variation in a population.',sol:`<b>${p[1]}</b>.`};}});
+})();

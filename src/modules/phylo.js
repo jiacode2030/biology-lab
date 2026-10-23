@@ -1,0 +1,39 @@
+/* ---------------- Phylogeny & cladograms ---------------- */
+(function phylo(){
+  const cv=$('#ph2-canvas');if(!cv)return;
+  const TAX=['lancelet','lamprey','trout','frog','lizard','mouse'];
+  const NODE={root:[.08,.96875],vert:[.22,1.9375],jaw:[.36,2.875],tet:[.5,3.75],amn:[.64,4.5]};
+  const TIP=i=>[.84,i];
+  const EDGES=[['root','tip0'],['root','vert'],['vert','tip1'],['vert','jaw'],['jaw','tip2'],['jaw','tet'],['tet','tip3'],['tet','amn'],['amn','tip4'],['amn','tip5']];
+  const SEL={vert:{mem:[1,2,3,4,5],edges:['root-vert','vert-tip1','vert-jaw','jaw-tip2','jaw-tet','tet-tip3','tet-amn','amn-tip4','amn-tip5'],def:'vertebral column (backbone)',note:'a clade: the ancestor and all its descendants'},
+    jaw:{mem:[2,3,4,5],edges:['vert-jaw','jaw-tip2','jaw-tet','tet-tip3','tet-amn','amn-tip4','amn-tip5'],def:'jaws',note:'a clade: all descendants of the first jawed vertebrate'},
+    tet:{mem:[3,4,5],edges:['jaw-tet','tet-tip3','tet-amn','amn-tip4','amn-tip5'],def:'four limbs with digits',note:'a clade'},
+    amn:{mem:[4,5],edges:['tet-amn','amn-tip4','amn-tip5'],def:'amniotic egg',note:'a clade; lizard and mouse are sister taxa'},
+    par:{mem:[3,5],edges:[],def:'none (not a shared derived trait of only these two)',note:'NOT a clade: it leaves out the lizard, which shares a more recent ancestor with the mouse than the frog does'}};
+  const TRAITS=[['vertebral column','root','vert'],['jaws','vert','jaw'],['four limbs','jaw','tet'],['amniotic egg','tet','amn'],['hair, milk','amn','tip5']];
+  let cl='vert';
+  const sim=sim2d(cv,{h:w=>clamp(w*.52,260,340),draw(ctx,w,h){const L=14,tw=w-28,T0=22,B=h-22,pos=k=>{const q=k.startsWith('tip')?TIP(+k.slice(3)):NODE[k];return [L+tw*q[0]*.9,T0+(B-T0)*q[1]/5];},S=SEL[cl];
+    EDGES.forEach(([a,b])=>{const pa=pos(a),pb=pos(b),on=S.edges.includes(a+'-'+b);ctx.strokeStyle=on?T.ca:T.ink;ctx.lineWidth=on?4:2.2;ctx.beginPath();ctx.moveTo(pa[0],pa[1]);ctx.lineTo(pa[0],pb[1]);ctx.lineTo(pb[0],pb[1]);ctx.stroke();});
+    TAX.forEach((nm,i)=>{const p=pos('tip'+i),on=S.mem.includes(i);dot2(ctx,p[0],p[1],on?(cl==='par'?T.bad:T.ca):T.muted,5);label(ctx,nm,p[0]+10,p[1],on?T.ink:T.muted,'left','middle',on?'700 12px '+MONO.split(' ').slice(1).join(' '):MONO);});
+    TRAITS.forEach(([nm,a,b],i)=>{const pa=pos(a),pb=pos(b),x=(pa[0]+pb[0])/2+ (a==='root'?0:0),y=pb[1];ctx.strokeStyle=T.cv;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x+(pb[0]-pa[0])*.25,y-8);ctx.lineTo(x+(pb[0]-pa[0])*.25,y+8);ctx.stroke();label(ctx,nm,x+(pb[0]-pa[0])*.25,y+(i%2?22:-16),T.cv,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));});}});
+  function upd(){const S=SEL[cl];setText('ph2-mem',S.mem.map(i=>TAX[i]).join(', '));setText('ph2-def',S.def);setText('ph2-note',S.note);sim.render();}
+  segBind('ph2-cl','k',v=>{cl=v;upd();});$('#ph2-lab').addEventListener('labreset',()=>{cl='vert';segSet('ph2-cl',0);upd();});upd();
+  let d=6,r=.5;
+  const sim2=sim2d($('#ph2-canvas2'),{h:w=>clamp(w*.42,210,270),draw(ctx,w,h){const t=d/(2*r),xm=Math.max(30,Math.ceil(t*1.3/10)*10),A=axes2(ctx,w,h,{x0:0,x1:xm,y0:0,y1:30,xt:xm/5,yt:10,xl:'millions of years since the split',yl:'% sequence difference',L:46});curve2(ctx,A,x=>Math.min(30,2*r*x),0,xm,T.ca);ctx.setLineDash([4,4]);ctx.strokeStyle=T.muted;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(A.X(t),A.B);ctx.lineTo(A.X(t),A.Y(d));ctx.lineTo(A.L,A.Y(d));ctx.stroke();ctx.setLineDash([]);dot2(ctx,A.X(t),A.Y(d),T.accent,6);label(ctx,'difference = 2 × rate × time',A.R-4,A.T0+8,T.muted,'right','middle',MONO);}});
+  function upd2(){setText('ph2-t',fmt(d/(2*r),1)+' million years');sim2.render();}
+  bindRange('ph2-d',v=>fmt(v,1)+'%',v=>{d=v;upd2();});bindRange('ph2-r',v=>fmt(v,2)+'%',v=>{r=v;upd2();});
+  $('#ph2-lab2').addEventListener('labreset',()=>{d=6;r=.5;setCtl('ph2-d',6,v=>fmt(v,1)+'%');setCtl('ph2-r',.5,v=>fmt(v,2)+'%');upd2();});upd2();
+  drawers.phylo=()=>{sim.render();sim2.render();};
+  KEYS['ph2-canvas']=['Pink branches and dots: the chosen group. Green ticks: derived traits that appeared on that branch.',[['ca','selected clade'],['cv','derived trait'],['bad','not a clade']]];
+  KEYS['ph2-canvas2']=['The line shows how sequence difference grows with time in a simple model; the dot is your pair of species.',[['ca','difference vs time']]];
+  TIPS['ph2-cl']=()=>'A clade includes an ancestor and all of its descendants.';
+  GLOSS['clade']='A group made of an ancestor and all of its descendants (monophyletic).';GLOSS['cladogram']='A branching diagram that shows relationships based on shared derived characters.';GLOSS['sister taxa']='Two groups that share an immediate common ancestor.';GLOSS['homologous']='Similar because of shared ancestry.';GLOSS['analogous']='Similar function from independent evolution, not shared ancestry.';GLOSS['molecular clock']='Using the rate of sequence change to estimate when lineages diverged.';GLOSS['shared derived character']='A trait that evolved in a common ancestor and is inherited by all its descendants.';
+  TT.phylo='Ask students to say why a group that leaves out some descendants is not a clade.';
+})();
+(function(){
+  const T=[['vertebral column','lamprey and every animal above it on the tree (but not the lancelet)'],['jaws','trout, frog, lizard and mouse'],['four limbs','frog, lizard and mouse'],['an amniotic egg','lizard and mouse'],['hair and mammary glands','mouse only']];
+  PROBS.push({id:'py-trait',topic:'phylo',title:'Shared derived trait',gen(){const p=pick(T),m=mcq(p[1],T.map(x=>x[1]).filter(x=>x!==p[1]));return {q:`On a cladogram of lancelet, lamprey, trout, frog, lizard and mouse, which taxa have the derived trait "${p[0]}"?`,choices:m.choices,ans:m.ans,hint:'A derived trait appears on one branch and is inherited by all descendants above it.',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'py-clock',topic:'phylo',title:'Molecular clock',gen(){const r=pick([.25,.5,1,2]),t=pick([5,10,20,40,60]),d=2*r*t;return {q:`Two species differ at ${d}% of their sequence. In each lineage the sequence changes at ${r}% per million years. Assuming a constant rate, how many million years ago did they diverge?`,ans:t,unit:'million years',abs:.06,chk:d/(2*r),hint:'Both lineages change, so difference = 2 × rate × time.',sol:`t = ${d} / (2 × ${r}) = <b>${t} million years</b>.`};}});
+  const q=[['A bat wing and a human arm have similar bones because they are','homologous structures (shared ancestry)',['analogous structures','products of convergent evolution','unrelated']],['The wings of a bird and an insect are','analogous: evolved independently for flight',['homologous','inherited from a recent common ancestor','vestigial']],['A group that includes an ancestor but not all of its descendants is','not a clade (paraphyletic)',['a clade','a sister group','a monophyletic group']],['Two species that share an immediate common ancestor are called','sister taxa',['outgroups','analogous','polyphyletic']]];
+  PROBS.push({id:'py-fact',topic:'phylo',title:'Trees and homology',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0]+'.',choices:m.choices,ans:m.ans,hint:'Use shared ancestry, not similarity alone.',sol:`<b>${p[1]}</b>.`};}});
+})();

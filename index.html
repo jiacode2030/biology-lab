@@ -2969,6 +2969,340 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-selection" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Natural selection</h1>
+        <p class="lede">Populations change because individuals that happen to fit their environment better leave more offspring. Nothing in the process looks ahead.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Natural selection needs four things: <b>variation</b> in a trait, the trait is <b>heritable</b>, more offspring are produced than can survive, and individuals with some trait values <b>survive and reproduce more</b> (higher <b>fitness</b>). Over generations the alleles associated with those traits become more common. <b>Individuals do not evolve</b>; populations do. Selection acts on phenotypes, but what changes is allele frequency.</p>
+        <p>The effect on a trait depends on which phenotypes are favored. <b>Directional selection</b> favors one extreme and shifts the mean (antibiotic resistance, finch beak depth in drought). <b>Stabilizing selection</b> favors the middle and narrows the spread (human birth weight). <b>Disruptive selection</b> favors both extremes and can split a population in two (seedcracker finch beaks). Other forces: <b>sexual selection</b> (traits that help win mates) and <b>artificial selection</b> (humans choose who breeds).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>organisms change because they need to</dd><dt>So we didn't need</dt><dd>that selection acts on existing variation, and only populations change</dd><dt>Now</dt><dd>how traits change across generations and why resistance evolves</dd><dt>So we need</dt><dd>fitness, heritability and the three modes of selection</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>fitness = reproductive success</span><small>survival and number of offspring</small></div><div class="eqn"><span>directional: mean shifts</span><small>stabilizing: variation narrows; disruptive: two peaks</small></div><div class="eqn"><span>response to selection depends on heritability</span><small>needs genetic variation</small></div><div class="eqn"><span>p′ = p·w₁ / (p·w₁ + q·w₂)</span><small>allele frequency after selection (model)</small></div></div>
+      <div class="lab" id="ns-lab" data-reset="own">
+        <div class="labbar"><span class="title">Selection on a trait</span></div>
+        <div class="ctl"><span class="lbl">Selection</span><div class="seg" id="ns-mode" role="group" aria-label="Selection"><button type="button" data-k="dir" aria-pressed="true">directional (favors large)</button><button type="button" data-k="sta" aria-pressed="false">stabilizing</button><button type="button" data-k="dis" aria-pressed="false">disruptive</button></div></div>
+        <div class="row"><button type="button" class="btn primary" id="ns-next">Next generation</button><button type="button" class="btn" id="ns-ten">+10 generations</button><button type="button" class="btn" id="ns-reset">Start over</button></div>
+        <canvas id="ns-canvas" aria-label="A histogram of a trait in a population. Each generation the favored individuals reproduce, and the distribution changes."></canvas>
+        <div class="controls"><div class="ctl"><label for="ns-s"><span>Selection strength</span> <output id="ns-s-out"></output></label><input type="range" id="ns-s" min="1" max="10" step="1" value="5"></div></div>
+        <div class="readout"><div><span>generation</span><strong class="x" id="ns-gen">—</strong></div><div><span>mean of the trait</span><strong class="a" id="ns-mean">—</strong></div><div><span>spread (SD)</span><strong class="v" id="ns-sd">—</strong></div></div>
+      </div>
+      <div class="lab" id="ns-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Antibiotic resistance</span></div>
+        <canvas id="ns-canvas2" aria-label="A graph of the proportion of bacteria that are resistant over generations in the presence of an antibiotic."></canvas>
+        <div class="controls"><div class="ctl"><label for="ns-p0"><span>Starting resistant fraction</span> <output id="ns-p0-out"></output></label><input type="range" id="ns-p0" min="0.0001" max="0.1" step="0.0001" value="0.001"></div><div class="ctl"><label for="ns-sc"><span>Selection against sensitive cells</span> <output id="ns-sc-out"></output></label><input type="range" id="ns-sc" min="0.05" max="0.9" step="0.01" value="0.3"></div></div>
+        <div class="readout"><div><span>generations until half are resistant</span><strong class="x" id="ns-g50">—</strong></div><div><span>generations until 99% are resistant</span><strong class="a" id="ns-g99">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose directional selection and press +10 generations. What happens to the mean? <button type="button" class="btn link" data-show='[["click", "#ns-mode [data-k=dir]"], ["click", "#ns-reset"], ["click", "#ns-ten"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The mean shifts toward the favored extreme and the distribution keeps its shape.</p></details></li>
+        <li><p>Choose disruptive selection and run 10 generations. <button type="button" class="btn link" data-show='[["click", "#ns-mode [data-k=dis]"], ["click", "#ns-reset"], ["click", "#ns-ten"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Two peaks appear at the extremes and the middle becomes rare. The mean may stay about the same while the spread increases.</p></details></li>
+        <li><p>In the resistance lab, make the antibiotic stronger (raise the selection). <button type="button" class="btn link" data-show='[["#ns-sc", 0.8]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Resistance spreads in fewer generations: stronger selection means a bigger fitness difference.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Before an antibiotic is used, 1 in 10,000 bacteria carry a resistance allele. After exposure, most sensitive bacteria die and survivors multiply. Explain how the population becomes resistant without any bacterium "deciding" to.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Variation.</b> Resistance already exists in a few cells (from mutation).</li>
+          <li hidden><b>Selection.</b> The antibiotic kills sensitive cells but not resistant ones, so resistant cells have higher fitness.</li>
+          <li hidden><b>Heredity.</b> Survivors pass the allele to their offspring.</li>
+          <li hidden><b>Result.</b> The frequency of the resistant allele rises each generation. The change is in the population, not in individual cells.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying individuals evolve or adapt during their lifetime.</li>
+        <li>Saying organisms change "because they need to".</li>
+        <li>Treating fitness as strength instead of reproductive success.</li>
+        <li>Forgetting that selection needs heritable variation.</li>
+        <li>Saying mutations are caused by the environment to help the organism (they arise randomly; the environment selects).</li>
+      </ul></div>
+      <div class="prose"><h2>Writing the evolution explanation</h2>
+        <p>Use the four steps: variation, heritability, differential survival and reproduction, change in allele frequency over generations. Name the selective pressure and the favored phenotype, and say which mode of selection applies.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Intermediate phenotypes are favored, and the extremes are selected against.">
+        <p class="q">Check yourself: A population of birds has beak depths that cluster around the mean. Both very small and very large beaks have lower survival. This is</p>
+        <div class="opts"><button type="button">stabilizing selection</button><button type="button">directional selection</button><button type="button">disruptive selection</button><button type="button">genetic drift</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-hw" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Hardy–Weinberg equilibrium</h1>
+        <p class="lede">If nothing is changing allele frequencies, genotype frequencies follow a simple pattern. Departures from that pattern tell you evolution is happening.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>For a gene with two alleles, let <b>p</b> be the frequency of the dominant allele and <b>q</b> the frequency of the recessive allele: <b>p + q = 1</b>. If the population is in <b>Hardy–Weinberg equilibrium</b>, the genotype frequencies after random mating are <b>p² + 2pq + q² = 1</b> (p² homozygous dominant, 2pq heterozygous, q² homozygous recessive). Allele frequencies do not change from generation to generation.</p>
+        <p>Equilibrium needs five conditions: <b>very large population</b> (no drift), <b>random mating</b>, <b>no mutation</b>, <b>no gene flow</b>, and <b>no natural selection</b>. Real populations violate them, so the equation is a null model: if observed genotype frequencies differ from expected (tested with chi-square), at least one condition is violated. Typical use: given the frequency of the recessive phenotype (q²), find q = √(q²), then p = 1 − q and the carrier frequency 2pq.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>evolution was only about traits changing</dd><dt>So we didn't need</dt><dd>that evolution can be measured as a change in allele frequencies and compared with a baseline</dd><dt>Now</dt><dd>how to calculate carrier frequencies and test for evolution</dd><dt>So we need</dt><dd>p + q = 1, p² + 2pq + q² = 1 and the five conditions</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>p + q = 1</span><small>alleles</small></div><div class="eqn"><span>p² + 2pq + q² = 1</span><small>genotypes</small></div><div class="eqn"><span>q = √(frequency of recessive phenotype)</span><small>if equilibrium</small></div><div class="eqn"><span>conditions: large, random mating, no mutation, no gene flow, no selection</span><small>null model</small></div></div>
+      <div class="lab" id="hw-lab" data-reset="own">
+        <div class="labbar"><span class="title">Genotype frequencies from q</span></div>
+        <canvas id="hw-canvas" aria-label="Bars showing the expected frequencies of the three genotypes for the chosen allele frequency and a population count."></canvas>
+        <div class="controls"><div class="ctl"><label for="hw-q"><span>Frequency of the recessive allele (q)</span> <output id="hw-q-out"></output></label><input type="range" id="hw-q" min="0" max="1" step="0.01" value="0.3"></div><div class="ctl"><label for="hw-n"><span>Population size</span> <output id="hw-n-out"></output></label><input type="range" id="hw-n" min="100" max="10000" step="100" value="1000"></div></div>
+        <div class="readout"><div><span>p (dominant allele)</span><strong class="x" id="hw-p">—</strong></div><div><span>AA : Aa : aa</span><strong class="a" id="hw-gt">—</strong></div><div><span>carriers (Aa)</span><strong class="v" id="hw-car">—</strong></div><div><span>individuals with the recessive phenotype</span><strong class="" id="hw-aa">—</strong></div></div>
+      </div>
+      <div class="lab" id="hw-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Is this population in equilibrium?</span></div>
+        <canvas id="hw-canvas2" aria-label="Observed and expected genotype counts for the chosen population and a chi-square result."></canvas>
+        <div class="controls"><div class="ctl"><label for="hw-o1"><span>Observed AA</span> <output id="hw-o1-out"></output></label><input type="range" id="hw-o1" min="0" max="500" step="1" value="360"></div><div class="ctl"><label for="hw-o2"><span>Observed Aa</span> <output id="hw-o2-out"></output></label><input type="range" id="hw-o2" min="0" max="500" step="1" value="480"></div><div class="ctl"><label for="hw-o3"><span>Observed aa</span> <output id="hw-o3-out"></output></label><input type="range" id="hw-o3" min="0" max="500" step="1" value="160"></div></div>
+        <div class="readout"><div><span>allele frequencies</span><strong class="x" id="hw-f">—</strong></div><div><span>χ² (df = 1)</span><strong class="a" id="hw-chi">—</strong></div><div><span>verdict (critical value 3.84)</span><strong class="v" id="hw-v">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set q = 0.2. What is the carrier frequency? <button type="button" class="btn link" data-show='[["#hw-q", 0.2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>p = 0.8; 2pq = 2(0.8)(0.2) = 0.32, so 32% of the population are carriers; only 4% (q²) show the recessive phenotype.</p></details></li>
+        <li><p>Observed counts 360, 480, 160 are what Hardy–Weinberg predicts for q = 0.4 (1000 individuals). Now try 500, 200, 300. <button type="button" class="btn link" data-show='[["#hw-o1", 500], ["#hw-o2", 200], ["#hw-o3", 300]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Far too few heterozygotes: χ² is large, so the population is not in equilibrium (for example, inbreeding or selection).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In a population in Hardy–Weinberg equilibrium, 4% of people show a recessive trait. What is the frequency of carriers?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>q².</b> q² = 0.04, so q = √0.04 = 0.2.</li>
+          <li hidden><b>p.</b> p = 1 − 0.2 = 0.8.</li>
+          <li hidden><b>Carriers.</b> 2pq = 2 × 0.8 × 0.2 = 0.32.</li>
+          <li hidden><b>Answer.</b> 32% carry the allele without showing the trait.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Setting q² = frequency of the recessive allele (q² is the frequency of the genotype, q is the allele).</li>
+        <li>Using the carrier frequency as q.</li>
+        <li>Forgetting that the equation only applies when the five conditions hold.</li>
+        <li>Saying 2pq is homozygous.</li>
+        <li>Adding p and q to different totals (counts instead of frequencies).</li>
+      </ul></div>
+      <div class="prose"><h2>Common question types</h2>
+        <p>(1) Given q², find q, p, 2pq. (2) Given genotype counts, find allele frequencies p = (2·AA + Aa)/(2N). (3) Given observed vs expected, use chi-square (df = 1) to judge equilibrium. (4) Say which condition is violated when allele frequencies change.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The condition is the absence of selection; selection acting on the gene violates it.">
+        <p class="q">Check yourself: Which is NOT a condition for Hardy–Weinberg equilibrium?</p>
+        <div class="opts"><button type="button">natural selection acting on the gene</button><button type="button">random mating</button><button type="button">very large population</button><button type="button">no gene flow</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-drift" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Genetic drift & gene flow</h1>
+        <p class="lede">In small populations, chance alone can change allele frequencies, and it can even remove an allele altogether.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Genetic drift</b> is random change in allele frequencies from one generation to the next, because a small sample of alleles is passed on. The smaller the population, the larger the effect; in a small population an allele can be lost or <b>fixed</b> (reach 100%) by chance within a few generations. Drift reduces genetic variation and does not favor adaptive alleles.</p>
+        <p>Two common cases: the <b>bottleneck effect</b> (a disaster leaves only a few survivors, and the survivors' alleles are not representative; for example northern elephant seals) and the <b>founder effect</b> (a few individuals start a new population with a non-random sample of alleles). <b>Gene flow</b> (migration of alleles between populations) makes populations more similar. Mutation adds new variation; selection, drift, gene flow and mutation together drive evolution.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>all evolution was adaptive</dd><dt>So we didn't need</dt><dd>that chance can change allele frequencies, especially in small populations</dd><dt>Now</dt><dd>why bottlenecked species lose variation and why small populations can fix harmful alleles</dd><dt>So we need</dt><dd>drift, bottleneck, founder effect, gene flow</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>drift: random change in allele frequency</span><small>strongest in small populations</small></div><div class="eqn"><span>bottleneck: population crash → sample of alleles</span><small>loss of variation</small></div><div class="eqn"><span>founder effect: small group starts a new population</span><small>non-random sample</small></div><div class="eqn"><span>gene flow: movement of alleles between populations</span><small>homogenizes populations</small></div></div>
+      <div class="lab" id="gd-lab" data-reset="own">
+        <div class="labbar"><span class="title">Allele frequency in small populations</span></div>
+        <div class="row"><button type="button" class="btn primary" id="gd-run">Run again</button></div>
+        <canvas id="gd-canvas" aria-label="Lines showing the frequency of an allele over 60 generations in ten replicate populations of the chosen size."></canvas>
+        <div class="controls"><div class="ctl"><label for="gd-n"><span>Population size</span> <output id="gd-n-out"></output></label><input type="range" id="gd-n" min="5" max="500" step="5" value="20"></div><div class="ctl"><label for="gd-p"><span>Starting allele frequency</span> <output id="gd-p-out"></output></label><input type="range" id="gd-p" min="0.1" max="0.9" step="0.05" value="0.5"></div></div>
+        <div class="readout"><div><span>populations that fixed the allele</span><strong class="x" id="gd-fix">—</strong></div><div><span>populations that lost the allele</span><strong class="a" id="gd-lost">—</strong></div><div><span>still variable</span><strong class="v" id="gd-mid">—</strong></div></div>
+      </div>
+      <div class="lab" id="gd-lab2" data-reset="own">
+        <div class="labbar"><span class="title">A bottleneck</span></div>
+        <div class="row"><button type="button" class="btn primary" id="gd-go">Bottleneck!</button></div>
+        <canvas id="gd-canvas2" aria-label="A population of 100 individuals, 60% blue and 40% pink, before and after a bottleneck leaves only a few survivors who then repopulate."></canvas>
+        <div class="controls"><div class="ctl"><label for="gd-s"><span>Survivors of the bottleneck</span> <output id="gd-s-out"></output></label><input type="range" id="gd-s" min="2" max="60" step="1" value="6"></div></div>
+        <div class="readout"><div><span>blue before</span><strong class="x" id="gd-b">—</strong></div><div><span>blue after</span><strong class="a" id="gd-a">—</strong></div><div><span>what happened</span><strong class="" id="gd-msg">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Run with population size 10. What usually happens? <button type="button" class="btn link" data-show='[["#gd-n", 10], ["#gd-p", 0.5], ["click", "#gd-run"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Several lines hit 0 or 1 (loss or fixation) within the 60 generations: chance dominates.</p></details></li>
+        <li><p>Now use size 500. <button type="button" class="btn link" data-show='[["#gd-n", 500], ["click", "#gd-run"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The lines wander only slightly: large populations are much less affected by drift.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A population of 10,000 beetles is 50% green and 50% brown (neutral trait). A flood leaves 10 survivors, 8 green and 2 brown, and the population regrows. Predict the allele frequencies and name the process.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>After the bottleneck.</b> 8/10 = 80% green, 20% brown (if the trait is a single gene with simple alleles, roughly).</li>
+          <li hidden><b>Process.</b> A bottleneck effect: genetic drift in a very small sample.</li>
+          <li hidden><b>Consequence.</b> The regrown population is mostly green even though green was no better, and overall genetic variation is lower.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying drift is a response to the environment.</li>
+        <li>Saying drift is strong in large populations.</li>
+        <li>Mixing up bottleneck (a population shrinks) and founder effect (a few individuals start a new population).</li>
+        <li>Thinking drift always increases fitness.</li>
+        <li>Forgetting that gene flow brings alleles into a population.</li>
+      </ul></div>
+      <div class="prose"><h2>Which force is it?</h2>
+        <p>Ask: Is the change random and size-dependent? Drift. Does it favor traits that raise reproduction? Selection. Are individuals moving between populations? Gene flow. Are new alleles appearing? Mutation.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="A small founding group carries a non-random sample of alleles.">
+        <p class="q">Check yourself: A new island population is started by a few individuals carrying a rare allele. The allele becomes common. This is an example of</p>
+        <div class="opts"><button type="button">the founder effect</button><button type="button">gene flow</button><button type="button">stabilizing selection</button><button type="button">mutation</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-speciation" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Speciation & reproductive isolation</h1>
+        <p class="lede">A species is a group whose members can interbreed and produce fertile offspring. Species form when groups stop exchanging genes.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Under the <b>biological species concept</b>, species are populations that can interbreed in nature and produce <b>viable, fertile</b> offspring and are reproductively isolated from other groups. Isolation can be <b>prezygotic</b> (before a zygote forms): habitat, temporal (breeding times), behavioral (courtship), mechanical (structures do not fit), gametic (sperm and egg incompatible). Or <b>postzygotic</b> (after): reduced hybrid viability, reduced hybrid fertility (mule), hybrid breakdown (later generations weak).</p>
+        <p>In <b>allopatric</b> speciation a geographic barrier splits a population; each side diverges by selection, drift and mutation until they cannot interbreed. In <b>sympatric</b> speciation new species form in the same area, for example by <b>polyploidy</b> in plants or by strong disruptive selection with mating preferences. <b>Adaptive radiation</b> is rapid diversification from an ancestor into many species filling different niches (Darwin's finches). Where two groups meet, <b>hybrid zones</b> show how complete isolation is.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>species were fixed categories</dd><dt>So we didn't need</dt><dd>that reproductive isolation separates gene pools and lets groups evolve separately</dd><dt>Now</dt><dd>how a barrier or a mating preference can produce new species</dd><dt>So we need</dt><dd>prezygotic and postzygotic barriers, allopatric and sympatric speciation</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>prezygotic: before fertilization</span><small>postzygotic: after</small></div><div class="eqn"><span>allopatric: geographic barrier</span><small>sympatric: no barrier</small></div><div class="eqn"><span>polyploidy: instant speciation in plants</span><small>extra chromosome sets</small></div><div class="eqn"><span>adaptive radiation: one ancestor → many niches</span><small>Galápagos finches</small></div></div>
+      <div class="lab" id="sp-lab">
+        <div class="labbar"><span class="title">Allopatric speciation</span></div>
+        <div class="row"><button type="button" class="btn" id="sp-prev">Previous</button><button type="button" class="btn primary" id="sp-next">Next stage</button><button type="button" class="btn" id="sp-play">Play</button></div>
+        <canvas id="sp-canvas" aria-label="A population is split by a barrier, the two groups diverge, and when they meet again they cannot interbreed."></canvas>
+        <div class="controls"><div class="ctl"><label for="sp-st"><span>Stage</span> <output id="sp-st-out"></output></label><input type="range" id="sp-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="sp-name">—</strong></div><div><span>what is happening</span><strong class="" id="sp-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="sp-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Which barrier is it?</span></div>
+        <div class="ctl"><span class="lbl">Case</span><div class="seg" id="sp-case" role="group" aria-label="Case"><button type="button" data-k="hab" aria-pressed="true">two frog species breed in different ponds</button><button type="button" data-k="tmp" aria-pressed="false">two skunk species mate in different seasons</button><button type="button" data-k="beh" aria-pressed="false">fireflies use different flash patterns</button><button type="button" data-k="gam" aria-pressed="false">sea urchin sperm cannot fuse with other species' eggs</button><button type="button" data-k="via" aria-pressed="false">hybrid embryos die early</button><button type="button" data-k="fer" aria-pressed="false">mule (horse × donkey) is sterile</button></div></div>
+        <canvas id="sp-canvas2" aria-label="A timeline of events from mating to fertile offspring with the stage where reproduction fails marked."></canvas>
+        <div class="readout"><div><span>barrier</span><strong class="x" id="sp-kind">—</strong></div><div><span>stage that fails</span><strong class="a" id="sp-wh">—</strong></div><div><span>explanation</span><strong class="" id="sp-ex">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the stage where the groups meet again. Why can't they interbreed? <button type="button" class="btn link" data-show='[["#sp-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Changes that built up in isolation (mating signals, timing, chromosome differences) now keep them from producing fertile offspring.</p></details></li>
+        <li><p>Choose "mule". Is this a prezygotic or postzygotic barrier? <button type="button" class="btn link" data-show='[["click", "#sp-case [data-k=fer]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Postzygotic: horses and donkeys can mate and a hybrid forms, but the hybrid is sterile.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Two species of orchids live together and share pollinators. One flowers in May and the other in July, so no hybrids form. Classify the isolation and say what kind of speciation might have produced it.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Barrier.</b> Different flowering times: temporal isolation, a prezygotic barrier.</li>
+          <li hidden><b>Speciation.</b> They share a habitat, so sympatric speciation is plausible (a shift in flowering time creating reproductive isolation).</li>
+          <li hidden><b>Evidence.</b> Hybrid formation is prevented before fertilization, so gene flow between them is very low.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Calling a mule's sterility prezygotic.</li>
+        <li>Saying speciation needs a physical barrier.</li>
+        <li>Thinking species form within a single organism's lifetime.</li>
+        <li>Thinking all species concepts give the same answer (asexual organisms and fossils need other concepts).</li>
+        <li>Confusing polyploidy (extra sets of chromosomes) with aneuploidy.</li>
+      </ul></div>
+      <div class="prose"><h2>Classification checklist</h2>
+        <p>Ask: does it block mating or fertilization (prezygotic), or does a zygote form but the hybrid fail (postzygotic)? Then ask if populations were apart (allopatric) or together (sympatric).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The hybrid forms but cannot reproduce: reduced hybrid fertility.">
+        <p class="q">Check yourself: Horses and donkeys can produce mules, but mules are sterile. This is an example of</p>
+        <div class="opts"><button type="button">postzygotic isolation</button><button type="button">prezygotic isolation</button><button type="button">allopatric speciation</button><button type="button">temporal isolation</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-phylo" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Phylogeny & cladograms</h1>
+        <p class="lede">A tree of life shows how groups are related, based on shared ancestors and the traits they inherited from them.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>phylogenetic tree</b> or <b>cladogram</b> shows evolutionary relationships. Each <b>node</b> is a common ancestor; the tips are groups of organisms. A <b>clade</b> (monophyletic group) includes an ancestor and <b>all</b> of its descendants. <b>Sister taxa</b> share the most recent common ancestor. Groups that exclude some descendants (like "reptiles" without birds) are not clades. Position along the tree is about branching order, not about which species is "more advanced".</p>
+        <p>Trees are built from <b>shared derived characters</b> (traits that appeared in a common ancestor and are inherited by its descendants) and from <b>molecular data</b>: the more differences in DNA or protein sequences, the longer ago two lineages diverged (a <b>molecular clock</b>). <b>Homologous</b> structures share ancestry (a bat wing and human arm); <b>analogous</b> structures evolved independently for similar functions (bird and insect wings) and do not show relatedness. <b>Parsimony</b> prefers the tree needing the fewest evolutionary changes.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>similar organisms must be closely related</dd><dt>So we didn't need</dt><dd>that relatedness is shown by shared ancestry, not by similarity of appearance alone</dd><dt>Now</dt><dd>how to read and build trees from data</dd><dt>So we need</dt><dd>nodes, clades, shared derived traits and molecular clocks</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>clade = ancestor + all descendants</span><small>monophyletic</small></div><div class="eqn"><span>shared derived trait → groups taxa</span><small>in a cladogram</small></div><div class="eqn"><span>homologous: same ancestry; analogous: same function</span><small>convergent evolution</small></div><div class="eqn"><span>more sequence differences → older split</span><small>molecular clock</small></div></div>
+      <div class="lab" id="ph2-lab" data-reset="own">
+        <div class="labbar"><span class="title">Read a cladogram</span></div>
+        <div class="ctl"><span class="lbl">Highlight clade</span><div class="seg" id="ph2-cl" role="group" aria-label="Highlight clade"><button type="button" data-k="vert" aria-pressed="true">vertebrates</button><button type="button" data-k="jaw" aria-pressed="false">jawed vertebrates</button><button type="button" data-k="tet" aria-pressed="false">tetrapods</button><button type="button" data-k="amn" aria-pressed="false">amniotes</button><button type="button" data-k="par" aria-pressed="false">frog + mouse</button></div></div>
+        <canvas id="ph2-canvas" aria-label="A cladogram of five animals with traits marked on branches and one clade highlighted."></canvas>
+        <div class="readout"><div><span>members</span><strong class="x" id="ph2-mem">—</strong></div><div><span>defined by the shared derived trait</span><strong class="a" id="ph2-def">—</strong></div><div><span>note</span><strong class="" id="ph2-note">—</strong></div></div>
+      </div>
+      <div class="lab" id="ph2-lab2" data-reset="own">
+        <div class="labbar"><span class="title">A molecular clock</span></div>
+        <canvas id="ph2-canvas2" aria-label="A graph of sequence difference against time since divergence for the chosen rate of change."></canvas>
+        <div class="controls"><div class="ctl"><label for="ph2-d"><span>Sequence difference between two species (%)</span> <output id="ph2-d-out"></output></label><input type="range" id="ph2-d" min="0" max="30" step="0.5" value="6"></div><div class="ctl"><label for="ph2-r"><span>Rate of change per lineage (% per million years)</span> <output id="ph2-r-out"></output></label><input type="range" id="ph2-r" min="0.1" max="2" step="0.05" value="0.5"></div></div>
+        <div class="readout"><div><span>estimated time since the species split</span><strong class="x" id="ph2-t">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Highlight "amniotes". Which animals are included and what trait defines them? <button type="button" class="btn link" data-show='[["click", "#ph2-cl [data-k=amn]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Lizard and mouse (the groups that descend from the first animal with the amniotic egg).</p></details></li>
+        <li><p>Set the difference to 6% and the rate to 0.5% per million years per lineage. <button type="button" class="btn link" data-show='[["#ph2-d", 6], ["#ph2-r", 0.5]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Both lineages accumulate changes, so t = d/(2r) = 6/(2 × 0.5) = 6 million years (a simplified model).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In a cladogram, lizards and birds share a more recent common ancestor with each other than either does with mice. Which two are sister taxa? Is "lizards + mice" a clade?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Sister taxa.</b> Lizards and birds (they share a node not shared with mice).</li>
+          <li hidden><b>Lizards + mice.</b> Their common ancestor also gave rise to birds, so a group of "lizards + mice" excludes some descendants.</li>
+          <li hidden><b>Conclusion.</b> It is not a clade (it is paraphyletic).</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Reading a tree as a ladder with "advanced" species on the right.</li>
+        <li>Saying analogous structures show close relationships.</li>
+        <li>Counting all shared traits instead of shared derived traits.</li>
+        <li>Forgetting that a clade must include all descendants.</li>
+        <li>Thinking a node represents a living species.</li>
+      </ul></div>
+      <div class="prose"><h2>Tree reading skills</h2>
+        <p>Trace back from the tips to the nearest node to find sister groups. To identify a clade, find a node and take everything above it. Use the data (traits or sequences) to decide which taxa share a more recent common ancestor.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="A clade is monophyletic: it contains the ancestor and every descendant.">
+        <p class="q">Check yourself: Which of these is a clade?</p>
+        <div class="opts"><button type="button">an ancestor and all of its descendants</button><button type="button">an ancestor and some descendants</button><button type="button">species with the same habitat</button><button type="button">organisms with similar appearance</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-originlife" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Origin of life & evidence from the past</h1>
+        <p class="lede">Life on Earth began almost 4 billion years ago, from chemistry that did not need life to start.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The early Earth (about 4.6 billion years ago) had little or no free oxygen and was bombarded with energy. In the Miller–Urey experiment (1953), a mixture of water vapor, methane, ammonia and hydrogen exposed to sparks produced <b>amino acids</b>, showing that organic molecules can form abiotically. Hypotheses: the <b>RNA world</b> (RNA can store information and act as a catalyst, so it may have come before DNA and proteins) and <b>protocells</b> (lipid vesicles with simple metabolism that could grow and divide). The oldest evidence of life is about 3.5 billion years old (stromatolites: layered rocks made by prokaryotes).</p>
+        <p>Photosynthetic cyanobacteria raised oxygen in the atmosphere about 2.4 billion years ago, which changed Earth's chemistry and living things. Eukaryotes appear about 2 billion years ago (endosymbiosis), multicellular organisms later, and most animal groups in the Cambrian about 540 million years ago. We know the timeline from <b>fossils</b> and <b>radiometric dating</b>: radioactive isotopes decay at a constant <b>half-life</b>, so the fraction remaining gives the age. Age = (number of half-lives) × (half-life).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>life had always been around, or was a miracle</dd><dt>So we didn't need</dt><dd>that simple chemistry can make the building blocks, and that evidence dates the steps</dd><dt>Now</dt><dd>how scientists date fossils and rocks and what the timeline looks like</dd><dt>So we need</dt><dd>Miller–Urey, RNA world, protocells and radiometric dating</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>remaining = (½)ⁿ, n = number of half-lives</span><small>radioactive decay</small></div><div class="eqn"><span>age = n × half-life</span><small>radiometric dating</small></div><div class="eqn"><span>carbon-14 half-life = 5,730 years</span><small>up to about 50,000 years</small></div><div class="eqn"><span>uranium-238 half-life ≈ 4.5 billion years</span><small>dates old rocks</small></div></div>
+      <div class="lab" id="ol-lab" data-reset="own">
+        <div class="labbar"><span class="title">Radiometric dating</span></div>
+        <div class="ctl"><span class="lbl">Isotope</span><div class="seg" id="ol-iso" role="group" aria-label="Isotope"><button type="button" data-k="c14" aria-pressed="true">carbon-14 (5,730 yr)</button><button type="button" data-k="k40" aria-pressed="false">potassium-40 (1.25 billion yr)</button><button type="button" data-k="u238" aria-pressed="false">uranium-238 (4.47 billion yr)</button></div></div>
+        <canvas id="ol-canvas" aria-label="A decay curve showing the fraction of the isotope remaining against time, with the chosen fraction marked."></canvas>
+        <div class="controls"><div class="ctl"><label for="ol-f"><span>Percent of the isotope remaining</span> <output id="ol-f-out"></output></label><input type="range" id="ol-f" min="1" max="100" step="1" value="25"></div></div>
+        <div class="readout"><div><span>half-lives elapsed</span><strong class="x" id="ol-n">—</strong></div><div><span>age of the sample</span><strong class="a" id="ol-age">—</strong></div><div><span>good for dating</span><strong class="" id="ol-use">—</strong></div></div>
+      </div>
+      <div class="lab" id="ol-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Timeline of life</span></div>
+        <canvas id="ol-canvas2" aria-label="A timeline of Earth&#x27;s history with the chosen time marked and the events that have occurred so far."></canvas>
+        <div class="controls"><div class="ctl"><label for="ol-t"><span>Billions of years ago</span> <output id="ol-t-out"></output></label><input type="range" id="ol-t" min="0" max="4.6" step="0.1" value="3.5"></div></div>
+        <div class="readout"><div><span>what has happened by then</span><strong class="x" id="ol-ev">—</strong></div><div><span>life at that time</span><strong class="a" id="ol-life">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set 25% remaining for carbon-14. How old is the sample? <button type="button" class="btn link" data-show='[["click", "#ol-iso [data-k=c14]"], ["#ol-f", 25]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>25% = (½)², so 2 half-lives = 11,460 years.</p></details></li>
+        <li><p>Switch to uranium-238 at 50%. What age? <button type="button" class="btn link" data-show='[["click", "#ol-iso [data-k=u238]"], ["#ol-f", 50]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>One half-life, about 4.47 billion years: uranium dates very old rocks, not recent fossils.</p></details></li>
+        <li><p>Set the timeline to 2.4 billion years ago. <button type="button" class="btn link" data-show='[["#ol-t", 2.4]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Photosynthetic cyanobacteria are raising atmospheric oxygen; life is still single-celled.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A fossil contains 12.5% of its original carbon-14. (Half-life 5,730 years.) How old is it?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Fraction.</b> 12.5% = 1/8 = (½)³.</li>
+          <li hidden><b>Half-lives.</b> 3 half-lives have passed.</li>
+          <li hidden><b>Age.</b> 3 × 5,730 = 17,190 years.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Using carbon-14 for rocks millions of years old (too little remains).</li>
+        <li>Mixing up the number of half-lives and the age.</li>
+        <li>Saying Miller–Urey made life (it made amino acids).</li>
+        <li>Saying the RNA world is proven (it is a hypothesis with supporting evidence).</li>
+        <li>Putting eukaryotes before the first prokaryotes.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading evidence</h2>
+        <p>Answers should connect the evidence to the claim: fossils and radiometric dates give timing; Miller–Urey shows monomers can form; ribozymes support an RNA world; shared genes and the universal code support common ancestry.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="25% = (½)², so 2 half-lives.">
+        <p class="q">Check yourself: A sample has 25% of its radioactive isotope left. How many half-lives have passed?</p>
+        <div class="opts"><button type="button">2</button><button type="button">4</button><button type="button">1</button><button type="button">25</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-practice" hidden>
     <div class="wrap">
       <div class="head">
@@ -3221,8 +3555,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"], "soon": []}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"], "soon": []}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"], "soon": []}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"], "soon": []}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"], "soon": []}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"], "soon": []}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": ["selection", "hw", "drift", "speciation", "phylo", "originlife"], "soon": []}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -4839,6 +5173,223 @@ const compDNAs=s=>s.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c]||'?')).join('
   PROBS.push({id:'bt-far',topic:'biotech',title:'Which band moves farthest?',gen(){const f=shuffle([500,800,1200,1800,2600,3500]).slice(0,4).sort((x,y)=>x-y),ask=pick(['farthest','least']),ans=ask==='farthest'?f[0]:f[3],m=mcq(String(ans),f.map(String));return {q:`DNA fragments of ${f.join(', ')} bp are run on an agarose gel. Which fragment travels ${ask==='farthest'?'the farthest':'the least'} from the wells? (bp)`,choices:m.choices,ans:m.ans,hint:'Smaller fragments move through the gel faster and farther.',sol:`<b>${ans} bp</b>.`};}});
   const q=[['During the denaturation step of PCR the DNA is heated to about 95 °C to','separate the two strands',['join the primers','allow Taq to extend','cut the DNA']],['Taq polymerase is used in PCR because it','is stable at high temperatures',['cuts DNA at specific sites','joins DNA fragments','makes RNA']],['DNA moves toward the positive electrode in a gel because DNA is','negatively charged (phosphate groups)',['positively charged','uncharged','hydrophobic']],['In CRISPR-Cas9, the sequence to cut is chosen by','a guide RNA',['the Cas9 protein alone','a restriction enzyme','a plasmid']],['Bacteria that took up a plasmid with an antibiotic resistance gene can be found by','growing them on the antibiotic',['heating them','their color under visible light only','cutting them with a restriction enzyme']]];
   PROBS.push({id:'bt-fact',topic:'biotech',title:'Biotechnology facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall what each tool is designed to do.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/selection.js ===== */
+/* ---------------- Natural selection ---------------- */
+(function selection(){
+  const cv=$('#ns-canvas');if(!cv)return;
+  const NB=40;let mode='dir',s=5,gen=0,P=[],P0=[];
+  function init(){P=[];let z=0;for(let i=0;i<NB;i++){const x=(i+.5)*100/NB;P.push(Math.exp(-Math.pow((x-50)/12,2)/2));z+=P[i];}P=P.map(v=>v/z);P0=P.slice();gen=0;}
+  const fit=(x)=>{const z=(x-50)/50;return mode==='dir'?Math.exp(.15*s*z):mode==='sta'?Math.exp(-s*z*z):Math.exp(.6*s*z*z);};
+  function step(){let z=0;const q=P.map((v,i)=>{const w=v*fit((i+.5)*100/NB);z+=w;return w;}).map(v=>v/z);const r=q.map((v,i)=>.1*(q[i-1]||q[i])+.8*v+.1*(q[i+1]||q[i]));let t=0;r.forEach(v=>t+=v);P=r.map(v=>v/t);gen++;}
+  const stats=()=>{let m=0;P.forEach((v,i)=>m+=v*(i+.5)*100/NB);let va=0;P.forEach((v,i)=>va+=v*Math.pow((i+.5)*100/NB-m,2));return [m,Math.sqrt(va)];};
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:100,y0:0,y1:.2,xt:20,xl:'trait value (for example beak depth)',yl:'fraction of population',L:46}),bw=(A.R-A.L)/NB,mx=.2;
+    P.forEach((v,i)=>{const x=A.L+i*bw,hh=(A.B-A.T0)*Math.min(v,mx)/mx;ctx.fillStyle=alpha(T.cx,.65);ctx.fillRect(x+1,A.B-hh,bw-2,hh);});
+    ctx.strokeStyle=T.muted;ctx.lineWidth=2;ctx.setLineDash([5,4]);ctx.beginPath();P0.forEach((v,i)=>{const x=A.L+(i+.5)*bw,y=A.B-(A.B-A.T0)*Math.min(v,mx)/mx;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();ctx.setLineDash([]);
+    const m=stats()[0];ctx.strokeStyle=T.accent;ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(A.X(m),A.T0);ctx.lineTo(A.X(m),A.B);ctx.stroke();label(ctx,'mean',A.X(m)+4,A.T0+8,T.accent,'left','middle',MONO);label(ctx,'dashed: generation 0',A.R-4,A.T0+8,T.muted,'right','middle',MONO);
+    ctx.strokeStyle=alpha(T.good,.9);ctx.lineWidth=2;ctx.beginPath();for(let i=0;i<=60;i++){const x=i/60*100,wv=fit(x)/Math.max(fit(0),fit(50),fit(100)),px=A.X(x),py=A.B-(A.B-A.T0)*.25-wv*(A.B-A.T0)*.15;i?ctx.lineTo(px,py):ctx.moveTo(px,py);}ctx.stroke();label(ctx,'green: fitness of each trait value',A.L+6,A.T0+8,T.good,'left','middle',MONO);}});
+  function upd(){const [m,sd]=stats();setText('ns-gen',String(gen));setText('ns-mean',fmt(m,1));setText('ns-sd',fmt(sd,1));sim.render();}
+  segBind('ns-mode','k',v=>{mode=v;init();upd();});bindRange('ns-s',v=>String(v),v=>{s=v;sim.render();});
+  $('#ns-next').addEventListener('click',()=>{step();upd();});$('#ns-ten').addEventListener('click',()=>{for(let i=0;i<10;i++)step();upd();});$('#ns-reset').addEventListener('click',()=>{init();upd();});
+  $('#ns-lab').addEventListener('labreset',()=>{mode='dir';s=5;segSet('ns-mode',0);setCtl('ns-s',5);init();upd();});init();upd();
+  /* resistance */
+  let p0=.001,sc=.3;
+  const series=()=>{const r=[p0];for(let g=0;g<400&&r[r.length-1]<.9999;g++){const p=r[r.length-1];r.push(p/(p+(1-p)*(1-sc)));}return r;};
+  const sim2=sim2d($('#ns-canvas2'),{h:w=>clamp(w*.42,210,270),draw(ctx,w,h){const r=series(),g50=r.findIndex(v=>v>=.5),gmax=Math.max(10,Math.ceil(r.length*1.05)),A=axes2(ctx,w,h,{x0:0,x1:gmax,y0:0,y1:1,xt:Math.max(1,Math.round(gmax/5)),yt:.25,xl:'generations',yl:'fraction resistant',L:48});
+    ctx.strokeStyle=T.ca;ctx.lineWidth=2.6;ctx.beginPath();r.forEach((v,i)=>{const x=A.X(i),y=A.Y(v);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();if(g50>=0)dot2(ctx,A.X(g50),A.Y(.5),T.accent,6);}});
+  function upd2(){const r=series(),g50=r.findIndex(v=>v>=.5),g99=r.findIndex(v=>v>=.99);setText('ns-g50',g50<0?'more than 400':String(g50));setText('ns-g99',g99<0?'more than 400':String(g99));sim2.render();}
+  bindRange('ns-p0',v=>fmt(v*100,2)+'%',v=>{p0=v;upd2();});bindRange('ns-sc',v=>fmt(v*100,0)+'%',v=>{sc=v;upd2();});
+  $('#ns-lab2').addEventListener('labreset',()=>{p0=.001;sc=.3;setCtl('ns-p0',.001,v=>fmt(v*100,2)+'%');setCtl('ns-sc',.3,v=>fmt(v*100,0)+'%');upd2();});upd2();
+  drawers.selection=()=>{sim.render();sim2.render();};
+  KEYS['ns-canvas']=['Blue bars: the population now. Dashed line: generation 0. Orange line: the mean. Green curve: fitness.',[['cx','population'],['accent','mean'],['good','fitness']]];
+  KEYS['ns-canvas2']=['Pink curve: fraction of resistant bacteria over generations. The dot marks 50%.',[['ca','resistant fraction']]];
+  TIPS['ns-s']=()=>'A bigger value means a bigger difference in survival and reproduction between trait values.';
+  GLOSS['fitness']='An individual\'s contribution of offspring to the next generation.';GLOSS['directional selection']='Selection favoring one extreme, shifting the mean.';GLOSS['stabilizing selection']='Selection favoring intermediate phenotypes.';GLOSS['disruptive selection']='Selection favoring both extremes.';GLOSS['adaptation']='A heritable trait that increases fitness in a particular environment.';GLOSS['heritability']='The fraction of variation in a trait that is due to genetic differences.';
+  TT.selection='Ask students to predict the effect on mean and spread before running the generations.';
+})();
+(function(){
+  const M=[['Large-beaked finches survive a drought because they can crack large seeds, and the average beak size in the next generation increases.','directional selection'],['Babies of very low or very high birth weight have lower survival than babies of average weight.','stabilizing selection'],['Finches with very large or very small beaks eat the available seeds well, while medium beaks eat poorly.','disruptive selection'],['Peahens choose males with larger tails, so tail length increases despite a cost in survival.','sexual selection'],['Farmers breed only the cows that give the most milk.','artificial selection']];
+  PROBS.push({id:'ns-mode',topic:'selection',title:'Mode of selection',gen(){const p=pick(M),m=mcq(p[1],M.map(x=>x[1]).filter(x=>x!==p[1]));return {q:p[0]+' This is an example of',choices:m.choices,ans:m.ans,hint:'Which phenotypes are favored: one extreme, the middle, or both extremes?',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'ns-fit',topic:'selection',title:'Relative fitness',gen(){const a=pick([2,3,4,5,6]),b=pick([6,8,10,12]),hi=Math.max(a,b),lo=Math.min(a,b),ans=lo/hi;return {q:`Over their lifetimes, brown mice leave an average of ${b} offspring and gray mice leave ${a}. Taking the better genotype as the standard, what is the relative fitness of the less successful group? (Give a decimal.)`,ans,unit:'',abs:.011,chk:lo/hi,hint:'Relative fitness = offspring / offspring of the best group.',sol:`${lo}/${hi} = <b>${fmt(ans,2)}</b>.`};}});
+  PROBS.push({id:'ns-sel',topic:'selection',title:'Allele frequency after selection',gen(){const p=pick([.1,.2,.4,.5]),s=pick([.1,.2,.3,.5]),ans=p/(p+(1-p)*(1-s));return {q:`In a haploid population the allele R has frequency ${p}. Sensitive (non-R) individuals have relative fitness ${fmt(1-s,2)}; R individuals have fitness 1. What is the frequency of R after one round of selection? (Three decimals.)`,ans,unit:'',abs:.0011,chk:p*1/(p*1+(1-p)*(1-s)),hint:'New p = p·w₁ / (p·w₁ + q·w₂).',sol:`p′ = ${p}/(${p} + ${fmt(1-p,2)} × ${fmt(1-s,2)}) = <b>${fmt(ans,3)}</b>.`};}});
+  const q=[['Which statement about evolution is correct?','populations evolve, individuals do not',['individuals evolve during their lifetime to fit their environment','organisms change because they need to','acquired traits are inherited']],['Natural selection requires that the trait','is heritable and varies among individuals',['is learned','is always beneficial','is controlled by one gene']],['Why do antibiotic-resistant bacteria become common during treatment?','resistant cells survive and reproduce while sensitive cells die',['the antibiotic causes resistance mutations to help the bacteria','bacteria decide to become resistant','each bacterium adapts during its life and passes it on']]];
+  PROBS.push({id:'ns-fact',topic:'selection',title:'Evolution facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Selection acts on existing variation in a population.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/hw.js ===== */
+/* ---------------- Hardy–Weinberg equilibrium ---------------- */
+(function hw(){
+  const cv=$('#hw-canvas');if(!cv)return;
+  let q=.3,N=1000;
+  const sim=sim2d(cv,{h:w=>clamp(w*.44,230,290),draw(ctx,w,h){const p=1-q,f=[[p*p,'AA  p²',T.cx],[2*p*q,'Aa  2pq',T.accent],[q*q,'aa  q²',T.ca]],L=40,R=w-20,B=h-36,top=26,bw=(R-L)/4.5;ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,top);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();label(ctx,'frequency',L+4,top-8,T.muted,'left','middle',MONO);
+    f.forEach(([v,nm,c],i)=>{const x=L+bw*(.5+i*1.35),hh=(B-top)*v;ctx.fillStyle=alpha(c,.65);ctx.fillRect(x,B-hh,bw,hh);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(x,B-hh,bw,hh);label(ctx,fmt(v,3),x+bw/2,B-hh-10,T.ink,'center','middle',MONO);label(ctx,nm,x+bw/2,B+16,T.ink,'center','middle',MONO);});}});
+  function upd(){const p=1-q;setText('hw-p',fmt(p,2)+' (q = '+fmt(q,2)+')');setText('hw-gt',fmt(p*p,2)+' : '+fmt(2*p*q,2)+' : '+fmt(q*q,2));setText('hw-car',fmt(2*p*q*100,1)+'% ≈ '+Math.round(2*p*q*N)+' of '+N);setText('hw-aa',fmt(q*q*100,1)+'% ≈ '+Math.round(q*q*N)+' of '+N);sim.render();}
+  bindRange('hw-q',v=>fmt(v,2),v=>{q=v;upd();});bindRange('hw-n',v=>String(v),v=>{N=v;upd();});
+  $('#hw-lab').addEventListener('labreset',()=>{q=.3;N=1000;setCtl('hw-q',.3,v=>fmt(v,2));setCtl('hw-n',1000);upd();});upd();
+  let o={AA:360,Aa:480,aa:160};
+  const sim2=sim2d($('#hw-canvas2'),{h:w=>clamp(w*.4,210,270),draw(ctx,w,h){const n=o.AA+o.Aa+o.aa,p=n?(2*o.AA+o.Aa)/(2*n):0,qq=1-p,e={AA:n*p*p,Aa:n*2*p*qq,aa:n*qq*qq},mx=Math.max(1,...Object.values(o),...Object.values(e)),L=40,R=w-14,B=h-34,top=22,bw=(R-L)/9;ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,top);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();
+    ['AA','Aa','aa'].forEach((g,i)=>{const x=L+bw*(.5+i*3);[[o[g],T.ca,'observed'],[e[g],T.cx,'expected']].forEach(([v,c,nm],j)=>{const hh=(B-top)*v/mx;ctx.fillStyle=alpha(c,.65);ctx.fillRect(x+j*bw,B-hh,bw*.95,hh);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(x+j*bw,B-hh,bw*.95,hh);label(ctx,fmt(v,0),x+j*bw+bw*.47,B-hh-9,T.ink,'center','middle',MONO);});label(ctx,g,x+bw,B+14,T.ink,'center','middle',MONO);});label(ctx,'pink: observed · blue: expected under Hardy–Weinberg',w/2,10,T.muted,'center','middle',MONO);}});
+  function upd2(){const n=o.AA+o.Aa+o.aa;if(!n){setText('hw-f','—');setText('hw-chi','—');setText('hw-v','—');sim2.render();return;}const p=(2*o.AA+o.Aa)/(2*n),qq=1-p,e=[n*p*p,2*n*p*qq,n*qq*qq],ob=[o.AA,o.Aa,o.aa];let chi=0;e.forEach((x,i)=>{if(x>0)chi+=(ob[i]-x)*(ob[i]-x)/x;});setText('hw-f','p = '+fmt(p,3)+', q = '+fmt(qq,3));setText('hw-chi',fmt(chi,2));setText('hw-v',chi<3.84?'fail to reject: consistent with equilibrium':'reject: not in equilibrium');sim2.render();}
+  [['hw-o1','AA'],['hw-o2','Aa'],['hw-o3','aa']].forEach(([id,k])=>bindRange(id,v=>String(v),v=>{o[k]=v;upd2();}));
+  $('#hw-lab2').addEventListener('labreset',()=>{o={AA:360,Aa:480,aa:160};setCtl('hw-o1',360);setCtl('hw-o2',480);setCtl('hw-o3',160);upd2();});upd2();
+  drawers.hw=()=>{sim.render();sim2.render();};
+  KEYS['hw-canvas']=['Bars: genotype frequencies p², 2pq and q² for the chosen allele frequency.',[['cx','AA'],['accent','Aa'],['ca','aa']]];
+  KEYS['hw-canvas2']=['Compare observed (pink) and expected (blue) counts. A large difference means the population is not in equilibrium.',[['ca','observed'],['cx','expected']]];
+  TIPS['hw-q']=()=>'Carriers (2pq) are most common when p = q = 0.5. Rare recessive alleles hide in carriers.';
+  GLOSS['allele frequency']='How common an allele is among all the alleles of that gene in a population.';GLOSS['hardy-weinberg']='A model: allele and genotype frequencies stay constant if no evolution is acting.';GLOSS['gene pool']='All the alleles of all the genes in a population.';
+  TT.hw='Ask students to find carrier frequency from the recessive phenotype frequency without using the sliders first.';
+})();
+(function(){
+  PROBS.push({id:'hw-car',topic:'hw',title:'Carrier frequency',gen(){const q=pick([.1,.15,.2,.25,.3,.4]),aa=q*q,ans=2*(1-q)*q*100;return {q:`In a population in Hardy–Weinberg equilibrium, ${fmt(aa*100,1)}% of individuals show a recessive phenotype. What percent of the population are heterozygous carriers?`,ans,unit:'%',abs:.15,chk:200*q*(1-q),hint:'q = √(recessive frequency), p = 1 − q, carriers = 2pq.',sol:`q = √${fmt(aa,4)} = ${q}; p = ${fmt(1-q,2)}; 2pq = 2 × ${fmt(1-q,2)} × ${q} = <b>${fmt(ans,1)}%</b>.`};}});
+  PROBS.push({id:'hw-p',topic:'hw',title:'Allele frequency from counts',gen(){const AA=randInt(100,500),Aa=randInt(100,500),aa=randInt(50,300),n=AA+Aa+aa,ans=(2*AA+Aa)/(2*n);return {q:`A population has ${AA} AA, ${Aa} Aa and ${aa} aa individuals. What is the frequency p of the A allele? (Three decimals.)`,ans,unit:'',abs:.0011,chk:(AA+AA+Aa)/(2*(AA+Aa+aa)),hint:'p = (2 × AA + Aa) / (2 × total individuals).',sol:`p = (2 × ${AA} + ${Aa}) / (2 × ${n}) = <b>${fmt(ans,3)}</b>.`};}});
+  PROBS.push({id:'hw-exp',topic:'hw',title:'Expected heterozygotes',gen(){const q=pick([.2,.3,.4,.5]),N=pick([200,400,500,1000]),ans=2*q*(1-q)*N;return {q:`In a Hardy–Weinberg population of ${N} individuals, q = ${q}. How many individuals do you expect to be heterozygous?`,ans,unit:'individuals',abs:.6,chk:2*q*(1-q)*N,hint:'Expected heterozygotes = 2pq × N.',sol:`2 × ${fmt(1-q,2)} × ${q} × ${N} = <b>${fmt(ans,0)}</b>.`};}});
+  const q=[['Which of the following would violate Hardy–Weinberg equilibrium?','individuals choose mates with the same genotype',['very large population size','no mutation','no gene flow']],['A population has a rare allele that is lost by chance in a small group. Which condition is violated?','large population size',['random mating','no mutation','no selection']],['If observed genotype frequencies differ significantly from Hardy–Weinberg expectations, the best conclusion is that','at least one condition is not met and evolution may be occurring',['the data are wrong','the population is in equilibrium','there are three alleles']]];
+  PROBS.push({id:'hw-cond',topic:'hw',title:'Hardy–Weinberg conditions',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall the five conditions.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/drift.js ===== */
+/* ---------------- Genetic drift & gene flow ---------------- */
+(function drift(){
+  const cv=$('#gd-canvas');if(!cv)return;
+  const G=60,K=10;let n=20,p0=.5,runs=[];
+  function binom(m,p){if(m>400){const mu=m*p,sd=Math.sqrt(m*p*(1-p));let z=0;for(let i=0;i<6;i++)z+=Math.random();z-=3;z*=Math.SQRT2;return clamp(Math.round(mu+sd*z),0,m);}let c=0;for(let i=0;i<m;i++)if(Math.random()<p)c++;return c;}
+  function run(){runs=[];for(let k=0;k<K;k++){const t=[p0];for(let g=1;g<=G;g++){const p=t[g-1];t.push(p<=0||p>=1?p:binom(2*n,p)/(2*n));}runs.push(t);}}
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:G,y0:0,y1:1,xt:10,yt:.25,xl:'generations',yl:'allele frequency',L:46});runs.forEach((t,k)=>{const f=t[G];ctx.strokeStyle=f>=1?T.ca:f<=0?T.muted:T.cx;ctx.lineWidth=2;ctx.globalAlpha=.8;ctx.beginPath();t.forEach((v,g)=>{const x=A.X(g),y=A.Y(v);g?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();ctx.globalAlpha=1;});label(ctx,'pink: fixed (100%) · gray: lost (0%) · blue: still variable',A.R-4,A.T0+6,T.muted,'right','middle',MONO);}});
+  function upd(){const f=runs.filter(t=>t[G]>=1).length,l=runs.filter(t=>t[G]<=0).length;setText('gd-fix',f+' of '+K);setText('gd-lost',l+' of '+K);setText('gd-mid',(K-f-l)+' of '+K);sim.render();}
+  bindRange('gd-n',v=>String(v),v=>{n=v;run();upd();});bindRange('gd-p',v=>fmt(v,2),v=>{p0=v;run();upd();});$('#gd-run').addEventListener('click',()=>{run();upd();});
+  $('#gd-lab').addEventListener('labreset',()=>{n=20;p0=.5;setCtl('gd-n',20);setCtl('gd-p',.5,v=>fmt(v,2));run();upd();});run();upd();
+  /* bottleneck */
+  let surv=6,before=[],after=null;
+  function mkBefore(){before=Array.from({length:100},(_,i)=>i<60);before=shuffle(before);after=null;}
+  function bott(){const s=shuffle(before).slice(0,surv);after=Array.from({length:100},()=>pick(s));}
+  const sim2=sim2d($('#gd-canvas2'),{h:w=>clamp(w*.36,190,250),draw(ctx,w,h){const half=w/2,g=Math.min((half-30)/10,(h-50)/10,20);[[before,'before the bottleneck',0],[after,'after the population regrows',1]].forEach(([arr,nm,k])=>{const x0=k*half+(half-g*10)/2,y0=26;label(ctx,nm,k*half+half/2,12,T.muted,'center','middle',MONO);if(!arr){ctx.strokeStyle=T.line;ctx.setLineDash([4,4]);ctx.strokeRect(x0,y0,g*10,g*10);ctx.setLineDash([]);label(ctx,'press the button',x0+g*5,y0+g*5,T.muted,'center','middle',MONO);return;}arr.forEach((b,i)=>dot2(ctx,x0+(i%10+.5)*g,y0+(Math.floor(i/10)+.5)*g,b?T.cx:T.ca,g*.35));});}});
+  function upd2(){const b=before.filter(x=>x).length;setText('gd-b',b+'%');if(after){const a=after.filter(x=>x).length;setText('gd-a',a+'%');setText('gd-msg',Math.abs(a-b)<6?'the survivors happened to be representative':a>b?'blue became more common by chance':'blue became less common by chance');}else{setText('gd-a','—');setText('gd-msg','press the button');}sim2.render();}
+  bindRange('gd-s',v=>String(v),v=>{surv=v;after=null;upd2();});$('#gd-go').addEventListener('click',()=>{bott();upd2();});
+  $('#gd-lab2').addEventListener('labreset',()=>{surv=6;setCtl('gd-s',6);mkBefore();upd2();});mkBefore();upd2();
+  drawers.drift=()=>{sim.render();sim2.render();};
+  KEYS['gd-canvas']=['Each line is one population. Compare small and large populations.',[['cx','variable'],['ca','fixed'],['muted','lost']]];
+  KEYS['gd-canvas2']=['Blue and pink dots are two alleles. The survivors are a random sample.',[['cx','blue allele'],['ca','pink allele']]];
+  TIPS['gd-n']=()=>'The smaller the population, the more chance changes allele frequencies.';
+  GLOSS['genetic drift']='Random changes in allele frequencies from generation to generation, strongest in small populations.';GLOSS['bottleneck effect']='A sharp drop in population size leaves survivors that are a random, often unrepresentative, sample.';GLOSS['founder effect']='A small group starts a new population with a non-random sample of the original alleles.';GLOSS['gene flow']='Movement of alleles between populations.';GLOSS['fixation']='An allele reaching a frequency of 100% in a population.';
+  TT.drift='Ask students to explain why the survivors of a bottleneck are not a reliable sample.';
+})();
+(function(){
+  const ex=[['A hurricane kills most of an island lizard population. The few survivors happen to carry mostly the same allele, which becomes common after the population regrows.','bottleneck effect'],['A small group of settlers founds a new colony, and a rare allele carried by one founder is much more common in the colony than in the source population.','founder effect'],['Birds migrate between two nearby populations, carrying alleles in both directions, so the populations become more similar.','gene flow'],['In a population of 12 flowers, an allele is lost in a few generations by chance, although it did not affect fitness.','genetic drift'],['A mutation creates a brand new allele.','mutation']];
+  PROBS.push({id:'dr-type',topic:'drift',title:'Which process?',gen(){const p=pick(ex),m=mcq(p[1],ex.map(x=>x[1]).filter(x=>x!==p[1]));return {q:p[0]+' This is an example of',choices:m.choices,ans:m.ans,hint:'Look for chance, population size and movement of individuals.',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'dr-fix',topic:'drift',title:'Chance of fixation',gen(){const p=pick([.05,.1,.2,.25,.5,.75]);return {q:`A neutral allele (no effect on fitness) has frequency ${p} in a small population. If drift is the only force acting, what is the probability that this allele will eventually become fixed (reach 100%)?`,ans:p,unit:'',abs:.011,chk:p,hint:'For a neutral allele, the probability of eventual fixation equals its current frequency.',sol:`<b>${p}</b>.`};}});
+  const q=[['Which population is most affected by genetic drift?','a population of 20 individuals',['a population of 20,000 individuals','a population of 2 million individuals','all are equally affected']],['Genetic drift tends to','reduce genetic variation within a population',['increase genetic variation within a population','always favor beneficial alleles','make populations more similar to each other']],['Gene flow between two populations tends to','make them more genetically similar',['make them more different','stop evolution','reduce the number of alleles in both']]];
+  PROBS.push({id:'dr-fact',topic:'drift',title:'Drift and gene flow facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Think about population size and exchange of alleles.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/speciation.js ===== */
+/* ---------------- Speciation & reproductive isolation ---------------- */
+(function speciation(){
+  const cv=$('#sp-canvas');if(!cv)return;
+  const ST=[{n:'1 · one population',t:'A single interbreeding population. Alleles are shared among all individuals.'},{n:'2 · a barrier splits it',t:'A geographic barrier (river, mountain, new water) separates the population. Gene flow stops: allopatric speciation begins.'},{n:'3 · populations diverge',t:'Different mutations, genetic drift and different selection pressures build up differences on each side.'},{n:'4 · reproductive isolation',t:'If the groups meet again they no longer interbreed or cannot produce fertile offspring: they are separate species.'}];
+  const pts=Array.from({length:26},(_,i)=>[Math.abs(Math.sin(i*12.9898)),Math.abs(Math.sin(i*78.233))]);
+  const sc=stageLab('sp','sp-canvas',ST,(ctx,w,h,i,t)=>{const cx=w/2,cy=h/2,R=Math.min(h*.36,w*.2);
+    function grp(x,y,r,col){pts.forEach(([a,b],k)=>{const ang=a*6.283,rr=Math.sqrt(b)*r;dot2(ctx,x+Math.cos(ang)*rr,y+Math.sin(ang)*rr,col(k),5);});ctx.beginPath();ctx.arc(x,y,r+8,0,6.283);ctx.strokeStyle=T.line;ctx.lineWidth=2;ctx.stroke();}
+    if(i===0)grp(cx,cy,R,()=>T.cx);
+    if(i>=1&&i<3){ctx.fillStyle=alpha(T.cx,.18);ctx.fillRect(cx-9,10,18,h-20);label(ctx,'barrier',cx,h-8,T.muted,'center','middle',MONO);grp(cx-w*.22,cy,R*.8,()=>T.cx);grp(cx+w*.22,cy,R*.8,()=>T.cx);}
+    if(i===2){grp(cx-w*.22,cy,R*.8,k=>k%3===0?T.ce:T.cx);grp(cx+w*.22,cy,R*.8,k=>k%3===0?T.ca:T.accent);label(ctx,'new mutations · drift · different selection',cx,12,T.muted,'center','middle',MONO);}
+    if(i===3){grp(cx-w*.13,cy,R*.7,k=>k%3===0?T.ce:T.cx);grp(cx+w*.13,cy,R*.7,k=>k%3===0?T.ca:T.accent);ctx.strokeStyle=T.bad;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(cx-10,cy-10);ctx.lineTo(cx+10,cy+10);ctx.moveTo(cx+10,cy-10);ctx.lineTo(cx-10,cy+10);ctx.stroke();label(ctx,'no fertile offspring',cx,cy+R+26,T.bad,'center','middle',MONO);}
+    },{h:w=>clamp(w*.42,220,280)});
+  $('#sp-lab').addEventListener('labreset',()=>sc.go(0));
+  const CASES={hab:['prezygotic: habitat isolation',0,'The species live in different habitats, so they rarely meet to mate.'],tmp:['prezygotic: temporal isolation',1,'Breeding seasons or times of day differ, so the species are not ready at the same time.'],beh:['prezygotic: behavioral isolation',2,'Courtship signals (such as flash patterns) are species-specific, so females ignore other species\' males.'],gam:['prezygotic: gametic isolation',3,'Gametes meet but molecules on the surfaces do not match, so fertilization fails.'],via:['postzygotic: reduced hybrid viability',4,'Hybrid zygotes form but the embryos do not develop or survive.'],fer:['postzygotic: reduced hybrid fertility',5,'Hybrids (like mules) survive but are sterile, so genes do not pass between species.']};
+  const STEPS=['meet in the same place','breed at the same time','recognize and mate','gametes fuse','hybrid survives','hybrid is fertile'];
+  let cs='hab';
+  const sim=sim2d($('#sp-canvas2'),{h:w=>clamp(w*.38,190,240),draw(ctx,w,h){const k=CASES[cs][1],bw=(w-30)/3,bh=(h-40)/2;STEPS.forEach((nm,i)=>{const x=10+(i%3)*(bw+5),y=10+Math.floor(i/3)*(bh+10),col=i<k?T.good:i===k?T.bad:T.muted;ctx.globalAlpha=i>k?.4:1;ctx.fillStyle=alpha(col,.25);ctx.fillRect(x,y,bw,bh);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(x,y,bw,bh);label(ctx,(i+1)+'. '+nm,x+bw/2,y+bh/2-7,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));label(ctx,i<k?'✓':i===k?'✕ fails here':'',x+bw/2,y+bh/2+10,col,'center','middle',MONO);ctx.globalAlpha=1;});label(ctx,'prezygotic barriers: steps 1–4 · postzygotic: steps 5–6',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){const c=CASES[cs];setText('sp-kind',c[0]);setText('sp-wh',STEPS[c[1]]);setText('sp-ex',c[2]);sim.render();}
+  segBind('sp-case','k',v=>{cs=v;upd();});$('#sp-lab2').addEventListener('labreset',()=>{cs='hab';segSet('sp-case',0);upd();});upd();
+  drawers.speciation=()=>{sc.render();sim.render();};
+  KEYS['sp-canvas']=['Dots are individuals. Colors show populations that have diverged.',[['cx','original population'],['ca','diverged group']]];
+  KEYS['sp-canvas2']=['Green steps are passed, the red step is where reproduction fails.',[['good','passed'],['bad','fails']]];
+  TIPS['sp-st']=()=>'Allopatric speciation begins with a physical barrier that stops gene flow.';
+  GLOSS['biological species concept']='A species is a group of populations that can interbreed and produce viable, fertile offspring.';GLOSS['prezygotic barrier']='A barrier that prevents mating or fertilization.';GLOSS['postzygotic barrier']='A barrier that acts after the hybrid zygote forms.';GLOSS['allopatric']='Speciation in populations that are geographically separated.';GLOSS['sympatric']='Speciation in populations that live in the same area.';GLOSS['adaptive radiation']='Rapid evolution of many species from one ancestor, each adapted to a different niche.';GLOSS['polyploidy']='Having more than two sets of chromosomes, a common route to instant speciation in plants.';
+  TT.speciation='Ask students to find the earliest step at which each case fails.';
+})();
+(function(){
+  const ex=[['Two frog species breed in different ponds and never meet.','prezygotic: habitat isolation'],['Two related skunks breed in different seasons.','prezygotic: temporal isolation'],['Males of two firefly species flash different patterns and females respond only to their own species.','prezygotic: behavioral isolation'],['Pollen of one species does not germinate on the stigma of another.','prezygotic: gametic isolation'],['A cross between two species gives embryos that stop developing.','postzygotic: reduced hybrid viability'],['A cross between two species gives healthy but sterile offspring.','postzygotic: reduced hybrid fertility']];
+  PROBS.push({id:'sp-bar',topic:'speciation',title:'Classify the barrier',gen(){const p=pick(ex),m=mcq(p[1],ex.map(x=>x[1]).filter(x=>x!==p[1]));return {q:p[0]+' This barrier is',choices:m.choices,ans:m.ans,hint:'Before fertilization (prezygotic) or after the zygote forms (postzygotic)?',sol:`<b>${p[1]}</b>.`};}});
+  const t=[['A river changes course and splits a population of squirrels into two groups that diverge.','allopatric speciation'],['A population of plants doubles its chromosome number in one generation and can no longer breed with the parent species.','sympatric speciation (polyploidy)'],['Different fish in the same lake come to prefer different food and mates and form two species without any physical barrier.','sympatric speciation'],['A volcanic island is colonized by a few finches from the mainland, which diversify into many species.','adaptive radiation']];
+  PROBS.push({id:'sp-mode',topic:'speciation',title:'Type of speciation',gen(){const p=pick(t),m=mcq(p[1],['allopatric speciation','sympatric speciation','sympatric speciation (polyploidy)','adaptive radiation'].filter(x=>x!==p[1]));return {q:p[0]+' This is',choices:m.choices,ans:m.ans,hint:'Is there a physical barrier? Is it a burst of many species?',sol:`<b>${p[1]}</b>.`};}});
+  const q=[['Which best describes the biological species concept?','groups that interbreed in nature and produce fertile offspring',['organisms that look alike','groups that live in the same place','organisms with the same DNA']],['Why can the biological species concept not be applied easily to fossils?','we cannot test whether fossils could interbreed',['fossils have no DNA at all','fossils are all from one species','fossils do not have bodies']]];
+  PROBS.push({id:'sp-fact',topic:'speciation',title:'Species concepts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Consider what the concept tests.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/phylo.js ===== */
+/* ---------------- Phylogeny & cladograms ---------------- */
+(function phylo(){
+  const cv=$('#ph2-canvas');if(!cv)return;
+  const TAX=['lancelet','lamprey','trout','frog','lizard','mouse'];
+  const NODE={root:[.08,.96875],vert:[.22,1.9375],jaw:[.36,2.875],tet:[.5,3.75],amn:[.64,4.5]};
+  const TIP=i=>[.84,i];
+  const EDGES=[['root','tip0'],['root','vert'],['vert','tip1'],['vert','jaw'],['jaw','tip2'],['jaw','tet'],['tet','tip3'],['tet','amn'],['amn','tip4'],['amn','tip5']];
+  const SEL={vert:{mem:[1,2,3,4,5],edges:['root-vert','vert-tip1','vert-jaw','jaw-tip2','jaw-tet','tet-tip3','tet-amn','amn-tip4','amn-tip5'],def:'vertebral column (backbone)',note:'a clade: the ancestor and all its descendants'},
+    jaw:{mem:[2,3,4,5],edges:['vert-jaw','jaw-tip2','jaw-tet','tet-tip3','tet-amn','amn-tip4','amn-tip5'],def:'jaws',note:'a clade: all descendants of the first jawed vertebrate'},
+    tet:{mem:[3,4,5],edges:['jaw-tet','tet-tip3','tet-amn','amn-tip4','amn-tip5'],def:'four limbs with digits',note:'a clade'},
+    amn:{mem:[4,5],edges:['tet-amn','amn-tip4','amn-tip5'],def:'amniotic egg',note:'a clade; lizard and mouse are sister taxa'},
+    par:{mem:[3,5],edges:[],def:'none (not a shared derived trait of only these two)',note:'NOT a clade: it leaves out the lizard, which shares a more recent ancestor with the mouse than the frog does'}};
+  const TRAITS=[['vertebral column','root','vert'],['jaws','vert','jaw'],['four limbs','jaw','tet'],['amniotic egg','tet','amn'],['hair, milk','amn','tip5']];
+  let cl='vert';
+  const sim=sim2d(cv,{h:w=>clamp(w*.52,260,340),draw(ctx,w,h){const L=14,tw=w-28,T0=22,B=h-22,pos=k=>{const q=k.startsWith('tip')?TIP(+k.slice(3)):NODE[k];return [L+tw*q[0]*.9,T0+(B-T0)*q[1]/5];},S=SEL[cl];
+    EDGES.forEach(([a,b])=>{const pa=pos(a),pb=pos(b),on=S.edges.includes(a+'-'+b);ctx.strokeStyle=on?T.ca:T.ink;ctx.lineWidth=on?4:2.2;ctx.beginPath();ctx.moveTo(pa[0],pa[1]);ctx.lineTo(pa[0],pb[1]);ctx.lineTo(pb[0],pb[1]);ctx.stroke();});
+    TAX.forEach((nm,i)=>{const p=pos('tip'+i),on=S.mem.includes(i);dot2(ctx,p[0],p[1],on?(cl==='par'?T.bad:T.ca):T.muted,5);label(ctx,nm,p[0]+10,p[1],on?T.ink:T.muted,'left','middle',on?'700 12px '+MONO.split(' ').slice(1).join(' '):MONO);});
+    TRAITS.forEach(([nm,a,b],i)=>{const pa=pos(a),pb=pos(b),x=(pa[0]+pb[0])/2+ (a==='root'?0:0),y=pb[1];ctx.strokeStyle=T.cv;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x+(pb[0]-pa[0])*.25,y-8);ctx.lineTo(x+(pb[0]-pa[0])*.25,y+8);ctx.stroke();label(ctx,nm,x+(pb[0]-pa[0])*.25,y+(i%2?22:-16),T.cv,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));});}});
+  function upd(){const S=SEL[cl];setText('ph2-mem',S.mem.map(i=>TAX[i]).join(', '));setText('ph2-def',S.def);setText('ph2-note',S.note);sim.render();}
+  segBind('ph2-cl','k',v=>{cl=v;upd();});$('#ph2-lab').addEventListener('labreset',()=>{cl='vert';segSet('ph2-cl',0);upd();});upd();
+  let d=6,r=.5;
+  const sim2=sim2d($('#ph2-canvas2'),{h:w=>clamp(w*.42,210,270),draw(ctx,w,h){const t=d/(2*r),xm=Math.max(30,Math.ceil(t*1.3/10)*10),A=axes2(ctx,w,h,{x0:0,x1:xm,y0:0,y1:30,xt:xm/5,yt:10,xl:'millions of years since the split',yl:'% sequence difference',L:46});curve2(ctx,A,x=>Math.min(30,2*r*x),0,xm,T.ca);ctx.setLineDash([4,4]);ctx.strokeStyle=T.muted;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(A.X(t),A.B);ctx.lineTo(A.X(t),A.Y(d));ctx.lineTo(A.L,A.Y(d));ctx.stroke();ctx.setLineDash([]);dot2(ctx,A.X(t),A.Y(d),T.accent,6);label(ctx,'difference = 2 × rate × time',A.R-4,A.T0+8,T.muted,'right','middle',MONO);}});
+  function upd2(){setText('ph2-t',fmt(d/(2*r),1)+' million years');sim2.render();}
+  bindRange('ph2-d',v=>fmt(v,1)+'%',v=>{d=v;upd2();});bindRange('ph2-r',v=>fmt(v,2)+'%',v=>{r=v;upd2();});
+  $('#ph2-lab2').addEventListener('labreset',()=>{d=6;r=.5;setCtl('ph2-d',6,v=>fmt(v,1)+'%');setCtl('ph2-r',.5,v=>fmt(v,2)+'%');upd2();});upd2();
+  drawers.phylo=()=>{sim.render();sim2.render();};
+  KEYS['ph2-canvas']=['Pink branches and dots: the chosen group. Green ticks: derived traits that appeared on that branch.',[['ca','selected clade'],['cv','derived trait'],['bad','not a clade']]];
+  KEYS['ph2-canvas2']=['The line shows how sequence difference grows with time in a simple model; the dot is your pair of species.',[['ca','difference vs time']]];
+  TIPS['ph2-cl']=()=>'A clade includes an ancestor and all of its descendants.';
+  GLOSS['clade']='A group made of an ancestor and all of its descendants (monophyletic).';GLOSS['cladogram']='A branching diagram that shows relationships based on shared derived characters.';GLOSS['sister taxa']='Two groups that share an immediate common ancestor.';GLOSS['homologous']='Similar because of shared ancestry.';GLOSS['analogous']='Similar function from independent evolution, not shared ancestry.';GLOSS['molecular clock']='Using the rate of sequence change to estimate when lineages diverged.';GLOSS['shared derived character']='A trait that evolved in a common ancestor and is inherited by all its descendants.';
+  TT.phylo='Ask students to say why a group that leaves out some descendants is not a clade.';
+})();
+(function(){
+  const T=[['vertebral column','lamprey and every animal above it on the tree (but not the lancelet)'],['jaws','trout, frog, lizard and mouse'],['four limbs','frog, lizard and mouse'],['an amniotic egg','lizard and mouse'],['hair and mammary glands','mouse only']];
+  PROBS.push({id:'py-trait',topic:'phylo',title:'Shared derived trait',gen(){const p=pick(T),m=mcq(p[1],T.map(x=>x[1]).filter(x=>x!==p[1]));return {q:`On a cladogram of lancelet, lamprey, trout, frog, lizard and mouse, which taxa have the derived trait "${p[0]}"?`,choices:m.choices,ans:m.ans,hint:'A derived trait appears on one branch and is inherited by all descendants above it.',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'py-clock',topic:'phylo',title:'Molecular clock',gen(){const r=pick([.25,.5,1,2]),t=pick([5,10,20,40,60]),d=2*r*t;return {q:`Two species differ at ${d}% of their sequence. In each lineage the sequence changes at ${r}% per million years. Assuming a constant rate, how many million years ago did they diverge?`,ans:t,unit:'million years',abs:.06,chk:d/(2*r),hint:'Both lineages change, so difference = 2 × rate × time.',sol:`t = ${d} / (2 × ${r}) = <b>${t} million years</b>.`};}});
+  const q=[['A bat wing and a human arm have similar bones because they are','homologous structures (shared ancestry)',['analogous structures','products of convergent evolution','unrelated']],['The wings of a bird and an insect are','analogous: evolved independently for flight',['homologous','inherited from a recent common ancestor','vestigial']],['A group that includes an ancestor but not all of its descendants is','not a clade (paraphyletic)',['a clade','a sister group','a monophyletic group']],['Two species that share an immediate common ancestor are called','sister taxa',['outgroups','analogous','polyphyletic']]];
+  PROBS.push({id:'py-fact',topic:'phylo',title:'Trees and homology',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0]+'.',choices:m.choices,ans:m.ans,hint:'Use shared ancestry, not similarity alone.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/originlife.js ===== */
+/* ---------------- Origin of life & evidence ---------------- */
+(function originlife(){
+  const cv=$('#ol-canvas');if(!cv)return;
+  const ISO={c14:{hl:5730,nm:'carbon-14',use:'organic remains up to about 50,000 years old'},k40:{hl:1.25e9,nm:'potassium-40',use:'volcanic rocks millions to billions of years old'},u238:{hl:4.47e9,nm:'uranium-238',use:'very old rocks, hundreds of millions to billions of years'}};
+  let iso='c14',f=25;
+  const age=()=>Math.log2(100/f)*ISO[iso].hl;
+  const fmtAge=a=>a<1e6?Math.round(a).toLocaleString('en-US')+' years':a<1e9?fmt(a/1e6,1)+' million years':fmt(a/1e9,2)+' billion years';
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,290),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:6,y0:0,y1:100,xt:1,yt:25,xl:'half-lives elapsed',yl:'% remaining',L:46}),n=Math.log2(100/f);curve2(ctx,A,x=>100*Math.pow(.5,x),0,6,T.ca);ctx.setLineDash([4,4]);ctx.strokeStyle=T.muted;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(A.L,A.Y(f));ctx.lineTo(A.X(n),A.Y(f));ctx.lineTo(A.X(n),A.B);ctx.stroke();ctx.setLineDash([]);dot2(ctx,A.X(n),A.Y(f),T.accent,6);label(ctx,fmt(n,2)+' half-lives = '+fmtAge(age()),A.R-4,A.T0+8,T.ink,'right','middle',MONO);}});
+  function upd(){setText('ol-n',fmt(Math.log2(100/f),2));setText('ol-age',fmtAge(age()));setText('ol-use',ISO[iso].use);sim.render();}
+  segBind('ol-iso','k',v=>{iso=v;upd();});bindRange('ol-f',v=>v+'%',v=>{f=v;upd();});$('#ol-lab').addEventListener('labreset',()=>{iso='c14';f=25;segSet('ol-iso',0);setCtl('ol-f',25,v=>v+'%');upd();});upd();
+  const EV=[[4.6,'Earth forms'],[4.0,'chemical evolution: organic molecules and protocells (hypothesized)'],[3.5,'first prokaryotes (oldest fossils: stromatolites)'],[2.4,'oxygen rises (photosynthetic cyanobacteria)'],[2.0,'first eukaryotes (endosymbiosis)'],[1.2,'multicellular life'],[.54,'Cambrian explosion of animal groups'],[.47,'plants on land'],[.23,'dinosaurs appear'],[.0003,'modern humans']];
+  let tb=3.5;
+  const life=t=>t>3.9?'no life yet':t>2.4?'prokaryotes only (no oxygen in the air)':t>2.0?'prokaryotes in an oxygenating world':t>1.2?'single-celled eukaryotes and prokaryotes':t>.54?'multicellular organisms, mostly small and soft-bodied':t>.47?'diverse marine animals; land still bare':t>.23?'plants and animals on land':t>.0003?'dinosaurs, mammals, birds and flowering plants':'modern humans exist';
+  const sim2=sim2d($('#ol-canvas2'),{h:w=>clamp(w*.4,200,260),draw(ctx,w,h){const L=20,R=w-20,y=h*.4,X=b=>L+(R-L)*(4.6-b)/4.6;ctx.strokeStyle=T.ink;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(R,y);ctx.stroke();for(let b=0;b<=4;b++){ctx.beginPath();ctx.moveTo(X(b),y-5);ctx.lineTo(X(b),y+5);ctx.stroke();label(ctx,b+' bya',X(b),y+18,T.muted,'center','middle',MONO);}
+    EV.forEach(([b,nm],i)=>{const on=b>=tb;dot2(ctx,X(b),y,on?T.ca:T.line,on?6:4);if(on&&(i===EV.length-1||EV[i+1][0]<tb))label(ctx,nm.length>34?nm.slice(0,32)+'…':nm,clamp(X(b),90,w-90),y-28-(i%2)*16,T.ink,'center','middle',MONO);});
+    ctx.strokeStyle=T.accent;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(X(tb),y-14);ctx.lineTo(X(tb),y+14);ctx.stroke();label(ctx,fmt(tb,1)+' billion years ago',X(tb),h-12,T.accent,'center','middle',MONO);}});
+  function upd2(){const done=EV.filter(e=>e[0]>=tb);setText('ol-ev',done.length?done[done.length-1][1]:'—');setText('ol-life',life(tb));sim2.render();}
+  bindRange('ol-t',v=>fmt(v,1),v=>{tb=v;upd2();});$('#ol-lab2').addEventListener('labreset',()=>{tb=3.5;setCtl('ol-t',3.5,v=>fmt(v,1));upd2();});upd2();
+  drawers.originlife=()=>{sim.render();sim2.render();};
+  KEYS['ol-canvas']=['Pink curve: percent of the isotope remaining. Each half-life halves it.',[['ca','decay curve']]];
+  KEYS['ol-canvas2']=['Pink dots: events that have already happened at the chosen time. The orange line is your time.',[['ca','events so far'],['accent','chosen time']]];
+  TIPS['ol-f']=()=>'25% remaining means two half-lives (½ × ½). 12.5% means three.';
+  GLOSS['half-life']='The time for half of a radioactive isotope to decay.';GLOSS['radiometric dating']='Estimating age from the fraction of a radioactive isotope remaining.';GLOSS['miller-urey']='A 1953 experiment showing that amino acids can form from simple gases and electrical sparks.';GLOSS['rna world']='A hypothesis that RNA, which can store information and catalyze reactions, preceded DNA and proteins.';GLOSS['protocell']='A lipid vesicle with simple metabolism, a model for early cells.';GLOSS['stromatolite']='A layered rock formed by communities of prokaryotes; among the oldest fossils.';
+  TT.originlife='Ask students to choose the right isotope for a given sample age and explain why.';
+})();
+(function(){
+  PROBS.push({id:'ol-age',topic:'originlife',title:'Age from half-lives',gen(){const n=randInt(1,6),hl=pick([5730,5730,1250,4470]),unit=hl>5000?'years':'million years',frac=100/Math.pow(2,n),ans=n*hl;return {q:`A sample contains ${fmt(frac,frac<10?3:2)}% of its original radioactive isotope. The half-life is ${hl.toLocaleString('en-US')} ${unit}. How old is the sample (in ${unit})?`,ans,unit,abs:hl*.005,chk:Math.log2(100/frac)*hl,hint:'Find how many halvings give the remaining fraction, then multiply by the half-life.',sol:`${fmt(frac,3)}% = (½)<sup>${n}</sup>, so ${n} half-lives × ${hl.toLocaleString('en-US')} = <b>${ans.toLocaleString('en-US')} ${unit}</b>.`};}});
+  PROBS.push({id:'ol-rem',topic:'originlife',title:'Fraction remaining',gen(){const n=randInt(1,5),hl=5730,age=n*hl,ans=100/Math.pow(2,n);return {q:`A fossil is ${age.toLocaleString('en-US')} years old. The half-life of carbon-14 is 5,730 years. What percent of its original carbon-14 remains?`,ans,unit:'%',abs:.011*ans+.01,chk:100*Math.pow(.5,age/hl),hint:'Number of half-lives = age / half-life. Remaining = (½)^n.',sol:`${age}/5730 = ${n} half-lives; (½)<sup>${n}</sup> = <b>${fmt(ans,2)}%</b>.`};}});
+  const q=[['The Miller–Urey experiment showed that','amino acids can form from simple gases and energy',['life can be made in a laboratory','DNA formed before RNA','oxygen was abundant on early Earth']],['The RNA world hypothesis proposes that','RNA stored information and catalyzed reactions before DNA and proteins',['DNA was the first genetic material','proteins came first','viruses were the first cells']],['Which pair is in the correct order from oldest to youngest?','first prokaryotes, oxygen rise, first eukaryotes',['first eukaryotes, first prokaryotes, oxygen rise','oxygen rise, first prokaryotes, first eukaryotes','first eukaryotes, oxygen rise, first prokaryotes']],['Carbon-14 dating is suitable for','remains younger than about 50,000 years',['rocks billions of years old','all fossils','volcanic ash millions of years old']]];
+  PROBS.push({id:'ol-fact',topic:'originlife',title:'Origin of life facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall the evidence and the order of events.',sol:`<b>${p[1]}</b>.`};}});
 })();
 
 /* ===== overview.js ===== */

@@ -1,0 +1,53 @@
+  <section class="view" id="v-phylo" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Phylogeny & cladograms</h1>
+        <p class="lede">A tree of life shows how groups are related, based on shared ancestors and the traits they inherited from them.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>phylogenetic tree</b> or <b>cladogram</b> shows evolutionary relationships. Each <b>node</b> is a common ancestor; the tips are groups of organisms. A <b>clade</b> (monophyletic group) includes an ancestor and <b>all</b> of its descendants. <b>Sister taxa</b> share the most recent common ancestor. Groups that exclude some descendants (like "reptiles" without birds) are not clades. Position along the tree is about branching order, not about which species is "more advanced".</p>
+        <p>Trees are built from <b>shared derived characters</b> (traits that appeared in a common ancestor and are inherited by its descendants) and from <b>molecular data</b>: the more differences in DNA or protein sequences, the longer ago two lineages diverged (a <b>molecular clock</b>). <b>Homologous</b> structures share ancestry (a bat wing and human arm); <b>analogous</b> structures evolved independently for similar functions (bird and insect wings) and do not show relatedness. <b>Parsimony</b> prefers the tree needing the fewest evolutionary changes.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>similar organisms must be closely related</dd><dt>So we didn't need</dt><dd>that relatedness is shown by shared ancestry, not by similarity of appearance alone</dd><dt>Now</dt><dd>how to read and build trees from data</dd><dt>So we need</dt><dd>nodes, clades, shared derived traits and molecular clocks</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>clade = ancestor + all descendants</span><small>monophyletic</small></div><div class="eqn"><span>shared derived trait → groups taxa</span><small>in a cladogram</small></div><div class="eqn"><span>homologous: same ancestry; analogous: same function</span><small>convergent evolution</small></div><div class="eqn"><span>more sequence differences → older split</span><small>molecular clock</small></div></div>
+      <div class="lab" id="ph2-lab" data-reset="own">
+        <div class="labbar"><span class="title">Read a cladogram</span></div>
+        <div class="ctl"><span class="lbl">Highlight clade</span><div class="seg" id="ph2-cl" role="group" aria-label="Highlight clade"><button type="button" data-k="vert" aria-pressed="true">vertebrates</button><button type="button" data-k="jaw" aria-pressed="false">jawed vertebrates</button><button type="button" data-k="tet" aria-pressed="false">tetrapods</button><button type="button" data-k="amn" aria-pressed="false">amniotes</button><button type="button" data-k="par" aria-pressed="false">frog + mouse</button></div></div>
+        <canvas id="ph2-canvas" aria-label="A cladogram of five animals with traits marked on branches and one clade highlighted."></canvas>
+        <div class="readout"><div><span>members</span><strong class="x" id="ph2-mem">—</strong></div><div><span>defined by the shared derived trait</span><strong class="a" id="ph2-def">—</strong></div><div><span>note</span><strong class="" id="ph2-note">—</strong></div></div>
+      </div>
+      <div class="lab" id="ph2-lab2" data-reset="own">
+        <div class="labbar"><span class="title">A molecular clock</span></div>
+        <canvas id="ph2-canvas2" aria-label="A graph of sequence difference against time since divergence for the chosen rate of change."></canvas>
+        <div class="controls"><div class="ctl"><label for="ph2-d"><span>Sequence difference between two species (%)</span> <output id="ph2-d-out"></output></label><input type="range" id="ph2-d" min="0" max="30" step="0.5" value="6"></div><div class="ctl"><label for="ph2-r"><span>Rate of change per lineage (% per million years)</span> <output id="ph2-r-out"></output></label><input type="range" id="ph2-r" min="0.1" max="2" step="0.05" value="0.5"></div></div>
+        <div class="readout"><div><span>estimated time since the species split</span><strong class="x" id="ph2-t">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Highlight "amniotes". Which animals are included and what trait defines them? <button type="button" class="btn link" data-show='[["click", "#ph2-cl [data-k=amn]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Lizard and mouse (the groups that descend from the first animal with the amniotic egg).</p></details></li>
+        <li><p>Set the difference to 6% and the rate to 0.5% per million years per lineage. <button type="button" class="btn link" data-show='[["#ph2-d", 6], ["#ph2-r", 0.5]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Both lineages accumulate changes, so t = d/(2r) = 6/(2 × 0.5) = 6 million years (a simplified model).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In a cladogram, lizards and birds share a more recent common ancestor with each other than either does with mice. Which two are sister taxa? Is "lizards + mice" a clade?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Sister taxa.</b> Lizards and birds (they share a node not shared with mice).</li>
+          <li hidden><b>Lizards + mice.</b> Their common ancestor also gave rise to birds, so a group of "lizards + mice" excludes some descendants.</li>
+          <li hidden><b>Conclusion.</b> It is not a clade (it is paraphyletic).</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Reading a tree as a ladder with "advanced" species on the right.</li>
+        <li>Saying analogous structures show close relationships.</li>
+        <li>Counting all shared traits instead of shared derived traits.</li>
+        <li>Forgetting that a clade must include all descendants.</li>
+        <li>Thinking a node represents a living species.</li>
+      </ul></div>
+      <div class="prose"><h2>Tree reading skills</h2>
+        <p>Trace back from the tips to the nearest node to find sister groups. To identify a clade, find a node and take everything above it. Use the data (traits or sequences) to decide which taxa share a more recent common ancestor.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="A clade is monophyletic: it contains the ancestor and every descendant.">
+        <p class="q">Check yourself: Which of these is a clade?</p>
+        <div class="opts"><button type="button">an ancestor and all of its descendants</button><button type="button">an ancestor and some descendants</button><button type="button">species with the same habitat</button><button type="button">organisms with similar appearance</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,55 @@
+  <section class="view" id="v-originlife" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Origin of life & evidence from the past</h1>
+        <p class="lede">Life on Earth began almost 4 billion years ago, from chemistry that did not need life to start.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The early Earth (about 4.6 billion years ago) had little or no free oxygen and was bombarded with energy. In the Miller–Urey experiment (1953), a mixture of water vapor, methane, ammonia and hydrogen exposed to sparks produced <b>amino acids</b>, showing that organic molecules can form abiotically. Hypotheses: the <b>RNA world</b> (RNA can store information and act as a catalyst, so it may have come before DNA and proteins) and <b>protocells</b> (lipid vesicles with simple metabolism that could grow and divide). The oldest evidence of life is about 3.5 billion years old (stromatolites: layered rocks made by prokaryotes).</p>
+        <p>Photosynthetic cyanobacteria raised oxygen in the atmosphere about 2.4 billion years ago, which changed Earth's chemistry and living things. Eukaryotes appear about 2 billion years ago (endosymbiosis), multicellular organisms later, and most animal groups in the Cambrian about 540 million years ago. We know the timeline from <b>fossils</b> and <b>radiometric dating</b>: radioactive isotopes decay at a constant <b>half-life</b>, so the fraction remaining gives the age. Age = (number of half-lives) × (half-life).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>life had always been around, or was a miracle</dd><dt>So we didn't need</dt><dd>that simple chemistry can make the building blocks, and that evidence dates the steps</dd><dt>Now</dt><dd>how scientists date fossils and rocks and what the timeline looks like</dd><dt>So we need</dt><dd>Miller–Urey, RNA world, protocells and radiometric dating</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>remaining = (½)ⁿ, n = number of half-lives</span><small>radioactive decay</small></div><div class="eqn"><span>age = n × half-life</span><small>radiometric dating</small></div><div class="eqn"><span>carbon-14 half-life = 5,730 years</span><small>up to about 50,000 years</small></div><div class="eqn"><span>uranium-238 half-life ≈ 4.5 billion years</span><small>dates old rocks</small></div></div>
+      <div class="lab" id="ol-lab" data-reset="own">
+        <div class="labbar"><span class="title">Radiometric dating</span></div>
+        <div class="ctl"><span class="lbl">Isotope</span><div class="seg" id="ol-iso" role="group" aria-label="Isotope"><button type="button" data-k="c14" aria-pressed="true">carbon-14 (5,730 yr)</button><button type="button" data-k="k40" aria-pressed="false">potassium-40 (1.25 billion yr)</button><button type="button" data-k="u238" aria-pressed="false">uranium-238 (4.47 billion yr)</button></div></div>
+        <canvas id="ol-canvas" aria-label="A decay curve showing the fraction of the isotope remaining against time, with the chosen fraction marked."></canvas>
+        <div class="controls"><div class="ctl"><label for="ol-f"><span>Percent of the isotope remaining</span> <output id="ol-f-out"></output></label><input type="range" id="ol-f" min="1" max="100" step="1" value="25"></div></div>
+        <div class="readout"><div><span>half-lives elapsed</span><strong class="x" id="ol-n">—</strong></div><div><span>age of the sample</span><strong class="a" id="ol-age">—</strong></div><div><span>good for dating</span><strong class="" id="ol-use">—</strong></div></div>
+      </div>
+      <div class="lab" id="ol-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Timeline of life</span></div>
+        <canvas id="ol-canvas2" aria-label="A timeline of Earth&#x27;s history with the chosen time marked and the events that have occurred so far."></canvas>
+        <div class="controls"><div class="ctl"><label for="ol-t"><span>Billions of years ago</span> <output id="ol-t-out"></output></label><input type="range" id="ol-t" min="0" max="4.6" step="0.1" value="3.5"></div></div>
+        <div class="readout"><div><span>what has happened by then</span><strong class="x" id="ol-ev">—</strong></div><div><span>life at that time</span><strong class="a" id="ol-life">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set 25% remaining for carbon-14. How old is the sample? <button type="button" class="btn link" data-show='[["click", "#ol-iso [data-k=c14]"], ["#ol-f", 25]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>25% = (½)², so 2 half-lives = 11,460 years.</p></details></li>
+        <li><p>Switch to uranium-238 at 50%. What age? <button type="button" class="btn link" data-show='[["click", "#ol-iso [data-k=u238]"], ["#ol-f", 50]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>One half-life, about 4.47 billion years: uranium dates very old rocks, not recent fossils.</p></details></li>
+        <li><p>Set the timeline to 2.4 billion years ago. <button type="button" class="btn link" data-show='[["#ol-t", 2.4]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Photosynthetic cyanobacteria are raising atmospheric oxygen; life is still single-celled.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A fossil contains 12.5% of its original carbon-14. (Half-life 5,730 years.) How old is it?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Fraction.</b> 12.5% = 1/8 = (½)³.</li>
+          <li hidden><b>Half-lives.</b> 3 half-lives have passed.</li>
+          <li hidden><b>Age.</b> 3 × 5,730 = 17,190 years.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Using carbon-14 for rocks millions of years old (too little remains).</li>
+        <li>Mixing up the number of half-lives and the age.</li>
+        <li>Saying Miller–Urey made life (it made amino acids).</li>
+        <li>Saying the RNA world is proven (it is a hypothesis with supporting evidence).</li>
+        <li>Putting eukaryotes before the first prokaryotes.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading evidence</h2>
+        <p>Answers should connect the evidence to the claim: fossils and radiometric dates give timing; Miller–Urey shows monomers can form; ribozymes support an RNA world; shared genes and the universal code support common ancestry.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="25% = (½)², so 2 half-lives.">
+        <p class="q">Check yourself: A sample has 25% of its radioactive isotope left. How many half-lives have passed?</p>
+        <div class="opts"><button type="button">2</button><button type="button">4</button><button type="button">1</button><button type="button">25</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,54 @@
+  <section class="view" id="v-speciation" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Speciation & reproductive isolation</h1>
+        <p class="lede">A species is a group whose members can interbreed and produce fertile offspring. Species form when groups stop exchanging genes.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Under the <b>biological species concept</b>, species are populations that can interbreed in nature and produce <b>viable, fertile</b> offspring and are reproductively isolated from other groups. Isolation can be <b>prezygotic</b> (before a zygote forms): habitat, temporal (breeding times), behavioral (courtship), mechanical (structures do not fit), gametic (sperm and egg incompatible). Or <b>postzygotic</b> (after): reduced hybrid viability, reduced hybrid fertility (mule), hybrid breakdown (later generations weak).</p>
+        <p>In <b>allopatric</b> speciation a geographic barrier splits a population; each side diverges by selection, drift and mutation until they cannot interbreed. In <b>sympatric</b> speciation new species form in the same area, for example by <b>polyploidy</b> in plants or by strong disruptive selection with mating preferences. <b>Adaptive radiation</b> is rapid diversification from an ancestor into many species filling different niches (Darwin's finches). Where two groups meet, <b>hybrid zones</b> show how complete isolation is.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>species were fixed categories</dd><dt>So we didn't need</dt><dd>that reproductive isolation separates gene pools and lets groups evolve separately</dd><dt>Now</dt><dd>how a barrier or a mating preference can produce new species</dd><dt>So we need</dt><dd>prezygotic and postzygotic barriers, allopatric and sympatric speciation</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>prezygotic: before fertilization</span><small>postzygotic: after</small></div><div class="eqn"><span>allopatric: geographic barrier</span><small>sympatric: no barrier</small></div><div class="eqn"><span>polyploidy: instant speciation in plants</span><small>extra chromosome sets</small></div><div class="eqn"><span>adaptive radiation: one ancestor → many niches</span><small>Galápagos finches</small></div></div>
+      <div class="lab" id="sp-lab">
+        <div class="labbar"><span class="title">Allopatric speciation</span></div>
+        <div class="row"><button type="button" class="btn" id="sp-prev">Previous</button><button type="button" class="btn primary" id="sp-next">Next stage</button><button type="button" class="btn" id="sp-play">Play</button></div>
+        <canvas id="sp-canvas" aria-label="A population is split by a barrier, the two groups diverge, and when they meet again they cannot interbreed."></canvas>
+        <div class="controls"><div class="ctl"><label for="sp-st"><span>Stage</span> <output id="sp-st-out"></output></label><input type="range" id="sp-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="sp-name">—</strong></div><div><span>what is happening</span><strong class="" id="sp-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="sp-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Which barrier is it?</span></div>
+        <div class="ctl"><span class="lbl">Case</span><div class="seg" id="sp-case" role="group" aria-label="Case"><button type="button" data-k="hab" aria-pressed="true">two frog species breed in different ponds</button><button type="button" data-k="tmp" aria-pressed="false">two skunk species mate in different seasons</button><button type="button" data-k="beh" aria-pressed="false">fireflies use different flash patterns</button><button type="button" data-k="gam" aria-pressed="false">sea urchin sperm cannot fuse with other species' eggs</button><button type="button" data-k="via" aria-pressed="false">hybrid embryos die early</button><button type="button" data-k="fer" aria-pressed="false">mule (horse × donkey) is sterile</button></div></div>
+        <canvas id="sp-canvas2" aria-label="A timeline of events from mating to fertile offspring with the stage where reproduction fails marked."></canvas>
+        <div class="readout"><div><span>barrier</span><strong class="x" id="sp-kind">—</strong></div><div><span>stage that fails</span><strong class="a" id="sp-wh">—</strong></div><div><span>explanation</span><strong class="" id="sp-ex">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the stage where the groups meet again. Why can't they interbreed? <button type="button" class="btn link" data-show='[["#sp-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Changes that built up in isolation (mating signals, timing, chromosome differences) now keep them from producing fertile offspring.</p></details></li>
+        <li><p>Choose "mule". Is this a prezygotic or postzygotic barrier? <button type="button" class="btn link" data-show='[["click", "#sp-case [data-k=fer]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Postzygotic: horses and donkeys can mate and a hybrid forms, but the hybrid is sterile.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Two species of orchids live together and share pollinators. One flowers in May and the other in July, so no hybrids form. Classify the isolation and say what kind of speciation might have produced it.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Barrier.</b> Different flowering times: temporal isolation, a prezygotic barrier.</li>
+          <li hidden><b>Speciation.</b> They share a habitat, so sympatric speciation is plausible (a shift in flowering time creating reproductive isolation).</li>
+          <li hidden><b>Evidence.</b> Hybrid formation is prevented before fertilization, so gene flow between them is very low.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Calling a mule's sterility prezygotic.</li>
+        <li>Saying speciation needs a physical barrier.</li>
+        <li>Thinking species form within a single organism's lifetime.</li>
+        <li>Thinking all species concepts give the same answer (asexual organisms and fossils need other concepts).</li>
+        <li>Confusing polyploidy (extra sets of chromosomes) with aneuploidy.</li>
+      </ul></div>
+      <div class="prose"><h2>Classification checklist</h2>
+        <p>Ask: does it block mating or fertilization (prezygotic), or does a zygote form but the hybrid fail (postzygotic)? Then ask if populations were apart (allopatric) or together (sympatric).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The hybrid forms but cannot reproduce: reduced hybrid fertility.">
+        <p class="q">Check yourself: Horses and donkeys can produce mules, but mules are sterile. This is an example of</p>
+        <div class="opts"><button type="button">postzygotic isolation</button><button type="button">prezygotic isolation</button><button type="button">allopatric speciation</button><button type="button">temporal isolation</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

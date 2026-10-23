@@ -1,0 +1,54 @@
+  <section class="view" id="v-hw" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Hardy–Weinberg equilibrium</h1>
+        <p class="lede">If nothing is changing allele frequencies, genotype frequencies follow a simple pattern. Departures from that pattern tell you evolution is happening.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>For a gene with two alleles, let <b>p</b> be the frequency of the dominant allele and <b>q</b> the frequency of the recessive allele: <b>p + q = 1</b>. If the population is in <b>Hardy–Weinberg equilibrium</b>, the genotype frequencies after random mating are <b>p² + 2pq + q² = 1</b> (p² homozygous dominant, 2pq heterozygous, q² homozygous recessive). Allele frequencies do not change from generation to generation.</p>
+        <p>Equilibrium needs five conditions: <b>very large population</b> (no drift), <b>random mating</b>, <b>no mutation</b>, <b>no gene flow</b>, and <b>no natural selection</b>. Real populations violate them, so the equation is a null model: if observed genotype frequencies differ from expected (tested with chi-square), at least one condition is violated. Typical use: given the frequency of the recessive phenotype (q²), find q = √(q²), then p = 1 − q and the carrier frequency 2pq.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>evolution was only about traits changing</dd><dt>So we didn't need</dt><dd>that evolution can be measured as a change in allele frequencies and compared with a baseline</dd><dt>Now</dt><dd>how to calculate carrier frequencies and test for evolution</dd><dt>So we need</dt><dd>p + q = 1, p² + 2pq + q² = 1 and the five conditions</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>p + q = 1</span><small>alleles</small></div><div class="eqn"><span>p² + 2pq + q² = 1</span><small>genotypes</small></div><div class="eqn"><span>q = √(frequency of recessive phenotype)</span><small>if equilibrium</small></div><div class="eqn"><span>conditions: large, random mating, no mutation, no gene flow, no selection</span><small>null model</small></div></div>
+      <div class="lab" id="hw-lab" data-reset="own">
+        <div class="labbar"><span class="title">Genotype frequencies from q</span></div>
+        <canvas id="hw-canvas" aria-label="Bars showing the expected frequencies of the three genotypes for the chosen allele frequency and a population count."></canvas>
+        <div class="controls"><div class="ctl"><label for="hw-q"><span>Frequency of the recessive allele (q)</span> <output id="hw-q-out"></output></label><input type="range" id="hw-q" min="0" max="1" step="0.01" value="0.3"></div><div class="ctl"><label for="hw-n"><span>Population size</span> <output id="hw-n-out"></output></label><input type="range" id="hw-n" min="100" max="10000" step="100" value="1000"></div></div>
+        <div class="readout"><div><span>p (dominant allele)</span><strong class="x" id="hw-p">—</strong></div><div><span>AA : Aa : aa</span><strong class="a" id="hw-gt">—</strong></div><div><span>carriers (Aa)</span><strong class="v" id="hw-car">—</strong></div><div><span>individuals with the recessive phenotype</span><strong class="" id="hw-aa">—</strong></div></div>
+      </div>
+      <div class="lab" id="hw-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Is this population in equilibrium?</span></div>
+        <canvas id="hw-canvas2" aria-label="Observed and expected genotype counts for the chosen population and a chi-square result."></canvas>
+        <div class="controls"><div class="ctl"><label for="hw-o1"><span>Observed AA</span> <output id="hw-o1-out"></output></label><input type="range" id="hw-o1" min="0" max="500" step="1" value="360"></div><div class="ctl"><label for="hw-o2"><span>Observed Aa</span> <output id="hw-o2-out"></output></label><input type="range" id="hw-o2" min="0" max="500" step="1" value="480"></div><div class="ctl"><label for="hw-o3"><span>Observed aa</span> <output id="hw-o3-out"></output></label><input type="range" id="hw-o3" min="0" max="500" step="1" value="160"></div></div>
+        <div class="readout"><div><span>allele frequencies</span><strong class="x" id="hw-f">—</strong></div><div><span>χ² (df = 1)</span><strong class="a" id="hw-chi">—</strong></div><div><span>verdict (critical value 3.84)</span><strong class="v" id="hw-v">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set q = 0.2. What is the carrier frequency? <button type="button" class="btn link" data-show='[["#hw-q", 0.2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>p = 0.8; 2pq = 2(0.8)(0.2) = 0.32, so 32% of the population are carriers; only 4% (q²) show the recessive phenotype.</p></details></li>
+        <li><p>Observed counts 360, 480, 160 are what Hardy–Weinberg predicts for q = 0.4 (1000 individuals). Now try 500, 200, 300. <button type="button" class="btn link" data-show='[["#hw-o1", 500], ["#hw-o2", 200], ["#hw-o3", 300]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Far too few heterozygotes: χ² is large, so the population is not in equilibrium (for example, inbreeding or selection).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In a population in Hardy–Weinberg equilibrium, 4% of people show a recessive trait. What is the frequency of carriers?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>q².</b> q² = 0.04, so q = √0.04 = 0.2.</li>
+          <li hidden><b>p.</b> p = 1 − 0.2 = 0.8.</li>
+          <li hidden><b>Carriers.</b> 2pq = 2 × 0.8 × 0.2 = 0.32.</li>
+          <li hidden><b>Answer.</b> 32% carry the allele without showing the trait.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Setting q² = frequency of the recessive allele (q² is the frequency of the genotype, q is the allele).</li>
+        <li>Using the carrier frequency as q.</li>
+        <li>Forgetting that the equation only applies when the five conditions hold.</li>
+        <li>Saying 2pq is homozygous.</li>
+        <li>Adding p and q to different totals (counts instead of frequencies).</li>
+      </ul></div>
+      <div class="prose"><h2>Common question types</h2>
+        <p>(1) Given q², find q, p, 2pq. (2) Given genotype counts, find allele frequencies p = (2·AA + Aa)/(2N). (3) Given observed vs expected, use chi-square (df = 1) to judge equilibrium. (4) Say which condition is violated when allele frequencies change.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The condition is the absence of selection; selection acting on the gene violates it.">
+        <p class="q">Check yourself: Which is NOT a condition for Hardy–Weinberg equilibrium?</p>
+        <div class="opts"><button type="button">natural selection acting on the gene</button><button type="button">random mating</button><button type="button">very large population</button><button type="button">no gene flow</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

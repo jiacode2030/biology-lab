@@ -1,0 +1,55 @@
+  <section class="view" id="v-drift" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Genetic drift & gene flow</h1>
+        <p class="lede">In small populations, chance alone can change allele frequencies, and it can even remove an allele altogether.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Genetic drift</b> is random change in allele frequencies from one generation to the next, because a small sample of alleles is passed on. The smaller the population, the larger the effect; in a small population an allele can be lost or <b>fixed</b> (reach 100%) by chance within a few generations. Drift reduces genetic variation and does not favor adaptive alleles.</p>
+        <p>Two common cases: the <b>bottleneck effect</b> (a disaster leaves only a few survivors, and the survivors' alleles are not representative; for example northern elephant seals) and the <b>founder effect</b> (a few individuals start a new population with a non-random sample of alleles). <b>Gene flow</b> (migration of alleles between populations) makes populations more similar. Mutation adds new variation; selection, drift, gene flow and mutation together drive evolution.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>all evolution was adaptive</dd><dt>So we didn't need</dt><dd>that chance can change allele frequencies, especially in small populations</dd><dt>Now</dt><dd>why bottlenecked species lose variation and why small populations can fix harmful alleles</dd><dt>So we need</dt><dd>drift, bottleneck, founder effect, gene flow</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>drift: random change in allele frequency</span><small>strongest in small populations</small></div><div class="eqn"><span>bottleneck: population crash → sample of alleles</span><small>loss of variation</small></div><div class="eqn"><span>founder effect: small group starts a new population</span><small>non-random sample</small></div><div class="eqn"><span>gene flow: movement of alleles between populations</span><small>homogenizes populations</small></div></div>
+      <div class="lab" id="gd-lab" data-reset="own">
+        <div class="labbar"><span class="title">Allele frequency in small populations</span></div>
+        <div class="row"><button type="button" class="btn primary" id="gd-run">Run again</button></div>
+        <canvas id="gd-canvas" aria-label="Lines showing the frequency of an allele over 60 generations in ten replicate populations of the chosen size."></canvas>
+        <div class="controls"><div class="ctl"><label for="gd-n"><span>Population size</span> <output id="gd-n-out"></output></label><input type="range" id="gd-n" min="5" max="500" step="5" value="20"></div><div class="ctl"><label for="gd-p"><span>Starting allele frequency</span> <output id="gd-p-out"></output></label><input type="range" id="gd-p" min="0.1" max="0.9" step="0.05" value="0.5"></div></div>
+        <div class="readout"><div><span>populations that fixed the allele</span><strong class="x" id="gd-fix">—</strong></div><div><span>populations that lost the allele</span><strong class="a" id="gd-lost">—</strong></div><div><span>still variable</span><strong class="v" id="gd-mid">—</strong></div></div>
+      </div>
+      <div class="lab" id="gd-lab2" data-reset="own">
+        <div class="labbar"><span class="title">A bottleneck</span></div>
+        <div class="row"><button type="button" class="btn primary" id="gd-go">Bottleneck!</button></div>
+        <canvas id="gd-canvas2" aria-label="A population of 100 individuals, 60% blue and 40% pink, before and after a bottleneck leaves only a few survivors who then repopulate."></canvas>
+        <div class="controls"><div class="ctl"><label for="gd-s"><span>Survivors of the bottleneck</span> <output id="gd-s-out"></output></label><input type="range" id="gd-s" min="2" max="60" step="1" value="6"></div></div>
+        <div class="readout"><div><span>blue before</span><strong class="x" id="gd-b">—</strong></div><div><span>blue after</span><strong class="a" id="gd-a">—</strong></div><div><span>what happened</span><strong class="" id="gd-msg">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Run with population size 10. What usually happens? <button type="button" class="btn link" data-show='[["#gd-n", 10], ["#gd-p", 0.5], ["click", "#gd-run"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Several lines hit 0 or 1 (loss or fixation) within the 60 generations: chance dominates.</p></details></li>
+        <li><p>Now use size 500. <button type="button" class="btn link" data-show='[["#gd-n", 500], ["click", "#gd-run"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The lines wander only slightly: large populations are much less affected by drift.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A population of 10,000 beetles is 50% green and 50% brown (neutral trait). A flood leaves 10 survivors, 8 green and 2 brown, and the population regrows. Predict the allele frequencies and name the process.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>After the bottleneck.</b> 8/10 = 80% green, 20% brown (if the trait is a single gene with simple alleles, roughly).</li>
+          <li hidden><b>Process.</b> A bottleneck effect: genetic drift in a very small sample.</li>
+          <li hidden><b>Consequence.</b> The regrown population is mostly green even though green was no better, and overall genetic variation is lower.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying drift is a response to the environment.</li>
+        <li>Saying drift is strong in large populations.</li>
+        <li>Mixing up bottleneck (a population shrinks) and founder effect (a few individuals start a new population).</li>
+        <li>Thinking drift always increases fitness.</li>
+        <li>Forgetting that gene flow brings alleles into a population.</li>
+      </ul></div>
+      <div class="prose"><h2>Which force is it?</h2>
+        <p>Ask: Is the change random and size-dependent? Drift. Does it favor traits that raise reproduction? Selection. Are individuals moving between populations? Gene flow. Are new alleles appearing? Mutation.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="A small founding group carries a non-random sample of alleles.">
+        <p class="q">Check yourself: A new island population is started by a few individuals carrying a rare allele. The allele becomes common. This is an example of</p>
+        <div class="opts"><button type="button">the founder effect</button><button type="button">gene flow</button><button type="button">stabilizing selection</button><button type="button">mutation</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

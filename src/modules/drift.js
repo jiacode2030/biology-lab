@@ -1,0 +1,32 @@
+/* ---------------- Genetic drift & gene flow ---------------- */
+(function drift(){
+  const cv=$('#gd-canvas');if(!cv)return;
+  const G=60,K=10;let n=20,p0=.5,runs=[];
+  function binom(m,p){if(m>400){const mu=m*p,sd=Math.sqrt(m*p*(1-p));let z=0;for(let i=0;i<6;i++)z+=Math.random();z-=3;z*=Math.SQRT2;return clamp(Math.round(mu+sd*z),0,m);}let c=0;for(let i=0;i<m;i++)if(Math.random()<p)c++;return c;}
+  function run(){runs=[];for(let k=0;k<K;k++){const t=[p0];for(let g=1;g<=G;g++){const p=t[g-1];t.push(p<=0||p>=1?p:binom(2*n,p)/(2*n));}runs.push(t);}}
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:G,y0:0,y1:1,xt:10,yt:.25,xl:'generations',yl:'allele frequency',L:46});runs.forEach((t,k)=>{const f=t[G];ctx.strokeStyle=f>=1?T.ca:f<=0?T.muted:T.cx;ctx.lineWidth=2;ctx.globalAlpha=.8;ctx.beginPath();t.forEach((v,g)=>{const x=A.X(g),y=A.Y(v);g?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();ctx.globalAlpha=1;});label(ctx,'pink: fixed (100%) · gray: lost (0%) · blue: still variable',A.R-4,A.T0+6,T.muted,'right','middle',MONO);}});
+  function upd(){const f=runs.filter(t=>t[G]>=1).length,l=runs.filter(t=>t[G]<=0).length;setText('gd-fix',f+' of '+K);setText('gd-lost',l+' of '+K);setText('gd-mid',(K-f-l)+' of '+K);sim.render();}
+  bindRange('gd-n',v=>String(v),v=>{n=v;run();upd();});bindRange('gd-p',v=>fmt(v,2),v=>{p0=v;run();upd();});$('#gd-run').addEventListener('click',()=>{run();upd();});
+  $('#gd-lab').addEventListener('labreset',()=>{n=20;p0=.5;setCtl('gd-n',20);setCtl('gd-p',.5,v=>fmt(v,2));run();upd();});run();upd();
+  /* bottleneck */
+  let surv=6,before=[],after=null;
+  function mkBefore(){before=Array.from({length:100},(_,i)=>i<60);before=shuffle(before);after=null;}
+  function bott(){const s=shuffle(before).slice(0,surv);after=Array.from({length:100},()=>pick(s));}
+  const sim2=sim2d($('#gd-canvas2'),{h:w=>clamp(w*.36,190,250),draw(ctx,w,h){const half=w/2,g=Math.min((half-30)/10,(h-50)/10,20);[[before,'before the bottleneck',0],[after,'after the population regrows',1]].forEach(([arr,nm,k])=>{const x0=k*half+(half-g*10)/2,y0=26;label(ctx,nm,k*half+half/2,12,T.muted,'center','middle',MONO);if(!arr){ctx.strokeStyle=T.line;ctx.setLineDash([4,4]);ctx.strokeRect(x0,y0,g*10,g*10);ctx.setLineDash([]);label(ctx,'press the button',x0+g*5,y0+g*5,T.muted,'center','middle',MONO);return;}arr.forEach((b,i)=>dot2(ctx,x0+(i%10+.5)*g,y0+(Math.floor(i/10)+.5)*g,b?T.cx:T.ca,g*.35));});}});
+  function upd2(){const b=before.filter(x=>x).length;setText('gd-b',b+'%');if(after){const a=after.filter(x=>x).length;setText('gd-a',a+'%');setText('gd-msg',Math.abs(a-b)<6?'the survivors happened to be representative':a>b?'blue became more common by chance':'blue became less common by chance');}else{setText('gd-a','—');setText('gd-msg','press the button');}sim2.render();}
+  bindRange('gd-s',v=>String(v),v=>{surv=v;after=null;upd2();});$('#gd-go').addEventListener('click',()=>{bott();upd2();});
+  $('#gd-lab2').addEventListener('labreset',()=>{surv=6;setCtl('gd-s',6);mkBefore();upd2();});mkBefore();upd2();
+  drawers.drift=()=>{sim.render();sim2.render();};
+  KEYS['gd-canvas']=['Each line is one population. Compare small and large populations.',[['cx','variable'],['ca','fixed'],['muted','lost']]];
+  KEYS['gd-canvas2']=['Blue and pink dots are two alleles. The survivors are a random sample.',[['cx','blue allele'],['ca','pink allele']]];
+  TIPS['gd-n']=()=>'The smaller the population, the more chance changes allele frequencies.';
+  GLOSS['genetic drift']='Random changes in allele frequencies from generation to generation, strongest in small populations.';GLOSS['bottleneck effect']='A sharp drop in population size leaves survivors that are a random, often unrepresentative, sample.';GLOSS['founder effect']='A small group starts a new population with a non-random sample of the original alleles.';GLOSS['gene flow']='Movement of alleles between populations.';GLOSS['fixation']='An allele reaching a frequency of 100% in a population.';
+  TT.drift='Ask students to explain why the survivors of a bottleneck are not a reliable sample.';
+})();
+(function(){
+  const ex=[['A hurricane kills most of an island lizard population. The few survivors happen to carry mostly the same allele, which becomes common after the population regrows.','bottleneck effect'],['A small group of settlers founds a new colony, and a rare allele carried by one founder is much more common in the colony than in the source population.','founder effect'],['Birds migrate between two nearby populations, carrying alleles in both directions, so the populations become more similar.','gene flow'],['In a population of 12 flowers, an allele is lost in a few generations by chance, although it did not affect fitness.','genetic drift'],['A mutation creates a brand new allele.','mutation']];
+  PROBS.push({id:'dr-type',topic:'drift',title:'Which process?',gen(){const p=pick(ex),m=mcq(p[1],ex.map(x=>x[1]).filter(x=>x!==p[1]));return {q:p[0]+' This is an example of',choices:m.choices,ans:m.ans,hint:'Look for chance, population size and movement of individuals.',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'dr-fix',topic:'drift',title:'Chance of fixation',gen(){const p=pick([.05,.1,.2,.25,.5,.75]);return {q:`A neutral allele (no effect on fitness) has frequency ${p} in a small population. If drift is the only force acting, what is the probability that this allele will eventually become fixed (reach 100%)?`,ans:p,unit:'',abs:.011,chk:p,hint:'For a neutral allele, the probability of eventual fixation equals its current frequency.',sol:`<b>${p}</b>.`};}});
+  const q=[['Which population is most affected by genetic drift?','a population of 20 individuals',['a population of 20,000 individuals','a population of 2 million individuals','all are equally affected']],['Genetic drift tends to','reduce genetic variation within a population',['increase genetic variation within a population','always favor beneficial alleles','make populations more similar to each other']],['Gene flow between two populations tends to','make them more genetically similar',['make them more different','stop evolution','reduce the number of alleles in both']]];
+  PROBS.push({id:'dr-fact',topic:'drift',title:'Drift and gene flow facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Think about population size and exchange of alleles.',sol:`<b>${p[1]}</b>.`};}});
+})();

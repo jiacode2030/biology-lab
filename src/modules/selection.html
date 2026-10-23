@@ -1,0 +1,57 @@
+  <section class="view" id="v-selection" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 7</span></div>
+        <h1>Natural selection</h1>
+        <p class="lede">Populations change because individuals that happen to fit their environment better leave more offspring. Nothing in the process looks ahead.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Natural selection needs four things: <b>variation</b> in a trait, the trait is <b>heritable</b>, more offspring are produced than can survive, and individuals with some trait values <b>survive and reproduce more</b> (higher <b>fitness</b>). Over generations the alleles associated with those traits become more common. <b>Individuals do not evolve</b>; populations do. Selection acts on phenotypes, but what changes is allele frequency.</p>
+        <p>The effect on a trait depends on which phenotypes are favored. <b>Directional selection</b> favors one extreme and shifts the mean (antibiotic resistance, finch beak depth in drought). <b>Stabilizing selection</b> favors the middle and narrows the spread (human birth weight). <b>Disruptive selection</b> favors both extremes and can split a population in two (seedcracker finch beaks). Other forces: <b>sexual selection</b> (traits that help win mates) and <b>artificial selection</b> (humans choose who breeds).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>organisms change because they need to</dd><dt>So we didn't need</dt><dd>that selection acts on existing variation, and only populations change</dd><dt>Now</dt><dd>how traits change across generations and why resistance evolves</dd><dt>So we need</dt><dd>fitness, heritability and the three modes of selection</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>fitness = reproductive success</span><small>survival and number of offspring</small></div><div class="eqn"><span>directional: mean shifts</span><small>stabilizing: variation narrows; disruptive: two peaks</small></div><div class="eqn"><span>response to selection depends on heritability</span><small>needs genetic variation</small></div><div class="eqn"><span>p′ = p·w₁ / (p·w₁ + q·w₂)</span><small>allele frequency after selection (model)</small></div></div>
+      <div class="lab" id="ns-lab" data-reset="own">
+        <div class="labbar"><span class="title">Selection on a trait</span></div>
+        <div class="ctl"><span class="lbl">Selection</span><div class="seg" id="ns-mode" role="group" aria-label="Selection"><button type="button" data-k="dir" aria-pressed="true">directional (favors large)</button><button type="button" data-k="sta" aria-pressed="false">stabilizing</button><button type="button" data-k="dis" aria-pressed="false">disruptive</button></div></div>
+        <div class="row"><button type="button" class="btn primary" id="ns-next">Next generation</button><button type="button" class="btn" id="ns-ten">+10 generations</button><button type="button" class="btn" id="ns-reset">Start over</button></div>
+        <canvas id="ns-canvas" aria-label="A histogram of a trait in a population. Each generation the favored individuals reproduce, and the distribution changes."></canvas>
+        <div class="controls"><div class="ctl"><label for="ns-s"><span>Selection strength</span> <output id="ns-s-out"></output></label><input type="range" id="ns-s" min="1" max="10" step="1" value="5"></div></div>
+        <div class="readout"><div><span>generation</span><strong class="x" id="ns-gen">—</strong></div><div><span>mean of the trait</span><strong class="a" id="ns-mean">—</strong></div><div><span>spread (SD)</span><strong class="v" id="ns-sd">—</strong></div></div>
+      </div>
+      <div class="lab" id="ns-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Antibiotic resistance</span></div>
+        <canvas id="ns-canvas2" aria-label="A graph of the proportion of bacteria that are resistant over generations in the presence of an antibiotic."></canvas>
+        <div class="controls"><div class="ctl"><label for="ns-p0"><span>Starting resistant fraction</span> <output id="ns-p0-out"></output></label><input type="range" id="ns-p0" min="0.0001" max="0.1" step="0.0001" value="0.001"></div><div class="ctl"><label for="ns-sc"><span>Selection against sensitive cells</span> <output id="ns-sc-out"></output></label><input type="range" id="ns-sc" min="0.05" max="0.9" step="0.01" value="0.3"></div></div>
+        <div class="readout"><div><span>generations until half are resistant</span><strong class="x" id="ns-g50">—</strong></div><div><span>generations until 99% are resistant</span><strong class="a" id="ns-g99">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose directional selection and press +10 generations. What happens to the mean? <button type="button" class="btn link" data-show='[["click", "#ns-mode [data-k=dir]"], ["click", "#ns-reset"], ["click", "#ns-ten"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The mean shifts toward the favored extreme and the distribution keeps its shape.</p></details></li>
+        <li><p>Choose disruptive selection and run 10 generations. <button type="button" class="btn link" data-show='[["click", "#ns-mode [data-k=dis]"], ["click", "#ns-reset"], ["click", "#ns-ten"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Two peaks appear at the extremes and the middle becomes rare. The mean may stay about the same while the spread increases.</p></details></li>
+        <li><p>In the resistance lab, make the antibiotic stronger (raise the selection). <button type="button" class="btn link" data-show='[["#ns-sc", 0.8]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Resistance spreads in fewer generations: stronger selection means a bigger fitness difference.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Before an antibiotic is used, 1 in 10,000 bacteria carry a resistance allele. After exposure, most sensitive bacteria die and survivors multiply. Explain how the population becomes resistant without any bacterium "deciding" to.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Variation.</b> Resistance already exists in a few cells (from mutation).</li>
+          <li hidden><b>Selection.</b> The antibiotic kills sensitive cells but not resistant ones, so resistant cells have higher fitness.</li>
+          <li hidden><b>Heredity.</b> Survivors pass the allele to their offspring.</li>
+          <li hidden><b>Result.</b> The frequency of the resistant allele rises each generation. The change is in the population, not in individual cells.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying individuals evolve or adapt during their lifetime.</li>
+        <li>Saying organisms change "because they need to".</li>
+        <li>Treating fitness as strength instead of reproductive success.</li>
+        <li>Forgetting that selection needs heritable variation.</li>
+        <li>Saying mutations are caused by the environment to help the organism (they arise randomly; the environment selects).</li>
+      </ul></div>
+      <div class="prose"><h2>Writing the evolution explanation</h2>
+        <p>Use the four steps: variation, heritability, differential survival and reproduction, change in allele frequency over generations. Name the selective pressure and the favored phenotype, and say which mode of selection applies.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Intermediate phenotypes are favored, and the extremes are selected against.">
+        <p class="q">Check yourself: A population of birds has beak depths that cluster around the mean. Both very small and very large beaks have lower survival. This is</p>
+        <div class="opts"><button type="button">stabilizing selection</button><button type="button">directional selection</button><button type="button">disruptive selection</button><button type="button">genetic drift</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
