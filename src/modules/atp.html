@@ -1,0 +1,54 @@
+  <section class="view" id="v-atp" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>ATP & coupled reactions</h1>
+        <p class="lede">Cells run on one common energy currency. Many reactions that would not go on their own are driven by splitting ATP.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>ATP</b> (adenosine triphosphate) has an adenine base, a ribose sugar and three phosphate groups. The phosphate groups are negatively charged and repel one another, so the bonds between them hold energy. Hydrolysis of the terminal phosphate (ATP + H₂O → ADP + P<sub>i</sub>) releases about 30.5 kJ/mol under standard conditions.</p>
+        <p>Cells use this by <b>energy coupling</b>: an unfavorable (endergonic) reaction is linked to ATP hydrolysis, often by transferring the phosphate onto the reactant, so the combined ΔG is negative. ATP is then rebuilt from ADP + P<sub>i</sub> using energy from respiration or photosynthesis. A cell turns over its ATP supply constantly.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>energy was something that "gets released" and then is gone</dd><dt>So we didn't need</dt><dd>that cells store energy in a rechargeable molecule</dd><dt>Now</dt><dd>how an unfavorable reaction proceeds by being coupled to a favorable one</dd><dt>So we need</dt><dd>ATP hydrolysis, phosphorylation and coupling</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>ATP + H₂O → ADP + P<sub>i</sub></span><small>ΔG ≈ −30.5 kJ/mol</small></div><div class="eqn"><span>net ΔG = ΔG₁ + ΔG₂</span><small>coupled reactions</small></div><div class="eqn"><span>ΔG < 0: favorable (exergonic)</span><small>ΔG > 0: needs energy</small></div><div class="eqn"><span>ADP + P<sub>i</sub> + energy → ATP</span><small>from respiration or light</small></div></div>
+      <div class="lab" id="ap-lab" data-reset="own">
+        <div class="labbar"><span class="title">Coupling a reaction to ATP</span></div>
+        <canvas id="ap-canvas" aria-label="Energy bars: an endergonic reaction, ATP hydrolysis, and the net change."></canvas>
+        <div class="controls"><div class="ctl"><label for="ap-dg"><span>Reaction needs</span> <output id="ap-dg-out"></output></label><input type="range" id="ap-dg" min="5" max="60" step="1" value="28"></div></div>
+        <div class="readout"><div><span>net ΔG with 1 ATP</span><strong class="x" id="ap-net">—</strong></div><div><span>spontaneous?</span><strong class="a" id="ap-sp">—</strong></div><div><span>ATP needed to drive it</span><strong class="v" id="ap-n">—</strong></div></div>
+      </div>
+      <div class="lab" id="ap-lab2">
+        <div class="labbar"><span class="title">The ATP cycle</span></div>
+        <div class="row"><button type="button" class="btn" id="ac-prev">Previous</button><button type="button" class="btn primary" id="ac-next">Next stage</button><button type="button" class="btn" id="ac-play">Play</button></div>
+        <canvas id="ap-canvas2" aria-label="ATP is hydrolysed to ADP and phosphate to power work, and rebuilt using energy from food or light."></canvas>
+        <div class="controls"><div class="ctl"><label for="ac-st"><span>Stage</span> <output id="ac-st-out"></output></label><input type="range" id="ac-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="ac-name">—</strong></div><div><span>what is happening</span><strong class="" id="ac-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set the reaction to need +20 kJ/mol. Does one ATP make it go? <button type="button" class="btn link" data-show='[["#ap-dg", 20]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Yes: −30.5 + 20 = −10.5 kJ/mol, which is negative, so the coupled reaction is favorable.</p></details></li>
+        <li><p>Set +45 kJ/mol. How many ATP are needed? <button type="button" class="btn link" data-show='[["#ap-dg", 45]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>One ATP gives net +14.5 (not favorable). Two give −16 kJ/mol: favorable. Two ATP are needed.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">The synthesis of glutamine from glutamate and ammonia has ΔG = +14 kJ/mol. When coupled to ATP hydrolysis (−30.5 kJ/mol), find the net ΔG and decide if it is favorable.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Add.</b> +14 + (−30.5) = −16.5 kJ/mol.</li>
+          <li hidden><b>Decide.</b> Net ΔG is negative, so the coupled process is favorable.</li>
+          <li hidden><b>How.</b> The phosphate is transferred to glutamate first, making it reactive enough to combine with ammonia.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the energy is stored in the bonds as if breaking a bond releases energy. The release comes from forming more stable products.</li>
+        <li>Thinking ATP is a long-term energy store. It is short term; fats and glycogen are storage.</li>
+        <li>Forgetting that net ΔG must be negative for the coupled reaction to go.</li>
+        <li>Mixing up ADP and ATP.</li>
+        <li>Ignoring that ATP must be re-made.</li>
+      </ul></div>
+      <div class="prose"><h2>Writing the explanation</h2>
+        <p>A good answer states the reaction is endergonic, that ATP hydrolysis is exergonic, that the two are coupled (often by phosphorylation) so net ΔG is negative, and that cellular respiration or photosynthesis regenerates ATP.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="12 + (−30.5) = −18.5 kJ/mol.">
+        <p class="q">Check yourself: Coupling an endergonic reaction (ΔG = +12 kJ/mol) to ATP hydrolysis (ΔG = −30.5 kJ/mol) gives a net ΔG of</p>
+        <div class="opts"><button type="button">−18.5 kJ/mol</button><button type="button">+42.5 kJ/mol</button><button type="button">−42.5 kJ/mol</button><button type="button">+18.5 kJ/mol</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

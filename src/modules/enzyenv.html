@@ -1,0 +1,48 @@
+  <section class="view" id="v-enzyenv" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Temperature, pH & enzyme activity</h1>
+        <p class="lede">Enzymes work best in a narrow range. Move out of it and the protein changes shape and the reaction slows or stops.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Each enzyme has an <b>optimum temperature</b> and <b>optimum pH</b> fitted to the place it works: pepsin works at about pH 2 in the stomach, trypsin at about pH 8 in the small intestine, and the polymerase from hot-spring bacteria works near 72 °C. Rates rise with temperature because molecules collide more often and with more energy; past the optimum the enzyme <b>denatures</b> and the rate falls steeply.</p>
+        <p>pH changes the charges on amino acid R groups, which changes ionic and hydrogen bonds and so the active site. Extreme pH can denature the enzyme. These effects show up on exam graphs as bell-shaped curves; the peak marks the optimum. A graph with temperature on the x-axis that rises, peaks and then drops quickly is the typical pattern.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>rates just increased with temperature</dd><dt>So we didn't need</dt><dd>that enzymes are proteins whose shape depends on temperature and pH</dd><dt>Now</dt><dd>why enzymes in different organs have different optima</dd><dt>So we need</dt><dd>optimum conditions and denaturation</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>rate rises with temperature up to the optimum</span><small>then falls from denaturation</small></div><div class="eqn"><span>optimum pH differs by enzyme</span><small>pepsin ≈ 2, trypsin ≈ 8</small></div><div class="eqn"><span>denaturation: shape lost, active site no longer fits</span><small>usually irreversible when severe</small></div><div class="eqn"><span>Q<sub>10</sub> ≈ 2 below the optimum</span><small>rate doubles per 10 °C</small></div></div>
+      <div class="lab" id="ee-lab" data-reset="own">
+        <div class="labbar"><span class="title">Find the optimum</span></div>
+        <div class="ctl"><span class="lbl">Enzyme</span><div class="seg" id="ee-en" role="group" aria-label="Enzyme"><button type="button" data-k="pep" aria-pressed="true">pepsin (stomach)</button><button type="button" data-k="try" aria-pressed="false">trypsin (small intestine)</button><button type="button" data-k="taq" aria-pressed="false">Taq polymerase (hot springs)</button></div></div>
+        <canvas id="ee-canvas" aria-label="Two graphs of enzyme activity: one against temperature and one against pH, with markers at the chosen values."></canvas>
+        <div class="controls"><div class="ctl"><label for="ee-t"><span>Temperature</span> <output id="ee-t-out"></output></label><input type="range" id="ee-t" min="0" max="100" step="1" value="37"></div><div class="ctl"><label for="ee-ph"><span>pH</span> <output id="ee-ph-out"></output></label><input type="range" id="ee-ph" min="1" max="13" step="0.1" value="7"></div></div>
+        <div class="readout"><div><span>activity from temperature</span><strong class="x" id="ee-ft">—</strong></div><div><span>activity from pH</span><strong class="a" id="ee-fp">—</strong></div><div><span>overall activity</span><strong class="v" id="ee-all">—</strong></div><div><span>what is happening</span><strong class="" id="ee-st">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose pepsin and set pH to 2 at 37 °C. Then raise the pH to 8. <button type="button" class="btn link" data-show='[["click", "#ee-en [data-k=pep]"], ["#ee-t", 37], ["#ee-ph", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Activity is near the maximum at pH 2 and almost zero at pH 8: pepsin is adapted to stomach acid.</p></details></li>
+        <li><p>Choose Taq and run it at 37 °C and at 72 °C. <button type="button" class="btn link" data-show='[["click", "#ee-en [data-k=taq]"], ["#ee-t", 72], ["#ee-ph", 8.3]]'>72 °C</button></p><details><summary>What you should see</summary><p>At 37 °C it is slow (cold for this enzyme); at 72 °C it is at its best, and a human enzyme at 72 °C would be denatured.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">An enzyme gives these relative rates: 20 °C: 25, 30 °C: 50, 40 °C: 100, 50 °C: 30, 60 °C: 0. Estimate the optimum and explain the drop above it.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Optimum.</b> The highest rate is at 40 °C (100).</li>
+          <li hidden><b>Rise.</b> From 20 to 40 °C the rate doubles each 10 °C, as expected from more frequent and energetic collisions (Q10 ≈ 2).</li>
+          <li hidden><b>Drop.</b> Above 40 °C the enzyme begins to denature: heat breaks the weak interactions that fold the active site, so fewer enzymes can bind substrate. By 60 °C most are denatured.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the enzyme "dies". Enzymes are not alive; they denature.</li>
+        <li>Thinking the optimum is the same for all enzymes.</li>
+        <li>Saying peptide bonds break on mild heating.</li>
+        <li>Forgetting pH also changes enzyme shape.</li>
+        <li>Describing a high rate at a high temperature as an adaptation without noting the organism.</li>
+      </ul></div>
+      <div class="prose"><h2>Interpreting graphs</h2>
+        <p>Name the optimum from the peak, describe the rise (collisions, kinetic energy) and the fall (denaturation: shape lost, active site no longer fits), and link the optimum to the environment the enzyme works in.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The enzyme&#x27;s shape and charges are adapted to the acidic stomach.">
+        <p class="q">Check yourself: Pepsin works best at pH 2 because</p>
+        <div class="opts"><button type="button">it is adapted to stomach acid</button><button type="button">acid makes peptide bonds</button><button type="button">it has no R groups</button><button type="button">acid is its substrate</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

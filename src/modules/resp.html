@@ -1,0 +1,55 @@
+  <section class="view" id="v-resp" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Cellular respiration</h1>
+        <p class="lede">Cells get usable energy by taking sugar apart a little at a time and capturing the energy in ATP.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Overall: C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O + energy (ATP and heat). It happens in four steps. <b>Glycolysis</b> (cytoplasm) splits glucose into 2 pyruvate with a net gain of 2 ATP and 2 NADH. <b>Pyruvate oxidation</b> (mitochondrial matrix) converts each pyruvate to acetyl-CoA, releasing CO₂ and making NADH. The <b>citric acid cycle</b> (matrix) completes the breakdown, releasing CO₂ and making ATP, NADH and FADH₂. The <b>electron transport chain</b> (inner membrane) takes electrons from NADH and FADH₂, pumps H⁺ across the membrane and uses O₂ as the final electron acceptor (forming water).</p>
+        <p>The resulting H⁺ gradient drives <b>ATP synthase</b> (chemiosmosis), which makes most of the ATP: roughly 30–32 per glucose in all. Without oxygen the chain stops, NADH cannot be recycled, and the cell must use fermentation instead.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>energy came out of food all at once</dd><dt>So we didn't need</dt><dd>that energy is released in many small steps and captured by carriers</dd><dt>Now</dt><dd>why oxygen is needed and where the CO₂ comes from</dd><dt>So we need</dt><dd>glycolysis, citric acid cycle, electron transport and chemiosmosis</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>glycolysis: 1 glucose → 2 pyruvate, net 2 ATP, 2 NADH</span><small>cytoplasm</small></div><div class="eqn"><span>per glucose: 6 CO₂ released</span><small>from pyruvate oxidation and the citric acid cycle</small></div><div class="eqn"><span>about 30–32 ATP per glucose (aerobic)</span><small>mostly from ATP synthase</small></div><div class="eqn"><span>O₂ is the final electron acceptor → H₂O</span><small>electron transport chain</small></div></div>
+      <div class="lab" id="rs-lab">
+        <div class="labbar"><span class="title">Respiration step by step</span></div>
+        <div class="row"><button type="button" class="btn" id="rs-prev">Previous</button><button type="button" class="btn primary" id="rs-next">Next stage</button><button type="button" class="btn" id="rs-play">Play</button></div>
+        <canvas id="rs-canvas" aria-label="Mitochondrion and cytoplasm with the four stages of respiration highlighted in turn."></canvas>
+        <div class="controls"><div class="ctl"><label for="rs-st"><span>Stage</span> <output id="rs-st-out"></output></label><input type="range" id="rs-st" min="0" max="4" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="rs-name">—</strong></div><div><span>what is happening</span><strong class="" id="rs-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="rs-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Tally for glucose molecules</span></div>
+        <canvas id="rs-canvas2" aria-label="Bars showing ATP from each stage of aerobic respiration for the chosen number of glucose molecules."></canvas>
+        <div class="controls"><div class="ctl"><label for="rs-g"><span>Glucose molecules</span> <output id="rs-g-out"></output></label><input type="range" id="rs-g" min="1" max="5" step="1" value="1"></div></div>
+        <div class="readout"><div><span>ATP (about)</span><strong class="x" id="rs-atp">—</strong></div><div><span>CO₂ released</span><strong class="a" id="rs-co2">—</strong></div><div><span>O₂ used</span><strong class="v" id="rs-o2">—</strong></div><div><span>H₂O made</span><strong class="" id="rs-h2o">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the electron transport stage. What is the role of O₂? <button type="button" class="btn link" data-show='[["#rs-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It is the final electron acceptor, combining with electrons and H⁺ to form water. Without it the chain backs up.</p></details></li>
+        <li><p>Set 3 glucose molecules. How much CO₂ is released and how much O₂ is used? <button type="button" class="btn link" data-show='[["#rs-g", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>18 CO₂ and 18 O₂: six of each per glucose.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Starting from 1 glucose, how many CO₂ are made in glycolysis, pyruvate oxidation and the citric acid cycle, and where does the electron transport chain get its electrons?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Glycolysis.</b> No CO₂ (glucose is split into two 3-carbon pyruvates).</li>
+          <li hidden><b>Pyruvate oxidation.</b> 1 CO₂ per pyruvate, so 2.</li>
+          <li hidden><b>Citric acid cycle.</b> 2 CO₂ per turn, 2 turns per glucose: 4. Total 6, matching the 6 carbons of glucose.</li>
+          <li hidden><b>Electrons.</b> From NADH and FADH₂ made in the earlier steps.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Thinking CO₂ is released in the electron transport chain. It comes from pyruvate oxidation and the citric acid cycle.</li>
+        <li>Putting glycolysis in the mitochondrion.</li>
+        <li>Saying oxygen is used up in glycolysis.</li>
+        <li>Confusing the H⁺ gradient (made by the chain) with ATP (made by ATP synthase).</li>
+        <li>Memorizing 36 ATP; the commonly accepted figure is about 30–32.</li>
+      </ul></div>
+      <div class="prose"><h2>Predict and explain</h2>
+        <p>If a poison blocks the electron transport chain, NADH and FADH₂ accumulate, the H⁺ gradient collapses, ATP production falls sharply, and the cell can only run glycolysis. Questions often ask what happens to O₂ use, ATP and NADH levels: reason along the pathway.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Chemiosmosis in the inner mitochondrial membrane makes most ATP.">
+        <p class="q">Check yourself: Where is most of the ATP in aerobic respiration made?</p>
+        <div class="opts"><button type="button">by ATP synthase using the H⁺ gradient</button><button type="button">in glycolysis</button><button type="button">in the citric acid cycle</button><button type="button">in the cytoplasm</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

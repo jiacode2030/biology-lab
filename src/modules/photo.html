@@ -1,0 +1,55 @@
+  <section class="view" id="v-photo" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Photosynthesis</h1>
+        <p class="lede">Plants make sugar from air and water, and the energy for it comes from light. The process has two linked stages: one that captures light energy and one that spends it to build sugar.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>In the <b>light reactions</b> (thylakoid membranes), light excites electrons in photosystems. Water is split to replace them, releasing O₂. The electrons pass along an electron transport chain, pumping H⁺ into the thylakoid space. The H⁺ gradient drives <b>ATP synthase</b> (chemiosmosis) to make ATP, and the electrons end up in NADPH.</p>
+        <p>In the <b>Calvin cycle</b> (stroma), the enzyme <b>rubisco</b> attaches CO₂ to RuBP (carbon fixation). ATP and NADPH from the light reactions reduce the product to G3P, a three-carbon sugar. Some G3P leaves to make glucose and the rest regenerates RuBP. Overall: 6 CO₂ + 6 H₂O + light → C₆H₁₂O₆ + 6 O₂. The oxygen comes from the water.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>plants "eat" soil or just grow from sunlight</dd><dt>So we didn't need</dt><dd>that light energy becomes chemical energy in two linked stages</dd><dt>Now</dt><dd>where the oxygen and the carbon in sugar come from</dd><dt>So we need</dt><dd>light reactions, Calvin cycle, and limiting factors</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>6 CO₂ + 6 H₂O + light → C₆H₁₂O₆ + 6 O₂</span><small>overall</small></div><div class="eqn"><span>light reactions: H₂O → O₂, make ATP and NADPH</span><small>thylakoid membrane</small></div><div class="eqn"><span>Calvin cycle: CO₂ → G3P using ATP and NADPH</span><small>stroma</small></div><div class="eqn"><span>3 CO₂ → 1 G3P: 9 ATP and 6 NADPH</span><small>per G3P</small></div></div>
+      <div class="lab" id="ph-lab">
+        <div class="labbar"><span class="title">Photosynthesis step by step</span></div>
+        <div class="row"><button type="button" class="btn" id="ph-prev">Previous</button><button type="button" class="btn primary" id="ph-next">Next stage</button><button type="button" class="btn" id="ph-play">Play</button></div>
+        <canvas id="ph-canvas" aria-label="A chloroplast section showing the thylakoid membrane and stroma. Each stage highlights where the light reactions and Calvin cycle events occur."></canvas>
+        <div class="controls"><div class="ctl"><label for="ph-st"><span>Stage</span> <output id="ph-st-out"></output></label><input type="range" id="ph-st" min="0" max="5" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="ph-name">—</strong></div><div><span>what is happening</span><strong class="" id="ph-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="ph-lab2" data-reset="own">
+        <div class="labbar"><span class="title">What limits photosynthesis?</span></div>
+        <canvas id="ph-canvas2" aria-label="Rate of photosynthesis against light intensity for the chosen carbon dioxide level and temperature, with a marker at the current light."></canvas>
+        <div class="controls"><div class="ctl"><label for="ph-l"><span>Light intensity</span> <output id="ph-l-out"></output></label><input type="range" id="ph-l" min="0" max="100" step="1" value="30"></div><div class="ctl"><label for="ph-c"><span>CO₂ level</span> <output id="ph-c-out"></output></label><input type="range" id="ph-c" min="0" max="100" step="1" value="60"></div><div class="ctl"><label for="ph-t"><span>Temperature</span> <output id="ph-t-out"></output></label><input type="range" id="ph-t" min="5" max="50" step="1" value="25"></div></div>
+        <div class="readout"><div><span>rate (relative)</span><strong class="x" id="ph-r">—</strong></div><div><span>limiting factor</span><strong class="a" id="ph-lim">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the stage where the H⁺ gradient is used. What is made? <button type="button" class="btn link" data-show='[["#ph-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>ATP: H⁺ flows through ATP synthase from the thylakoid space into the stroma, driving phosphorylation of ADP.</p></details></li>
+        <li><p>Set light to 90 and CO₂ to 10. What limits the rate? <button type="button" class="btn link" data-show='[["#ph-l", 90], ["#ph-c", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>CO₂: the Calvin cycle is short of substrate, so more light does not help.</p></details></li>
+        <li><p>Set temperature to 45 °C with plenty of light and CO₂. Why does the rate drop? <button type="button" class="btn link" data-show='[["#ph-l", 90], ["#ph-c", 90], ["#ph-t", 45]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>High temperature denatures enzymes (like rubisco), so the rate falls even though light and CO₂ are plentiful.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">How many ATP and NADPH are needed for the Calvin cycle to make one molecule of glucose (6 CO₂ fixed)?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Per 3 CO₂.</b> Making one G3P takes 9 ATP and 6 NADPH.</li>
+          <li hidden><b>Glucose needs 6 CO₂.</b> That is two rounds of 3 CO₂, making 2 G3P.</li>
+          <li hidden><b>Totals.</b> 2 × 9 = 18 ATP and 2 × 6 = 12 NADPH.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the oxygen released comes from CO₂. It comes from water.</li>
+        <li>Saying the Calvin cycle needs no light at all. It depends on ATP and NADPH made in the light reactions.</li>
+        <li>Putting the light reactions in the stroma and the Calvin cycle in the thylakoid.</li>
+        <li>Mixing up photosynthesis and respiration electron carriers (NADPH vs NADH).</li>
+        <li>Forgetting that the light reactions also need a source of electrons: water.</li>
+      </ul></div>
+      <div class="prose"><h2>Experiment questions</h2>
+        <p>Light-colour or intensity experiments measure O₂ production, CO₂ uptake or the floating of leaf discs. Predict the trend, name the limiting factor at each region of the graph, and explain it using the stage affected (light reactions for light; Calvin cycle for CO₂ and temperature-sensitive enzymes).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Water is split in photosystem II, releasing O₂.">
+        <p class="q">Check yourself: The oxygen released in photosynthesis comes from</p>
+        <div class="opts"><button type="button">water</button><button type="button">carbon dioxide</button><button type="button">glucose</button><button type="button">ATP</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

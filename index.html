@@ -1824,6 +1824,328 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-enzymes" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Enzymes & activation energy</h1>
+        <p class="lede">Reactions in cells would be far too slow at body temperature without help. Enzymes make them fast enough to sustain life, and do it one reaction at a time.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>An <b>enzyme</b> is a protein catalyst. It binds its <b>substrate</b> at the <b>active site</b>, whose shape and chemistry fit that substrate (the active site adjusts slightly on binding, <b>induced fit</b>). Enzymes speed reactions by <b>lowering the activation energy</b> (the energy hurdle to get started). They do not change the free energy of the reactants or products, do not make an unfavorable reaction favorable, and are not used up.</p>
+        <p>Reaction rate rises with substrate concentration until all active sites are busy (saturation), then levels off at V<sub>max</sub>. A <b>competitive inhibitor</b> resembles the substrate and blocks the active site; more substrate can outcompete it, so V<sub>max</sub> can still be reached. A <b>noncompetitive (allosteric) inhibitor</b> binds elsewhere and changes the shape of the enzyme, lowering the V<sub>max</sub> that can be reached.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>chemical reactions needed high temperatures or harsh conditions</dd><dt>So we didn't need</dt><dd>that a protein can lower the energy barrier while leaving the overall energy change alone</dd><dt>Now</dt><dd>why reactions in cells are fast and specific</dd><dt>So we need</dt><dd>activation energy, saturation and inhibition</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>v = Vmax[S] / (Km + [S])</span><small>shape of the rate curve (model)</small></div><div class="eqn"><span>catalyst lowers E<sub>a</sub></span><small>ΔG unchanged</small></div><div class="eqn"><span>competitive: raises apparent Km</span><small>Vmax reachable with more substrate</small></div><div class="eqn"><span>noncompetitive: lowers Vmax</span><small>more substrate does not fix it</small></div></div>
+      <div class="lab" id="en-lab" data-reset="own">
+        <div class="labbar"><span class="title">Rate against substrate concentration</span></div>
+        <div class="ctl"><span class="lbl">Inhibitor</span><div class="seg" id="en-inh" role="group" aria-label="Inhibitor"><button type="button" data-k="none" aria-pressed="true">none</button><button type="button" data-k="comp" aria-pressed="false">competitive</button><button type="button" data-k="nonc" aria-pressed="false">noncompetitive</button></div></div>
+        <canvas id="en-canvas" aria-label="Graph of reaction rate against substrate concentration, with the chosen inhibitor and the uninhibited curve for comparison."></canvas>
+        <div class="controls"><div class="ctl"><label for="en-s"><span>Substrate concentration</span> <output id="en-s-out"></output></label><input type="range" id="en-s" min="0" max="100" step="1" value="20"></div><div class="ctl"><label for="en-e"><span>Amount of enzyme</span> <output id="en-e-out"></output></label><input type="range" id="en-e" min="1" max="10" step="1" value="5"></div></div>
+        <div class="readout"><div><span>rate</span><strong class="x" id="en-v">—</strong></div><div><span>percent of maximum</span><strong class="a" id="en-pct">—</strong></div><div><span>what limits the rate now</span><strong class="v" id="en-lim">—</strong></div></div>
+      </div>
+      <div class="lab" id="en-lab2" data-reset="own">
+        <div class="labbar"><span class="title">The energy hill</span></div>
+        <div class="ctl"><span class="lbl">Reaction</span><div class="seg" id="en-rx" role="group" aria-label="Reaction"><button type="button" data-k="exo" aria-pressed="true">releases energy (exergonic)</button><button type="button" data-k="endo" aria-pressed="false">needs energy (endergonic)</button></div></div>
+        <div class="row"><button type="button" class="btn primary" id="en-cat">Add enzyme</button></div>
+        <canvas id="en-canvas2" aria-label="Energy profile of a reaction with and without an enzyme. The enzyme lowers the peak but not the start and end levels."></canvas>
+        <div class="readout"><div><span>activation energy</span><strong class="x" id="en-ea">—</strong></div><div><span>ΔG (products − reactants)</span><strong class="a" id="en-dg">—</strong></div><div><span>effect</span><strong class="" id="en-cm">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose competitive inhibition, then raise substrate to 100. What happens to the rate? <button type="button" class="btn link" data-show='[["click", "#en-inh [data-k=comp]"], ["#en-s", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It climbs back almost to the uninhibited maximum: lots of substrate outcompetes the inhibitor.</p></details></li>
+        <li><p>Choose noncompetitive inhibition and raise substrate to 100. Does it recover? <button type="button" class="btn link" data-show='[["click", "#en-inh [data-k=nonc]"], ["#en-s", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>No. The ceiling is lower because some enzyme molecules are altered whatever the substrate level.</p></details></li>
+        <li><p>Add the enzyme to the energy profile. What changes and what does not? <button type="button" class="btn link" data-show='[["click", "#en-cat"]]'>Add enzyme</button></p><details><summary>What you should see</summary><p>The peak (activation energy) falls. The start and end levels, and so ΔG, stay the same.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A reaction has an activation energy of 80 kJ/mol and ΔG = −20 kJ/mol. An enzyme lowers the activation energy to 45 kJ/mol. State the new activation energy and ΔG, and the effect on rate.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Activation energy.</b> 45 kJ/mol (lowered by 35).</li>
+          <li hidden><b>ΔG.</b> Still −20 kJ/mol. An enzyme cannot change the energy of reactants or products.</li>
+          <li hidden><b>Rate.</b> Faster, because a larger fraction of molecules has enough energy to react. Equilibrium is reached sooner but is not moved.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying enzymes add energy to the reaction.</li>
+        <li>Saying enzymes make a nonspontaneous reaction spontaneous.</li>
+        <li>Believing enzymes are used up.</li>
+        <li>Mixing competitive and noncompetitive inhibitors.</li>
+        <li>Forgetting that rate levels off because enzyme is limiting, not substrate.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading rate graphs</h2>
+        <p>On a rate vs. substrate graph, a flat region means the enzyme is saturated: adding substrate does nothing, adding enzyme would. A rising region means substrate is limiting. If the inhibited curve reaches the same maximum, the inhibitor is competitive; if the maximum is lower, it is noncompetitive.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="ΔG depends only on reactants and products, not on the path.">
+        <p class="q">Check yourself: An enzyme lowers the activation energy of a reaction. Which quantity is unchanged?</p>
+        <div class="opts"><button type="button">the free energy change (ΔG)</button><button type="button">the activation energy</button><button type="button">the reaction rate</button><button type="button">the energy of the transition state</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-enzyenv" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Temperature, pH & enzyme activity</h1>
+        <p class="lede">Enzymes work best in a narrow range. Move out of it and the protein changes shape and the reaction slows or stops.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Each enzyme has an <b>optimum temperature</b> and <b>optimum pH</b> fitted to the place it works: pepsin works at about pH 2 in the stomach, trypsin at about pH 8 in the small intestine, and the polymerase from hot-spring bacteria works near 72 °C. Rates rise with temperature because molecules collide more often and with more energy; past the optimum the enzyme <b>denatures</b> and the rate falls steeply.</p>
+        <p>pH changes the charges on amino acid R groups, which changes ionic and hydrogen bonds and so the active site. Extreme pH can denature the enzyme. These effects show up on exam graphs as bell-shaped curves; the peak marks the optimum. A graph with temperature on the x-axis that rises, peaks and then drops quickly is the typical pattern.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>rates just increased with temperature</dd><dt>So we didn't need</dt><dd>that enzymes are proteins whose shape depends on temperature and pH</dd><dt>Now</dt><dd>why enzymes in different organs have different optima</dd><dt>So we need</dt><dd>optimum conditions and denaturation</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>rate rises with temperature up to the optimum</span><small>then falls from denaturation</small></div><div class="eqn"><span>optimum pH differs by enzyme</span><small>pepsin ≈ 2, trypsin ≈ 8</small></div><div class="eqn"><span>denaturation: shape lost, active site no longer fits</span><small>usually irreversible when severe</small></div><div class="eqn"><span>Q<sub>10</sub> ≈ 2 below the optimum</span><small>rate doubles per 10 °C</small></div></div>
+      <div class="lab" id="ee-lab" data-reset="own">
+        <div class="labbar"><span class="title">Find the optimum</span></div>
+        <div class="ctl"><span class="lbl">Enzyme</span><div class="seg" id="ee-en" role="group" aria-label="Enzyme"><button type="button" data-k="pep" aria-pressed="true">pepsin (stomach)</button><button type="button" data-k="try" aria-pressed="false">trypsin (small intestine)</button><button type="button" data-k="taq" aria-pressed="false">Taq polymerase (hot springs)</button></div></div>
+        <canvas id="ee-canvas" aria-label="Two graphs of enzyme activity: one against temperature and one against pH, with markers at the chosen values."></canvas>
+        <div class="controls"><div class="ctl"><label for="ee-t"><span>Temperature</span> <output id="ee-t-out"></output></label><input type="range" id="ee-t" min="0" max="100" step="1" value="37"></div><div class="ctl"><label for="ee-ph"><span>pH</span> <output id="ee-ph-out"></output></label><input type="range" id="ee-ph" min="1" max="13" step="0.1" value="7"></div></div>
+        <div class="readout"><div><span>activity from temperature</span><strong class="x" id="ee-ft">—</strong></div><div><span>activity from pH</span><strong class="a" id="ee-fp">—</strong></div><div><span>overall activity</span><strong class="v" id="ee-all">—</strong></div><div><span>what is happening</span><strong class="" id="ee-st">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose pepsin and set pH to 2 at 37 °C. Then raise the pH to 8. <button type="button" class="btn link" data-show='[["click", "#ee-en [data-k=pep]"], ["#ee-t", 37], ["#ee-ph", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Activity is near the maximum at pH 2 and almost zero at pH 8: pepsin is adapted to stomach acid.</p></details></li>
+        <li><p>Choose Taq and run it at 37 °C and at 72 °C. <button type="button" class="btn link" data-show='[["click", "#ee-en [data-k=taq]"], ["#ee-t", 72], ["#ee-ph", 8.3]]'>72 °C</button></p><details><summary>What you should see</summary><p>At 37 °C it is slow (cold for this enzyme); at 72 °C it is at its best, and a human enzyme at 72 °C would be denatured.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">An enzyme gives these relative rates: 20 °C: 25, 30 °C: 50, 40 °C: 100, 50 °C: 30, 60 °C: 0. Estimate the optimum and explain the drop above it.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Optimum.</b> The highest rate is at 40 °C (100).</li>
+          <li hidden><b>Rise.</b> From 20 to 40 °C the rate doubles each 10 °C, as expected from more frequent and energetic collisions (Q10 ≈ 2).</li>
+          <li hidden><b>Drop.</b> Above 40 °C the enzyme begins to denature: heat breaks the weak interactions that fold the active site, so fewer enzymes can bind substrate. By 60 °C most are denatured.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the enzyme "dies". Enzymes are not alive; they denature.</li>
+        <li>Thinking the optimum is the same for all enzymes.</li>
+        <li>Saying peptide bonds break on mild heating.</li>
+        <li>Forgetting pH also changes enzyme shape.</li>
+        <li>Describing a high rate at a high temperature as an adaptation without noting the organism.</li>
+      </ul></div>
+      <div class="prose"><h2>Interpreting graphs</h2>
+        <p>Name the optimum from the peak, describe the rise (collisions, kinetic energy) and the fall (denaturation: shape lost, active site no longer fits), and link the optimum to the environment the enzyme works in.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The enzyme&#x27;s shape and charges are adapted to the acidic stomach.">
+        <p class="q">Check yourself: Pepsin works best at pH 2 because</p>
+        <div class="opts"><button type="button">it is adapted to stomach acid</button><button type="button">acid makes peptide bonds</button><button type="button">it has no R groups</button><button type="button">acid is its substrate</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-atp" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>ATP & coupled reactions</h1>
+        <p class="lede">Cells run on one common energy currency. Many reactions that would not go on their own are driven by splitting ATP.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>ATP</b> (adenosine triphosphate) has an adenine base, a ribose sugar and three phosphate groups. The phosphate groups are negatively charged and repel one another, so the bonds between them hold energy. Hydrolysis of the terminal phosphate (ATP + H₂O → ADP + P<sub>i</sub>) releases about 30.5 kJ/mol under standard conditions.</p>
+        <p>Cells use this by <b>energy coupling</b>: an unfavorable (endergonic) reaction is linked to ATP hydrolysis, often by transferring the phosphate onto the reactant, so the combined ΔG is negative. ATP is then rebuilt from ADP + P<sub>i</sub> using energy from respiration or photosynthesis. A cell turns over its ATP supply constantly.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>energy was something that "gets released" and then is gone</dd><dt>So we didn't need</dt><dd>that cells store energy in a rechargeable molecule</dd><dt>Now</dt><dd>how an unfavorable reaction proceeds by being coupled to a favorable one</dd><dt>So we need</dt><dd>ATP hydrolysis, phosphorylation and coupling</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>ATP + H₂O → ADP + P<sub>i</sub></span><small>ΔG ≈ −30.5 kJ/mol</small></div><div class="eqn"><span>net ΔG = ΔG₁ + ΔG₂</span><small>coupled reactions</small></div><div class="eqn"><span>ΔG < 0: favorable (exergonic)</span><small>ΔG > 0: needs energy</small></div><div class="eqn"><span>ADP + P<sub>i</sub> + energy → ATP</span><small>from respiration or light</small></div></div>
+      <div class="lab" id="ap-lab" data-reset="own">
+        <div class="labbar"><span class="title">Coupling a reaction to ATP</span></div>
+        <canvas id="ap-canvas" aria-label="Energy bars: an endergonic reaction, ATP hydrolysis, and the net change."></canvas>
+        <div class="controls"><div class="ctl"><label for="ap-dg"><span>Reaction needs</span> <output id="ap-dg-out"></output></label><input type="range" id="ap-dg" min="5" max="60" step="1" value="28"></div></div>
+        <div class="readout"><div><span>net ΔG with 1 ATP</span><strong class="x" id="ap-net">—</strong></div><div><span>spontaneous?</span><strong class="a" id="ap-sp">—</strong></div><div><span>ATP needed to drive it</span><strong class="v" id="ap-n">—</strong></div></div>
+      </div>
+      <div class="lab" id="ap-lab2">
+        <div class="labbar"><span class="title">The ATP cycle</span></div>
+        <div class="row"><button type="button" class="btn" id="ac-prev">Previous</button><button type="button" class="btn primary" id="ac-next">Next stage</button><button type="button" class="btn" id="ac-play">Play</button></div>
+        <canvas id="ap-canvas2" aria-label="ATP is hydrolysed to ADP and phosphate to power work, and rebuilt using energy from food or light."></canvas>
+        <div class="controls"><div class="ctl"><label for="ac-st"><span>Stage</span> <output id="ac-st-out"></output></label><input type="range" id="ac-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="ac-name">—</strong></div><div><span>what is happening</span><strong class="" id="ac-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set the reaction to need +20 kJ/mol. Does one ATP make it go? <button type="button" class="btn link" data-show='[["#ap-dg", 20]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Yes: −30.5 + 20 = −10.5 kJ/mol, which is negative, so the coupled reaction is favorable.</p></details></li>
+        <li><p>Set +45 kJ/mol. How many ATP are needed? <button type="button" class="btn link" data-show='[["#ap-dg", 45]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>One ATP gives net +14.5 (not favorable). Two give −16 kJ/mol: favorable. Two ATP are needed.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">The synthesis of glutamine from glutamate and ammonia has ΔG = +14 kJ/mol. When coupled to ATP hydrolysis (−30.5 kJ/mol), find the net ΔG and decide if it is favorable.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Add.</b> +14 + (−30.5) = −16.5 kJ/mol.</li>
+          <li hidden><b>Decide.</b> Net ΔG is negative, so the coupled process is favorable.</li>
+          <li hidden><b>How.</b> The phosphate is transferred to glutamate first, making it reactive enough to combine with ammonia.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the energy is stored in the bonds as if breaking a bond releases energy. The release comes from forming more stable products.</li>
+        <li>Thinking ATP is a long-term energy store. It is short term; fats and glycogen are storage.</li>
+        <li>Forgetting that net ΔG must be negative for the coupled reaction to go.</li>
+        <li>Mixing up ADP and ATP.</li>
+        <li>Ignoring that ATP must be re-made.</li>
+      </ul></div>
+      <div class="prose"><h2>Writing the explanation</h2>
+        <p>A good answer states the reaction is endergonic, that ATP hydrolysis is exergonic, that the two are coupled (often by phosphorylation) so net ΔG is negative, and that cellular respiration or photosynthesis regenerates ATP.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="12 + (−30.5) = −18.5 kJ/mol.">
+        <p class="q">Check yourself: Coupling an endergonic reaction (ΔG = +12 kJ/mol) to ATP hydrolysis (ΔG = −30.5 kJ/mol) gives a net ΔG of</p>
+        <div class="opts"><button type="button">−18.5 kJ/mol</button><button type="button">+42.5 kJ/mol</button><button type="button">−42.5 kJ/mol</button><button type="button">+18.5 kJ/mol</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-photo" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Photosynthesis</h1>
+        <p class="lede">Plants make sugar from air and water, and the energy for it comes from light. The process has two linked stages: one that captures light energy and one that spends it to build sugar.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>In the <b>light reactions</b> (thylakoid membranes), light excites electrons in photosystems. Water is split to replace them, releasing O₂. The electrons pass along an electron transport chain, pumping H⁺ into the thylakoid space. The H⁺ gradient drives <b>ATP synthase</b> (chemiosmosis) to make ATP, and the electrons end up in NADPH.</p>
+        <p>In the <b>Calvin cycle</b> (stroma), the enzyme <b>rubisco</b> attaches CO₂ to RuBP (carbon fixation). ATP and NADPH from the light reactions reduce the product to G3P, a three-carbon sugar. Some G3P leaves to make glucose and the rest regenerates RuBP. Overall: 6 CO₂ + 6 H₂O + light → C₆H₁₂O₆ + 6 O₂. The oxygen comes from the water.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>plants "eat" soil or just grow from sunlight</dd><dt>So we didn't need</dt><dd>that light energy becomes chemical energy in two linked stages</dd><dt>Now</dt><dd>where the oxygen and the carbon in sugar come from</dd><dt>So we need</dt><dd>light reactions, Calvin cycle, and limiting factors</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>6 CO₂ + 6 H₂O + light → C₆H₁₂O₆ + 6 O₂</span><small>overall</small></div><div class="eqn"><span>light reactions: H₂O → O₂, make ATP and NADPH</span><small>thylakoid membrane</small></div><div class="eqn"><span>Calvin cycle: CO₂ → G3P using ATP and NADPH</span><small>stroma</small></div><div class="eqn"><span>3 CO₂ → 1 G3P: 9 ATP and 6 NADPH</span><small>per G3P</small></div></div>
+      <div class="lab" id="ph-lab">
+        <div class="labbar"><span class="title">Photosynthesis step by step</span></div>
+        <div class="row"><button type="button" class="btn" id="ph-prev">Previous</button><button type="button" class="btn primary" id="ph-next">Next stage</button><button type="button" class="btn" id="ph-play">Play</button></div>
+        <canvas id="ph-canvas" aria-label="A chloroplast section showing the thylakoid membrane and stroma. Each stage highlights where the light reactions and Calvin cycle events occur."></canvas>
+        <div class="controls"><div class="ctl"><label for="ph-st"><span>Stage</span> <output id="ph-st-out"></output></label><input type="range" id="ph-st" min="0" max="5" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="ph-name">—</strong></div><div><span>what is happening</span><strong class="" id="ph-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="ph-lab2" data-reset="own">
+        <div class="labbar"><span class="title">What limits photosynthesis?</span></div>
+        <canvas id="ph-canvas2" aria-label="Rate of photosynthesis against light intensity for the chosen carbon dioxide level and temperature, with a marker at the current light."></canvas>
+        <div class="controls"><div class="ctl"><label for="ph-l"><span>Light intensity</span> <output id="ph-l-out"></output></label><input type="range" id="ph-l" min="0" max="100" step="1" value="30"></div><div class="ctl"><label for="ph-c"><span>CO₂ level</span> <output id="ph-c-out"></output></label><input type="range" id="ph-c" min="0" max="100" step="1" value="60"></div><div class="ctl"><label for="ph-t"><span>Temperature</span> <output id="ph-t-out"></output></label><input type="range" id="ph-t" min="5" max="50" step="1" value="25"></div></div>
+        <div class="readout"><div><span>rate (relative)</span><strong class="x" id="ph-r">—</strong></div><div><span>limiting factor</span><strong class="a" id="ph-lim">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the stage where the H⁺ gradient is used. What is made? <button type="button" class="btn link" data-show='[["#ph-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>ATP: H⁺ flows through ATP synthase from the thylakoid space into the stroma, driving phosphorylation of ADP.</p></details></li>
+        <li><p>Set light to 90 and CO₂ to 10. What limits the rate? <button type="button" class="btn link" data-show='[["#ph-l", 90], ["#ph-c", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>CO₂: the Calvin cycle is short of substrate, so more light does not help.</p></details></li>
+        <li><p>Set temperature to 45 °C with plenty of light and CO₂. Why does the rate drop? <button type="button" class="btn link" data-show='[["#ph-l", 90], ["#ph-c", 90], ["#ph-t", 45]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>High temperature denatures enzymes (like rubisco), so the rate falls even though light and CO₂ are plentiful.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">How many ATP and NADPH are needed for the Calvin cycle to make one molecule of glucose (6 CO₂ fixed)?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Per 3 CO₂.</b> Making one G3P takes 9 ATP and 6 NADPH.</li>
+          <li hidden><b>Glucose needs 6 CO₂.</b> That is two rounds of 3 CO₂, making 2 G3P.</li>
+          <li hidden><b>Totals.</b> 2 × 9 = 18 ATP and 2 × 6 = 12 NADPH.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the oxygen released comes from CO₂. It comes from water.</li>
+        <li>Saying the Calvin cycle needs no light at all. It depends on ATP and NADPH made in the light reactions.</li>
+        <li>Putting the light reactions in the stroma and the Calvin cycle in the thylakoid.</li>
+        <li>Mixing up photosynthesis and respiration electron carriers (NADPH vs NADH).</li>
+        <li>Forgetting that the light reactions also need a source of electrons: water.</li>
+      </ul></div>
+      <div class="prose"><h2>Experiment questions</h2>
+        <p>Light-colour or intensity experiments measure O₂ production, CO₂ uptake or the floating of leaf discs. Predict the trend, name the limiting factor at each region of the graph, and explain it using the stage affected (light reactions for light; Calvin cycle for CO₂ and temperature-sensitive enzymes).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Water is split in photosystem II, releasing O₂.">
+        <p class="q">Check yourself: The oxygen released in photosynthesis comes from</p>
+        <div class="opts"><button type="button">water</button><button type="button">carbon dioxide</button><button type="button">glucose</button><button type="button">ATP</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-resp" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Cellular respiration</h1>
+        <p class="lede">Cells get usable energy by taking sugar apart a little at a time and capturing the energy in ATP.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Overall: C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O + energy (ATP and heat). It happens in four steps. <b>Glycolysis</b> (cytoplasm) splits glucose into 2 pyruvate with a net gain of 2 ATP and 2 NADH. <b>Pyruvate oxidation</b> (mitochondrial matrix) converts each pyruvate to acetyl-CoA, releasing CO₂ and making NADH. The <b>citric acid cycle</b> (matrix) completes the breakdown, releasing CO₂ and making ATP, NADH and FADH₂. The <b>electron transport chain</b> (inner membrane) takes electrons from NADH and FADH₂, pumps H⁺ across the membrane and uses O₂ as the final electron acceptor (forming water).</p>
+        <p>The resulting H⁺ gradient drives <b>ATP synthase</b> (chemiosmosis), which makes most of the ATP: roughly 30–32 per glucose in all. Without oxygen the chain stops, NADH cannot be recycled, and the cell must use fermentation instead.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>energy came out of food all at once</dd><dt>So we didn't need</dt><dd>that energy is released in many small steps and captured by carriers</dd><dt>Now</dt><dd>why oxygen is needed and where the CO₂ comes from</dd><dt>So we need</dt><dd>glycolysis, citric acid cycle, electron transport and chemiosmosis</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>glycolysis: 1 glucose → 2 pyruvate, net 2 ATP, 2 NADH</span><small>cytoplasm</small></div><div class="eqn"><span>per glucose: 6 CO₂ released</span><small>from pyruvate oxidation and the citric acid cycle</small></div><div class="eqn"><span>about 30–32 ATP per glucose (aerobic)</span><small>mostly from ATP synthase</small></div><div class="eqn"><span>O₂ is the final electron acceptor → H₂O</span><small>electron transport chain</small></div></div>
+      <div class="lab" id="rs-lab">
+        <div class="labbar"><span class="title">Respiration step by step</span></div>
+        <div class="row"><button type="button" class="btn" id="rs-prev">Previous</button><button type="button" class="btn primary" id="rs-next">Next stage</button><button type="button" class="btn" id="rs-play">Play</button></div>
+        <canvas id="rs-canvas" aria-label="Mitochondrion and cytoplasm with the four stages of respiration highlighted in turn."></canvas>
+        <div class="controls"><div class="ctl"><label for="rs-st"><span>Stage</span> <output id="rs-st-out"></output></label><input type="range" id="rs-st" min="0" max="4" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="rs-name">—</strong></div><div><span>what is happening</span><strong class="" id="rs-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="rs-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Tally for glucose molecules</span></div>
+        <canvas id="rs-canvas2" aria-label="Bars showing ATP from each stage of aerobic respiration for the chosen number of glucose molecules."></canvas>
+        <div class="controls"><div class="ctl"><label for="rs-g"><span>Glucose molecules</span> <output id="rs-g-out"></output></label><input type="range" id="rs-g" min="1" max="5" step="1" value="1"></div></div>
+        <div class="readout"><div><span>ATP (about)</span><strong class="x" id="rs-atp">—</strong></div><div><span>CO₂ released</span><strong class="a" id="rs-co2">—</strong></div><div><span>O₂ used</span><strong class="v" id="rs-o2">—</strong></div><div><span>H₂O made</span><strong class="" id="rs-h2o">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the electron transport stage. What is the role of O₂? <button type="button" class="btn link" data-show='[["#rs-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It is the final electron acceptor, combining with electrons and H⁺ to form water. Without it the chain backs up.</p></details></li>
+        <li><p>Set 3 glucose molecules. How much CO₂ is released and how much O₂ is used? <button type="button" class="btn link" data-show='[["#rs-g", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>18 CO₂ and 18 O₂: six of each per glucose.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Starting from 1 glucose, how many CO₂ are made in glycolysis, pyruvate oxidation and the citric acid cycle, and where does the electron transport chain get its electrons?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Glycolysis.</b> No CO₂ (glucose is split into two 3-carbon pyruvates).</li>
+          <li hidden><b>Pyruvate oxidation.</b> 1 CO₂ per pyruvate, so 2.</li>
+          <li hidden><b>Citric acid cycle.</b> 2 CO₂ per turn, 2 turns per glucose: 4. Total 6, matching the 6 carbons of glucose.</li>
+          <li hidden><b>Electrons.</b> From NADH and FADH₂ made in the earlier steps.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Thinking CO₂ is released in the electron transport chain. It comes from pyruvate oxidation and the citric acid cycle.</li>
+        <li>Putting glycolysis in the mitochondrion.</li>
+        <li>Saying oxygen is used up in glycolysis.</li>
+        <li>Confusing the H⁺ gradient (made by the chain) with ATP (made by ATP synthase).</li>
+        <li>Memorizing 36 ATP; the commonly accepted figure is about 30–32.</li>
+      </ul></div>
+      <div class="prose"><h2>Predict and explain</h2>
+        <p>If a poison blocks the electron transport chain, NADH and FADH₂ accumulate, the H⁺ gradient collapses, ATP production falls sharply, and the cell can only run glycolysis. Questions often ask what happens to O₂ use, ATP and NADH levels: reason along the pathway.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Chemiosmosis in the inner mitochondrial membrane makes most ATP.">
+        <p class="q">Check yourself: Where is most of the ATP in aerobic respiration made?</p>
+        <div class="opts"><button type="button">by ATP synthase using the H⁺ gradient</button><button type="button">in glycolysis</button><button type="button">in the citric acid cycle</button><button type="button">in the cytoplasm</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-ferment" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Fermentation & anaerobic respiration</h1>
+        <p class="lede">Without oxygen the electron transport chain stops, but glycolysis can keep running if the cell can recycle its NADH.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Glycolysis needs NAD⁺ to keep going. When oxygen is absent, the chain cannot re-oxidise NADH to NAD⁺. <b>Fermentation</b> solves this by using pyruvate (or a product of it) as the electron acceptor so NAD⁺ is regenerated. In yeast, pyruvate becomes <b>ethanol</b> and CO₂ (<b>alcoholic fermentation</b>). In animal muscle, pyruvate becomes <b>lactate</b> (<b>lactic acid fermentation</b>).</p>
+        <p>Fermentation makes only the <b>2 ATP</b> of glycolysis per glucose, compared with about 30–32 with oxygen. So a fermenting cell must use about fifteen times as much glucose for the same ATP. Some prokaryotes carry out <b>anaerobic respiration</b> with an acceptor other than O₂ at the end of an electron transport chain.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>cells simply stopped when oxygen ran out</dd><dt>So we didn't need</dt><dd>that cells can keep making a little ATP by recycling NADH</dd><dt>Now</dt><dd>why yeast makes bread rise and muscles burn</dd><dt>So we need</dt><dd>fermentation pathways and their ATP yield</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>yeast: pyruvate → ethanol + CO₂</span><small>NAD⁺ regenerated</small></div><div class="eqn"><span>muscle: pyruvate → lactate</span><small>NAD⁺ regenerated</small></div><div class="eqn"><span>fermentation: 2 ATP per glucose</span><small>from glycolysis only</small></div><div class="eqn"><span>aerobic: about 30–32 ATP per glucose</span><small>electron transport chain</small></div></div>
+      <div class="lab" id="fe-lab" data-reset="own">
+        <div class="labbar"><span class="title">Oxygen or not?</span></div>
+        <div class="ctl"><span class="lbl">Cell</span><div class="seg" id="fe-org" role="group" aria-label="Cell"><button type="button" data-k="yeast" aria-pressed="true">yeast</button><button type="button" data-k="muscle" aria-pressed="false">muscle cell</button></div></div>
+        <canvas id="fe-canvas" aria-label="Flow diagram: glucose to pyruvate, then to aerobic respiration or to fermentation depending on oxygen, with ATP counts."></canvas>
+        <div class="controls"><div class="ctl"><label for="fe-o2"><span>Oxygen available</span> <output id="fe-o2-out"></output></label><input type="range" id="fe-o2" min="0" max="100" step="1" value="0"></div><div class="ctl"><label for="fe-need"><span>ATP the cell needs</span> <output id="fe-need-out"></output></label><input type="range" id="fe-need" min="30" max="120" step="5" value="60"></div></div>
+        <div class="readout"><div><span>pathway</span><strong class="x" id="fe-path">—</strong></div><div><span>products</span><strong class="a" id="fe-prod">—</strong></div><div><span>ATP per glucose</span><strong class="v" id="fe-atp">—</strong></div><div><span>glucose needed for that ATP</span><strong class="" id="fe-glu">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Yeast with no oxygen and 60 ATP needed. How much glucose? <button type="button" class="btn link" data-show='[["click", "#fe-org [data-k=yeast]"], ["#fe-o2", 0], ["#fe-need", 60]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>60 ATP ÷ 2 ATP per glucose = 30 glucose.</p></details></li>
+        <li><p>Now add oxygen (100). How does the glucose needed change? <button type="button" class="btn link" data-show='[["#fe-o2", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>About 60/30 = 2 glucose: respiration with oxygen is roughly fifteen times as efficient.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A muscle cell needs 90 ATP. Compare the glucose needed during hard exercise (lactic fermentation, 2 ATP per glucose) with rest (aerobic, about 30 ATP per glucose).</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Fermentation.</b> 90 / 2 = 45 glucose.</li>
+          <li hidden><b>Aerobic.</b> 90 / 30 = 3 glucose.</li>
+          <li hidden><b>Conclusion.</b> Fermentation uses 15 times as much glucose, and the lactate (and acidity) it builds up contributes to fatigue.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying fermentation makes no ATP. It makes 2 per glucose via glycolysis.</li>
+        <li>Saying fermentation produces NADH. It consumes it, regenerating NAD⁺.</li>
+        <li>Thinking muscles make ethanol or yeast makes lactate.</li>
+        <li>Mixing fermentation (no electron transport chain) with anaerobic respiration (other final acceptor).</li>
+        <li>Forgetting that pyruvate is the starting point of both aerobic and anaerobic pathways.</li>
+      </ul></div>
+      <div class="prose"><h2>Why it matters</h2>
+        <p>Fermentation lets cells survive without oxygen for a while. Its purpose is to regenerate NAD⁺ so glycolysis continues; the ATP is what keeps the cell alive. If asked why the cell does not just stop, answer in terms of NAD⁺.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Recycling NAD⁺ allows glycolysis to keep making its 2 ATP.">
+        <p class="q">Check yourself: The main purpose of fermentation is to</p>
+        <div class="opts"><button type="button">regenerate NAD⁺ so glycolysis can continue</button><button type="button">make large amounts of ATP</button><button type="button">produce oxygen</button><button type="button">break down ATP</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-practice" hidden>
     <div class="wrap">
       <div class="head">
@@ -2076,8 +2398,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": [], "soon": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -2887,6 +3209,225 @@ function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillSt
   PROBS.push({id:'or-evid',topic:'origin',title:'Evidence for endosymbiosis',gen(){const m=mcq('Mitochondria have their own circular DNA and bacteria-like ribosomes.',['Mitochondria are found in animal cells.','Mitochondria make ATP.','Mitochondria are larger than ribosomes.']);return {q:'Which observation best supports the idea that mitochondria were once free-living bacteria?',choices:m.choices,ans:m.ans,hint:'Look for features shared with bacteria and not with the rest of the eukaryotic cell.',sol:`<b>${m.choices[m.ans]}</b>`};}});
   const cmp=[['a membrane-bound nucleus','eukaryotes only'],['DNA in a nucleoid region','prokaryotes only'],['ribosomes','both'],['a plasma membrane','both'],['membrane-bound organelles such as mitochondria','eukaryotes only']];
   PROBS.push({id:'or-cmp',topic:'origin',title:'Prokaryote or eukaryote?',gen(){const p=pick(cmp),m=mcq(p[1],['eukaryotes only','prokaryotes only','both','neither'].filter(x=>x!==p[1]));return {q:`${p[0][0].toUpperCase()+p[0].slice(1)} is found in`,choices:m.choices,ans:m.ans,hint:'Prokaryotes lack membrane-bound organelles but all cells have ribosomes and a plasma membrane.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/enzymes.js ===== */
+/* ---------------- Enzymes & activation energy ---------------- */
+(function enzymes(){
+  const cv=$('#en-canvas');if(!cv)return;
+  let inh='none',S=20,E=5;const Km=20;
+  const vmax=(i)=>10*E*(i==='nonc'?.5:1),kmap=(i)=>Km*(i==='comp'?3:1),rate=(s,i)=>vmax(i)*s/(kmap(i)+s);
+  const sim=sim2d(cv,{h:w=>clamp(w*.52,250,340),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:100,y0:0,y1:100,xt:20,yt:20,xl:'substrate concentration',yl:'rate'});
+    if(inh!=='none'){ctx.setLineDash([5,4]);curve2(ctx,A,s=>rate(s,'none'),0,100,T.muted,2);ctx.setLineDash([]);}
+    curve2(ctx,A,s=>rate(s,inh),0,100,inh==='none'?T.cx:T.ca);ctx.setLineDash([3,4]);ctx.strokeStyle=T.muted;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(A.L,A.Y(vmax(inh)));ctx.lineTo(A.R,A.Y(vmax(inh)));ctx.stroke();ctx.setLineDash([]);
+    label(ctx,'Vmax',A.R-4,A.Y(vmax(inh))-8,T.muted,'right','middle',MONO);dot2(ctx,A.X(S),A.Y(rate(S,inh)),T.accent,6);
+    if(inh!=='none')label(ctx,'dashed: no inhibitor',A.R-4,A.T0+6,T.muted,'right','middle',MONO);}});
+  function upd(){const v=rate(S,inh),r=v/vmax(inh);setText('en-v',fmt(v,1));setText('en-pct',fmt(100*v/(10*E),0)+'% of the uninhibited maximum');setText('en-lim',r<.5?'substrate concentration (rate still rising)':r<.9?'substrate and enzyme':inh==='nonc'?'enzyme (a lower ceiling because of the inhibitor)':'enzyme amount (saturated)');sim.render();}
+  segBind('en-inh','k',v=>{inh=v;upd();});bindRange('en-s',v=>String(v),v=>{S=v;upd();});bindRange('en-e',v=>String(v),v=>{E=v;upd();});
+  $('#en-lab').addEventListener('labreset',()=>{inh='none';S=20;E=5;segSet('en-inh',0);setCtl('en-s',20);setCtl('en-e',5);upd();});upd();
+  /* energy profile */
+  let rx='exo',cat=false;
+  const P=()=>rx==='exo'?{r:50,p:20,ea:cat?30:60}:{r:20,p:50,ea:cat?50:80};
+  const sim2=sim2d($('#en-canvas2'),{h:w=>clamp(w*.4,210,280),draw(ctx,w,h){const q=P(),A=axes2(ctx,w,h,{x0:0,x1:1,y0:0,y1:130,xl:'reaction progress',yl:'energy',L:34}),peak=q.r+q.ea,mid=(q.r+q.p)/2,E0=x=>{const s=Math.max(0,Math.min(1,(x-.3)/.4)),sm=s*s*(3-2*s);return q.r+(q.p-q.r)*sm+(peak-mid)*Math.exp(-Math.pow((x-.5)/.13,2));};
+    ctx.setLineDash([4,4]);ctx.strokeStyle=T.muted;ctx.lineWidth=1.2;[[q.r,.02,.4,'reactants'],[q.p,.6,.98,'products']].forEach(([v,a,b,nm])=>{ctx.beginPath();ctx.moveTo(A.X(a),A.Y(v));ctx.lineTo(A.X(b),A.Y(v));ctx.stroke();});ctx.setLineDash([]);
+    if(cat){ctx.setLineDash([5,4]);const pk=q.r+(rx==='exo'?60:80);const E1=x=>{const s=Math.max(0,Math.min(1,(x-.3)/.4)),sm=s*s*(3-2*s);return q.r+(q.p-q.r)*sm+(pk-mid)*Math.exp(-Math.pow((x-.5)/.13,2));};curve2(ctx,A,E1,.02,.98,T.muted,2);ctx.setLineDash([]);}
+    curve2(ctx,A,E0,.02,.98,cat?T.cv:T.ca);
+    ctx.strokeStyle=T.ink;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(A.X(.14),A.Y(q.r));ctx.lineTo(A.X(.14),A.Y(peak));ctx.stroke();label(ctx,'Ea',A.X(.14)-6,A.Y((q.r+peak)/2),T.ink,'right','middle',MONO);
+    ctx.beginPath();ctx.moveTo(A.X(.9),A.Y(q.r));ctx.lineTo(A.X(.9),A.Y(q.p));ctx.stroke();label(ctx,'ΔG',A.X(.9)+6,A.Y((q.r+q.p)/2),T.ink,'left','middle',MONO);
+    label(ctx,'reactants',A.X(.2),A.Y(q.r)+(q.r<q.p?14:-10),T.muted,'center','middle',MONO);label(ctx,'products',A.X(.8),A.Y(q.p)+(q.p<q.r?14:-10),T.muted,'center','middle',MONO);if(cat)label(ctx,'dashed: without enzyme',A.R-4,A.T0+6,T.muted,'right','middle',MONO);}});
+  function upd2(){const q=P();setText('en-ea',q.ea+' kJ/mol'+(cat?' (lowered)':''));setText('en-dg',(q.p-q.r>0?'+':'')+(q.p-q.r)+' kJ/mol');setText('en-cm',cat?'faster; same ΔG':rx==='exo'?'spontaneous but slow without help':'needs energy input; enzyme does not change that');sim2.render();}
+  segBind('en-rx','k',v=>{rx=v;upd2();});$('#en-cat').addEventListener('click',()=>{cat=!cat;$('#en-cat').textContent=cat?'Remove enzyme':'Add enzyme';upd2();});
+  $('#en-lab2').addEventListener('labreset',()=>{rx='exo';cat=false;segSet('en-rx',0);$('#en-cat').textContent='Add enzyme';upd2();});upd2();
+  drawers.enzymes=()=>{sim.render();sim2.render();};
+  KEYS['en-canvas']=['The dashed curve has no inhibitor. The dot is the current substrate concentration.',[['cx','no inhibitor'],['ca','with inhibitor']]];
+  KEYS['en-canvas2']=['Ea is the height of the hill. ΔG is the difference between the start and end levels.',[['ca','uncatalyzed'],['cv','with enzyme']]];
+  TIPS['en-s']=()=>'Low substrate: rate is limited by substrate. High substrate: every enzyme is busy and the curve levels off.';
+  GLOSS['active site']='The region of an enzyme where the substrate binds and the reaction occurs.';GLOSS['activation energy']='The energy needed to start a reaction. Enzymes lower it.';GLOSS['competitive inhibitor']='A molecule that competes with the substrate for the active site.';GLOSS['noncompetitive inhibitor']='A molecule that binds elsewhere and changes the enzyme\'s shape, lowering its activity.';GLOSS['induced fit']='Slight change of the active site\'s shape when the substrate binds.';
+  TT.enzymes='Have students predict whether each inhibitor can be overcome by adding substrate, then check with the lab.';
+})();
+(function(){
+  PROBS.push({id:'en-ea',topic:'enzymes',title:'New activation energy',gen(){const ea=pick([60,70,80,90,100]),d=pick([20,25,30,35]),ans=ea-d;return {q:`A reaction has an activation energy of ${ea} kJ/mol. An enzyme lowers it by ${d} kJ/mol. What is the new activation energy?`,ans,unit:'kJ/mol',tol:0,chk:ea-d,hint:'Subtract the decrease.',sol:`${ea} − ${d} = <b>${ans} kJ/mol</b>. ΔG is unchanged.`};}});
+  const inh=[['The reaction is slowed by a molecule that resembles the substrate. Adding much more substrate restores nearly the full rate. This inhibitor is','competitive'],['An inhibitor binds to a site other than the active site and the maximum rate falls. Adding more substrate does not restore it. This inhibitor is','noncompetitive (allosteric)']];
+  PROBS.push({id:'en-inh',topic:'enzymes',title:'Type of inhibitor',gen(){const p=pick(inh),m=mcq(p[1],['competitive','noncompetitive (allosteric)','a cofactor','a substrate'].filter(x=>x!==p[1]));return {q:p[0],choices:m.choices,ans:m.ans,hint:'Can more substrate overcome it?',sol:`<b>${p[1]}</b>.`};}});
+  const fx=[['Which quantity is NOT changed by an enzyme?','the ΔG of the reaction',['the activation energy','the rate','the time to reach equilibrium']],['An enzyme speeds a reaction by','lowering the activation energy',['raising the temperature of the cell','adding energy to the substrate','changing the products']],['After a reaction, the enzyme is','unchanged and able to catalyze again',['used up','converted to the product','broken into amino acids']]];
+  PROBS.push({id:'en-fx',topic:'enzymes',title:'What enzymes do',gen(){const p=pick(fx),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Enzymes are catalysts.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/enzyenv.js ===== */
+/* ---------------- Temperature, pH & enzyme activity ---------------- */
+(function enzyenv(){
+  const cv=$('#ee-canvas');if(!cv)return;
+  const EN={pep:{t:37,ph:2,wT:12,name:'pepsin'},try:{t:37,ph:8,wT:12,name:'trypsin'},taq:{t:72,ph:8.3,wT:25,name:'Taq polymerase'}};
+  let en='pep',Tc=37,pH=7;
+  const fT=(t,e)=>t<=e.t?Math.pow(2,(t-e.t)/10):Math.max(0,1-Math.pow((t-e.t)/e.wT,2)),fP=(p,e)=>Math.exp(-Math.pow((p-e.ph)/1.3,2));
+  const sim=sim2d(cv,{h:w=>clamp(w*.4,230,300),draw(ctx,w,h){const e=EN[en];
+    [[0,100,'temperature (°C)',20,x=>fT(x,e),Tc,T.ca],[1,13,'pH',2,x=>fP(x,e),pH,T.cx]].forEach(([a,b,xl,xt,f,cur,col],i)=>{ctx.save();ctx.translate(i*w/2,0);const A=axes2(ctx,w/2,h,{x0:a,x1:b,y0:0,y1:1.05,xt,yt:.25,xl,yl:i?'':'relative activity',L:i?14:40});curve2(ctx,A,f,a,b,col);dot2(ctx,A.X(cur),A.Y(f(cur)),T.accent,6);ctx.restore();});}});
+  function upd(){const e=EN[en],a=fT(Tc,e),b=fP(pH,e);setText('ee-ft',fmt(a*100,0)+'%');setText('ee-fp',fmt(b*100,0)+'%');setText('ee-all',fmt(a*b*100,0)+'%');
+    setText('ee-st',a*b>.7?'near the optimum':Tc>e.t&&a<.2?'heat has denatured the enzyme':a*b<.1?(b<.2?'wrong pH: charges on R groups change and the shape is lost':'too cold: molecules move slowly'):'below the best conditions');sim.render();}
+  segBind('ee-en','k',v=>{en=v;upd();});bindRange('ee-t',v=>v+' °C',v=>{Tc=v;upd();});bindRange('ee-ph',v=>fmt(v,1),v=>{pH=v;upd();});
+  $('#ee-lab').addEventListener('labreset',()=>{en='pep';Tc=37;pH=7;segSet('ee-en',0);setCtl('ee-t',37,v=>v+' °C');setCtl('ee-ph',7,v=>fmt(v,1));upd();});
+  upd();drawers.enzyenv=()=>sim.render();
+  KEYS['ee-canvas']=['Left: activity against temperature. Right: against pH. The dots mark your settings. This is a simplified model.',[['ca','temperature'],['cx','pH']]];
+  TIPS['ee-t']=()=>'Rate rises with temperature up to the optimum, then drops fast as the enzyme denatures.';
+  GLOSS['optimum']='The condition (temperature or pH) at which an enzyme is most active.';GLOSS['denature']='To lose normal 3-D shape, usually losing function.';
+  TT.enzyenv='Ask which enzyme is damaged first when the temperature rises, and why.';
+})();
+(function(){
+  PROBS.push({id:'ee-opt',topic:'enzyenv',title:'Find the optimum',gen(){const opt=pick([30,35,40,45,50]),ts=[opt-20,opt-10,opt,opt+10,opt+20],vs=[25,55,100,40,5],i=randInt(0,4);const tbl=`<table class="lmtbl"><thead><tr><th>temperature (°C)</th>${ts.map(t=>`<th>${t}</th>`).join('')}</tr></thead><tbody><tr><th>relative rate</th>${vs.map(v=>`<td>${v}</td>`).join('')}</tbody></table>`;
+    return {q:`An enzyme's rate was measured at several temperatures. Which temperature is closest to the optimum?${tbl}`,ans:opt,unit:'°C',tol:0,chk:ts[vs.indexOf(Math.max(...vs))],hint:'Look for the highest rate.',sol:`The highest rate (100) is at <b>${opt} °C</b>.`};}});
+  const why=[['Above its optimum temperature an enzyme\'s rate falls because','the enzyme denatures and the active site no longer fits the substrate',['peptide bonds are formed','the substrate disappears','the reaction becomes endergonic']],['Pepsin works best at pH 2 because','it evolved to function in the acidic stomach',['it needs a base to work','its substrate is acid','it has no R groups']],['Below its optimum temperature an enzyme is slow mainly because','molecules collide less often and with less energy',['the enzyme is denatured','the active site is destroyed','ATP is used up']]];
+  PROBS.push({id:'ee-why',topic:'enzyenv',title:'Why activity changes',gen(){const p=pick(why),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Link shape and collisions to the observation.',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'ee-q10',topic:'enzyenv',title:'Rate with Q10',gen(){const r=pick([4,6,8,10]),dt=pick([10,20]),ans=r*Math.pow(2,dt/10);return {q:`An enzyme-catalysed reaction runs at ${r} µmol/min at 20 °C. Assuming Q10 = 2 and no denaturation, what is the rate at ${20+dt} °C?`,ans,unit:'µmol/min',abs:.05,chk:r*Math.pow(2,dt/10),hint:'Multiply by 2 for every 10 °C.',sol:`${r} × 2<sup>${dt/10}</sup> = <b>${ans} µmol/min</b>.`};}});
+})();
+
+/* ===== modules/atp.js ===== */
+/* ---------------- ATP & coupled reactions ---------------- */
+(function atp(){
+  const cv=$('#ap-canvas');if(!cv)return;
+  let dg=28;const ATPG=-30.5;
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:4,y0:-70,y1:70,yt:20,yl:'ΔG (kJ/mol)',L:50}),y0=A.Y(0),bw=(A.R-A.L)*.18;
+    ctx.strokeStyle=T.ink;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(A.L,y0);ctx.lineTo(A.R,y0);ctx.stroke();
+    const net=dg+ATPG;[[dg,'reaction',T.ca,.4],[ATPG,'ATP → ADP + Pi',T.hot,1.5],[net,'coupled (net)',net<0?T.cv:T.bad,2.7]].forEach(([v,nm,col,x])=>{const px=A.X(x);ctx.fillStyle=alpha(col,.65);ctx.fillRect(px,Math.min(y0,A.Y(v)),bw,Math.abs(A.Y(v)-y0));ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(px,Math.min(y0,A.Y(v)),bw,Math.abs(A.Y(v)-y0));label(ctx,(v>0?'+':'')+fmt(v,1),px+bw/2,v>0?A.Y(v)-9:A.Y(v)+12,T.ink,'center','middle',MONO);label(ctx,nm,px+bw/2,A.B-6,T.muted,'center','middle',MONO);});}});
+  function upd(){const net=dg+ATPG,n=Math.ceil(dg/-ATPG-1e-9);setText('ap-net',(net>0?'+':'')+fmt(net,1)+' kJ/mol');setText('ap-sp',net<0?'yes: net ΔG is negative':'no: one ATP is not enough');setText('ap-n',String(n));sim.render();}
+  bindRange('ap-dg',v=>'+'+v+' kJ/mol',v=>{dg=v;upd();});
+  $('#ap-lab').addEventListener('labreset',()=>{dg=28;setCtl('ap-dg',28,v=>'+'+v+' kJ/mol');upd();});upd();
+  const ST=[{n:'1 · ATP hydrolysis',t:'The terminal phosphate group is split off by adding water: ATP → ADP + Pi, releasing energy.'},{n:'2 · energy does work',t:'The phosphate is transferred to a protein or reactant, giving it the energy to change shape or react (phosphorylation).'},{n:'3 · ADP and Pi',t:'ADP and phosphate are left over: a low-energy pair, ready to be recharged.'},{n:'4 · ATP is rebuilt',t:'Energy from food (respiration) or light (photosynthesis) joins a phosphate back onto ADP, making ATP.'}];
+  function mol(ctx,x,y,np,gap,col){ctx.fillStyle=alpha(T.cx,.5);ctx.fillRect(x-70,y-12,26,24);ctx.strokeStyle=T.cx;ctx.lineWidth=2;ctx.strokeRect(x-70,y-12,26,24);label(ctx,'A',x-57,y,T.ink,'center','middle',MONO);ctx.beginPath();for(let i=0;i<5;i++){const a=i/5*6.283-1.57;ctx.lineTo(x-26+Math.cos(a)*12,y+Math.sin(a)*12);}ctx.closePath();ctx.fillStyle=alpha(T.ce,.5);ctx.fill();ctx.strokeStyle=T.ce;ctx.stroke();
+    for(let i=0;i<np;i++){const px=x+i*26+(i===np-1?gap:0);dot2(ctx,px,y,col,10);label(ctx,'P',px,y,T.surface,'center','middle',MONO);}}
+  const sc=stageLab('ac','ap-canvas2',ST,(ctx,w,h,i,t)=>{const cx=w*.4,cy=h*.42;
+    if(i===0){mol(ctx,cx,cy,3,14,T.hot);label(ctx,'ATP',cx,cy+34,T.hot,'center','middle',MONO);ctx.strokeStyle=T.cx;ctx.lineWidth=2;ctx.beginPath();ctx.arc(cx+84,cy-24,6,0,6.283);ctx.stroke();label(ctx,'H₂O',cx+84,cy-38,T.cx,'center','middle',MONO);}
+    if(i===1){mol(ctx,cx,cy,2,0,T.ce);dot2(ctx,cx+130,cy,T.hot,10);label(ctx,'P',cx+130,cy,T.surface,'center','middle',MONO);ctx.fillStyle=alpha(T.ca,.5);ctx.strokeStyle=T.ca;ctx.lineWidth=2;ctx.fillRect(cx+110,cy+26,80,34);ctx.strokeRect(cx+110,cy+26,80,34);label(ctx,'protein: moves',cx+150,cy+43,T.ink,'center','middle',MONO);ctx.beginPath();ctx.moveTo(cx+130,cy+12);ctx.lineTo(cx+130,cy+24);ctx.strokeStyle=T.hot;ctx.stroke();label(ctx,'energy transferred',cx+150,cy-20,T.hot,'center','middle',MONO);}
+    if(i===2){mol(ctx,cx,cy,2,0,T.ce);label(ctx,'ADP',cx-8,cy+34,T.ce,'center','middle',MONO);dot2(ctx,cx+120,cy,T.muted,10);label(ctx,'Pi',cx+120,cy,T.surface,'center','middle',MONO);}
+    if(i===3){mol(ctx,cx,cy,2,0,T.ce);dot2(ctx,cx+88,cy,T.hot,10);label(ctx,'P',cx+88,cy,T.surface,'center','middle',MONO);ctx.strokeStyle=T.cv;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(cx+60,cy-50);ctx.lineTo(cx+60,cy-24);ctx.lineTo(cx+54,cy-32);ctx.moveTo(cx+60,cy-24);ctx.lineTo(cx+66,cy-32);ctx.stroke();label(ctx,'energy from food or light',cx+70,cy-62,T.cv,'center','middle',MONO);label(ctx,'ATP',cx+10,cy+34,T.hot,'center','middle',MONO);}
+    label(ctx,'A = adenine · pentagon = ribose · circles = phosphate',w/2,h-10,T.muted,'center','middle',MONO);},{h:w=>clamp(w*.4,200,260)});
+  $('#ap-lab2').addEventListener('labreset',()=>sc.go(0));drawers.atp=()=>{sim.render();sc.render();};
+  KEYS['ap-canvas']=['Bars above zero need energy; bars below zero release it. Add the first two bars to get the third.',[['ca','reaction'],['hot','ATP hydrolysis'],['cv','net: favorable']]];
+  KEYS['ap-canvas2']=['Orange circles are phosphate groups. Step through the cycle.',[['hot','phosphate'],['ce','ribose and ADP'],['cx','adenine']]];
+  TIPS['ap-dg']=()=>'The coupled reaction goes if the sum of the two ΔG values is negative.';
+  GLOSS['atp']='Adenosine triphosphate: the cell\'s short-term energy carrier.';GLOSS['phosphorylation']='Adding a phosphate group to a molecule, often from ATP.';GLOSS['exergonic']='A reaction that releases free energy (ΔG < 0).';GLOSS['endergonic']='A reaction that requires free energy (ΔG > 0).';GLOSS['energy coupling']='Using an exergonic reaction to drive an endergonic one.';
+  TT.atp='Ask why one ATP is enough for some reactions but not others, using the numbers.';
+})();
+(function(){
+  PROBS.push({id:'ap-net',topic:'atp',title:'Net ΔG when coupled',gen(){const r=pick([8,12,14,18,22,26]),ans=r-30.5;return {q:`A reaction has ΔG = +${r} kJ/mol. It is coupled to the hydrolysis of ATP (ΔG = −30.5 kJ/mol). What is the net ΔG?`,ans,unit:'kJ/mol',abs:.06,chk:r+(-30.5),hint:'Add the two ΔG values.',sol:`+${r} + (−30.5) = <b>${fmt(ans,1)} kJ/mol</b>, which is negative: favorable.`};}});
+  PROBS.push({id:'ap-n',topic:'atp',title:'ATP needed',gen(){const r=pick([35,45,55,70,80,90]),ans=Math.ceil(r/30.5);return {q:`A reaction needs +${r} kJ/mol. Each ATP hydrolysed releases 30.5 kJ/mol. What is the minimum whole number of ATP that makes the coupled reaction favorable?`,ans,unit:'ATP',tol:0,chk:Math.ceil(r/30.5),hint:'You need total release greater than the energy required.',sol:`${r}/30.5 = ${fmt(r/30.5,2)}, so round up: <b>${ans} ATP</b>.`};}});
+  const q=[['Which part of ATP is removed during hydrolysis to release energy?','the terminal (third) phosphate group',['the adenine base','the ribose sugar','the first phosphate group only']],['After ATP is hydrolysed, the products are','ADP and inorganic phosphate',['AMP and glucose','ADP and ribose','ATP and water']],['Cells make ATP from ADP and Pi using energy from','respiration or photosynthesis',['hydrolysis of water','absorbing heat from the surroundings','enzymes alone']]];
+  PROBS.push({id:'ap-fact',topic:'atp',title:'ATP facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'ATP → ADP + Pi releases energy.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/photo.js ===== */
+/* ---------------- Photosynthesis ---------------- */
+(function photo(){
+  const cv=$('#ph-canvas');if(!cv)return;
+  const ST=[{n:'1 · light excites photosystem II',t:'Light energy excites electrons in photosystem II. Water is split to replace them, releasing O₂ and H⁺ inside the thylakoid.'},{n:'2 · electron transport chain',t:'Electrons pass down the chain. Their energy pumps H⁺ from the stroma into the thylakoid space, building a gradient.'},{n:'3 · photosystem I makes NADPH',t:'Photosystem I re-energizes the electrons, which are passed to NADP⁺ to make NADPH in the stroma.'},{n:'4 · ATP synthase makes ATP',t:'H⁺ flows down its gradient through ATP synthase into the stroma, driving ADP + Pi → ATP (chemiosmosis).'},{n:'5 · Calvin cycle: carbon fixation',t:'In the stroma, rubisco attaches CO₂ to RuBP (5C), making two 3-carbon molecules (3-PGA).'},{n:'6 · Calvin cycle: reduce and regenerate',t:'ATP and NADPH reduce 3-PGA to G3P. Some G3P becomes sugar; the rest regenerates RuBP.'}];
+  function box(ctx,x,y,w,h,col,nm,on){ctx.save();ctx.globalAlpha=on?1:.32;ctx.fillStyle=alpha(col,.55);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.roundRect?ctx.roundRect(x-w/2,y-h/2,w,h,6):ctx.rect(x-w/2,y-h/2,w,h);ctx.fill();ctx.stroke();label(ctx,nm,x,y,T.ink,'center','middle',MONO);ctx.restore();}
+  function arrow(ctx,x1,y1,x2,y2,col,on=true){ctx.save();ctx.globalAlpha=on?1:.3;ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();const a=Math.atan2(y2-y1,x2-x1);ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-9*Math.cos(a-.4),y2-9*Math.sin(a-.4));ctx.lineTo(x2-9*Math.cos(a+.4),y2-9*Math.sin(a+.4));ctx.closePath();ctx.fill();ctx.restore();}
+  const sc=stageLab('ph','ph-canvas',ST,(ctx,w,h,i,t)=>{const my=h*.34,th=h*.26;
+    ctx.beginPath();ctx.rect(6,6,w-12,h-12);ctx.fillStyle=alpha(T.cv,.08);ctx.fill();ctx.strokeStyle=T.cv;ctx.lineWidth=2;ctx.stroke();
+    ctx.beginPath();ctx.roundRect?ctx.roundRect(24,my-th/2,w-48,th,20):ctx.rect(24,my-th/2,w-48,th);ctx.fillStyle=alpha(T.ce,.15);ctx.fill();ctx.strokeStyle=T.ce;ctx.lineWidth=3;ctx.stroke();
+    label(ctx,'thylakoid space',w/2,my-th/2+14,T.muted,'center','middle',MONO);label(ctx,'stroma',w/2,h-18,T.muted,'center','middle',MONO);
+    const xs=[w*.16,w*.4,w*.62,w*.84],yb=my+th/2;
+    box(ctx,xs[0],yb,64,28,T.cv,'PSII',i===0);box(ctx,xs[1],yb,64,28,T.ca,'chain',i===1);box(ctx,xs[2],yb,64,28,T.cv,'PSI',i===2);box(ctx,xs[3],yb,70,28,T.hot,'ATP syn.',i===3);
+    if(i===0){arrow(ctx,xs[0]-30,8,xs[0]-4,yb-18,T.ce);label(ctx,'light',xs[0]-34,14,T.ce,'right','middle',MONO);label(ctx,'2H₂O → O₂ + 4H⁺',xs[0],my-th/2+34,T.cx,'center','middle',MONO);arrow(ctx,xs[0]+36,yb,xs[1]-36,yb,T.ink);}
+    if(i===1){arrow(ctx,xs[0]+36,yb,xs[1]-36,yb,T.ink,true);arrow(ctx,xs[1]-14,yb+40,xs[1]-14,yb+12,T.cx);arrow(ctx,xs[1]+14,yb-10,xs[1]+14,my-6,T.cx);label(ctx,'H⁺ pumped in',xs[1]+22,my-6,T.cx,'left','middle',MONO);for(let k=0;k<8;k++)dot2(ctx,xs[1]+50+k*14,my-8+Math.sin(k+t)*4,T.cx,3);}
+    if(i===2){arrow(ctx,xs[1]+36,yb,xs[2]-36,yb,T.ink);label(ctx,'light',xs[2]-30,yb-34,T.ce,'right','middle',MONO);arrow(ctx,xs[2]-24,yb-48,xs[2]-6,yb-18,T.ce);arrow(ctx,xs[2],yb+16,xs[2],yb+52,T.ink);label(ctx,'NADP⁺ → NADPH',xs[2]+12,yb+66,T.ca,'left','middle',MONO);}
+    if(i===3){for(let k=0;k<10;k++)dot2(ctx,xs[3]-60+k*10,my-4+Math.sin(k*2+t)*4,T.cx,3);arrow(ctx,xs[3],my+2,xs[3],yb+46,T.cx);label(ctx,'H⁺ flows out',xs[3]+10,yb+30,T.cx,'left','middle',MONO);label(ctx,'ADP + Pi → ATP',xs[3],yb+64,T.hot,'center','middle',MONO);}
+    if(i>=4){const cx=w*.5,cy=h*.74,r=Math.min(40,h*.12);ctx.beginPath();ctx.arc(cx,cy,r,0,6.283);ctx.strokeStyle=T.cv;ctx.lineWidth=3;ctx.stroke();label(ctx,'Calvin cycle',cx,cy,T.ink,'center','middle',MONO);
+      if(i===4){arrow(ctx,cx-r-60,cy-14,cx-r-4,cy-6,T.ink);label(ctx,'CO₂',cx-r-64,cy-22,T.ink,'right','middle',MONO);label(ctx,'rubisco: CO₂ + RuBP → 2 × 3-PGA',cx+r+10,cy,T.cv,'left','middle',MONO);}
+      if(i===5){arrow(ctx,cx-r-60,cy+16,cx-r-4,cy+6,T.hot);label(ctx,'ATP, NADPH',cx-r-64,cy+24,T.hot,'right','middle',MONO);arrow(ctx,cx+r+4,cy,cx+r+54,cy,T.ce);label(ctx,'G3P → glucose',cx+r+58,cy,T.ce,'left','middle',MONO);}}
+    },{h:w=>clamp(w*.58,280,380)});
+  $('#ph-lab').addEventListener('labreset',()=>sc.go(0));
+  /* limiting factors */
+  let L=30,C=60,Tc=25;
+  const fL=l=>Math.min(1,1.25*l/(l+25)),fC=c=>Math.min(1,1.2*c/(c+20)),fT=t=>t<=30?Math.pow(2,(t-30)/10):Math.max(0,1-Math.pow((t-30)/17,2));
+  const R=(l,c,t)=>100*Math.min(fL(l),fC(c))*fT(t);
+  const sim=sim2d($('#ph-canvas2'),{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:100,y0:0,y1:105,xt:20,yt:25,xl:'light intensity',yl:'rate (relative)'});curve2(ctx,A,l=>R(l,C,Tc),0,100,T.cv);dot2(ctx,A.X(L),A.Y(R(L,C,Tc)),T.accent,6);}});
+  function upd(){const a=fL(L),b=fC(C),c=fT(Tc),m=Math.min(a,b,c);setText('ph-r',fmt(R(L,C,Tc),0));setText('ph-lim',m>.9?'none: near the maximum':m===c?(Tc>30?'temperature too high (enzymes denature)':'temperature too low (enzymes slow)'):m===a?'light intensity':'CO₂ availability');sim.render();}
+  bindRange('ph-l',v=>String(v),v=>{L=v;upd();});bindRange('ph-c',v=>String(v),v=>{C=v;upd();});bindRange('ph-t',v=>v+' °C',v=>{Tc=v;upd();});
+  $('#ph-lab2').addEventListener('labreset',()=>{L=30;C=60;Tc=25;setCtl('ph-l',30);setCtl('ph-c',60);setCtl('ph-t',25,v=>v+' °C');upd();});upd();
+  drawers.photo=()=>{sc.render();sim.render();};
+  KEYS['ph-canvas']=['Step through the stages. The active structure is highlighted; the rest are faded.',[['cv','photosystems and chloroplast'],['ca','electron transport chain'],['hot','ATP synthase'],['cx','H⁺ and water']]];
+  KEYS['ph-canvas2']=['The curve is the rate at your CO₂ and temperature. The dot is your light intensity. This is a simplified model.',[['cv','rate'] ]];
+  TIPS['ph-st']=()=>'Light reactions: stages 1–4. Calvin cycle: stages 5–6.';
+  GLOSS['rubisco']='The enzyme that attaches CO₂ to RuBP in the Calvin cycle.';GLOSS['chemiosmosis']='Making ATP using the energy of an H⁺ gradient across a membrane.';GLOSS['g3p']='Glyceraldehyde-3-phosphate: the three-carbon sugar made by the Calvin cycle.';GLOSS['photosystem']='A cluster of pigments and proteins in the thylakoid that captures light energy.';GLOSS['stroma']='The fluid inside the chloroplast around the thylakoids, where the Calvin cycle happens.';
+  TT.photo='Ask students which stages stop first in the dark and which keep going for a while.';
+})();
+(function(){
+  PROBS.push({id:'ph-atp',topic:'photo',title:'ATP and NADPH for G3P',gen(){const n=randInt(1,6),a=pick([['ATP',9],['NADPH',6]]),ans=a[1]*n;return {q:`The Calvin cycle uses 9 ATP and 6 NADPH to make one G3P (from 3 CO₂). How many ${a[0]} are needed to make ${n} G3P?`,ans,unit:a[0],tol:0,chk:a[1]*n,hint:'Multiply by the number of G3P.',sol:`${a[1]} × ${n} = <b>${ans}</b>.`};}});
+  PROBS.push({id:'ph-co2',topic:'photo',title:'CO₂ for glucose',gen(){const n=randInt(1,8),ans=6*n;return {q:`How many CO₂ molecules must be fixed in the Calvin cycle to make ${n} glucose molecule${n>1?'s':''}?`,ans,unit:'CO₂',tol:0,chk:6*n,hint:'Glucose has 6 carbons.',sol:`6 × ${n} = <b>${ans}</b>.`};}});
+  const q=[['Where does the oxygen released in photosynthesis come from?','the splitting of water',['carbon dioxide','glucose','ATP']],['Where in the chloroplast does the Calvin cycle occur?','the stroma',['the thylakoid membrane','the thylakoid space','the outer membrane']],['What drives ATP synthase in the thylakoid membrane?','an H⁺ gradient across the membrane',['direct absorption of light','NADPH','CO₂']],['Which enzyme fixes CO₂ in the Calvin cycle?','rubisco',['ATP synthase','catalase','DNA polymerase']],['What are the products of the light reactions that the Calvin cycle uses?','ATP and NADPH',['glucose and O₂','CO₂ and water','NAD⁺ and FAD']]];
+  PROBS.push({id:'ph-fact',topic:'photo',title:'Photosynthesis facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall which stage and which structure.',sol:`<b>${p[1]}</b>.`};}});
+  const lim=[['A greenhouse plant is in bright light and warm temperature, but the CO₂ level is very low. What is limiting the rate?','CO₂',['light','temperature','water in the soil only']],['At 5 °C, with plenty of light and CO₂, a plant\'s rate is low because','enzyme-catalysed reactions are slow',['rubisco is denatured','light is limiting','CO₂ is limiting']]];
+  PROBS.push({id:'ph-lim',topic:'photo',title:'Limiting factor',gen(){const p=pick(lim),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Find the factor that is in short supply.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/resp.js ===== */
+/* ---------------- Cellular respiration ---------------- */
+(function resp(){
+  const cv=$('#rs-canvas');if(!cv)return;
+  const ST=[{n:'1 · glycolysis (cytoplasm)',t:'Glucose (6C) is split into 2 pyruvate (3C). Net gain: 2 ATP and 2 NADH. No oxygen needed.'},{n:'2 · pyruvate oxidation (matrix)',t:'Each pyruvate loses a carbon as CO₂ and becomes acetyl-CoA, making NADH. 2 CO₂ and 2 NADH per glucose.'},{n:'3 · citric acid cycle (matrix)',t:'Acetyl-CoA is broken down. Per glucose: 4 CO₂, 2 ATP, 6 NADH and 2 FADH₂.'},{n:'4 · electron transport chain (inner membrane)',t:'NADH and FADH₂ give up electrons. The chain pumps H⁺ into the intermembrane space. O₂ is the final electron acceptor and forms H₂O.'},{n:'5 · ATP synthase (inner membrane)',t:'H⁺ flows back into the matrix through ATP synthase, making most of the ATP (chemiosmosis).'}];
+  function arrow(ctx,x1,y1,x2,y2,col){ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();const a=Math.atan2(y2-y1,x2-x1);ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-9*Math.cos(a-.4),y2-9*Math.sin(a-.4));ctx.lineTo(x2-9*Math.cos(a+.4),y2-9*Math.sin(a+.4));ctx.closePath();ctx.fill();}
+  const sc=stageLab('rs','rs-canvas',ST,(ctx,w,h,i,t)=>{const mx=w*.64,my=h*.5,mrx=w*.3,mry=h*.4;
+    ctx.beginPath();ctx.rect(6,6,w*.28,h-12);ctx.fillStyle=i===0?alpha(T.accent,.16):alpha(T.sunk,.5);ctx.fill();ctx.strokeStyle=T.muted;ctx.lineWidth=2;ctx.stroke();label(ctx,'cytoplasm',6+w*.14,16,T.muted,'center','middle',MONO);
+    ctx.beginPath();ctx.ellipse(mx,my,mrx,mry,0,0,6.283);ctx.fillStyle=alpha(T.hot,.08);ctx.fill();ctx.strokeStyle=T.hot;ctx.lineWidth=3;ctx.stroke();
+    ctx.beginPath();for(let k=0;k<=60;k++){const a=k/60*6.283,r=1-.08-.05*Math.sin(a*8);k?ctx.lineTo(mx+Math.cos(a)*mrx*.86*r,my+Math.sin(a)*mry*.86*r):ctx.moveTo(mx+Math.cos(a)*mrx*.86*r,my+Math.sin(a)*mry*.86*r);}ctx.closePath();ctx.strokeStyle=i>=3?T.hot:alpha(T.hot,.5);ctx.lineWidth=i>=3?4:2;ctx.stroke();
+    label(ctx,'matrix',mx,my+mry*.1,T.muted,'center','middle',MONO);label(ctx,'intermembrane space',mx,my-mry*.93,T.muted,'center','middle',MONO);
+    if(i===0){const gx=6+w*.06,gy=h*.5;ctx.beginPath();for(let k=0;k<6;k++){const a=k/6*6.283;ctx.lineTo(gx+Math.cos(a)*14,gy+Math.sin(a)*14);}ctx.closePath();ctx.fillStyle=alpha(T.ce,.7);ctx.fill();label(ctx,'glucose',gx,gy+30,T.ink,'center','middle',MONO);arrow(ctx,gx+20,gy,gx+w*.1,gy-16,T.ink);arrow(ctx,gx+20,gy,gx+w*.1,gy+16,T.ink);dot2(ctx,gx+w*.13,gy-18,T.ce,9);dot2(ctx,gx+w*.13,gy+18,T.ce,9);label(ctx,'2 pyruvate',gx+w*.1,gy+46,T.ink,'center','middle',MONO);label(ctx,'+2 ATP · 2 NADH',gx+w*.07,gy-48,T.hot,'center','middle',MONO);}
+    if(i===1){arrow(ctx,w*.26,my,mx-mrx*.7,my,T.ink);label(ctx,'pyruvate in',w*.26,my-14,T.ink,'center','middle',MONO);label(ctx,'→ acetyl-CoA',mx-mrx*.35,my-22,T.ink,'center','middle',MONO);arrow(ctx,mx-mrx*.3,my-8,mx-mrx*.3,my-mry*.55,T.muted);label(ctx,'2 CO₂ out',mx-mrx*.2,my-mry*.62,T.muted,'left','middle',MONO);label(ctx,'2 NADH',mx+mrx*.1,my+30,T.accent,'center','middle',MONO);}
+    if(i===2){const r=Math.min(mry*.38,50);ctx.beginPath();ctx.arc(mx,my,r,0,6.283);ctx.strokeStyle=T.ca;ctx.lineWidth=3;ctx.stroke();label(ctx,'citric acid cycle',mx,my,T.ink,'center','middle',MONO);arrow(ctx,mx-r-40,my-4,mx-r-4,my-4,T.ink);label(ctx,'acetyl-CoA',mx-r-36,my-16,T.ink,'center','middle',MONO);arrow(ctx,mx+r*.6,my-r,mx+r*.6,my-mry*.62,T.muted);label(ctx,'4 CO₂',mx+r*.7,my-mry*.62,T.muted,'left','middle',MONO);label(ctx,'6 NADH · 2 FADH₂ · 2 ATP',mx,my+r+20,T.accent,'center','middle',MONO);}
+    if(i>=3){for(let k=0;k<4;k++){const a=-.9+k*.6,x=mx+Math.cos(a+3.14)*mrx*.8*.86,y=my+Math.sin(a+3.14)*mry*.8*.86;ctx.save();ctx.translate(x,y);ctx.rotate(a+3.14+1.57);ctx.fillStyle=alpha(i===3?T.ca:T.hot,.6);ctx.fillRect(-14,-9,28,18);ctx.restore();}
+      label(ctx,i===3?'electron transport chain':'ATP synthase',mx,my-mry*.1,T.ink,'center','middle',MONO);
+      if(i===3){label(ctx,'NADH, FADH₂ → e⁻',mx,my+mry*.1+14,T.accent,'center','middle',MONO);label(ctx,'H⁺ pumped out; O₂ + e⁻ + H⁺ → H₂O',mx,my+mry*.1+32,T.cx,'center','middle',MONO);for(let k=0;k<7;k++)dot2(ctx,mx-mrx*.7+k*mrx*.22,my-mry*.8+Math.sin(k+t*2)*3,T.cx,3);}
+      if(i===4){label(ctx,'H⁺ flows back in: ADP + Pi → ATP',mx,my+mry*.1+14,T.hot,'center','middle',MONO);label(ctx,'about 26–28 ATP per glucose',mx,my+mry*.1+32,T.hot,'center','middle',MONO);for(let k=0;k<7;k++)dot2(ctx,mx-mrx*.7+k*mrx*.22,my-mry*.8+Math.sin(k+t*2)*3,T.cx,3);}}
+    },{h:w=>clamp(w*.52,260,350)});
+  $('#rs-lab').addEventListener('labreset',()=>sc.go(0));
+  let g=1;
+  const sim=sim2d($('#rs-canvas2'),{h:w=>clamp(w*.36,180,240),draw(ctx,w,h){const parts=[['glycolysis',2,T.ce],['citric acid cycle',2,T.ca],['electron transport (chemiosmosis)',26,T.hot]],tot=30*g,L=14,R=w-14,y=h*.38,bh=36;let x=L;
+    parts.forEach(([nm,v,col],k)=>{const wd=(R-L)*(v*g)/tot;ctx.fillStyle=alpha(col,.7);ctx.fillRect(x,y,wd,bh);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(x,y,wd,bh);if(wd>26)label(ctx,String(v*g),x+wd/2,y+bh/2,T.ink,'center','middle',MONO);x+=wd;});
+    label(ctx,'ATP from: glycolysis (2) · citric acid cycle (2) · electron transport (about 26) per glucose',w/2,y-18,T.muted,'center','middle',MONO);label(ctx,'total ≈ '+tot+' ATP (commonly quoted range 30–32 per glucose)',w/2,y+bh+24,T.ink,'center','middle',MONO);}});
+  function upd(){setText('rs-atp',String(30*g));setText('rs-co2',String(6*g));setText('rs-o2',String(6*g));setText('rs-h2o',String(6*g));sim.render();}
+  bindRange('rs-g',v=>String(v),v=>{g=v;upd();});$('#rs-lab2').addEventListener('labreset',()=>{g=1;setCtl('rs-g',1);upd();});upd();
+  drawers.resp=()=>{sc.render();sim.render();};
+  KEYS['rs-canvas']=['Orange outline: mitochondrion. Step through the stages and note what goes in and what comes out.',[['hot','mitochondrion'],['ca','electron carriers and cycles'],['cx','H⁺']]];
+  KEYS['rs-canvas2']=['Most of the ATP comes from the last stage.',[['ce','glycolysis'],['ca','citric acid cycle'],['hot','electron transport']]];
+  TIPS['rs-st']=()=>'Stages 1–3 make the carriers (NADH, FADH₂) and a little ATP. Stages 4–5 turn the carriers into most of the ATP.';
+  GLOSS['glycolysis']='The breakdown of glucose to two pyruvate in the cytoplasm. Net 2 ATP and 2 NADH.';GLOSS['citric acid cycle']='A cycle in the mitochondrial matrix that completes breakdown of acetyl-CoA, making CO₂, ATP, NADH and FADH₂.';GLOSS['electron transport chain']='Protein complexes in the inner membrane that pass electrons and pump H⁺.';GLOSS['nadh']='An electron carrier made in glycolysis and the citric acid cycle.';GLOSS['final electron acceptor']='The molecule that receives electrons at the end of the chain. In aerobic respiration, O₂.';
+  TT.resp='Ask students to trace one carbon atom from glucose to CO₂.';
+})();
+(function(){
+  PROBS.push({id:'rs-co2',topic:'resp',title:'CO₂ and O₂ from glucose',gen(){const n=randInt(1,12),w=pick([['CO₂ is released',6],['O₂ is consumed',6],['H₂O is produced',6]]),ans=w[1]*n;return {q:`Complete aerobic respiration of ${n} glucose molecule${n>1?'s':''}: how many molecules of ${w[0].split(' ')[0]} are ${w[0].split(' ').slice(2).join(' ')}?`,ans,unit:'',tol:0,chk:6*n,hint:'C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O.',sol:`6 × ${n} = <b>${ans}</b>.`};}});
+  PROBS.push({id:'rs-atp',topic:'resp',title:'ATP from glycolysis',gen(){const n=randInt(2,20),ans=2*n;return {q:`Glycolysis has a net yield of 2 ATP per glucose. How many ATP does glycolysis produce (net) from ${n} glucose molecules?`,ans,unit:'ATP',tol:0,chk:2*n,hint:'Multiply by 2.',sol:`2 × ${n} = <b>${ans} ATP</b>.`};}});
+  const q=[['Where does glycolysis occur?','the cytoplasm',['the mitochondrial matrix','the inner mitochondrial membrane','the nucleus']],['Where is the electron transport chain located in eukaryotes?','the inner mitochondrial membrane',['the cytoplasm','the matrix','the outer membrane']],['What is the final electron acceptor in aerobic respiration?','oxygen',['carbon dioxide','NAD⁺','glucose']],['In which stage is CO₂ NOT released?','glycolysis',['pyruvate oxidation','the citric acid cycle','both pyruvate oxidation and the citric acid cycle']],['What do NADH and FADH₂ deliver to the electron transport chain?','electrons',['glucose','ATP','oxygen']],['What does the H⁺ gradient drive?','ATP synthase',['glycolysis','the citric acid cycle','pyruvate transport out of the cell']]];
+  PROBS.push({id:'rs-fact',topic:'resp',title:'Respiration facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Locate the stage first.',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'rs-block',topic:'resp',title:'Blocking the chain',gen(){const m=mcq('ATP production by ATP synthase falls and NADH builds up',['ATP production increases','the citric acid cycle runs faster','O₂ use increases']);return {q:'A poison blocks the electron transport chain. What is the most direct result?',choices:m.choices,ans:m.ans,hint:'No chain, no H⁺ gradient, and NADH cannot be re-oxidised.',sol:`<b>${m.choices[m.ans]}</b>.`};}});
+})();
+
+/* ===== modules/ferment.js ===== */
+/* ---------------- Fermentation ---------------- */
+(function ferment(){
+  const cv=$('#fe-canvas');if(!cv)return;
+  let org='yeast',o2=0,need=60;
+  const aer=()=>o2>10,per=()=>aer()?30:2;
+  function box(ctx,x,y,w,h,col,txt,on=true){ctx.save();ctx.globalAlpha=on?1:.3;ctx.fillStyle=alpha(col,.35);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.fillRect(x-w/2,y-h/2,w,h);ctx.strokeRect(x-w/2,y-h/2,w,h);txt.split('\n').forEach((s,k,a)=>label(ctx,s,x,y+(k-(a.length-1)/2)*14,T.ink,'center','middle',MONO));ctx.restore();}
+  function arrow(ctx,x1,y1,x2,y2,col,on=true){ctx.save();ctx.globalAlpha=on?1:.3;ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();const a=Math.atan2(y2-y1,x2-x1);ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-9*Math.cos(a-.4),y2-9*Math.sin(a-.4));ctx.lineTo(x2-9*Math.cos(a+.4),y2-9*Math.sin(a+.4));ctx.closePath();ctx.fill();ctx.restore();}
+  const sim=sim2d(cv,{h:w=>clamp(w*.5,250,330),draw(ctx,w,h){const a=aer(),y1=h*.3,y2=h*.55,bw=Math.min(110,w*.2);
+    box(ctx,w*.1,h*.42,bw,40,T.ce,'glucose');arrow(ctx,w*.1+bw/2,h*.42,w*.3-bw/2,h*.42,T.ink);box(ctx,w*.3,h*.42,bw+10,52,T.ce,'glycolysis\n+2 ATP');arrow(ctx,w*.3+bw/2+5,h*.42,w*.5-bw/2,h*.42,T.ink);box(ctx,w*.5,h*.42,bw,40,T.ca,'pyruvate');
+    arrow(ctx,w*.5+bw/2,h*.36,w*.74-bw/2,y1,T.hot,a);box(ctx,w*.76,y1,bw*1.5,50,T.hot,'respiration\n(mitochondria)',a);label(ctx,'+ ~28 ATP, CO₂, H₂O',w*.76,y1+40,T.hot,'center','middle',MONO);
+    arrow(ctx,w*.5+bw/2,h*.48,w*.74-bw/2,y2+34,T.cv,!a);box(ctx,w*.76,y2+34,bw*1.5,50,T.cv,org==='yeast'?'ethanol\n+ CO₂':'lactate',!a);label(ctx,'NADH → NAD⁺ recycled',w*.76,y2+74,T.cv,'center','middle',MONO);
+    const mx=Math.max(need/per(),1),bx=w*.08,bw2=w*.84,by=h-34;ctx.fillStyle=alpha(a?T.hot:T.cv,.65);ctx.fillRect(bx,by,bw2*Math.min(1,(need/per())/30),14);ctx.strokeStyle=T.ink;ctx.lineWidth=1.2;ctx.strokeRect(bx,by,bw2,14);label(ctx,'glucose needed (full bar = 30)',bx,by-10,T.muted,'left','middle',MONO);}});
+  function upd(){const p=per(),gl=need/p;setText('fe-path',aer()?'aerobic respiration (oxygen is available)':org==='yeast'?'alcoholic fermentation':'lactic acid fermentation');setText('fe-prod',aer()?'CO₂ and H₂O':org==='yeast'?'ethanol and CO₂':'lactate');setText('fe-atp',aer()?'about 30':'2');setText('fe-glu',fmt(gl,gl<10?1:0)+' glucose');sim.render();}
+  segBind('fe-org','k',v=>{org=v;upd();});bindRange('fe-o2',v=>v+'%',v=>{o2=v;upd();});bindRange('fe-need',v=>String(v),v=>{need=v;upd();});
+  $('#fe-lab').addEventListener('labreset',()=>{org='yeast';o2=0;need=60;segSet('fe-org',0);setCtl('fe-o2',0,v=>v+'%');setCtl('fe-need',60);upd();});
+  upd();drawers.ferment=()=>sim.render();
+  KEYS['fe-canvas']=['Faded paths are not used. The bar compares glucose needed for your ATP target.',[['hot','respiration'],['cv','fermentation'],['ce','glycolysis']]];
+  TIPS['fe-o2']=()=>'Above a small oxygen level the cell switches to respiration (a simplified threshold).';
+  GLOSS['fermentation']='Breaking down glucose without oxygen, using an organic molecule as the final electron acceptor to recycle NAD⁺.';GLOSS['alcoholic fermentation']='Fermentation in which pyruvate becomes ethanol and CO₂.';GLOSS['lactic acid fermentation']='Fermentation in which pyruvate becomes lactate.';GLOSS['nad+']='The oxidised electron carrier that glycolysis needs to keep running.';
+  TT.ferment='Ask why a cell with no oxygen still needs the fermentation step even though it makes no extra ATP.';
+})();
+(function(){
+  PROBS.push({id:'fe-glu',topic:'ferment',title:'Glucose needed',gen(){const need=pick([30,60,90,120]),mode=pick(['fermentation (2 ATP per glucose)','aerobic respiration (30 ATP per glucose)']),per=mode[0]==='f'?2:30,ans=need/per;return {q:`A cell needs ${need} ATP. How many glucose molecules must it break down by ${mode}?`,ans,unit:'glucose',abs:.01,chk:need/per,hint:'ATP needed divided by ATP per glucose.',sol:`${need} / ${per} = <b>${fmt(ans,2)}</b>.`};}});
+  const q=[['The main purpose of fermentation is to','regenerate NAD⁺ so glycolysis can continue',['make a large amount of ATP','produce oxygen','break down ATP']],['Yeast fermentation produces','ethanol and CO₂',['lactate','CO₂ and water','pyruvate only']],['Human muscle cells in hard exercise with too little oxygen produce','lactate',['ethanol','CO₂ and water','glucose']],['Compared with aerobic respiration, fermentation yields','much less ATP per glucose',['more ATP per glucose','the same ATP per glucose','no ATP']]];
+  PROBS.push({id:'fe-fact',topic:'ferment',title:'Fermentation facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall that glycolysis is the only ATP source.',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'fe-ratio',topic:'ferment',title:'How much less efficient?',gen(){const ans=15;return {q:'About how many times more glucose must a cell use to make the same ATP by fermentation (2 ATP per glucose) than by aerobic respiration (about 30 ATP per glucose)?',ans,unit:'times',tol:0,chk:30/2,hint:'Divide the two yields.',sol:`30 / 2 = <b>15</b>.`};}});
 })();
 
 /* ===== overview.js ===== */

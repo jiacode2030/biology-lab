@@ -1,0 +1,48 @@
+  <section class="view" id="v-ferment" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Fermentation & anaerobic respiration</h1>
+        <p class="lede">Without oxygen the electron transport chain stops, but glycolysis can keep running if the cell can recycle its NADH.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Glycolysis needs NAD⁺ to keep going. When oxygen is absent, the chain cannot re-oxidise NADH to NAD⁺. <b>Fermentation</b> solves this by using pyruvate (or a product of it) as the electron acceptor so NAD⁺ is regenerated. In yeast, pyruvate becomes <b>ethanol</b> and CO₂ (<b>alcoholic fermentation</b>). In animal muscle, pyruvate becomes <b>lactate</b> (<b>lactic acid fermentation</b>).</p>
+        <p>Fermentation makes only the <b>2 ATP</b> of glycolysis per glucose, compared with about 30–32 with oxygen. So a fermenting cell must use about fifteen times as much glucose for the same ATP. Some prokaryotes carry out <b>anaerobic respiration</b> with an acceptor other than O₂ at the end of an electron transport chain.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>cells simply stopped when oxygen ran out</dd><dt>So we didn't need</dt><dd>that cells can keep making a little ATP by recycling NADH</dd><dt>Now</dt><dd>why yeast makes bread rise and muscles burn</dd><dt>So we need</dt><dd>fermentation pathways and their ATP yield</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>yeast: pyruvate → ethanol + CO₂</span><small>NAD⁺ regenerated</small></div><div class="eqn"><span>muscle: pyruvate → lactate</span><small>NAD⁺ regenerated</small></div><div class="eqn"><span>fermentation: 2 ATP per glucose</span><small>from glycolysis only</small></div><div class="eqn"><span>aerobic: about 30–32 ATP per glucose</span><small>electron transport chain</small></div></div>
+      <div class="lab" id="fe-lab" data-reset="own">
+        <div class="labbar"><span class="title">Oxygen or not?</span></div>
+        <div class="ctl"><span class="lbl">Cell</span><div class="seg" id="fe-org" role="group" aria-label="Cell"><button type="button" data-k="yeast" aria-pressed="true">yeast</button><button type="button" data-k="muscle" aria-pressed="false">muscle cell</button></div></div>
+        <canvas id="fe-canvas" aria-label="Flow diagram: glucose to pyruvate, then to aerobic respiration or to fermentation depending on oxygen, with ATP counts."></canvas>
+        <div class="controls"><div class="ctl"><label for="fe-o2"><span>Oxygen available</span> <output id="fe-o2-out"></output></label><input type="range" id="fe-o2" min="0" max="100" step="1" value="0"></div><div class="ctl"><label for="fe-need"><span>ATP the cell needs</span> <output id="fe-need-out"></output></label><input type="range" id="fe-need" min="30" max="120" step="5" value="60"></div></div>
+        <div class="readout"><div><span>pathway</span><strong class="x" id="fe-path">—</strong></div><div><span>products</span><strong class="a" id="fe-prod">—</strong></div><div><span>ATP per glucose</span><strong class="v" id="fe-atp">—</strong></div><div><span>glucose needed for that ATP</span><strong class="" id="fe-glu">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Yeast with no oxygen and 60 ATP needed. How much glucose? <button type="button" class="btn link" data-show='[["click", "#fe-org [data-k=yeast]"], ["#fe-o2", 0], ["#fe-need", 60]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>60 ATP ÷ 2 ATP per glucose = 30 glucose.</p></details></li>
+        <li><p>Now add oxygen (100). How does the glucose needed change? <button type="button" class="btn link" data-show='[["#fe-o2", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>About 60/30 = 2 glucose: respiration with oxygen is roughly fifteen times as efficient.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A muscle cell needs 90 ATP. Compare the glucose needed during hard exercise (lactic fermentation, 2 ATP per glucose) with rest (aerobic, about 30 ATP per glucose).</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Fermentation.</b> 90 / 2 = 45 glucose.</li>
+          <li hidden><b>Aerobic.</b> 90 / 30 = 3 glucose.</li>
+          <li hidden><b>Conclusion.</b> Fermentation uses 15 times as much glucose, and the lactate (and acidity) it builds up contributes to fatigue.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying fermentation makes no ATP. It makes 2 per glucose via glycolysis.</li>
+        <li>Saying fermentation produces NADH. It consumes it, regenerating NAD⁺.</li>
+        <li>Thinking muscles make ethanol or yeast makes lactate.</li>
+        <li>Mixing fermentation (no electron transport chain) with anaerobic respiration (other final acceptor).</li>
+        <li>Forgetting that pyruvate is the starting point of both aerobic and anaerobic pathways.</li>
+      </ul></div>
+      <div class="prose"><h2>Why it matters</h2>
+        <p>Fermentation lets cells survive without oxygen for a while. Its purpose is to regenerate NAD⁺ so glycolysis continues; the ATP is what keeps the cell alive. If asked why the cell does not just stop, answer in terms of NAD⁺.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Recycling NAD⁺ allows glycolysis to keep making its 2 ATP.">
+        <p class="q">Check yourself: The main purpose of fermentation is to</p>
+        <div class="opts"><button type="button">regenerate NAD⁺ so glycolysis can continue</button><button type="button">make large amounts of ATP</button><button type="button">produce oxygen</button><button type="button">break down ATP</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

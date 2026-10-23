@@ -1,0 +1,56 @@
+  <section class="view" id="v-enzymes" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 3</span></div>
+        <h1>Enzymes & activation energy</h1>
+        <p class="lede">Reactions in cells would be far too slow at body temperature without help. Enzymes make them fast enough to sustain life, and do it one reaction at a time.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>An <b>enzyme</b> is a protein catalyst. It binds its <b>substrate</b> at the <b>active site</b>, whose shape and chemistry fit that substrate (the active site adjusts slightly on binding, <b>induced fit</b>). Enzymes speed reactions by <b>lowering the activation energy</b> (the energy hurdle to get started). They do not change the free energy of the reactants or products, do not make an unfavorable reaction favorable, and are not used up.</p>
+        <p>Reaction rate rises with substrate concentration until all active sites are busy (saturation), then levels off at V<sub>max</sub>. A <b>competitive inhibitor</b> resembles the substrate and blocks the active site; more substrate can outcompete it, so V<sub>max</sub> can still be reached. A <b>noncompetitive (allosteric) inhibitor</b> binds elsewhere and changes the shape of the enzyme, lowering the V<sub>max</sub> that can be reached.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>chemical reactions needed high temperatures or harsh conditions</dd><dt>So we didn't need</dt><dd>that a protein can lower the energy barrier while leaving the overall energy change alone</dd><dt>Now</dt><dd>why reactions in cells are fast and specific</dd><dt>So we need</dt><dd>activation energy, saturation and inhibition</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>v = Vmax[S] / (Km + [S])</span><small>shape of the rate curve (model)</small></div><div class="eqn"><span>catalyst lowers E<sub>a</sub></span><small>ΔG unchanged</small></div><div class="eqn"><span>competitive: raises apparent Km</span><small>Vmax reachable with more substrate</small></div><div class="eqn"><span>noncompetitive: lowers Vmax</span><small>more substrate does not fix it</small></div></div>
+      <div class="lab" id="en-lab" data-reset="own">
+        <div class="labbar"><span class="title">Rate against substrate concentration</span></div>
+        <div class="ctl"><span class="lbl">Inhibitor</span><div class="seg" id="en-inh" role="group" aria-label="Inhibitor"><button type="button" data-k="none" aria-pressed="true">none</button><button type="button" data-k="comp" aria-pressed="false">competitive</button><button type="button" data-k="nonc" aria-pressed="false">noncompetitive</button></div></div>
+        <canvas id="en-canvas" aria-label="Graph of reaction rate against substrate concentration, with the chosen inhibitor and the uninhibited curve for comparison."></canvas>
+        <div class="controls"><div class="ctl"><label for="en-s"><span>Substrate concentration</span> <output id="en-s-out"></output></label><input type="range" id="en-s" min="0" max="100" step="1" value="20"></div><div class="ctl"><label for="en-e"><span>Amount of enzyme</span> <output id="en-e-out"></output></label><input type="range" id="en-e" min="1" max="10" step="1" value="5"></div></div>
+        <div class="readout"><div><span>rate</span><strong class="x" id="en-v">—</strong></div><div><span>percent of maximum</span><strong class="a" id="en-pct">—</strong></div><div><span>what limits the rate now</span><strong class="v" id="en-lim">—</strong></div></div>
+      </div>
+      <div class="lab" id="en-lab2" data-reset="own">
+        <div class="labbar"><span class="title">The energy hill</span></div>
+        <div class="ctl"><span class="lbl">Reaction</span><div class="seg" id="en-rx" role="group" aria-label="Reaction"><button type="button" data-k="exo" aria-pressed="true">releases energy (exergonic)</button><button type="button" data-k="endo" aria-pressed="false">needs energy (endergonic)</button></div></div>
+        <div class="row"><button type="button" class="btn primary" id="en-cat">Add enzyme</button></div>
+        <canvas id="en-canvas2" aria-label="Energy profile of a reaction with and without an enzyme. The enzyme lowers the peak but not the start and end levels."></canvas>
+        <div class="readout"><div><span>activation energy</span><strong class="x" id="en-ea">—</strong></div><div><span>ΔG (products − reactants)</span><strong class="a" id="en-dg">—</strong></div><div><span>effect</span><strong class="" id="en-cm">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose competitive inhibition, then raise substrate to 100. What happens to the rate? <button type="button" class="btn link" data-show='[["click", "#en-inh [data-k=comp]"], ["#en-s", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It climbs back almost to the uninhibited maximum: lots of substrate outcompetes the inhibitor.</p></details></li>
+        <li><p>Choose noncompetitive inhibition and raise substrate to 100. Does it recover? <button type="button" class="btn link" data-show='[["click", "#en-inh [data-k=nonc]"], ["#en-s", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>No. The ceiling is lower because some enzyme molecules are altered whatever the substrate level.</p></details></li>
+        <li><p>Add the enzyme to the energy profile. What changes and what does not? <button type="button" class="btn link" data-show='[["click", "#en-cat"]]'>Add enzyme</button></p><details><summary>What you should see</summary><p>The peak (activation energy) falls. The start and end levels, and so ΔG, stay the same.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A reaction has an activation energy of 80 kJ/mol and ΔG = −20 kJ/mol. An enzyme lowers the activation energy to 45 kJ/mol. State the new activation energy and ΔG, and the effect on rate.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Activation energy.</b> 45 kJ/mol (lowered by 35).</li>
+          <li hidden><b>ΔG.</b> Still −20 kJ/mol. An enzyme cannot change the energy of reactants or products.</li>
+          <li hidden><b>Rate.</b> Faster, because a larger fraction of molecules has enough energy to react. Equilibrium is reached sooner but is not moved.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying enzymes add energy to the reaction.</li>
+        <li>Saying enzymes make a nonspontaneous reaction spontaneous.</li>
+        <li>Believing enzymes are used up.</li>
+        <li>Mixing competitive and noncompetitive inhibitors.</li>
+        <li>Forgetting that rate levels off because enzyme is limiting, not substrate.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading rate graphs</h2>
+        <p>On a rate vs. substrate graph, a flat region means the enzyme is saturated: adding substrate does nothing, adding enzyme would. A rising region means substrate is limiting. If the inhibited curve reaches the same maximum, the inhibitor is competitive; if the maximum is lower, it is noncompetitive.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="ΔG depends only on reactants and products, not on the path.">
+        <p class="q">Check yourself: An enzyme lowers the activation energy of a reaction. Which quantity is unchanged?</p>
+        <div class="opts"><button type="button">the free energy change (ΔG)</button><button type="button">the activation energy</button><button type="button">the reaction rate</button><button type="button">the energy of the transition state</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
