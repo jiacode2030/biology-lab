@@ -1,0 +1,47 @@
+  <section class="view" id="v-dnastruct" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 1</span></div>
+        <h1>DNA & RNA structure</h1>
+        <p class="lede">DNA stores biological information in a simple pattern: two strands, four bases, and fixed pairing rules.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>nucleotide</b> has a sugar (deoxyribose in DNA, ribose in RNA), a phosphate and a nitrogenous base. In DNA the bases are adenine (A), thymine (T), guanine (G) and cytosine (C). Nucleotides join by <b>phosphodiester bonds</b> between the sugar of one and the phosphate of the next, forming a sugar-phosphate backbone with a direction: one end is 5′ and the other is 3′.</p>
+        <p>Two strands run <b>antiparallel</b> and are held by hydrogen bonds between bases: A pairs with T (two bonds) and G pairs with C (three bonds). So in double-stranded DNA, %A = %T and %G = %C (Chargaff's rules). RNA is usually single-stranded, uses ribose, and has uracil (U) in place of thymine.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>DNA was the molecule of heredity, little more</dd><dt>So we didn't need</dt><dd>that its structure explains how information is stored and copied</dd><dt>Now</dt><dd>why the amount of A equals T and why G–C rich DNA is harder to melt</dd><dt>So we need</dt><dd>nucleotides, base pairing, antiparallel strands</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>A = T and G = C in double-stranded DNA</span><small>Chargaff</small></div><div class="eqn"><span>A–T: 2 H-bonds; G–C: 3 H-bonds</span><small>pairing</small></div><div class="eqn"><span>strands run 5′ → 3′ and 3′ → 5′</span><small>antiparallel</small></div><div class="eqn"><span>RNA: ribose, U instead of T</span><small>single-stranded</small></div></div>
+      <div class="lab" id="dn-lab" data-reset="own">
+        <div class="labbar"><span class="title">Base composition of double-stranded DNA</span></div>
+        <canvas id="dn-canvas" aria-label="A double helix drawn with the proportion of GC and AT pairs set by a slider. Counts of each base are shown."></canvas>
+        <div class="controls"><div class="ctl"><label for="dn-n"><span>Length</span> <output id="dn-n-out"></output></label><input type="range" id="dn-n" min="20" max="200" step="10" value="100"></div><div class="ctl"><label for="dn-gc"><span>GC content</span> <output id="dn-gc-out"></output></label><input type="range" id="dn-gc" min="20" max="80" step="1" value="40"></div></div>
+        <div class="readout"><div><span>A</span><strong class="x" id="dn-a">—</strong></div><div><span>T</span><strong class="x" id="dn-t">—</strong></div><div><span>G</span><strong class="a" id="dn-g">—</strong></div><div><span>C</span><strong class="a" id="dn-c">—</strong></div><div><span>hydrogen bonds in total</span><strong class="v" id="dn-hb">—</strong></div><div><span>how hard to melt</span><strong class="" id="dn-tm">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set GC content to 70%. Which is harder to separate: this or 30% GC? <button type="button" class="btn link" data-show='[["#dn-gc", 70]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>70% GC. G–C pairs have three hydrogen bonds versus two for A–T, so more energy (a higher temperature) is needed to separate the strands.</p></details></li>
+        <li><p>If the GC content is 40%, what are the percentages of A and T? <button type="button" class="btn link" data-show='[["#dn-gc", 40]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>30% each: A = T and the rest (100 − 40 = 60%) splits evenly between A and T.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A double-stranded DNA sample is 22% cytosine. What percentage is adenine? How many hydrogen bonds hold a 100 bp segment of it together?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Chargaff.</b> C = G = 22%, so G + C = 44%.</li>
+          <li hidden><b>A and T.</b> The remaining 56% is split equally: A = T = 28%.</li>
+          <li hidden><b>Hydrogen bonds in 100 bp.</b> 44 G–C pairs × 3 = 132 and 56 A–T pairs × 2 = 112, total 244.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Writing that A pairs with U in DNA.</li>
+        <li>Believing the strands run in the same direction.</li>
+        <li>Forgetting G–C has three bonds and A–T two.</li>
+        <li>Saying %A + %G = 50% is the same as %A = %G.</li>
+        <li>Mixing up deoxyribose and ribose.</li>
+      </ul></div>
+      <div class="prose"><h2>Applying Chargaff</h2>
+        <p>If you are given the percent of one base in double-stranded DNA you can find all four. In single-stranded DNA or RNA the rules do not apply. Compare melting temperatures by comparing G + C percentage: higher GC means more bonds and a higher melting temperature.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="T = A = 30%, so G + C = 40% and G = 20%.">
+        <p class="q">Check yourself: In double-stranded DNA, if 30% of the bases are thymine, what percent are guanine?</p>
+        <div class="opts"><button type="button">20%</button><button type="button">30%</button><button type="button">40%</button><button type="button">70%</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

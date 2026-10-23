@@ -1,0 +1,49 @@
+  <section class="view" id="v-protein" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 1</span></div>
+        <h1>Protein structure</h1>
+        <p class="lede">A protein is a chain of amino acids that folds into one particular shape, and the shape is what lets it work.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Twenty amino acids share the same backbone but differ in their <b>R group</b>: nonpolar (hydrophobic), polar, or charged. The order of amino acids is the <b>primary</b> structure. Hydrogen bonds along the backbone create <b>secondary</b> structure (α-helices and β-pleated sheets). Interactions among R groups (hydrophobic clustering, hydrogen bonds, ionic bonds, disulfide bridges) fold the chain into a <b>tertiary</b> shape. Some proteins are made of several polypeptides: <b>quaternary</b> structure.</p>
+        <p>Because folding depends on the R groups, changing even one amino acid can change the shape and function (sickle cell hemoglobin has one substitution). Heat, pH and salt can break the weak interactions that hold the shape: that is <b>denaturation</b>, and it usually destroys function.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>proteins were just long chains</dd><dt>So we didn't need</dt><dd>that the chain folds into a precise 3-D shape that depends on its sequence</dd><dt>Now</dt><dd>why sequence changes and denaturation affect function</dd><dt>So we need</dt><dd>four levels of structure and what holds each one</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>primary: amino acid sequence</span><small>peptide bonds</small></div><div class="eqn"><span>secondary: α-helix, β-sheet</span><small>hydrogen bonds in the backbone</small></div><div class="eqn"><span>tertiary: overall fold</span><small>R-group interactions</small></div><div class="eqn"><span>quaternary: several chains</span><small>same kinds of interactions</small></div></div>
+      <div class="lab" id="pr-lab">
+        <div class="labbar"><span class="title">Four levels of protein structure</span></div>
+        <div class="row"><button type="button" class="btn" id="pr-prev">Previous</button><button type="button" class="btn primary" id="pr-next">Next stage</button><button type="button" class="btn" id="pr-play">Play</button></div>
+        <canvas id="pr-canvas" aria-label="A diagram that changes with each level: a chain of beads, a helix, a folded blob and a complex of subunits."></canvas>
+        <div class="controls"><div class="ctl"><label for="pr-st"><span>Stage</span> <output id="pr-st-out"></output></label><input type="range" id="pr-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="pr-name">—</strong></div><div><span>what is happening</span><strong class="" id="pr-txt">—</strong></div><div><span>held together by</span><strong class="v" id="pr-bond">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the tertiary stage. What are the main forces? <button type="button" class="btn link" data-show='[["#pr-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Interactions between R groups: hydrophobic clustering inside, hydrogen bonds, ionic bonds, and covalent disulfide bridges between cysteines.</p></details></li>
+        <li><p>At the quaternary stage, what is new? <button type="button" class="btn link" data-show='[["#pr-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>More than one polypeptide chain assembles into one functional protein, as in hemoglobin (four chains).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Sickle cell hemoglobin has valine instead of glutamic acid at position 6 of the β chain. Explain how one change can change the protein.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Primary change.</b> Glutamic acid has a charged R group; valine is nonpolar.</li>
+          <li hidden><b>Effect on interactions.</b> The new nonpolar R group sticks to hydrophobic spots on other hemoglobin molecules.</li>
+          <li hidden><b>Effect on structure.</b> Molecules clump into long fibers at low oxygen, changing the red blood cell shape.</li>
+          <li hidden><b>Conclusion.</b> A single change in primary structure altered interactions, shape and function.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying peptide bonds hold the tertiary structure. They hold the primary structure; weak interactions and disulfides fold the chain.</li>
+        <li>Thinking denaturation breaks peptide bonds. It disrupts folding but usually leaves the sequence intact.</li>
+        <li>Forgetting that the R group determines where an amino acid sits in the folded protein.</li>
+        <li>Mixing secondary (backbone H-bonds) with tertiary (R-group interactions).</li>
+        <li>Assuming every protein has quaternary structure.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading a data question</h2>
+        <p>If a mutation swaps a polar amino acid for a nonpolar one, predict where it will be (more likely inside, or on a surface where it disrupts solubility) and whether folding or binding is affected. Use "R group", "interaction", "shape" and "function" in your explanation.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Primary is the order of amino acids joined by peptide bonds.">
+        <p class="q">Check yourself: Which level of protein structure is the linear sequence of amino acids?</p>
+        <div class="opts"><button type="button">primary</button><button type="button">secondary</button><button type="button">tertiary</button><button type="button">quaternary</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

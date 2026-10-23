@@ -1,0 +1,56 @@
+  <section class="view" id="v-water" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 1</span></div>
+        <h1>Water & hydrogen bonds</h1>
+        <p class="lede">Water is a small molecule that behaves like a much bigger one. Almost every property life relies on comes from one weak attraction between water molecules.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A water molecule is <b>polar</b>: oxygen pulls electrons harder than hydrogen does, so oxygen is slightly negative and the hydrogens slightly positive. The positive hydrogen of one molecule is attracted to the negative oxygen of another. This weak attraction is a <b>hydrogen bond</b>. One bond is weak and breaks easily, but liquid water has enormous numbers of them forming and breaking constantly.</p>
+        <p>That network explains the properties on the exam. <b>Cohesion</b> (water sticks to water) gives surface tension and lets water be pulled up plant xylem; <b>adhesion</b> (water sticks to other polar surfaces) helps it climb narrow tubes. A <b>high specific heat</b> means water absorbs lots of energy for a small temperature change, so it buffers temperature. Ice is <b>less dense</b> than liquid water because bonds lock molecules into an open lattice, so ice floats. Polar and charged substances dissolve in water; nonpolar ones do not.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>molecules were attracted only if they were bonded in the ways we used in chemistry</dd><dt>So we didn't need</dt><dd>that water has weak but numerous attractions between molecules, not just covalent bonds</dd><dt>Now</dt><dd>why water is liquid at body temperature, floats as ice, and is a solvent</dd><dt>So we need</dt><dd>polarity, hydrogen bonding, cohesion, adhesion, specific heat</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>q = m · c · ΔT</span><small>heat energy absorbed</small></div><div class="eqn"><span>c(water) = 4.18 J/(g·°C)</span><small>high specific heat</small></div><div class="eqn"><span>hydrogen bond: H(δ+) ··· O(δ−)</span><small>between molecules</small></div><div class="eqn"><span>polar dissolves polar</span><small>"like dissolves like"</small></div></div>
+      <div class="lab" id="wa-lab" data-reset="own">
+        <div class="labbar"><span class="title">Water molecules at different temperatures</span></div>
+        <p class="small" style="margin:0">Dashed lines are hydrogen bonds between neighbouring molecules. Each molecule can hold up to four.</p>
+        <canvas id="wa-canvas" aria-label="Water molecules drawn as particles. Dashed lines show hydrogen bonds between neighbours. Temperature changes how many bonds hold."></canvas>
+        <div class="controls"><div class="ctl"><label for="wa-t"><span>Temperature</span> <output id="wa-t-out"></output></label><input type="range" id="wa-t" min="-10" max="110" step="1" value="20"></div></div>
+        <div class="readout"><div><span>state</span><strong class="x" id="wa-ph">—</strong></div><div><span>hydrogen bonds per molecule (model)</span><strong class="a" id="wa-b">—</strong></div><div><span>relative density</span><strong class="v" id="wa-d">—</strong></div></div>
+      </div>
+      <div class="lab" id="wa-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Why water resists changes in temperature</span></div>
+        <canvas id="wa-canvas2" aria-label="Bars comparing the temperature rise of water and cooking oil given the same heat."></canvas>
+        <div class="controls"><div class="ctl"><label for="wa-q"><span>Heat added</span> <output id="wa-q-out"></output></label><input type="range" id="wa-q" min="100" max="2000" step="50" value="1000"></div><div class="ctl"><label for="wa-m"><span>Mass of liquid</span> <output id="wa-m-out"></output></label><input type="range" id="wa-m" min="20" max="200" step="10" value="100"></div></div>
+        <div class="readout"><div><span>temperature rise of water</span><strong class="x" id="wa-dw">—</strong></div><div><span>temperature rise of oil</span><strong class="a" id="wa-do">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Slide the temperature from 20 °C down to −5 °C. What happens to the arrangement? <button type="button" class="btn link" data-show='[["#wa-t", -5]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Molecules lock into a fixed, open pattern with nearly four bonds each. The open lattice holds them farther apart on average than in liquid, so ice is less dense.</p></details></li>
+        <li><p>Raise the temperature to 105 °C. What happens to the bonds? <button type="button" class="btn link" data-show='[["#wa-t", 105]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Molecules move so fast that the attractions cannot hold them: bonds are rarely present and the water is a gas.</p></details></li>
+        <li><p>Add 1000 J to 100 g of each liquid. Which warms more and why? <button type="button" class="btn link" data-show='[["#wa-q", 1000], ["#wa-m", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Oil warms about twice as much (≈5 °C vs ≈2.4 °C). Water's hydrogen bonds absorb some of the energy by being stretched or broken instead of speeding up molecules.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">How much heat raises 250 g of water from 20 °C to 37 °C? (c = 4.18 J/g°C)</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Formula.</b> q = m · c · ΔT.</li>
+          <li hidden><b>ΔT.</b> 37 − 20 = 17 °C.</li>
+          <li hidden><b>Substitute.</b> q = 250 × 4.18 × 17.</li>
+          <li hidden><b>Answer.</b> ≈ 17,765 J, or about 17.8 kJ. A body that is mostly water therefore warms slowly even when it absorbs lots of heat.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying a hydrogen bond is a bond inside the water molecule. It is between molecules.</li>
+        <li>Mixing up cohesion (water to water) and adhesion (water to another surface).</li>
+        <li>Thinking ice floats because it is "lighter" in some other way. It is less dense because the lattice is more open.</li>
+        <li>Saying nonpolar molecules dissolve in water.</li>
+        <li>Treating hydrogen bonds as strong. Each is weak; the effect comes from the number.</li>
+      </ul></div>
+      <div class="prose"><h2>The links to remember</h2>
+        <p>Plant xylem transport uses <b>cohesion</b> (a chain of water molecules pulled up) plus <b>adhesion</b> to the wall. Lakes freeze from the top, insulating life below, because ice is less dense. Evaporation of sweat cools you because breaking hydrogen bonds takes energy (<b>high heat of vaporization</b>).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Hydrogen bonds hold the molecules to each other (cohesion), producing surface tension and beads.">
+        <p class="q">Check yourself: Water droplets form beads on a leaf mainly because of</p>
+        <div class="opts"><button type="button">cohesion between water molecules</button><button type="button">covalent bonds inside water</button><button type="button">low specific heat</button><button type="button">ionic bonds between H and O</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

@@ -1244,6 +1244,210 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-water" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 1</span></div>
+        <h1>Water & hydrogen bonds</h1>
+        <p class="lede">Water is a small molecule that behaves like a much bigger one. Almost every property life relies on comes from one weak attraction between water molecules.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A water molecule is <b>polar</b>: oxygen pulls electrons harder than hydrogen does, so oxygen is slightly negative and the hydrogens slightly positive. The positive hydrogen of one molecule is attracted to the negative oxygen of another. This weak attraction is a <b>hydrogen bond</b>. One bond is weak and breaks easily, but liquid water has enormous numbers of them forming and breaking constantly.</p>
+        <p>That network explains the properties on the exam. <b>Cohesion</b> (water sticks to water) gives surface tension and lets water be pulled up plant xylem; <b>adhesion</b> (water sticks to other polar surfaces) helps it climb narrow tubes. A <b>high specific heat</b> means water absorbs lots of energy for a small temperature change, so it buffers temperature. Ice is <b>less dense</b> than liquid water because bonds lock molecules into an open lattice, so ice floats. Polar and charged substances dissolve in water; nonpolar ones do not.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>molecules were attracted only if they were bonded in the ways we used in chemistry</dd><dt>So we didn't need</dt><dd>that water has weak but numerous attractions between molecules, not just covalent bonds</dd><dt>Now</dt><dd>why water is liquid at body temperature, floats as ice, and is a solvent</dd><dt>So we need</dt><dd>polarity, hydrogen bonding, cohesion, adhesion, specific heat</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>q = m · c · ΔT</span><small>heat energy absorbed</small></div><div class="eqn"><span>c(water) = 4.18 J/(g·°C)</span><small>high specific heat</small></div><div class="eqn"><span>hydrogen bond: H(δ+) ··· O(δ−)</span><small>between molecules</small></div><div class="eqn"><span>polar dissolves polar</span><small>"like dissolves like"</small></div></div>
+      <div class="lab" id="wa-lab" data-reset="own">
+        <div class="labbar"><span class="title">Water molecules at different temperatures</span></div>
+        <p class="small" style="margin:0">Dashed lines are hydrogen bonds between neighbouring molecules. Each molecule can hold up to four.</p>
+        <canvas id="wa-canvas" aria-label="Water molecules drawn as particles. Dashed lines show hydrogen bonds between neighbours. Temperature changes how many bonds hold."></canvas>
+        <div class="controls"><div class="ctl"><label for="wa-t"><span>Temperature</span> <output id="wa-t-out"></output></label><input type="range" id="wa-t" min="-10" max="110" step="1" value="20"></div></div>
+        <div class="readout"><div><span>state</span><strong class="x" id="wa-ph">—</strong></div><div><span>hydrogen bonds per molecule (model)</span><strong class="a" id="wa-b">—</strong></div><div><span>relative density</span><strong class="v" id="wa-d">—</strong></div></div>
+      </div>
+      <div class="lab" id="wa-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Why water resists changes in temperature</span></div>
+        <canvas id="wa-canvas2" aria-label="Bars comparing the temperature rise of water and cooking oil given the same heat."></canvas>
+        <div class="controls"><div class="ctl"><label for="wa-q"><span>Heat added</span> <output id="wa-q-out"></output></label><input type="range" id="wa-q" min="100" max="2000" step="50" value="1000"></div><div class="ctl"><label for="wa-m"><span>Mass of liquid</span> <output id="wa-m-out"></output></label><input type="range" id="wa-m" min="20" max="200" step="10" value="100"></div></div>
+        <div class="readout"><div><span>temperature rise of water</span><strong class="x" id="wa-dw">—</strong></div><div><span>temperature rise of oil</span><strong class="a" id="wa-do">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Slide the temperature from 20 °C down to −5 °C. What happens to the arrangement? <button type="button" class="btn link" data-show='[["#wa-t", -5]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Molecules lock into a fixed, open pattern with nearly four bonds each. The open lattice holds them farther apart on average than in liquid, so ice is less dense.</p></details></li>
+        <li><p>Raise the temperature to 105 °C. What happens to the bonds? <button type="button" class="btn link" data-show='[["#wa-t", 105]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Molecules move so fast that the attractions cannot hold them: bonds are rarely present and the water is a gas.</p></details></li>
+        <li><p>Add 1000 J to 100 g of each liquid. Which warms more and why? <button type="button" class="btn link" data-show='[["#wa-q", 1000], ["#wa-m", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Oil warms about twice as much (≈5 °C vs ≈2.4 °C). Water's hydrogen bonds absorb some of the energy by being stretched or broken instead of speeding up molecules.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">How much heat raises 250 g of water from 20 °C to 37 °C? (c = 4.18 J/g°C)</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Formula.</b> q = m · c · ΔT.</li>
+          <li hidden><b>ΔT.</b> 37 − 20 = 17 °C.</li>
+          <li hidden><b>Substitute.</b> q = 250 × 4.18 × 17.</li>
+          <li hidden><b>Answer.</b> ≈ 17,765 J, or about 17.8 kJ. A body that is mostly water therefore warms slowly even when it absorbs lots of heat.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying a hydrogen bond is a bond inside the water molecule. It is between molecules.</li>
+        <li>Mixing up cohesion (water to water) and adhesion (water to another surface).</li>
+        <li>Thinking ice floats because it is "lighter" in some other way. It is less dense because the lattice is more open.</li>
+        <li>Saying nonpolar molecules dissolve in water.</li>
+        <li>Treating hydrogen bonds as strong. Each is weak; the effect comes from the number.</li>
+      </ul></div>
+      <div class="prose"><h2>The links to remember</h2>
+        <p>Plant xylem transport uses <b>cohesion</b> (a chain of water molecules pulled up) plus <b>adhesion</b> to the wall. Lakes freeze from the top, insulating life below, because ice is less dense. Evaporation of sweat cools you because breaking hydrogen bonds takes energy (<b>high heat of vaporization</b>).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Hydrogen bonds hold the molecules to each other (cohesion), producing surface tension and beads.">
+        <p class="q">Check yourself: Water droplets form beads on a leaf mainly because of</p>
+        <div class="opts"><button type="button">cohesion between water molecules</button><button type="button">covalent bonds inside water</button><button type="button">low specific heat</button><button type="button">ionic bonds between H and O</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-macromol" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 1</span></div>
+        <h1>Macromolecules & monomers</h1>
+        <p class="lede">Cells build enormous molecules out of a few small repeating units, and they take them apart with the same chemistry in reverse.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>There are four classes: <b>carbohydrates</b> (monosaccharides join into polysaccharides: starch, glycogen, cellulose), <b>proteins</b> (amino acids into polypeptides), <b>nucleic acids</b> (nucleotides into DNA and RNA) and <b>lipids</b> (fats are made of glycerol and fatty acids, but lipids are not true polymers). Each has a typical function: energy and structure, catalysis and structure, information, and long-term energy and membranes.</p>
+        <p>Monomers are joined by <b>dehydration synthesis</b>: each bond forms as a water molecule is removed. Polymers are broken down by <b>hydrolysis</b>, which uses a water molecule to split each bond. The bonds are <b>glycosidic</b> (sugars), <b>peptide</b> (amino acids), <b>phosphodiester</b> (nucleotides) and <b>ester</b> (fats).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>molecules were either "big" or "small" with no pattern</dd><dt>So we didn't need</dt><dd>that big molecules are chains of similar small subunits</dd><dt>Now</dt><dd>how cells build and recycle molecules with one reaction and its reverse</dd><dt>So we need</dt><dd>dehydration synthesis, hydrolysis and the four classes</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>n monomers → polymer + (n − 1) H₂O</span><small>dehydration synthesis</small></div><div class="eqn"><span>polymer + (n − 1) H₂O → n monomers</span><small>hydrolysis</small></div><div class="eqn"><span>carbohydrates: C : H : O ≈ 1 : 2 : 1</span><small>empirical ratio</small></div><div class="eqn"><span>proteins contain N; nucleic acids contain N and P</span><small>elements</small></div></div>
+      <div class="lab" id="mm-lab" data-reset="own">
+        <div class="labbar"><span class="title">Build a polymer</span></div>
+        <div class="ctl"><span class="lbl">Monomer</span><div class="seg" id="mm-kind" role="group" aria-label="Monomer"><button type="button" data-k="sug" aria-pressed="true">monosaccharide</button><button type="button" data-k="aa" aria-pressed="false">amino acid</button><button type="button" data-k="nuc" aria-pressed="false">nucleotide</button></div></div>
+        <canvas id="mm-canvas" aria-label="A chain of monomers with the water molecules released as each bond forms."></canvas>
+        <div class="controls"><div class="ctl"><label for="mm-n"><span>Number of monomers</span> <output id="mm-n-out"></output></label><input type="range" id="mm-n" min="2" max="12" step="1" value="6"></div></div>
+        <div class="readout"><div><span>polymer</span><strong class="x" id="mm-poly">—</strong></div><div><span>bond formed</span><strong class="a" id="mm-bond">—</strong></div><div><span>water molecules released</span><strong class="v" id="mm-h2o">—</strong></div><div><span>elements</span><strong class="" id="mm-els">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose amino acids and 10 monomers. How many peptide bonds and waters? <button type="button" class="btn link" data-show='[["click", "#mm-kind [data-k=aa]"], ["#mm-n", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>9 peptide bonds and 9 water molecules released: n − 1 of each.</p></details></li>
+        <li><p>Choose nucleotides. Which element appears that carbohydrates lack? <button type="button" class="btn link" data-show='[["click", "#mm-kind [data-k=nuc]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Phosphorus (in the phosphate of each nucleotide), plus nitrogen from the bases.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A polypeptide is built from 150 amino acids. How many water molecules are released during synthesis, and how many are used to break it back into amino acids?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Bonds.</b> A chain of 150 monomers has 150 − 1 = 149 peptide bonds.</li>
+          <li hidden><b>Synthesis.</b> Each bond forms with the removal of one H₂O: 149 waters released.</li>
+          <li hidden><b>Hydrolysis.</b> Breaking 149 bonds uses 149 H₂O, the same number returned.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying hydrolysis removes water. It adds water.</li>
+        <li>Using n instead of n − 1 for the number of bonds in a linear chain.</li>
+        <li>Calling lipids polymers. They are not made of repeating identical monomers.</li>
+        <li>Mixing the names of the bonds.</li>
+        <li>Forgetting that cellulose and starch are both glucose polymers but differ in how the glucose units are linked, so they behave differently.</li>
+      </ul></div>
+      <div class="prose"><h2>Structure fits function</h2>
+        <p>Starch (plants) and glycogen (animals) store glucose; cellulose gives plant cell walls strength. Saturated fats have no double bonds and are solid at room temperature; unsaturated fats have double bonds that kink the chain and are liquid. Phospholipids have a hydrophilic head and hydrophobic tails, which is why they form bilayers.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Dehydration synthesis removes H₂O as the bond forms.">
+        <p class="q">Check yourself: Joining two amino acids by a peptide bond</p>
+        <div class="opts"><button type="button">releases one water molecule</button><button type="button">uses one water molecule</button><button type="button">releases carbon dioxide</button><button type="button">needs no change in atoms</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-protein" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 1</span></div>
+        <h1>Protein structure</h1>
+        <p class="lede">A protein is a chain of amino acids that folds into one particular shape, and the shape is what lets it work.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Twenty amino acids share the same backbone but differ in their <b>R group</b>: nonpolar (hydrophobic), polar, or charged. The order of amino acids is the <b>primary</b> structure. Hydrogen bonds along the backbone create <b>secondary</b> structure (α-helices and β-pleated sheets). Interactions among R groups (hydrophobic clustering, hydrogen bonds, ionic bonds, disulfide bridges) fold the chain into a <b>tertiary</b> shape. Some proteins are made of several polypeptides: <b>quaternary</b> structure.</p>
+        <p>Because folding depends on the R groups, changing even one amino acid can change the shape and function (sickle cell hemoglobin has one substitution). Heat, pH and salt can break the weak interactions that hold the shape: that is <b>denaturation</b>, and it usually destroys function.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>proteins were just long chains</dd><dt>So we didn't need</dt><dd>that the chain folds into a precise 3-D shape that depends on its sequence</dd><dt>Now</dt><dd>why sequence changes and denaturation affect function</dd><dt>So we need</dt><dd>four levels of structure and what holds each one</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>primary: amino acid sequence</span><small>peptide bonds</small></div><div class="eqn"><span>secondary: α-helix, β-sheet</span><small>hydrogen bonds in the backbone</small></div><div class="eqn"><span>tertiary: overall fold</span><small>R-group interactions</small></div><div class="eqn"><span>quaternary: several chains</span><small>same kinds of interactions</small></div></div>
+      <div class="lab" id="pr-lab">
+        <div class="labbar"><span class="title">Four levels of protein structure</span></div>
+        <div class="row"><button type="button" class="btn" id="pr-prev">Previous</button><button type="button" class="btn primary" id="pr-next">Next stage</button><button type="button" class="btn" id="pr-play">Play</button></div>
+        <canvas id="pr-canvas" aria-label="A diagram that changes with each level: a chain of beads, a helix, a folded blob and a complex of subunits."></canvas>
+        <div class="controls"><div class="ctl"><label for="pr-st"><span>Stage</span> <output id="pr-st-out"></output></label><input type="range" id="pr-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="pr-name">—</strong></div><div><span>what is happening</span><strong class="" id="pr-txt">—</strong></div><div><span>held together by</span><strong class="v" id="pr-bond">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the tertiary stage. What are the main forces? <button type="button" class="btn link" data-show='[["#pr-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Interactions between R groups: hydrophobic clustering inside, hydrogen bonds, ionic bonds, and covalent disulfide bridges between cysteines.</p></details></li>
+        <li><p>At the quaternary stage, what is new? <button type="button" class="btn link" data-show='[["#pr-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>More than one polypeptide chain assembles into one functional protein, as in hemoglobin (four chains).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Sickle cell hemoglobin has valine instead of glutamic acid at position 6 of the β chain. Explain how one change can change the protein.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Primary change.</b> Glutamic acid has a charged R group; valine is nonpolar.</li>
+          <li hidden><b>Effect on interactions.</b> The new nonpolar R group sticks to hydrophobic spots on other hemoglobin molecules.</li>
+          <li hidden><b>Effect on structure.</b> Molecules clump into long fibers at low oxygen, changing the red blood cell shape.</li>
+          <li hidden><b>Conclusion.</b> A single change in primary structure altered interactions, shape and function.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying peptide bonds hold the tertiary structure. They hold the primary structure; weak interactions and disulfides fold the chain.</li>
+        <li>Thinking denaturation breaks peptide bonds. It disrupts folding but usually leaves the sequence intact.</li>
+        <li>Forgetting that the R group determines where an amino acid sits in the folded protein.</li>
+        <li>Mixing secondary (backbone H-bonds) with tertiary (R-group interactions).</li>
+        <li>Assuming every protein has quaternary structure.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading a data question</h2>
+        <p>If a mutation swaps a polar amino acid for a nonpolar one, predict where it will be (more likely inside, or on a surface where it disrupts solubility) and whether folding or binding is affected. Use "R group", "interaction", "shape" and "function" in your explanation.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Primary is the order of amino acids joined by peptide bonds.">
+        <p class="q">Check yourself: Which level of protein structure is the linear sequence of amino acids?</p>
+        <div class="opts"><button type="button">primary</button><button type="button">secondary</button><button type="button">tertiary</button><button type="button">quaternary</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-dnastruct" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 1</span></div>
+        <h1>DNA & RNA structure</h1>
+        <p class="lede">DNA stores biological information in a simple pattern: two strands, four bases, and fixed pairing rules.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>nucleotide</b> has a sugar (deoxyribose in DNA, ribose in RNA), a phosphate and a nitrogenous base. In DNA the bases are adenine (A), thymine (T), guanine (G) and cytosine (C). Nucleotides join by <b>phosphodiester bonds</b> between the sugar of one and the phosphate of the next, forming a sugar-phosphate backbone with a direction: one end is 5′ and the other is 3′.</p>
+        <p>Two strands run <b>antiparallel</b> and are held by hydrogen bonds between bases: A pairs with T (two bonds) and G pairs with C (three bonds). So in double-stranded DNA, %A = %T and %G = %C (Chargaff's rules). RNA is usually single-stranded, uses ribose, and has uracil (U) in place of thymine.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>DNA was the molecule of heredity, little more</dd><dt>So we didn't need</dt><dd>that its structure explains how information is stored and copied</dd><dt>Now</dt><dd>why the amount of A equals T and why G–C rich DNA is harder to melt</dd><dt>So we need</dt><dd>nucleotides, base pairing, antiparallel strands</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>A = T and G = C in double-stranded DNA</span><small>Chargaff</small></div><div class="eqn"><span>A–T: 2 H-bonds; G–C: 3 H-bonds</span><small>pairing</small></div><div class="eqn"><span>strands run 5′ → 3′ and 3′ → 5′</span><small>antiparallel</small></div><div class="eqn"><span>RNA: ribose, U instead of T</span><small>single-stranded</small></div></div>
+      <div class="lab" id="dn-lab" data-reset="own">
+        <div class="labbar"><span class="title">Base composition of double-stranded DNA</span></div>
+        <canvas id="dn-canvas" aria-label="A double helix drawn with the proportion of GC and AT pairs set by a slider. Counts of each base are shown."></canvas>
+        <div class="controls"><div class="ctl"><label for="dn-n"><span>Length</span> <output id="dn-n-out"></output></label><input type="range" id="dn-n" min="20" max="200" step="10" value="100"></div><div class="ctl"><label for="dn-gc"><span>GC content</span> <output id="dn-gc-out"></output></label><input type="range" id="dn-gc" min="20" max="80" step="1" value="40"></div></div>
+        <div class="readout"><div><span>A</span><strong class="x" id="dn-a">—</strong></div><div><span>T</span><strong class="x" id="dn-t">—</strong></div><div><span>G</span><strong class="a" id="dn-g">—</strong></div><div><span>C</span><strong class="a" id="dn-c">—</strong></div><div><span>hydrogen bonds in total</span><strong class="v" id="dn-hb">—</strong></div><div><span>how hard to melt</span><strong class="" id="dn-tm">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set GC content to 70%. Which is harder to separate: this or 30% GC? <button type="button" class="btn link" data-show='[["#dn-gc", 70]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>70% GC. G–C pairs have three hydrogen bonds versus two for A–T, so more energy (a higher temperature) is needed to separate the strands.</p></details></li>
+        <li><p>If the GC content is 40%, what are the percentages of A and T? <button type="button" class="btn link" data-show='[["#dn-gc", 40]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>30% each: A = T and the rest (100 − 40 = 60%) splits evenly between A and T.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A double-stranded DNA sample is 22% cytosine. What percentage is adenine? How many hydrogen bonds hold a 100 bp segment of it together?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Chargaff.</b> C = G = 22%, so G + C = 44%.</li>
+          <li hidden><b>A and T.</b> The remaining 56% is split equally: A = T = 28%.</li>
+          <li hidden><b>Hydrogen bonds in 100 bp.</b> 44 G–C pairs × 3 = 132 and 56 A–T pairs × 2 = 112, total 244.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Writing that A pairs with U in DNA.</li>
+        <li>Believing the strands run in the same direction.</li>
+        <li>Forgetting G–C has three bonds and A–T two.</li>
+        <li>Saying %A + %G = 50% is the same as %A = %G.</li>
+        <li>Mixing up deoxyribose and ribose.</li>
+      </ul></div>
+      <div class="prose"><h2>Applying Chargaff</h2>
+        <p>If you are given the percent of one base in double-stranded DNA you can find all four. In single-stranded DNA or RNA the rules do not apply. Compare melting temperatures by comparing G + C percentage: higher GC means more bonds and a higher melting temperature.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="T = A = 30%, so G + C = 40% and G = 20%.">
+        <p class="q">Check yourself: In double-stranded DNA, if 30% of the bases are thymine, what percent are guanine?</p>
+        <div class="opts"><button type="button">20%</button><button type="button">30%</button><button type="button">40%</button><button type="button">70%</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-transport" hidden>
     <div class="wrap">
       <div class="head">
@@ -1556,8 +1760,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": [], "soon": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"], "soon": ["organelles", "sav", "membrane", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": [], "soon": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"], "soon": ["organelles", "sav", "membrane", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": [], "soon": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -1910,6 +2114,152 @@ function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillSt
     return {q:`A ${c0} mg/mL stock is serially diluted 1 : ${f} for ${k} steps (each tube made from the previous). What is the concentration in the last tube?`,ans,unit:'mg/mL',abs:ans*.01+.0005,chk:c0/Math.pow(f,k),hint:'Divide by the factor once for every step.',sol:`${c0} / ${f}<sup>${k}</sup> = ${c0} / ${Math.pow(f,k)} = <b>${fmt(ans,4)} mg/mL</b>.`};}});
   PROBS.push({id:'rq-c1v1',topic:'ratesq10',title:'Making a dilution (C₁V₁ = C₂V₂)',gen(){const c1=pick([10,20,50]),c2=pick([1,2,5]),v2=pick([50,100,200]),ans=c2*v2/c1;
     return {q:`You have a ${c1} M stock. How many mL of stock are needed to prepare ${v2} mL of ${c2} M solution?`,ans,unit:'mL',abs:.02,chk:c2*v2/c1,hint:'C1V1 = C2V2, solve for V1.',sol:`V1 = (${c2} × ${v2})/${c1} = <b>${fmt(ans,2)} mL</b> of stock plus water to ${v2} mL.`};}});
+})();
+
+/* ===== modules/water.js ===== */
+/* ---------------- Water & hydrogen bonds ---------------- */
+(function water(){
+  const cv=$('#wa-canvas');if(!cv)return;
+  let Tc=20;const N=28,P=[];
+  const bondsAt=t=>t<0?4:t<=100?3.6-.015*t:0;
+  const DEN=[[0,.9999],[4,1],[20,.9982],[40,.9922],[60,.9832],[80,.9718],[100,.9584]];
+  const dens=t=>{if(t<0)return .917;if(t>100)return null;for(let i=1;i<DEN.length;i++)if(t<=DEN[i][0]){const a=DEN[i-1],b=DEN[i];return a[1]+(b[1]-a[1])*(t-a[0])/(b[0]-a[0]);}return .9584;};
+  for(let i=0;i<N;i++)P.push({x:Math.random(),y:Math.random(),vx:Math.random()-.5,vy:Math.random()-.5,lx:((i%7)+.5+(Math.floor(i/7)%2?.5:0))/7.6+.03,ly:(Math.floor(i/7)+.5)/4.2+.02,a:Math.random()*6.28});
+  const hash=(i,j,k)=>{const s=Math.sin(i*127.1+j*311.7+k*74.7)*43758.5453;return s-Math.floor(s);};
+  const sim=sim2d(cv,{h:w=>clamp(w*.5,250,340),
+    step(dt){const sp=Tc<0?0:Tc>100?.55:.12+Math.max(0,Tc)*.0018;P.forEach(p=>{if(Tc<0){p.x+=(p.lx-p.x)*Math.min(1,dt*4)+(Math.random()-.5)*.002;p.y+=(p.ly-p.y)*Math.min(1,dt*4)+(Math.random()-.5)*.002;}
+        else{p.vx+=(Math.random()-.5)*dt*3;p.vy+=(Math.random()-.5)*dt*3;const m=Math.hypot(p.vx,p.vy)||1;p.vx=p.vx/m*sp;p.vy=p.vy/m*sp;p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.x<.03||p.x>.97){p.vx=-p.vx;p.x=clamp(p.x,.03,.97);}if(p.y<.04||p.y>.96){p.vy=-p.vy;p.y=clamp(p.y,.04,.96);}}
+        p.a+=dt*(Tc<0?0:.5+sp*3);});},
+    draw(ctx,w,h,t){const pw=w-20,ph=h-20,ox=10,oy=10;ctx.strokeStyle=T.line;ctx.lineWidth=2;ctx.strokeRect(ox,oy,pw,ph);
+      const pr=bondsAt(Tc)/4,bucket=Math.floor(t*3),cut=Tc<0?Math.min(pw,ph*1.7)/7.2:pw*.17;
+      ctx.setLineDash([4,3]);ctx.strokeStyle=T.cx;ctx.lineWidth=1.6;
+      for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const a=P[i],b=P[j],d=Math.hypot((a.x-b.x)*pw,(a.y-b.y)*ph);if(d<cut*1.15&&(Tc<0||hash(i,j,bucket)<pr)){ctx.beginPath();ctx.moveTo(ox+a.x*pw,oy+a.y*ph);ctx.lineTo(ox+b.x*pw,oy+b.y*ph);ctx.stroke();}}
+      ctx.setLineDash([]);P.forEach(p=>{const x=ox+p.x*pw,y=oy+p.y*ph;dot2(ctx,x,y,T.cx,8);[.9,2.3].forEach(o=>{dot2(ctx,x+Math.cos(p.a+o)*13,y+Math.sin(p.a+o)*13,T.surface,4);});});}});
+  function upd(){const d=dens(Tc);setText('wa-ph',Tc<0?'ice (solid)':Tc<=100?'liquid water':'steam (gas)');setText('wa-b',fmt(bondsAt(Tc),1));setText('wa-d',d==null?'≈ 0.0006 (gas)':fmt(d,3)+(Tc<0?' (ice floats)':Tc===4?' (maximum)':''));sim.render();}
+  bindRange('wa-t',v=>v+' °C',v=>{Tc=v;upd();});
+  $('#wa-lab').addEventListener('labreset',()=>{Tc=20;setCtl('wa-t',20,v=>v+' °C');upd();});upd();
+  /* specific heat */
+  let q=1000,m=100;const cv2=$('#wa-canvas2');
+  const sim2=sim2d(cv2,{h:w=>clamp(w*.3,140,190),draw(ctx,w,h){const dw=q/(m*4.18),dO=q/(m*2.0),mx=Math.max(10,dO*1.1),L=96,R=w-18,y1=h*.3,y2=h*.68,bh=24;
+      [[dw,'water',T.cx,y1],[dO,'oil',T.ce,y2]].forEach(([v,nm,col,y])=>{ctx.fillStyle=alpha(col,.7);ctx.fillRect(L,y-bh/2,(R-L)*v/mx,bh);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(L,y-bh/2,(R-L)*v/mx,bh);label(ctx,nm,L-8,y,T.ink,'right','middle',MONO);label(ctx,'+'+fmt(v,1)+' °C',L+(R-L)*v/mx+6,y,T.ink,'left','middle',MONO);});
+      label(ctx,'same heat, same mass',w/2,10,T.muted,'center','middle',MONO);}});
+  function upd2(){setText('wa-dw','+'+fmt(q/(m*4.18),2)+' °C');setText('wa-do','+'+fmt(q/(m*2.0),2)+' °C');sim2.render();}
+  bindRange('wa-q',v=>v+' J',v=>{q=v;upd2();});bindRange('wa-m',v=>v+' g',v=>{m=v;upd2();});
+  $('#wa-lab2').addEventListener('labreset',()=>{q=1000;m=100;setCtl('wa-q',1000,v=>v+' J');setCtl('wa-m',100,v=>v+' g');upd2();});upd2();
+  drawers.water=()=>{sim.render();sim2.render();};
+  KEYS['wa-canvas']=['Blue circles are oxygen, small white dots are hydrogens, dashed lines are hydrogen bonds. This is a simplified 2-D picture.',[['cx','water molecule and hydrogen bonds']]];
+  KEYS['wa-canvas2']=['Water warms about half as much as oil for the same heat.',[['cx','water'],['ce','cooking oil (c ≈ 2.0 J/g°C)']]];
+  TIPS['wa-t']=()=>'Colder: bonds persist longer. Hotter: molecules move too fast for bonds to hold.';
+  GLOSS['hydrogen bond']='A weak attraction between a hydrogen with a partial positive charge and a nearby electronegative atom (O, N) of another molecule.';
+  GLOSS['cohesion']='Attraction between molecules of the same substance, such as water to water.';GLOSS['adhesion']='Attraction between water and a different surface.';GLOSS['specific heat']='Heat needed to raise 1 g of a substance by 1 °C. Water: 4.18 J/g°C.';
+  TT.water='Ask which property each lab demonstrates before showing the explanation: bonds vs. density vs. specific heat.';
+})();
+(function(){
+  PROBS.push({id:'wa-q',topic:'water',title:'Heat to warm water',gen(){const m=pick([50,100,200,250,500]),t1=pick([10,15,20,25]),dT=pick([5,10,15,20]),ans=m*4.18*dT;
+    return {q:`How much heat energy is needed to warm ${m} g of water from ${t1} °C to ${t1+dT} °C? (c = 4.18 J/g°C)`,ans,unit:'J',abs:ans*.005,chk:m*4.18*dT,hint:'q = m · c · ΔT.',sol:`q = ${m} × 4.18 × ${dT} = <b>${fmt(ans,0)} J</b>.`};}});
+  PROBS.push({id:'wa-dt',topic:'water',title:'Temperature change from heat',gen(){const m=pick([50,100,200]),q=pick([836,2090,4180,8360]),ans=q/(m*4.18);
+    return {q:`${q} J of heat is absorbed by ${m} g of water (c = 4.18 J/g°C). By how many °C does the temperature rise?`,ans,unit:'°C',abs:.02,chk:q/(m*4.18),hint:'Rearrange q = mcΔT to find ΔT.',sol:`ΔT = ${q}/(${m} × 4.18) = <b>${fmt(ans,2)} °C</b>.`};}});
+  const props=[['A water strider walks on a pond because','cohesion of water molecules (surface tension)',['adhesion of water to its legs','low specific heat','ice is less dense than water']],['Water rises up a thin glass tube partly because','adhesion between water and the glass',['water is nonpolar','hydrogen bonds do not form','low heat of vaporization']],['A large lake warms slowly in summer because of water\'s','high specific heat',['low density','nonpolar nature','low cohesion']],['Ice floats on liquid water because','hydrogen bonds hold ice in an open lattice that is less dense',['ice has fewer molecules per bond','ice molecules are lighter','ice is nonpolar']],['Table salt dissolves in water because','water is polar and surrounds the ions',['water is nonpolar','salt forms hydrogen bonds with itself','salt is hydrophobic']]];
+  PROBS.push({id:'wa-prop',topic:'water',title:'Property of water',gen(){const p=pick(props),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Match the observation to hydrogen bonding, polarity or specific heat.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/macromol.js ===== */
+/* ---------------- Macromolecules & monomers ---------------- */
+(function macromol(){
+  const cv=$('#mm-canvas');if(!cv)return;
+  let kind='sug',n=6;
+  const INFO={sug:{poly:['disaccharide','polysaccharide'],bond:'glycosidic bond',els:'C, H, O (about 1 : 2 : 1)',col:()=>T.ce},aa:{poly:['dipeptide','polypeptide'],bond:'peptide bond',els:'C, H, O, N (and sometimes S)',col:()=>T.ca},nuc:{poly:['dinucleotide','nucleic acid strand'],bond:'phosphodiester bond',els:'C, H, O, N, P',col:()=>T.cv}};
+  function shape(ctx,x,y,s,col){ctx.fillStyle=alpha(col,.7);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();
+    if(kind==='sug'){for(let i=0;i<6;i++){const a=i/6*6.283+.52;ctx.lineTo(x+Math.cos(a)*s,y+Math.sin(a)*s);}ctx.closePath();ctx.fill();ctx.stroke();}
+    else if(kind==='aa'){ctx.arc(x,y,s,0,6.283);ctx.fill();ctx.stroke();ctx.beginPath();ctx.arc(x,y-s*1.25,s*.45,0,6.283);ctx.fillStyle=alpha(T.ink,.35);ctx.fill();}
+    else{ctx.rect(x-s*.8,y-s*.8,s*1.6,s*1.6);ctx.fill();ctx.stroke();ctx.beginPath();ctx.arc(x,y+s*1.35,s*.45,0,6.283);ctx.fillStyle=alpha(T.ce,.8);ctx.fill();}}
+  const sim=sim2d(cv,{h:w=>clamp(w*.3,150,200),draw(ctx,w,h){const s=Math.min(18,(w-30)/n/2.3),gap=(w-30)/n,y=h*.5;const col=INFO[kind].col();
+      for(let i=0;i<n;i++){const x=15+gap*(i+.5);if(i<n-1){ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x+s,y);ctx.lineTo(x+gap-s,y);ctx.stroke();dot2(ctx,x+gap/2,y+s*1.6+6,T.cx,Math.max(4,s*.35));}shape(ctx,x,y,s,col);}
+      label(ctx,'blue drops = water released at each bond',w/2,h-10,T.muted,'center','middle',MONO);}});
+  function upd(){const I=INFO[kind];setText('mm-poly',n===2?I.poly[0]:I.poly[1]);setText('mm-bond',I.bond+' × '+(n-1));setText('mm-h2o',String(n-1));setText('mm-els',I.els);sim.render();}
+  segBind('mm-kind','k',v=>{kind=v;upd();});bindRange('mm-n',v=>String(v),v=>{n=v;upd();});
+  $('#mm-lab').addEventListener('labreset',()=>{kind='sug';n=6;segSet('mm-kind',0);setCtl('mm-n',6);upd();});
+  upd();drawers.macromol=()=>sim.render();
+  KEYS['mm-canvas']=['Each shape is one monomer. Every bond releases one water molecule.',[['ce','sugar units'],['ca','amino acids'],['cv','nucleotides'],['cx','water']]];
+  TIPS['mm-n']=()=>'A linear chain of n monomers has n − 1 bonds and releases n − 1 water molecules.';
+  GLOSS['dehydration synthesis']='A reaction that joins monomers by removing a water molecule at each bond.';GLOSS['hydrolysis']='A reaction that breaks a bond by adding a water molecule.';GLOSS['monomer']='A small molecule that can join with others to make a polymer.';
+  TT.macromol='Ask which of the four classes is not made of identical repeating units.';
+})();
+(function(){
+  PROBS.push({id:'mm-bonds',topic:'macromol',title:'Water released in synthesis',gen(){const kind=pick([['amino acids','polypeptide'],['glucose molecules','polysaccharide'],['nucleotides','nucleic acid strand']]),n=randInt(4,60);
+    return {q:`A ${kind[1]} is made from ${n} ${kind[0]} in a single unbranched chain. How many water molecules are released during its synthesis?`,ans:n-1,unit:'',tol:0,chk:n-1,hint:'A linear chain has n − 1 bonds.',sol:`${n} − 1 = <b>${n-1}</b>.`};}});
+  PROBS.push({id:'mm-hyd',topic:'macromol',title:'Hydrolysis uses water',gen(){const n=randInt(5,40);
+    return {q:`Complete hydrolysis of an unbranched polymer made of ${n} monomers back into single monomers uses how many water molecules?`,ans:n-1,unit:'',tol:0,chk:n-1,hint:'One water per bond broken.',sol:`There are ${n-1} bonds, so <b>${n-1}</b> waters are used.`};}});
+  const pairs=[['amino acids','protein (polypeptide)','peptide bond'],['monosaccharides','polysaccharide','glycosidic bond'],['nucleotides','nucleic acid','phosphodiester bond']];
+  PROBS.push({id:'mm-class',topic:'macromol',title:'Monomer, polymer, bond',gen(){const p=pick(pairs),w=pick([1,2]),qs=[`Which type of bond joins ${p[0]}?`,`${p[0][0].toUpperCase()+p[0].slice(1)} are the monomers of which macromolecule?`];const ans=w===1?p[2]:p[1];const pool=w===1?pairs.map(x=>x[2]).concat(['ionic bond']):pairs.map(x=>x[1]).concat(['lipid (fat)']);const m=mcq(ans,pool.filter(x=>x!==ans));
+    return {q:qs[w-1],choices:m.choices,ans:m.ans,hint:'Amino acids: peptide. Sugars: glycosidic. Nucleotides: phosphodiester.',sol:`<b>${ans}</b>.`};}});
+})();
+
+/* ===== modules/protein.js ===== */
+/* ---------------- Protein structure ---------------- */
+(function protein(){
+  const cv=$('#pr-canvas');if(!cv)return;
+  const TYPES=['np','po','ch','np','np','po','ch','po','np','np','ch','po','np','po'];
+  const colOf=t=>t==='np'?T.ce:t==='po'?T.cx:T.ca;
+  const ST=[{n:'primary',t:'A chain of amino acids in a fixed order, joined by peptide bonds.',b:'peptide bonds (covalent)'},{n:'secondary',t:'Local folding of the backbone into α-helices and β-pleated sheets.',b:'hydrogen bonds between backbone atoms'},{n:'tertiary',t:'The whole chain folds into a 3-D shape. Nonpolar R groups cluster inside, away from water.',b:'R-group interactions: hydrophobic, hydrogen, ionic, disulfide'},{n:'quaternary',t:'Two or more folded polypeptides assemble into one protein.',b:'the same kinds of R-group interactions between chains'}];
+  function bead(ctx,x,y,t,r=8){dot2(ctx,x,y,colOf(t),r);}
+  function blob(ctx,cx,cy,R,seed,col){ctx.beginPath();for(let i=0;i<=40;i++){const a=i/40*6.283,r=R*(1+.14*Math.sin(a*3+seed)+.08*Math.cos(a*5+seed*2));i?ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a)):ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a));}ctx.closePath();ctx.fillStyle=alpha(col,.13);ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=2;ctx.stroke();}
+  function fold(ctx,cx,cy,R,seed){const pts=TYPES.map((t,i)=>{const a=i*.95+seed,r=(t==='np'?.35:t==='po'?.65:.85)*R;return [cx+r*Math.cos(a),cy+r*Math.sin(a)*.92,t];});ctx.strokeStyle=T.ink;ctx.lineWidth=2;ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.stroke();pts.forEach(p=>bead(ctx,p[0],p[1],p[2],5.5));return pts;}
+  const sc=stageLab('pr','pr-canvas',ST.map(s=>({n:s.n,t:s.t})),(ctx,w,h,i)=>{const cx=w/2,cy=h/2;
+    if(i===0){const g=(w-40)/(TYPES.length-1);ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.beginPath();TYPES.forEach((t,k)=>{const x=20+g*k,y=cy+Math.sin(k*1.7)*14;k?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();TYPES.forEach((t,k)=>bead(ctx,20+g*k,cy+Math.sin(k*1.7)*14,t,Math.min(10,g*.38)));
+      label(ctx,'N-terminus →',24,cy-46,T.muted,'left','middle',MONO);label(ctx,'→ C-terminus',w-24,cy-46,T.muted,'right','middle',MONO);}
+    if(i===1){const hx=w*.1,hw=w*.36;ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.beginPath();for(let k=0;k<=80;k++){const x=hx+hw*k/80,y=cy+Math.sin(k/80*6.283*3.2)*34;k?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();
+      label(ctx,'α-helix',hx+hw/2,h-14,T.ink,'center','middle',MONO);const sx=w*.58;for(let r=0;r<3;r++){const y=cy-36+r*36;ctx.fillStyle=alpha(T.cv,.55);ctx.strokeStyle=T.cv;ctx.lineWidth=2;ctx.beginPath();const d=r%2?-1:1,x0=d>0?sx:sx+w*.3,x1=d>0?sx+w*.3:sx;ctx.moveTo(x0,y-8);ctx.lineTo(x1-d*14,y-8);ctx.lineTo(x1-d*14,y-15);ctx.lineTo(x1,y);ctx.lineTo(x1-d*14,y+15);ctx.lineTo(x1-d*14,y+8);ctx.lineTo(x0,y+8);ctx.closePath();ctx.fill();ctx.stroke();}
+      label(ctx,'β-pleated sheet',sx+w*.15,h-14,T.ink,'center','middle',MONO);}
+    if(i===2){const R=Math.min(h*.42,w*.3);blob(ctx,cx,cy,R,1,T.accent);const pts=fold(ctx,cx,cy,R*.9,.3);ctx.setLineDash([3,3]);ctx.strokeStyle=T.ca;ctx.lineWidth=1.6;[[2,6],[6,10]].forEach(([a,b])=>{ctx.beginPath();ctx.moveTo(pts[a][0],pts[a][1]);ctx.lineTo(pts[b][0],pts[b][1]);ctx.stroke();});ctx.setLineDash([]);
+      label(ctx,'gold beads inside (nonpolar)',cx,h-10,T.muted,'center','middle',MONO);}
+    if(i===3){const R=Math.min(h*.28,w*.15),pos=[[-1,-.6,T.cx],[1,-.6,T.ca],[-1,.7,T.ca],[1,.7,T.cx]];pos.forEach(([dx,dy,col],k)=>{const x=cx+dx*R*1.25,y=cy+dy*R*1.1;blob(ctx,x,y,R,k+1,col);fold(ctx,x,y,R*.9,k);});label(ctx,'four subunits, as in hemoglobin',cx,h-10,T.muted,'center','middle',MONO);}
+    },{h:w=>clamp(w*.5,250,340),onStage:i=>setText('pr-bond',ST[i].b)});
+  $('#pr-lab').addEventListener('labreset',()=>{sc.go(0);});
+  drawers.protein=()=>sc.render();
+  KEYS['pr-canvas']=['Beads are amino acids: gold nonpolar, blue polar, pink charged. Step through the four levels.',[['ce','nonpolar R group'],['cx','polar R group'],['ca','charged R group']]];
+  TIPS['pr-st']=()=>'Primary → secondary → tertiary → quaternary: each level builds on the one before.';
+  GLOSS['denaturation']='Loss of a protein\'s normal 3-D shape (and usually its function) caused by heat, pH or salt that disrupt weak interactions.';GLOSS['r group']='The side chain that makes each amino acid different.';GLOSS['peptide bond']='The covalent bond between the carboxyl group of one amino acid and the amino group of the next.';
+  TT.protein='Ask students which level changes first when a gene is mutated, and which when a protein is heated.';
+})();
+(function(){
+  const lv=[['the sequence of amino acids','primary'],['α-helices and β-sheets formed by backbone hydrogen bonds','secondary'],['the overall 3-D fold formed by R-group interactions','tertiary'],['the assembly of several polypeptide chains','quaternary'],['a disulfide bridge between two cysteines in the same chain','tertiary']];
+  PROBS.push({id:'pr-level',topic:'protein',title:'Level of structure',gen(){const p=pick(lv),m=mcq(p[1],['primary','secondary','tertiary','quaternary'].filter(x=>x!==p[1]));return {q:`Which level of protein structure is described? ${p[0][0].toUpperCase()+p[0].slice(1)}.`,choices:m.choices,ans:m.ans,hint:'Primary sequence, secondary backbone, tertiary whole chain, quaternary several chains.',sol:`<b>${p[1]}</b> structure.`};}});
+  PROBS.push({id:'pr-pept',topic:'protein',title:'Peptide bonds in a chain',gen(){const n=randInt(5,300);return {q:`How many peptide bonds are in a single unbranched polypeptide of ${n} amino acids?`,ans:n-1,unit:'',tol:0,chk:n-1,hint:'n − 1.',sol:`<b>${n-1}</b>.`};}});
+  const eff=[['A mutation replaces a polar amino acid inside the core of an enzyme with a charged one. The most likely effect is','disrupted folding because charged groups avoid the hydrophobic interior',['no change because only the primary structure changed','a change in the genetic code of the protein','new peptide bonds forming']],['Heating a protein to 90 °C usually causes','denaturation: weak interactions break and the shape is lost',['hydrolysis of every peptide bond','a change in the amino acid sequence','formation of more hydrogen bonds']],['Adding acid to an enzyme changes its activity mainly because','the charges on R groups change, altering ionic and hydrogen bonds',['it adds peptide bonds','it replaces amino acids','it makes the enzyme nonpolar']]];
+  PROBS.push({id:'pr-eff',topic:'protein',title:'Why shape changes',gen(){const p=pick(eff),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Folding depends on R-group interactions, not only on the peptide bonds.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/dnastruct.js ===== */
+/* ---------------- DNA & RNA structure ---------------- */
+(function dnastruct(){
+  const cv=$('#dn-canvas');if(!cv)return;
+  let n=100,gc=40;
+  const sim=sim2d(cv,{h:w=>clamp(w*.4,200,260),draw(ctx,w,h,t){const pairs=32,L=24,R=w-24,cy=h/2,amp=h*.3,g=(R-L)/(pairs-1),gcN=Math.round(pairs*gc/100);let acc=0;
+      const isGC=[];for(let i=0;i<pairs;i++){acc+=gcN/pairs;if(acc>=1){isGC.push(true);acc-=1;}else isGC.push(false);}
+      for(let i=0;i<pairs;i++){const x=L+g*i,ph=i*.42+t*.4,y1=cy+Math.sin(ph)*amp,y2=cy-Math.sin(ph)*amp,col=isGC[i]?T.ca:T.cx;
+        ctx.strokeStyle=alpha(col,.9);ctx.lineWidth=isGC[i]?4:2.4;ctx.beginPath();ctx.moveTo(x,y1);ctx.lineTo(x,y2);ctx.stroke();}
+      [1,-1].forEach((s,k)=>{ctx.strokeStyle=k?T.ink:T.muted;ctx.lineWidth=3;ctx.beginPath();for(let i=0;i<pairs*4;i++){const q=i/4,x=L+g*q,y=cy+s*Math.sin(q*.42+t*.4)*amp;i?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();});
+      label(ctx,'pink rungs: G–C (3 bonds)   blue rungs: A–T (2 bonds)',w/2,12,T.muted,'center','middle',MONO);label(ctx,"5′",L-8,cy-amp-2,T.muted,'center','middle',MONO);label(ctx,"3′",R+8,cy-amp-2,T.muted,'center','middle',MONO);}});
+  function upd(){const at=(100-gc)/2,GCn=Math.round(n*gc/100);setText('dn-a',fmt(at,1)+'%');setText('dn-t',fmt(at,1)+'%');setText('dn-g',fmt(gc/2,1)+'%');setText('dn-c',fmt(gc/2,1)+'%');setText('dn-hb',String(3*GCn+2*(n-GCn))+' in '+n+' bp');setText('dn-tm',gc<35?'melts easily (AT-rich)':gc<55?'moderate':'melts only at high temperature (GC-rich)');sim.render();}
+  bindRange('dn-n',v=>v+' bp',v=>{n=v;upd();});bindRange('dn-gc',v=>v+'%',v=>{gc=v;upd();});
+  $('#dn-lab').addEventListener('labreset',()=>{n=100;gc=40;setCtl('dn-n',100,v=>v+' bp');setCtl('dn-gc',40,v=>v+'%');upd();});
+  upd();drawers.dnastruct=()=>sim.render();
+  KEYS['dn-canvas']=['Each rung is a base pair. Pink pairs (G–C) are held by three hydrogen bonds, blue pairs (A–T) by two.',[['ca','G–C pair'],['cx','A–T pair']]];
+  TIPS['dn-gc']=()=>'G pairs with C and A with T, so G = C and A = T. More GC means more hydrogen bonds.';
+  GLOSS['antiparallel']='The two strands of DNA run in opposite directions, one 5′→3′ and the other 3′→5′.';GLOSS['nucleotide']='A sugar, a phosphate and a nitrogenous base: the monomer of nucleic acids.';GLOSS['chargaff']='In double-stranded DNA, the amount of A equals T and G equals C.';
+  TT.dnastruct='Ask students to predict A, T, G, C from one base percentage before using the slider.';
+})();
+(function(){
+  PROBS.push({id:'dn-chargaff',topic:'dnastruct',title:'Chargaff\'s rules',gen(){const b=pick(['cytosine','guanine','adenine','thymine']),p=pick([18,20,22,24,26,28,30,32,34]),gcp=(b==='cytosine'||b==='guanine')?2*p:100-2*p,want=pick(['adenine','thymine','guanine','cytosine']);
+    const ans=(want==='cytosine'||want==='guanine')?gcp/2:(100-gcp)/2;
+    return {q:`A sample of double-stranded DNA is ${p}% ${b}. What percent is ${want}?`,ans,unit:'%',abs:.01,chk:ans,hint:'A = T and G = C. The four add to 100%.',sol:`${b[0]==='c'||b[0]==='g'?'G + C':'A + T'} = ${2*p}%, so G + C = ${gcp}% and A + T = ${100-gcp}%. ${want} = <b>${ans}%</b>.`};}});
+  PROBS.push({id:'dn-hb',topic:'dnastruct',title:'Hydrogen bonds in a segment',gen(){const gcn=randInt(5,60),atn=randInt(5,60),ans=3*gcn+2*atn;
+    return {q:`A DNA segment has ${gcn} G–C base pairs and ${atn} A–T base pairs. How many hydrogen bonds hold the two strands together?`,ans,unit:'',tol:0,chk:3*gcn+2*atn,hint:'G–C: 3 bonds. A–T: 2 bonds.',sol:`3 × ${gcn} + 2 × ${atn} = <b>${ans}</b>.`};}});
+  const comp={A:'T',T:'A',G:'C',C:'G'};
+  PROBS.push({id:'dn-comp',topic:'dnastruct',title:'Complementary strand',gen(){let s;do{s=Array.from({length:6},()=>pick(['A','T','G','C'])).join('');}while(s.split('').reverse().map(c=>comp[c]).join('')===s||s.split('').map(c=>comp[c]).join('')===s.split('').reverse().map(c=>comp[c]).join(''));
+    const rc=s.split('').reverse().map(c=>comp[c]).join(''),straight=s.split('').map(c=>comp[c]).join(''),rev=s.split('').reverse().join(''),rna=straight.replace(/T/g,'U'),m=mcq(rc,[straight,rev,rna]);
+    return {q:`One DNA strand reads 5′-${s}-3′. Which is the complementary strand, written 5′ → 3′?`,choices:m.choices.map(x=>"5′-"+x+"-3′"),ans:m.ans,hint:'Pair A–T and G–C, then remember the strands are antiparallel: reverse the result to read 5′ → 3′.',sol:`Complement of ${s} is ${straight} (3′→5′ under it). Read 5′→3′: <b>5′-${rc}-3′</b>.`};}});
 })();
 
 /* ===== modules/transport.js ===== */

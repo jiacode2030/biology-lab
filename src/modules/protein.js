@@ -1,0 +1,33 @@
+/* ---------------- Protein structure ---------------- */
+(function protein(){
+  const cv=$('#pr-canvas');if(!cv)return;
+  const TYPES=['np','po','ch','np','np','po','ch','po','np','np','ch','po','np','po'];
+  const colOf=t=>t==='np'?T.ce:t==='po'?T.cx:T.ca;
+  const ST=[{n:'primary',t:'A chain of amino acids in a fixed order, joined by peptide bonds.',b:'peptide bonds (covalent)'},{n:'secondary',t:'Local folding of the backbone into α-helices and β-pleated sheets.',b:'hydrogen bonds between backbone atoms'},{n:'tertiary',t:'The whole chain folds into a 3-D shape. Nonpolar R groups cluster inside, away from water.',b:'R-group interactions: hydrophobic, hydrogen, ionic, disulfide'},{n:'quaternary',t:'Two or more folded polypeptides assemble into one protein.',b:'the same kinds of R-group interactions between chains'}];
+  function bead(ctx,x,y,t,r=8){dot2(ctx,x,y,colOf(t),r);}
+  function blob(ctx,cx,cy,R,seed,col){ctx.beginPath();for(let i=0;i<=40;i++){const a=i/40*6.283,r=R*(1+.14*Math.sin(a*3+seed)+.08*Math.cos(a*5+seed*2));i?ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a)):ctx.moveTo(cx+r*Math.cos(a),cy+r*Math.sin(a));}ctx.closePath();ctx.fillStyle=alpha(col,.13);ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=2;ctx.stroke();}
+  function fold(ctx,cx,cy,R,seed){const pts=TYPES.map((t,i)=>{const a=i*.95+seed,r=(t==='np'?.35:t==='po'?.65:.85)*R;return [cx+r*Math.cos(a),cy+r*Math.sin(a)*.92,t];});ctx.strokeStyle=T.ink;ctx.lineWidth=2;ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.stroke();pts.forEach(p=>bead(ctx,p[0],p[1],p[2],5.5));return pts;}
+  const sc=stageLab('pr','pr-canvas',ST.map(s=>({n:s.n,t:s.t})),(ctx,w,h,i)=>{const cx=w/2,cy=h/2;
+    if(i===0){const g=(w-40)/(TYPES.length-1);ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.beginPath();TYPES.forEach((t,k)=>{const x=20+g*k,y=cy+Math.sin(k*1.7)*14;k?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();TYPES.forEach((t,k)=>bead(ctx,20+g*k,cy+Math.sin(k*1.7)*14,t,Math.min(10,g*.38)));
+      label(ctx,'N-terminus →',24,cy-46,T.muted,'left','middle',MONO);label(ctx,'→ C-terminus',w-24,cy-46,T.muted,'right','middle',MONO);}
+    if(i===1){const hx=w*.1,hw=w*.36;ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.beginPath();for(let k=0;k<=80;k++){const x=hx+hw*k/80,y=cy+Math.sin(k/80*6.283*3.2)*34;k?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();
+      label(ctx,'α-helix',hx+hw/2,h-14,T.ink,'center','middle',MONO);const sx=w*.58;for(let r=0;r<3;r++){const y=cy-36+r*36;ctx.fillStyle=alpha(T.cv,.55);ctx.strokeStyle=T.cv;ctx.lineWidth=2;ctx.beginPath();const d=r%2?-1:1,x0=d>0?sx:sx+w*.3,x1=d>0?sx+w*.3:sx;ctx.moveTo(x0,y-8);ctx.lineTo(x1-d*14,y-8);ctx.lineTo(x1-d*14,y-15);ctx.lineTo(x1,y);ctx.lineTo(x1-d*14,y+15);ctx.lineTo(x1-d*14,y+8);ctx.lineTo(x0,y+8);ctx.closePath();ctx.fill();ctx.stroke();}
+      label(ctx,'β-pleated sheet',sx+w*.15,h-14,T.ink,'center','middle',MONO);}
+    if(i===2){const R=Math.min(h*.42,w*.3);blob(ctx,cx,cy,R,1,T.accent);const pts=fold(ctx,cx,cy,R*.9,.3);ctx.setLineDash([3,3]);ctx.strokeStyle=T.ca;ctx.lineWidth=1.6;[[2,6],[6,10]].forEach(([a,b])=>{ctx.beginPath();ctx.moveTo(pts[a][0],pts[a][1]);ctx.lineTo(pts[b][0],pts[b][1]);ctx.stroke();});ctx.setLineDash([]);
+      label(ctx,'gold beads inside (nonpolar)',cx,h-10,T.muted,'center','middle',MONO);}
+    if(i===3){const R=Math.min(h*.28,w*.15),pos=[[-1,-.6,T.cx],[1,-.6,T.ca],[-1,.7,T.ca],[1,.7,T.cx]];pos.forEach(([dx,dy,col],k)=>{const x=cx+dx*R*1.25,y=cy+dy*R*1.1;blob(ctx,x,y,R,k+1,col);fold(ctx,x,y,R*.9,k);});label(ctx,'four subunits, as in hemoglobin',cx,h-10,T.muted,'center','middle',MONO);}
+    },{h:w=>clamp(w*.5,250,340),onStage:i=>setText('pr-bond',ST[i].b)});
+  $('#pr-lab').addEventListener('labreset',()=>{sc.go(0);});
+  drawers.protein=()=>sc.render();
+  KEYS['pr-canvas']=['Beads are amino acids: gold nonpolar, blue polar, pink charged. Step through the four levels.',[['ce','nonpolar R group'],['cx','polar R group'],['ca','charged R group']]];
+  TIPS['pr-st']=()=>'Primary → secondary → tertiary → quaternary: each level builds on the one before.';
+  GLOSS['denaturation']='Loss of a protein\'s normal 3-D shape (and usually its function) caused by heat, pH or salt that disrupt weak interactions.';GLOSS['r group']='The side chain that makes each amino acid different.';GLOSS['peptide bond']='The covalent bond between the carboxyl group of one amino acid and the amino group of the next.';
+  TT.protein='Ask students which level changes first when a gene is mutated, and which when a protein is heated.';
+})();
+(function(){
+  const lv=[['the sequence of amino acids','primary'],['α-helices and β-sheets formed by backbone hydrogen bonds','secondary'],['the overall 3-D fold formed by R-group interactions','tertiary'],['the assembly of several polypeptide chains','quaternary'],['a disulfide bridge between two cysteines in the same chain','tertiary']];
+  PROBS.push({id:'pr-level',topic:'protein',title:'Level of structure',gen(){const p=pick(lv),m=mcq(p[1],['primary','secondary','tertiary','quaternary'].filter(x=>x!==p[1]));return {q:`Which level of protein structure is described? ${p[0][0].toUpperCase()+p[0].slice(1)}.`,choices:m.choices,ans:m.ans,hint:'Primary sequence, secondary backbone, tertiary whole chain, quaternary several chains.',sol:`<b>${p[1]}</b> structure.`};}});
+  PROBS.push({id:'pr-pept',topic:'protein',title:'Peptide bonds in a chain',gen(){const n=randInt(5,300);return {q:`How many peptide bonds are in a single unbranched polypeptide of ${n} amino acids?`,ans:n-1,unit:'',tol:0,chk:n-1,hint:'n − 1.',sol:`<b>${n-1}</b>.`};}});
+  const eff=[['A mutation replaces a polar amino acid inside the core of an enzyme with a charged one. The most likely effect is','disrupted folding because charged groups avoid the hydrophobic interior',['no change because only the primary structure changed','a change in the genetic code of the protein','new peptide bonds forming']],['Heating a protein to 90 °C usually causes','denaturation: weak interactions break and the shape is lost',['hydrolysis of every peptide bond','a change in the amino acid sequence','formation of more hydrogen bonds']],['Adding acid to an enzyme changes its activity mainly because','the charges on R groups change, altering ionic and hydrogen bonds',['it adds peptide bonds','it replaces amino acids','it makes the enzyme nonpolar']]];
+  PROBS.push({id:'pr-eff',topic:'protein',title:'Why shape changes',gen(){const p=pick(eff),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Folding depends on R-group interactions, not only on the peptide bonds.',sol:`<b>${p[1]}</b>.`};}});
+})();

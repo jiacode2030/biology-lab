@@ -1,0 +1,48 @@
+  <section class="view" id="v-macromol" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 1</span></div>
+        <h1>Macromolecules & monomers</h1>
+        <p class="lede">Cells build enormous molecules out of a few small repeating units, and they take them apart with the same chemistry in reverse.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>There are four classes: <b>carbohydrates</b> (monosaccharides join into polysaccharides: starch, glycogen, cellulose), <b>proteins</b> (amino acids into polypeptides), <b>nucleic acids</b> (nucleotides into DNA and RNA) and <b>lipids</b> (fats are made of glycerol and fatty acids, but lipids are not true polymers). Each has a typical function: energy and structure, catalysis and structure, information, and long-term energy and membranes.</p>
+        <p>Monomers are joined by <b>dehydration synthesis</b>: each bond forms as a water molecule is removed. Polymers are broken down by <b>hydrolysis</b>, which uses a water molecule to split each bond. The bonds are <b>glycosidic</b> (sugars), <b>peptide</b> (amino acids), <b>phosphodiester</b> (nucleotides) and <b>ester</b> (fats).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>molecules were either "big" or "small" with no pattern</dd><dt>So we didn't need</dt><dd>that big molecules are chains of similar small subunits</dd><dt>Now</dt><dd>how cells build and recycle molecules with one reaction and its reverse</dd><dt>So we need</dt><dd>dehydration synthesis, hydrolysis and the four classes</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>n monomers → polymer + (n − 1) H₂O</span><small>dehydration synthesis</small></div><div class="eqn"><span>polymer + (n − 1) H₂O → n monomers</span><small>hydrolysis</small></div><div class="eqn"><span>carbohydrates: C : H : O ≈ 1 : 2 : 1</span><small>empirical ratio</small></div><div class="eqn"><span>proteins contain N; nucleic acids contain N and P</span><small>elements</small></div></div>
+      <div class="lab" id="mm-lab" data-reset="own">
+        <div class="labbar"><span class="title">Build a polymer</span></div>
+        <div class="ctl"><span class="lbl">Monomer</span><div class="seg" id="mm-kind" role="group" aria-label="Monomer"><button type="button" data-k="sug" aria-pressed="true">monosaccharide</button><button type="button" data-k="aa" aria-pressed="false">amino acid</button><button type="button" data-k="nuc" aria-pressed="false">nucleotide</button></div></div>
+        <canvas id="mm-canvas" aria-label="A chain of monomers with the water molecules released as each bond forms."></canvas>
+        <div class="controls"><div class="ctl"><label for="mm-n"><span>Number of monomers</span> <output id="mm-n-out"></output></label><input type="range" id="mm-n" min="2" max="12" step="1" value="6"></div></div>
+        <div class="readout"><div><span>polymer</span><strong class="x" id="mm-poly">—</strong></div><div><span>bond formed</span><strong class="a" id="mm-bond">—</strong></div><div><span>water molecules released</span><strong class="v" id="mm-h2o">—</strong></div><div><span>elements</span><strong class="" id="mm-els">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose amino acids and 10 monomers. How many peptide bonds and waters? <button type="button" class="btn link" data-show='[["click", "#mm-kind [data-k=aa]"], ["#mm-n", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>9 peptide bonds and 9 water molecules released: n − 1 of each.</p></details></li>
+        <li><p>Choose nucleotides. Which element appears that carbohydrates lack? <button type="button" class="btn link" data-show='[["click", "#mm-kind [data-k=nuc]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Phosphorus (in the phosphate of each nucleotide), plus nitrogen from the bases.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A polypeptide is built from 150 amino acids. How many water molecules are released during synthesis, and how many are used to break it back into amino acids?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Bonds.</b> A chain of 150 monomers has 150 − 1 = 149 peptide bonds.</li>
+          <li hidden><b>Synthesis.</b> Each bond forms with the removal of one H₂O: 149 waters released.</li>
+          <li hidden><b>Hydrolysis.</b> Breaking 149 bonds uses 149 H₂O, the same number returned.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying hydrolysis removes water. It adds water.</li>
+        <li>Using n instead of n − 1 for the number of bonds in a linear chain.</li>
+        <li>Calling lipids polymers. They are not made of repeating identical monomers.</li>
+        <li>Mixing the names of the bonds.</li>
+        <li>Forgetting that cellulose and starch are both glucose polymers but differ in how the glucose units are linked, so they behave differently.</li>
+      </ul></div>
+      <div class="prose"><h2>Structure fits function</h2>
+        <p>Starch (plants) and glycogen (animals) store glucose; cellulose gives plant cell walls strength. Saturated fats have no double bonds and are solid at room temperature; unsaturated fats have double bonds that kink the chain and are liquid. Phospholipids have a hydrophilic head and hydrophobic tails, which is why they form bilayers.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Dehydration synthesis removes H₂O as the bond forms.">
+        <p class="q">Check yourself: Joining two amino acids by a peptide bond</p>
+        <div class="opts"><button type="button">releases one water molecule</button><button type="button">uses one water molecule</button><button type="button">releases carbon dioxide</button><button type="button">needs no change in atoms</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
