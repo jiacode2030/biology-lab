@@ -1,0 +1,30 @@
+/* ---------------- Mutations ---------------- */
+(function mutation(){
+  const cv=$('#mt-canvas');if(!cv)return;
+  const ORIG='ATGGCTGAAAAGTTTGGATAA';
+  const MUT={none:ORIG,sil:'ATGGCTGAGAAGTTTGGATAA',mis:'ATGGCTGTAAAGTTTGGATAA',non:'ATGGCTGAATAGTTTGGATAA',ins:'ATGGCTCGAAAAGTTTGGATAA',del:'ATGGCTAAAAGTTTGGATAA',d3:'ATGGCTAAGTTTGGATAA'};
+  const EFF={none:['no mutation','normal protein'],sil:['silent point mutation (GAA → GAG)','same protein: the new codon still codes for Glu'],mis:['missense point mutation (GAA → GUA)','one amino acid changes (Glu → Val); the protein may fold or work differently'],non:['nonsense point mutation (AAG → UAG)','the protein is cut short after 3 amino acids: very likely nonfunctional'],ins:['insertion of 1 base: frameshift','every codon after the insertion changes and the stop codon is missed'],del:['deletion of 1 base: frameshift','every codon after the deletion changes; the stop is missed'],d3:['in-frame deletion of 3 bases','one amino acid (Glu) is lost; the rest of the protein is unchanged']};
+  let kind='none';
+  const cods=s=>{const r=[];for(let i=0;i<s.length;i+=3)r.push(s.slice(i,i+3));return r;};
+  function prot(s){const r=[];let stopped=false;for(let i=0;i+3<=s.length;i+=3){const a=codonAA(s.slice(i,i+3));if(a==='*'){stopped=true;r.push('*');break;}r.push(a);}return {aas:r,stopped};}
+  const sim=sim2d(cv,{h:w=>clamp(w*.4,210,270),draw(ctx,w,h){const bw=Math.min(54,(w-20)/8),rows=[['original',ORIG],['mutant',MUT[kind]]];const o=cods(ORIG).map(c=>codonAA(c));
+    rows.forEach(([nm,s],r)=>{const y=34+r*96;label(ctx,nm+' coding strand 5′ → 3′',10,y-16,T.muted,'left','middle',MONO);const cs=cods(s),p=prot(s);let stop=false;cs.forEach((c,k)=>{if(stop)return;const a=codonAA(c),full=c.length===3,x=10+k*bw,changed=r===1&&(c!==cods(ORIG)[k]||a!==o[k])&&kind!=='none',col=!full?T.muted:a==='*'?T.bad:changed?T.accent:T.cx;
+        ctx.fillStyle=alpha(col,changed?.4:.2);ctx.fillRect(x,y,bw-3,50);ctx.strokeStyle=col;ctx.lineWidth=changed?3:1.6;ctx.strokeRect(x,y,bw-3,50);label(ctx,c,x+bw/2-1,y+14,T.ink,'center','middle',MONO);label(ctx,full?AA3[a]:'—',x+bw/2-1,y+34,T.ink,'center','middle','700 11px '+MONO.split(' ').slice(1).join(' '));if(a==='*')stop=true;});});
+    label(ctx,'orange outline: codon or amino acid differs from the original',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){const e=EFF[kind],p=prot(MUT[kind]);setText('mt-type',e[0]);setText('mt-prot',pepText(p.aas)+(p.stopped?' (stop)':' (no stop codon reached)'));setText('mt-eff',e[1]);sim.render();}
+  segBind('mt-kind','k',v=>{kind=v;upd();});$('#mt-lab').addEventListener('labreset',()=>{kind='none';segSet('mt-kind',0);upd();});upd();
+  drawers.mutation=()=>sim.render();
+  KEYS['mt-canvas']=['Top row: original. Bottom row: mutant. Orange boxes mark what changed.',[['cx','unchanged codon'],['accent','changed'],['bad','stop codon']]];
+  TIPS['mt-kind']=()=>'A single-base insertion or deletion shifts the reading frame; deleting three bases does not.';
+  GLOSS['mutation']='A change in the DNA sequence.';GLOSS['missense']='A point mutation that changes one amino acid.';GLOSS['nonsense']='A point mutation that creates a stop codon.';GLOSS['silent mutation']='A point mutation that does not change the amino acid.';GLOSS['frameshift']='An insertion or deletion (not a multiple of 3 bases) that changes the reading frame.';GLOSS['mutagen']='An agent such as UV light or a chemical that causes mutations.';
+  TT.mutation='Ask students to predict the kind of mutation from the protein before opening the details.';
+})();
+(function(){
+  const bases='ACGT';
+  function seqOK(){let cs=['ATG'];while(cs.length<5){const c=Array.from({length:3},()=>pick(bases.split(''))).join('');if(codonAA(c)==='*')continue;cs.push(c);}return cs;}
+  PROBS.push({id:'mt-type',topic:'mutation',title:'Classify a point mutation',gen(){for(let tries=0;tries<200;tries++){const cs=seqOK(),k=randInt(1,4),pos=randInt(0,2),old=cs[k],nb=pick(bases.split('').filter(b=>b!==old[pos])),nw=old.slice(0,pos)+nb+old.slice(pos+1),a=codonAA(old),b=codonAA(nw),ans=b==='*'?'nonsense':a===b?'silent':'missense';
+      const m=mcq(ans,['silent','missense','nonsense','frameshift'].filter(x=>x!==ans));return {q:`In the coding strand, the codon ${old.replace(/T/g,'U')} (mRNA) is changed by a single base substitution to ${nw.replace(/T/g,'U')}. What type of mutation is this?`,choices:m.choices,ans:m.ans,hint:'Translate both codons: same amino acid, different amino acid, or stop?',sol:`${old.replace(/T/g,'U')} codes for ${AA3[a]} and ${nw.replace(/T/g,'U')} codes for ${AA3[b]}: <b>${ans}</b>.`};}}});
+  PROBS.push({id:'mt-shift',topic:'mutation',title:'Frameshift or not?',gen(){const k=pick([1,2,3,4,5,6]),what=pick(['insertion','deletion']),yes=k%3!==0,ans=yes?'a frameshift':'no frameshift (the reading frame is kept)',m=mcq(ans,['a frameshift','no frameshift (the reading frame is kept)','a silent mutation','a nonsense mutation']);return {q:`A ${what} of ${k} base${k>1?'s':''} occurs in the middle of a coding region. This causes`,choices:m.choices,ans:m.ans,hint:'A frameshift happens when the number of bases added or removed is not a multiple of 3.',sol:`${k} ${k%3?'is not':'is'} a multiple of 3: <b>${ans}</b>.`};}});
+  const q=[['A mutation in a body (somatic) cell, such as a skin cell, will','not be passed to offspring',['be passed to all offspring','always cause cancer','change the offspring\'s gametes']],['Which type of mutation is most likely to have no effect on the protein?','silent mutation',['nonsense mutation','frameshift mutation','deletion of one base']],['Sickle cell disease is caused by','a single base substitution that changes one amino acid',['a frameshift','a stop codon','a missing chromosome']],['Mutations provide the raw material for evolution because they','create new alleles',['remove alleles','always benefit the organism','only occur in somatic cells']]];
+  PROBS.push({id:'mt-fact',topic:'mutation',title:'Mutation facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Think about where and how the DNA changes.',sol:`<b>${p[1]}</b>.`};}});
+})();

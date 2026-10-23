@@ -1,0 +1,53 @@
+  <section class="view" id="v-biotech" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Biotechnology & genetic engineering</h1>
+        <p class="lede">Biologists can copy, cut, sort, read and rewrite DNA. Each technique rests on a simple property of DNA.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>PCR</b> (polymerase chain reaction) copies a target region. A cycle has three steps: <b>denature</b> (about 95 °C, strands separate), <b>anneal</b> (about 55 °C, primers bind) and <b>extend</b> (72 °C, a heat-stable polymerase such as Taq builds new strands). Each cycle doubles the target: after n cycles there are about 2<sup>n</sup> copies. <b>Restriction enzymes</b> cut DNA at specific palindromic sequences. <b>Gel electrophoresis</b> separates DNA fragments by size: DNA is negatively charged and moves toward the positive electrode, and smaller fragments travel farther.</p>
+        <p><b>Recombinant DNA</b>: a gene and a plasmid are cut with the same restriction enzyme, joined with <b>ligase</b>, and the plasmid is put into bacteria (<b>transformation</b>); a selectable marker such as antibiotic resistance finds the bacteria that took it up. <b>CRISPR-Cas9</b> uses a guide RNA to direct the Cas9 enzyme to a matching DNA sequence, where it cuts so the gene can be disrupted or edited. DNA sequencing reads the order of bases. These tools underlie GMOs, gene therapy, forensics and diagnostics.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>DNA was too small or fragile to handle</dd><dt>So we didn't need</dt><dd>that DNA's charge, complementary pairing and recognizable sequences make it easy to copy, cut and sort</dd><dt>Now</dt><dd>how scientists amplify, analyze and edit DNA</dd><dt>So we need</dt><dd>PCR, restriction digests, gel electrophoresis, plasmids and CRISPR</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>copies after n PCR cycles ≈ 2ⁿ</span><small>ideal doubling</small></div><div class="eqn"><span>PCR: 95 °C denature, ~55 °C anneal, 72 °C extend</span><small>Taq polymerase</small></div><div class="eqn"><span>gel: DNA moves toward + ; smaller = farther</span><small>electrophoresis</small></div><div class="eqn"><span>restriction enzyme + ligase → recombinant plasmid</span><small>cloning</small></div></div>
+      <div class="lab" id="bt-lab" data-reset="own">
+        <div class="labbar"><span class="title">PCR cycles</span></div>
+        <canvas id="bt-canvas" aria-label="A temperature cycle and a bar showing the number of copies of the target after the chosen number of cycles."></canvas>
+        <div class="controls"><div class="ctl"><label for="bt-n"><span>Cycles</span> <output id="bt-n-out"></output></label><input type="range" id="bt-n" min="0" max="30" step="1" value="10"></div></div>
+        <div class="readout"><div><span>copies of the target</span><strong class="x" id="bt-c">—</strong></div><div><span>time (about 2 minutes per cycle)</span><strong class="a" id="bt-t">—</strong></div></div>
+      </div>
+      <div class="lab" id="bt-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Gel electrophoresis of a restriction digest</span></div>
+        <div class="ctl"><span class="lbl">Digest a 6,000 bp linear DNA with</span><div class="seg" id="bt-enz" role="group" aria-label="Digest a 6,000 bp linear DNA with"><button type="button" data-k="none" aria-pressed="true">nothing</button><button type="button" data-k="E" aria-pressed="false">enzyme E (cuts at 1,500 and 4,000)</button><button type="button" data-k="B" aria-pressed="false">enzyme B (cuts at 2,400)</button><button type="button" data-k="EB" aria-pressed="false">both E and B</button></div></div>
+        <canvas id="bt-canvas2" aria-label="A gel with lanes for a size ladder and the DNA cut by the chosen restriction enzymes, with fragments shown as bands."></canvas>
+        <div class="readout"><div><span>fragment sizes (bp)</span><strong class="x" id="bt-fr">—</strong></div><div><span>number of fragments</span><strong class="a" id="bt-n2">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set 10 cycles. How many copies of the target? <button type="button" class="btn link" data-show='[["#bt-n", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>2¹⁰ = 1,024 copies from one starting molecule (in the ideal case).</p></details></li>
+        <li><p>Digest with enzyme E. Which band travels farthest? <button type="button" class="btn link" data-show='[["click", "#bt-enz [data-k=E]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The smallest fragment (1,500 bp) travels farthest because it moves through the gel mesh most easily.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A 6,000 bp linear DNA is cut by enzyme E at positions 1,500 and 4,000. What fragments appear, and which is nearest the wells?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Cuts.</b> At 1,500 and 4,000: three fragments.</li>
+          <li hidden><b>Sizes.</b> 1,500; 4,000 − 1,500 = 2,500; 6,000 − 4,000 = 2,000 bp (sum 6,000).</li>
+          <li hidden><b>Gel.</b> The largest (2,500 bp) moves the least, so it is nearest the wells; the 1,500 bp fragment moves farthest.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying DNA moves toward the negative electrode (it is negatively charged, so it moves to the positive one).</li>
+        <li>Thinking larger fragments move farther.</li>
+        <li>Forgetting that PCR needs primers and a heat-stable polymerase.</li>
+        <li>Saying every bacterium takes up the plasmid (that is why selection is needed).</li>
+        <li>Believing CRISPR uses protein alone to find the target (the guide RNA does the matching).</li>
+      </ul></div>
+      <div class="prose"><h2>Interpreting gels</h2>
+        <p>Compare band positions with the ladder: farther from the wells means smaller. Add up fragment sizes to check they equal the total DNA length. For comparisons (such as a mutation destroying a restriction site), predict how the pattern of bands changes.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Smaller fragments move through the gel matrix faster.">
+        <p class="q">Check yourself: In gel electrophoresis, the DNA fragments that travel the farthest are the</p>
+        <div class="opts"><button type="button">smallest</button><button type="button">largest</button><button type="button">most positively charged</button><button type="button">those with the most guanine</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

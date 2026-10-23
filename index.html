@@ -2646,6 +2646,329 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-replication" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>DNA replication</h1>
+        <p class="lede">Before a cell divides it copies every base of its DNA. The copy is made by a machine that reads each old strand and builds a new partner.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Replication is <b>semiconservative</b>: each new DNA molecule has one old strand and one new strand. It starts at an <b>origin of replication</b>. <b>Helicase</b> unwinds the double helix, making a replication fork; single-strand binding proteins keep the strands apart; <b>topoisomerase</b> relieves twisting ahead of the fork. <b>Primase</b> makes a short RNA <b>primer</b> because DNA polymerase can only add nucleotides to an existing 3′ end. <b>DNA polymerase</b> then adds nucleotides only in the <b>5′ → 3′</b> direction, reading the template 3′ → 5′.</p>
+        <p>Because the strands are antiparallel, one new strand (the <b>leading strand</b>) is made continuously toward the fork. The other (the <b>lagging strand</b>) is made away from the fork in short pieces called <b>Okazaki fragments</b>, each needing its own primer. <b>DNA ligase</b> joins the fragments after the primers are replaced with DNA. DNA polymerase also proofreads, so errors are rare (about 1 in 10⁹–10¹⁰ bases after repair).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>DNA copying was just "unzip and match up"</dd><dt>So we didn't need</dt><dd>that the strands are antiparallel and polymerase only works 5′ → 3′, so one strand is made in pieces</dd><dt>Now</dt><dd>why replication needs primers and ligase and why it is so accurate</dd><dt>So we need</dt><dd>semiconservative replication and the enzymes of the fork</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>new strand is made 5′ → 3′</span><small>DNA polymerase</small></div><div class="eqn"><span>helicase unwinds; primase starts; ligase joins</span><small>fork enzymes</small></div><div class="eqn"><span>leading strand: continuous</span><small>lagging: Okazaki fragments</small></div><div class="eqn"><span>semiconservative: each daughter = 1 old + 1 new strand</span><small>Meselson–Stahl</small></div></div>
+      <div class="lab" id="rp-lab">
+        <div class="labbar"><span class="title">The replication fork</span></div>
+        <div class="row"><button type="button" class="btn" id="rp-prev">Previous</button><button type="button" class="btn primary" id="rp-next">Next stage</button><button type="button" class="btn" id="rp-play">Play</button></div>
+        <canvas id="rp-canvas" aria-label="A replication fork with helicase, primers, DNA polymerase, Okazaki fragments and ligase appearing in successive stages."></canvas>
+        <div class="controls"><div class="ctl"><label for="rp-st"><span>Stage</span> <output id="rp-st-out"></output></label><input type="range" id="rp-st" min="0" max="4" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="rp-name">—</strong></div><div><span>what is happening</span><strong class="" id="rp-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="rp-lab2" data-reset="own">
+        <div class="labbar"><span class="title">The Meselson–Stahl experiment</span></div>
+        <canvas id="rp-canvas2" aria-label="Bars showing the fraction of DNA molecules that are heavy, hybrid or light after each generation of growth in light nitrogen."></canvas>
+        <div class="controls"><div class="ctl"><label for="rp-g"><span>Generations in ¹⁴N</span> <output id="rp-g-out"></output></label><input type="range" id="rp-g" min="0" max="6" step="1" value="2"></div></div>
+        <div class="readout"><div><span>DNA molecules from one original</span><strong class="x" id="rp-tot">—</strong></div><div><span>hybrid (¹⁵N/¹⁴N)</span><strong class="a" id="rp-hyb">—</strong></div><div><span>light (¹⁴N/¹⁴N)</span><strong class="v" id="rp-lt">—</strong></div><div><span>heavy (¹⁵N/¹⁵N)</span><strong class="" id="rp-hv">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the stage with Okazaki fragments. Why does only one strand have them? <button type="button" class="btn link" data-show='[["#rp-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>DNA polymerase can only build 5′ → 3′. On one template that direction points toward the fork (continuous); on the other it points away, so the strand is built in pieces as the fork opens.</p></details></li>
+        <li><p>Set 2 generations. What fraction are hybrid? <button type="button" class="btn link" data-show='[["#rp-g", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>2 of 4 molecules (50%) are hybrid and 2 of 4 are light. No heavy DNA remains, and this matches semiconservative replication.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Bacteria grown for many generations in ¹⁵N are moved to ¹⁴N and allowed to divide three times. What fraction of DNA molecules are hybrid and what fraction light?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Molecules.</b> Each generation doubles the number: 2³ = 8 molecules from one.</li>
+          <li hidden><b>Old strands.</b> The two original ¹⁵N strands end up in 2 different molecules, each a hybrid (one old, one new).</li>
+          <li hidden><b>Fractions.</b> Hybrid = 2/8 = 1/4; light = 6/8 = 3/4; heavy = 0.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Writing that DNA polymerase works 3′ → 5′ (it adds to a 3′ end, building 5′ → 3′).</li>
+        <li>Thinking primers are DNA. They are short RNA.</li>
+        <li>Saying both strands are made in fragments.</li>
+        <li>Forgetting that the old strands are conserved (one in each daughter).</li>
+        <li>Confusing ligase (joins fragments) with polymerase.</li>
+      </ul></div>
+      <div class="prose"><h2>Predicting results</h2>
+        <p>If primase is missing, polymerase cannot start. If ligase is missing, the lagging strand has gaps. If helicase fails, the fork does not open. State which strand is affected and why.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="On the lagging strand the 5′ → 3′ direction points away from the fork, so synthesis is in pieces.">
+        <p class="q">Check yourself: Okazaki fragments are made because DNA polymerase</p>
+        <div class="opts"><button type="button">can only add nucleotides in the 5′ → 3′ direction</button><button type="button">cannot copy RNA</button><button type="button">works only at the end of chromosomes</button><button type="button">needs ATP to unwind DNA</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-transcription" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Transcription & RNA processing</h1>
+        <p class="lede">DNA stays in the nucleus; a working copy of one gene travels out. That copy is made of RNA.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Transcription</b> makes an RNA copy of a gene. <b>RNA polymerase</b> binds to the <b>promoter</b>, unwinds a short stretch of DNA and builds an RNA strand 5′ → 3′ by pairing RNA nucleotides with the <b>template strand</b> (A–U, T–A, G–C, C–G). No primer is needed. The RNA is complementary to the template and has the same sequence as the coding strand, with U in place of T. Transcription ends at a terminator sequence.</p>
+        <p>In prokaryotes the RNA is used immediately. In eukaryotes the primary transcript is processed before leaving the nucleus: a <b>5′ cap</b> and a <b>poly-A tail</b> are added, and <b>introns</b> are removed while <b>exons</b> are joined (<b>splicing</b>) to make mature mRNA. <b>Alternative splicing</b> lets one gene make several proteins. Other RNAs (tRNA, rRNA) are also made by transcription and are not translated.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>DNA directly made proteins</dd><dt>So we didn't need</dt><dd>that RNA is an intermediate copy and that eukaryotic RNA is edited</dd><dt>Now</dt><dd>why mRNA contains U and why splicing matters</dd><dt>So we need</dt><dd>promoter, template strand, RNA polymerase and splicing</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>RNA is made 5′ → 3′</span><small>RNA polymerase, no primer</small></div><div class="eqn"><span>pairs: A–U, T–A, G–C, C–G</span><small>template → mRNA</small></div><div class="eqn"><span>5′ cap + poly-A tail + splicing</span><small>eukaryotic mRNA processing</small></div><div class="eqn"><span>mRNA sequence = coding strand with U for T</span><small>same as non-template</small></div></div>
+      <div class="lab" id="tx-lab">
+        <div class="labbar"><span class="title">Making mRNA</span></div>
+        <div class="row"><button type="button" class="btn" id="tx-prev">Previous</button><button type="button" class="btn primary" id="tx-next">Next stage</button><button type="button" class="btn" id="tx-play">Play</button></div>
+        <canvas id="tx-canvas" aria-label="RNA polymerase moving along DNA, building mRNA, then eukaryotic processing removing introns and adding a cap and tail."></canvas>
+        <div class="controls"><div class="ctl"><label for="tx-st"><span>Stage</span> <output id="tx-st-out"></output></label><input type="range" id="tx-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="tx-name">—</strong></div><div><span>what is happening</span><strong class="" id="tx-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="tx-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Transcribe a template</span></div>
+        <div class="ctl"><label for="tx-in"><span>Template DNA, written 3′ → 5′ (A, T, G, C)</span></label><input type="text" id="tx-in" value="TACCGACTTTTCAAACCTATT" maxlength="36" autocomplete="off" spellcheck="false" style="font-family:var(--mono);width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)"></div>
+        <canvas id="tx-canvas2" aria-label="The template strand of DNA, the mRNA built from it and the codons."></canvas>
+        <div class="readout"><div><span>mRNA (5′ → 3′)</span><strong class="x" id="tx-mrna">—</strong></div><div><span>codons</span><strong class="a" id="tx-cod">—</strong></div><div><span>length</span><strong class="v" id="tx-len">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the processing stage. What is removed and what is added? <button type="button" class="btn link" data-show='[["#tx-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Introns are removed and exons joined (splicing); a 5′ cap and a poly-A tail are added.</p></details></li>
+        <li><p>The template reads 3′-TACGGATTC-5′. What is the mRNA? <button type="button" class="btn link" data-show='[["#tx-in", "TACGGATTC"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>5′-AUGCCUAAG-3′: each base is replaced by its RNA partner and the strand runs the other way.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A template strand reads 3′-TACCGATTT-5′. Write the mRNA and the coding strand.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Pair bases.</b> T→A, A→U, C→G, C→G, G→C, A→U, T→A, T→A, T→A: AUGGCUAAA.</li>
+          <li hidden><b>mRNA.</b> 5′-AUGGCUAAA-3′.</li>
+          <li hidden><b>Coding strand.</b> It has the same sequence with T for U: 5′-ATGGCTAAA-3′.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Writing T in mRNA.</li>
+        <li>Copying the template instead of its complement.</li>
+        <li>Reading the template in the wrong direction (the RNA is built 5′ → 3′, antiparallel to the template).</li>
+        <li>Saying introns are translated.</li>
+        <li>Confusing the template strand with the coding strand.</li>
+      </ul></div>
+      <div class="prose"><h2>Common question types</h2>
+        <p>Given a template or coding strand, write the mRNA and then the peptide. Given a mutation in the promoter or a splice site, predict the effect: no transcription, or the wrong exons joined.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Complement with U in place of T: AUG.">
+        <p class="q">Check yourself: Which sequence is the mRNA made from the DNA template 3′-TAC-5′?</p>
+        <div class="opts"><button type="button">5′-AUG-3′</button><button type="button">5′-ATG-3′</button><button type="button">5′-UAC-3′</button><button type="button">5′-TAC-3′</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-translation" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Translation & the genetic code</h1>
+        <p class="lede">Ribosomes read the mRNA three bases at a time and string together amino acids in the order the codons specify.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The <b>genetic code</b> is read in <b>codons</b> of three bases. There are 64 codons: 61 code for amino acids and 3 are <b>stop</b> codons (UAA, UAG, UGA). <b>AUG</b> codes for methionine and is the <b>start</b> codon. The code is <b>redundant</b> (several codons for one amino acid) but <b>unambiguous</b> (each codon codes for only one), and it is nearly universal.</p>
+        <p>The <b>ribosome</b> (rRNA and protein) binds mRNA. Each <b>tRNA</b> carries one amino acid and has an <b>anticodon</b> complementary to a codon. At the start, a tRNA with methionine pairs with AUG in the P site. Then a tRNA enters the A site, a peptide bond forms, and the ribosome moves one codon (translocation). This repeats until a stop codon reaches the A site and release factors free the polypeptide.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>proteins were just "made from DNA"</dd><dt>So we didn't need</dt><dd>how the sequence of codons becomes the sequence of amino acids</dd><dt>Now</dt><dd>why one change in a base may or may not change the protein</dd><dt>So we need</dt><dd>codons, tRNA anticodons and the stages of translation</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>codon: three mRNA bases</span><small>AUG = start (Met); UAA, UAG, UGA = stop</small></div><div class="eqn"><span>anticodon is complementary to the codon</span><small>on tRNA</small></div><div class="eqn"><span>amino acids in peptide = (nucleotides before stop) / 3</span><small>coding region</small></div><div class="eqn"><span>code: redundant, unambiguous, universal</span><small>properties</small></div></div>
+      <div class="lab" id="tl-lab">
+        <div class="labbar"><span class="title">Building a polypeptide</span></div>
+        <div class="row"><button type="button" class="btn" id="tl-prev">Previous</button><button type="button" class="btn primary" id="tl-next">Next stage</button><button type="button" class="btn" id="tl-play">Play</button></div>
+        <canvas id="tl-canvas" aria-label="A ribosome on an mRNA: initiation with Met-tRNA, elongation with a new tRNA and a peptide bond, translocation, and termination at a stop codon."></canvas>
+        <div class="controls"><div class="ctl"><label for="tl-st"><span>Stage</span> <output id="tl-st-out"></output></label><input type="range" id="tl-st" min="0" max="4" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="tl-name">—</strong></div><div><span>what is happening</span><strong class="" id="tl-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="tl-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Translate an mRNA</span></div>
+        <div class="ctl"><label for="tl-in"><span>mRNA, written 5′ → 3′ (A, U, G, C)</span></label><input type="text" id="tl-in" value="GCAUGGCUGAAAAGUUUGGAUAAGC" maxlength="48" autocomplete="off" spellcheck="false" style="font-family:var(--mono);width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)"></div>
+        <canvas id="tl-canvas2" aria-label="Codons of the mRNA coloured by the amino acid they code for, from the start codon to a stop codon."></canvas>
+        <div class="readout"><div><span>polypeptide</span><strong class="x" id="tl-pep">—</strong></div><div><span>amino acids</span><strong class="a" id="tl-n">—</strong></div><div><span>note</span><strong class="" id="tl-note">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the stage where the peptide bond forms. Which molecules join? <button type="button" class="btn link" data-show='[["#tl-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The amino acid on the tRNA in the P site is joined to the one on the tRNA in the A site (the ribosome catalyzes it).</p></details></li>
+        <li><p>Change the mRNA so the first AUG is missing. What happens? <button type="button" class="btn link" data-show='[["#tl-in", "GCAGGCUGAAAAGUUUGGAUAAGC"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>No start codon: translation does not begin (the tool reports no peptide).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">The mRNA 5′-AUGUUUGGCAAAUAG-3′ is translated. What is the polypeptide and how many amino acids does it have?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Codons.</b> AUG | UUU | GGC | AAA | UAG.</li>
+          <li hidden><b>Amino acids.</b> AUG = Met, UUU = Phe, GGC = Gly, AAA = Lys, UAG = stop.</li>
+          <li hidden><b>Answer.</b> Met–Phe–Gly–Lys: 4 amino acids. Stop codons do not code for an amino acid.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Counting the stop codon as an amino acid.</li>
+        <li>Starting to read at the first base instead of the first AUG.</li>
+        <li>Writing anticodons as identical to codons.</li>
+        <li>Saying the code is ambiguous (it is redundant, not ambiguous).</li>
+        <li>Mixing up tRNA (anticodon) with mRNA (codon).</li>
+      </ul></div>
+      <div class="prose"><h2>Using the code table</h2>
+        <p>Use the genetic code table on the Reference tab: first base on the left, second on top, third on the right. If given DNA, first make mRNA. For a tRNA anticodon, complement the codon (and remember the strands are antiparallel).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The codon is the complement: 5′-AUG-3′, the start codon.">
+        <p class="q">Check yourself: A tRNA has the anticodon 3′-UAC-5′. Which codon does it pair with?</p>
+        <div class="opts"><button type="button">5′-AUG-3′</button><button type="button">5′-UAC-3′</button><button type="button">5′-UUU-3′</button><button type="button">5′-ATG-3′</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-generegs" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Regulation of gene expression</h1>
+        <p class="lede">Every cell has the same genes but uses different ones. Cells switch genes on and off depending on conditions and identity.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>In bacteria, genes with related functions are grouped in an <b>operon</b> with one promoter and an <b>operator</b>. In the <b>lac operon</b> (inducible), a repressor normally blocks the operator so the genes for lactose digestion are off. If <b>lactose</b> is present, a derivative binds the repressor and releases it, and transcription can happen. When glucose is also present the CAP–cAMP activator is not active, so transcription is low even with lactose. In the <b>trp operon</b> (repressible), tryptophan binds the repressor and turns it on, so the genes are switched off when tryptophan is plentiful.</p>
+        <p>In eukaryotes there are more control points: <b>chromatin</b> structure (acetylation of histones loosens DNA; DNA methylation silences genes: epigenetics), <b>transcription factors</b> binding <b>enhancers</b> and promoters, <b>alternative splicing</b>, mRNA stability and <b>microRNAs</b> (RNA interference), and control of translation and protein breakdown. This is how identical DNA yields different cell types.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>genes were simply "on"</dd><dt>So we didn't need</dt><dd>that cells actively switch genes on and off using regulatory proteins and DNA sequences</dd><dt>Now</dt><dd>how cells respond to their environment and become different types</dd><dt>So we need</dt><dd>operons, transcription factors, chromatin and RNA control</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>lac operon: lactose present → repressor off → transcription</span><small>inducible</small></div><div class="eqn"><span>high glucose → low cAMP → little CAP activation</span><small>even with lactose</small></div><div class="eqn"><span>trp operon: tryptophan binds repressor → genes off</span><small>repressible</small></div><div class="eqn"><span>acetylation opens chromatin; methylation silences genes</span><small>eukaryotic control</small></div></div>
+      <div class="lab" id="gr-lab" data-reset="own">
+        <div class="labbar"><span class="title">The lac operon</span></div>
+        <div class="ctl"><span class="lbl">Lactose</span><div class="seg" id="gr-lac" role="group" aria-label="Lactose"><button type="button" data-k="no" aria-pressed="true">absent</button><button type="button" data-k="yes" aria-pressed="false">present</button></div></div>
+        <div class="row"><button type="button" class="btn" id="gr-glu" aria-pressed="true">Glucose: present</button></div>
+        <canvas id="gr-canvas" aria-label="The lac operon: promoter, operator and three genes, with the repressor bound or released and RNA polymerase transcribing or not depending on lactose and glucose."></canvas>
+        <div class="readout"><div><span>repressor</span><strong class="x" id="gr-rep">—</strong></div><div><span>CAP–cAMP activator</span><strong class="a" id="gr-cap">—</strong></div><div><span>transcription of lac genes</span><strong class="v" id="gr-out">—</strong></div></div>
+      </div>
+      <div class="lab" id="gr-lab2" data-reset="own">
+        <div class="labbar"><span class="title">The trp operon</span></div>
+        <div class="ctl"><span class="lbl">Tryptophan</span><div class="seg" id="gr-trp" role="group" aria-label="Tryptophan"><button type="button" data-k="lo" aria-pressed="true">low</button><button type="button" data-k="hi" aria-pressed="false">high</button></div></div>
+        <canvas id="gr-canvas2" aria-label="The trp operon with the repressor active or inactive depending on whether tryptophan is present."></canvas>
+        <div class="readout"><div><span>repressor</span><strong class="x" id="gr-trep">—</strong></div><div><span>transcription of trp genes</span><strong class="a" id="gr-tout">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Lactose present and glucose absent. What happens? <button type="button" class="btn link" data-show='[["click", "#gr-lac [data-k=yes]"], ["click", "#gr-glu"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The repressor is released and the CAP–cAMP activator is active: high transcription of the lac genes.</p></details></li>
+        <li><p>Now add glucose back with lactose present. <button type="button" class="btn link" data-show='[["click", "#gr-glu"]]'>Toggle glucose</button></p><details><summary>What you should see</summary><p>Transcription drops: cAMP is low so CAP does not activate, even though the repressor is off. The cell prefers glucose.</p></details></li>
+        <li><p>Set tryptophan high. Why are the trp genes off? <button type="button" class="btn link" data-show='[["click", "#gr-trp [data-k=hi]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Tryptophan binds the repressor and activates it, so it blocks the operator: no need to make more tryptophan.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">E. coli has a mutation so that the lac repressor cannot bind lactose (but still binds the operator). Predict lac gene expression with and without lactose.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Normal repressor.</b> Releases from the operator when lactose is present.</li>
+          <li hidden><b>Mutant.</b> It cannot respond to lactose, so it stays on the operator.</li>
+          <li hidden><b>Result.</b> The genes stay off with or without lactose. The cell cannot digest lactose.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying lactose binds the operator (it binds the repressor, via a derivative).</li>
+        <li>Mixing up inducible (lac, normally off) and repressible (trp, normally on) operons.</li>
+        <li>Saying operons are found in eukaryotes (they are typical of prokaryotes).</li>
+        <li>Assuming methylation always turns genes on (it usually silences them).</li>
+        <li>Forgetting that every cell has the same DNA; the difference is in gene expression.</li>
+      </ul></div>
+      <div class="prose"><h2>Prediction template</h2>
+        <p>State the signal (lactose, glucose, tryptophan), what it does to the regulatory protein, whether RNA polymerase can transcribe, and the effect on the proteins made. Mutation questions: ask which part (repressor, operator, promoter) no longer works.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The inducer releases the repressor from the operator.">
+        <p class="q">Check yourself: In the lac operon, lactose causes transcription by</p>
+        <div class="opts"><button type="button">binding the repressor so it leaves the operator</button><button type="button">binding RNA polymerase</button><button type="button">binding the promoter</button><button type="button">destroying the operator</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-mutation" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Mutations</h1>
+        <p class="lede">A change in the DNA sequence may change nothing, make a protein slightly different, or ruin it completely. What happens depends on the kind of change and where it occurs.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>point mutation</b> changes one base. A <b>silent</b> mutation changes the codon but not the amino acid (the code is redundant). A <b>missense</b> mutation changes one amino acid (sickle cell: GAG → GUG, glutamic acid → valine). A <b>nonsense</b> mutation turns an amino acid codon into a stop codon, so the protein is cut short. An <b>insertion</b> or <b>deletion</b> of bases that is not a multiple of three causes a <b>frameshift</b>: every codon after it is read differently, usually ruining the protein. Insertions or deletions of multiples of three add or remove amino acids without shifting the frame.</p>
+        <p>Mutations arise from copying errors, <b>mutagens</b> (UV, radiation, chemicals) and mistakes in repair. They create new alleles, the raw material for evolution. Only mutations in germ cells (gametes) are passed to offspring; somatic mutations can cause cancer. Many mutations are neutral, some harmful, and a few beneficial depending on the environment.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>mutations were always harmful</dd><dt>So we didn't need</dt><dd>that the effect depends on the type of change and its location</dd><dt>Now</dt><dd>why one base change can be harmless and another disastrous</dd><dt>So we need</dt><dd>silent, missense, nonsense and frameshift mutations</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>silent: same amino acid</span><small>missense: different amino acid</small></div><div class="eqn"><span>nonsense: becomes a stop codon</span><small>shortened protein</small></div><div class="eqn"><span>indel not a multiple of 3: frameshift</span><small>all later codons change</small></div><div class="eqn"><span>only germ-line mutations are inherited</span><small>somatic: not passed on</small></div></div>
+      <div class="lab" id="mt-lab" data-reset="own">
+        <div class="labbar"><span class="title">Mutate a gene</span></div>
+        <div class="ctl"><span class="lbl">Mutation</span><div class="seg" id="mt-kind" role="group" aria-label="Mutation"><button type="button" data-k="none" aria-pressed="true">none</button><button type="button" data-k="sil" aria-pressed="false">silent</button><button type="button" data-k="mis" aria-pressed="false">missense</button><button type="button" data-k="non" aria-pressed="false">nonsense</button><button type="button" data-k="ins" aria-pressed="false">insert 1 base</button><button type="button" data-k="del" aria-pressed="false">delete 1 base</button><button type="button" data-k="d3" aria-pressed="false">delete 3 bases</button></div></div>
+        <canvas id="mt-canvas" aria-label="Codons of a gene before and after the chosen mutation with the resulting amino acids. Changed codons are highlighted."></canvas>
+        <div class="readout"><div><span>type of change</span><strong class="x" id="mt-type">—</strong></div><div><span>protein</span><strong class="a" id="mt-prot">—</strong></div><div><span>effect</span><strong class="" id="mt-eff">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose missense. Which codon changed and what is the result? <button type="button" class="btn link" data-show='[["click", "#mt-kind [data-k=mis]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>GAA → GUA changes Glu to Val: one amino acid differs, the rest of the protein is the same.</p></details></li>
+        <li><p>Choose "insert 1 base". Compare with "delete 3 bases". <button type="button" class="btn link" data-show='[["click", "#mt-kind [data-k=ins]"]]'>Insert 1</button></p><details><summary>What you should see</summary><p>One base shifts the reading frame so all later codons change (frameshift). Deleting exactly three bases removes one amino acid and leaves the frame intact.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">The coding strand reads 5′-ATG GCT GAA AAG TTT GGA TAA-3′. A mutation changes AAG to TAG. Name the mutation and predict the protein.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Original.</b> Met–Ala–Glu–Lys–Phe–Gly (stop).</li>
+          <li hidden><b>Change.</b> AAG → TAG: in mRNA AAG (Lys) becomes UAG, a stop codon.</li>
+          <li hidden><b>Type and effect.</b> Nonsense. The protein is Met–Ala–Glu (3 amino acids), likely nonfunctional.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Calling all mutations harmful.</li>
+        <li>Saying a silent mutation does not change the DNA (it does, but not the amino acid).</li>
+        <li>Forgetting that a frameshift needs an insertion or deletion not divisible by 3.</li>
+        <li>Thinking somatic mutations are inherited.</li>
+        <li>Mixing nonsense (stop) with missense (different amino acid).</li>
+      </ul></div>
+      <div class="prose"><h2>Classify by comparing</h2>
+        <p>Translate the original and the mutant side by side. Same amino acids: silent. One different: missense. Stop appears early: nonsense. Many different after a point: frameshift. Remember the effect on function depends on where the change is.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="One amino acid is replaced by a different one.">
+        <p class="q">Check yourself: A base change turns a codon for glutamic acid into a codon for valine. This is a</p>
+        <div class="opts"><button type="button">missense mutation</button><button type="button">silent mutation</button><button type="button">nonsense mutation</button><button type="button">frameshift mutation</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-biotech" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Biotechnology & genetic engineering</h1>
+        <p class="lede">Biologists can copy, cut, sort, read and rewrite DNA. Each technique rests on a simple property of DNA.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>PCR</b> (polymerase chain reaction) copies a target region. A cycle has three steps: <b>denature</b> (about 95 °C, strands separate), <b>anneal</b> (about 55 °C, primers bind) and <b>extend</b> (72 °C, a heat-stable polymerase such as Taq builds new strands). Each cycle doubles the target: after n cycles there are about 2<sup>n</sup> copies. <b>Restriction enzymes</b> cut DNA at specific palindromic sequences. <b>Gel electrophoresis</b> separates DNA fragments by size: DNA is negatively charged and moves toward the positive electrode, and smaller fragments travel farther.</p>
+        <p><b>Recombinant DNA</b>: a gene and a plasmid are cut with the same restriction enzyme, joined with <b>ligase</b>, and the plasmid is put into bacteria (<b>transformation</b>); a selectable marker such as antibiotic resistance finds the bacteria that took it up. <b>CRISPR-Cas9</b> uses a guide RNA to direct the Cas9 enzyme to a matching DNA sequence, where it cuts so the gene can be disrupted or edited. DNA sequencing reads the order of bases. These tools underlie GMOs, gene therapy, forensics and diagnostics.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>DNA was too small or fragile to handle</dd><dt>So we didn't need</dt><dd>that DNA's charge, complementary pairing and recognizable sequences make it easy to copy, cut and sort</dd><dt>Now</dt><dd>how scientists amplify, analyze and edit DNA</dd><dt>So we need</dt><dd>PCR, restriction digests, gel electrophoresis, plasmids and CRISPR</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>copies after n PCR cycles ≈ 2ⁿ</span><small>ideal doubling</small></div><div class="eqn"><span>PCR: 95 °C denature, ~55 °C anneal, 72 °C extend</span><small>Taq polymerase</small></div><div class="eqn"><span>gel: DNA moves toward + ; smaller = farther</span><small>electrophoresis</small></div><div class="eqn"><span>restriction enzyme + ligase → recombinant plasmid</span><small>cloning</small></div></div>
+      <div class="lab" id="bt-lab" data-reset="own">
+        <div class="labbar"><span class="title">PCR cycles</span></div>
+        <canvas id="bt-canvas" aria-label="A temperature cycle and a bar showing the number of copies of the target after the chosen number of cycles."></canvas>
+        <div class="controls"><div class="ctl"><label for="bt-n"><span>Cycles</span> <output id="bt-n-out"></output></label><input type="range" id="bt-n" min="0" max="30" step="1" value="10"></div></div>
+        <div class="readout"><div><span>copies of the target</span><strong class="x" id="bt-c">—</strong></div><div><span>time (about 2 minutes per cycle)</span><strong class="a" id="bt-t">—</strong></div></div>
+      </div>
+      <div class="lab" id="bt-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Gel electrophoresis of a restriction digest</span></div>
+        <div class="ctl"><span class="lbl">Digest a 6,000 bp linear DNA with</span><div class="seg" id="bt-enz" role="group" aria-label="Digest a 6,000 bp linear DNA with"><button type="button" data-k="none" aria-pressed="true">nothing</button><button type="button" data-k="E" aria-pressed="false">enzyme E (cuts at 1,500 and 4,000)</button><button type="button" data-k="B" aria-pressed="false">enzyme B (cuts at 2,400)</button><button type="button" data-k="EB" aria-pressed="false">both E and B</button></div></div>
+        <canvas id="bt-canvas2" aria-label="A gel with lanes for a size ladder and the DNA cut by the chosen restriction enzymes, with fragments shown as bands."></canvas>
+        <div class="readout"><div><span>fragment sizes (bp)</span><strong class="x" id="bt-fr">—</strong></div><div><span>number of fragments</span><strong class="a" id="bt-n2">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set 10 cycles. How many copies of the target? <button type="button" class="btn link" data-show='[["#bt-n", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>2¹⁰ = 1,024 copies from one starting molecule (in the ideal case).</p></details></li>
+        <li><p>Digest with enzyme E. Which band travels farthest? <button type="button" class="btn link" data-show='[["click", "#bt-enz [data-k=E]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The smallest fragment (1,500 bp) travels farthest because it moves through the gel mesh most easily.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A 6,000 bp linear DNA is cut by enzyme E at positions 1,500 and 4,000. What fragments appear, and which is nearest the wells?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Cuts.</b> At 1,500 and 4,000: three fragments.</li>
+          <li hidden><b>Sizes.</b> 1,500; 4,000 − 1,500 = 2,500; 6,000 − 4,000 = 2,000 bp (sum 6,000).</li>
+          <li hidden><b>Gel.</b> The largest (2,500 bp) moves the least, so it is nearest the wells; the 1,500 bp fragment moves farthest.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying DNA moves toward the negative electrode (it is negatively charged, so it moves to the positive one).</li>
+        <li>Thinking larger fragments move farther.</li>
+        <li>Forgetting that PCR needs primers and a heat-stable polymerase.</li>
+        <li>Saying every bacterium takes up the plasmid (that is why selection is needed).</li>
+        <li>Believing CRISPR uses protein alone to find the target (the guide RNA does the matching).</li>
+      </ul></div>
+      <div class="prose"><h2>Interpreting gels</h2>
+        <p>Compare band positions with the ladder: farther from the wells means smaller. Add up fragment sizes to check they equal the total DNA length. For comparisons (such as a mutation destroying a restriction site), predict how the pattern of bands changes.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Smaller fragments move through the gel matrix faster.">
+        <p class="q">Check yourself: In gel electrophoresis, the DNA fragments that travel the farthest are the</p>
+        <div class="opts"><button type="button">smallest</button><button type="button">largest</button><button type="button">most positively charged</button><button type="button">those with the most guanine</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-practice" hidden>
     <div class="wrap">
       <div class="head">
@@ -2898,8 +3221,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"], "soon": []}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"], "soon": []}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"], "soon": []}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"], "soon": []}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"], "soon": []}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -3112,6 +3435,16 @@ function axes2(ctx,w,h,o){const L=o.L||48,R=w-14,T0=o.T0||16,B=h-(o.xl?38:26),X=
   return {L,R,T0,B,X,Y};}
 function curve2(ctx,A,f,x0,x1,col,lw=2.6){ctx.strokeStyle=col;ctx.lineWidth=lw;ctx.beginPath();for(let i=0;i<=120;i++){const x=x0+(x1-x0)*i/120;i?ctx.lineTo(A.X(x),A.Y(f(x))):ctx.moveTo(A.X(x),A.Y(f(x)));}ctx.stroke();}
 function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillStyle=col;ctx.fill();ctx.strokeStyle=T.surface;ctx.lineWidth=2;ctx.stroke();}
+/* ----- genetic code helpers (standard code, base order T C A G) ----- */
+const GC_STR='FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG';
+const AA3={F:'Phe',L:'Leu',S:'Ser',Y:'Tyr',C:'Cys',W:'Trp',P:'Pro',H:'His',Q:'Gln',R:'Arg',I:'Ile',M:'Met',T:'Thr',N:'Asn',K:'Lys',V:'Val',A:'Ala',D:'Asp',E:'Glu',G:'Gly','*':'Stop'};
+function codonAA(c){c=c.toUpperCase().replace(/U/g,'T');const b='TCAG',i=b.indexOf(c[0]),j=b.indexOf(c[1]),k=b.indexOf(c[2]);if(c.length<3||i<0||j<0||k<0)return null;return GC_STR[i*16+j*4+k];}
+function aaClass(a){return a==='*'?'stop':'GAVLIMFWP'.includes(a)?'np':'STCYNQ'.includes(a)?'po':'ch';}
+/* translate an RNA/DNA string from its first AUG; returns {start,aas:[letters],stopped,codons:[...]} */
+function translateFrom(s){s=s.toUpperCase().replace(/T/g,'U');const st=s.indexOf('AUG');if(st<0)return {start:-1,aas:[],stopped:false,codons:[]};const aas=[],codons=[];let stopped=false;for(let i=st;i+3<=s.length;i+=3){const c=s.slice(i,i+3),a=codonAA(c);codons.push(c);if(a==='*'){stopped=true;aas.push('*');break;}aas.push(a);}return {start:st,aas,stopped,codons};}
+const pepText=a=>a.filter(x=>x!=='*').map(x=>AA3[x]).join('–');
+const compRNA=s=>s.split('').map(c=>({A:'U',T:'A',U:'A',G:'C',C:'G'}[c]||'?')).join('');
+const compDNAs=s=>s.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c]||'?')).join('');
 
 /* ===== data/frqs.js ===== */
 /* FRQs are added with the modules */
@@ -4275,6 +4608,236 @@ function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillSt
   PROBS.push({id:'lk-rf',topic:'linkage',title:'Recombination frequency',gen(){const n=pick([500,800,1000,2000]),r=pick([.04,.06,.08,.1,.12,.15,.2,.25]),rec=Math.round(n*r),ans=rec/n*100;return {q:`In a test cross, ${n} offspring were counted and ${rec} of them were recombinants. What is the distance between the genes in map units?`,ans,unit:'map units',abs:.06,chk:rec*100/n,hint:'Recombinants divided by total, times 100.',sol:`${rec}/${n} × 100 = <b>${fmt(ans,1)} map units</b>.`};}});
   PROBS.push({id:'lk-exp',topic:'linkage',title:'Expected recombinants',gen(){const n=pick([500,1000,2000]),dd=pick([5,10,12,20,30]),ans=n*dd/100;return {q:`Two genes are ${dd} map units apart. In a test cross with ${n} offspring, how many recombinants do you expect?`,ans,unit:'',abs:.5,chk:n*dd/100,hint:'Map units equal percent recombinants.',sol:`${n} × ${dd}% = <b>${fmt(ans,0)}</b>.`};}});
   PROBS.push({id:'lk-ord',topic:'linkage',title:'Gene order',gen(){const x=pick([[8,5],[10,6],[12,7],[15,9]]),a=x[0],b=x[1],ac=a+b,mid=pick(['A','B','C']),orders={B:[['A','B'],['B','C'],['A','C']],A:[['B','A'],['A','C'],['B','C']],C:[['A','C'],['C','B'],['A','B']]};const [p1,p2,p3]=orders[mid];const ord=mid==='B'?'A – B – C':mid==='A'?'B – A – C':'A – C – B';const m=mcq(ord,['A – B – C','B – A – C','A – C – B'].filter(o=>o!==ord).concat(['C – A – B']));return {q:`Recombination frequencies: ${p1.join('–')} = ${a}%, ${p2.join('–')} = ${b}%, ${p3.join('–')} = ${ac}%. What is the order of the three genes on the chromosome?`,choices:m.choices,ans:m.ans,hint:'The two genes that are farthest apart have the largest value, and the third gene lies between them.',sol:`The largest value (${ac}%) is between ${p3.join(' and ')}, so those are the ends. Order: <b>${ord}</b>.`};}});
+})();
+
+/* ===== modules/replication.js ===== */
+/* ---------------- DNA replication ---------------- */
+(function replication(){
+  const cv=$('#rp-canvas');if(!cv)return;
+  const ST=[{n:'1 · helicase unwinds the DNA',t:'Helicase breaks the hydrogen bonds between the strands at the origin, opening a replication fork.'},{n:'2 · primase adds RNA primers',t:'Primase makes short RNA primers. DNA polymerase can only add to an existing 3′ end.'},{n:'3 · leading strand',t:'On one template, DNA polymerase adds nucleotides continuously 5′ → 3′ toward the fork (leading strand).'},{n:'4 · lagging strand',t:'On the other template, synthesis runs away from the fork in short Okazaki fragments, each needing a primer.'},{n:'5 · ligase joins fragments',t:'Primers are replaced with DNA and DNA ligase seals the gaps, making a continuous strand.'}];
+  const sc=stageLab('rp','rp-canvas',ST,(ctx,w,h,i,t)=>{const fx=w*.34,fy=h*.5,ex=w-26,hh=h*.34,top=u=>[fx+(ex-fx)*u,fy-hh*u],bot=u=>[fx+(ex-fx)*u,fy+hh*u];
+    ctx.lineCap='round';ctx.lineWidth=3.5;ctx.strokeStyle=T.ink;[-5,5].forEach(o=>{ctx.beginPath();ctx.moveTo(14,fy+o);ctx.lineTo(fx,fy+o);ctx.stroke();});
+    ctx.strokeStyle=T.muted;ctx.beginPath();ctx.moveTo(fx,fy-5);ctx.lineTo(...top(1));ctx.stroke();ctx.beginPath();ctx.moveTo(fx,fy+5);ctx.lineTo(...bot(1));ctx.stroke();
+    label(ctx,'parental DNA',50,fy-20,T.muted,'left','middle',MONO);label(ctx,"3′",ex+14,top(1)[1],T.muted,'left','middle',MONO);label(ctx,"5′",ex+14,bot(1)[1],T.muted,'left','middle',MONO);
+    const seg=(f,a,b,off,col,wd=4)=>{const p=f(a),q=f(b);ctx.strokeStyle=col;ctx.lineWidth=wd;ctx.beginPath();ctx.moveTo(p[0],p[1]+off);ctx.lineTo(q[0],q[1]+off);ctx.stroke();};
+    const arr=(f,u,off,dir,col)=>{const p=f(u);const x=p[0],y=p[1]+off,s=8*dir;ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-s,y-5);ctx.lineTo(x-s,y+5);ctx.closePath();ctx.fill();};
+    if(i===0){dot2(ctx,fx,fy,T.accent,12);label(ctx,'helicase',fx-18,fy-24,T.accent,'right','middle',MONO);ctx.strokeStyle=T.accent;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(fx+8,fy-8);ctx.lineTo(fx+36,fy-22);ctx.moveTo(fx+8,fy+8);ctx.lineTo(fx+36,fy+22);ctx.stroke();}
+    if(i>=1){seg(top,.88,.96,12,T.hot,5);[.24,.52,.8].forEach(u=>seg(bot,u,u+.06,-12,T.hot,5));label(ctx,'RNA primers (orange)',fx-12,fy+44,T.hot,'right','middle',MONO);}
+    if(i>=2){const a=i===4?.18:.2;seg(top,.96,.12,12,T.cx,4);arr(top,.12,12,-1,T.cx);dot2(ctx,top(.12)[0]-6,top(.12)[1]+12,T.accent,8);label(ctx,"new leading strand (5′→3′ toward fork)",w*.62,fy-hh-6,T.cx,'center','middle',MONO);}
+    if(i>=3){[[.24,.46],[.52,.74],[.8,.96]].forEach(([a,b],k)=>{const u0=i===3&&k===0?.24:a;seg(bot,a+.06,b+(k===2?0:.02),-12,T.cx,4);arr(bot,b+(k===2?0:.02),-12,1,T.cx);});dot2(ctx,bot(.9)[0]+10,bot(.9)[1]-12,T.accent,8);label(ctx,'Okazaki fragments',w*.62,fy+hh+16,T.cx,'center','middle',MONO);}
+    if(i===4){seg(bot,.3,.98,-12,T.cv,5);dot2(ctx,bot(.5)[0],bot(.5)[1]-12,T.cv,8);label(ctx,'ligase',bot(.5)[0],bot(.5)[1]-30,T.cv,'center','middle',MONO);}
+    ctx.lineCap='butt';},{h:w=>clamp(w*.5,250,330)});
+  $('#rp-lab').addEventListener('labreset',()=>sc.go(0));
+  let g=2;
+  const sim=sim2d($('#rp-canvas2'),{h:w=>clamp(w*.36,190,250),draw(ctx,w,h){const tot=Math.pow(2,g),hy=g===0?1:2,hv=g===0?1:0,lt=g===0?0:tot-2,hy2=g===0?0:hy,fr=[[hv/(g===0?1:tot),'heavy',T.ca],[hy2/(g===0?1:tot),'hybrid',T.hot],[lt/(g===0?1:tot),'light',T.cx]];
+    const tx=w*.12,ty=14,th=h-34,tw=44;ctx.strokeStyle=T.ink;ctx.lineWidth=2;ctx.strokeRect(tx,ty,tw,th);let y=ty+th;[fr[0],fr[1],fr[2]].forEach(([f,nm,c])=>{if(f<=0)return;const hh=th*f;ctx.fillStyle=alpha(c,.7);ctx.fillRect(tx+1,y-hh,tw-2,hh);ctx.strokeStyle=c;ctx.lineWidth=1.5;ctx.strokeRect(tx+1,y-hh,tw-2,hh);y-=hh;});
+    ctx.font=MONO;let yy=ty+8;label(ctx,'centrifuge tube: bands by density',tx+tw+16,ty+4,T.muted,'left','middle',MONO);
+    [['heavy (¹⁵N/¹⁵N)',fr[0],T.ca],['hybrid (¹⁵N/¹⁴N)',fr[1],T.hot],['light (¹⁴N/¹⁴N)',fr[2],T.cx]].forEach(([nm,f,c],k)=>{const yk=ty+34+k*30;ctx.fillStyle=alpha(c,.7);ctx.fillRect(tx+tw+16,yk-8,18,16);label(ctx,nm+': '+Math.round(f[0]*100)+'%',tx+tw+42,yk,T.ink,'left','middle',MONO);});}});
+  function upd(){const tot=Math.pow(2,g);setText('rp-tot',String(tot));setText('rp-hyb',g===0?'0 (0%)':'2 ('+fmt(2/tot*100,g>3?1:0)+'%)');setText('rp-lt',g===0?'0 (0%)':(tot-2)+' ('+fmt((tot-2)/tot*100,g>3?1:0)+'%)');setText('rp-hv',g===0?'1 (100%)':'0 (0%)');sim.render();}
+  bindRange('rp-g',v=>String(v),v=>{g=v;upd();});$('#rp-lab2').addEventListener('labreset',()=>{g=2;setCtl('rp-g',2);upd();});upd();
+  drawers.replication=()=>{sc.render();sim.render();};
+  KEYS['rp-canvas']=['Gray: template strands. Blue: new DNA. Orange: RNA primers. Step through the fork.',[['muted','template'],['cx','new DNA'],['hot','RNA primer'],['accent','enzyme']]];
+  KEYS['rp-canvas2']=['Pink: heavy DNA from the original ¹⁵N. Orange: hybrid. Blue: light.',[['ca','heavy'],['hot','hybrid'],['cx','light']]];
+  TIPS['rp-st']=()=>'Polymerase builds only 5′ → 3′, so the lagging strand is made in pieces.';
+  GLOSS['semiconservative']='Each new DNA molecule has one original strand and one newly made strand.';GLOSS['helicase']='The enzyme that unwinds the DNA double helix at the replication fork.';GLOSS['primase']='The enzyme that makes short RNA primers.';GLOSS['dna polymerase']='The enzyme that adds DNA nucleotides to a 3′ end, 5′ → 3′.';GLOSS['okazaki fragment']='A short piece of DNA made on the lagging strand.';GLOSS['dna ligase']='The enzyme that joins DNA fragments.';GLOSS['leading strand']='The new strand made continuously toward the replication fork.';
+  TT.replication='Ask students why a primer is needed and which strand needs more of them.';
+})();
+(function(){
+  PROBS.push({id:'rp-ms',topic:'replication',title:'Meselson–Stahl fractions',gen(){const g=randInt(2,6),tot=Math.pow(2,g),w=pick(['hybrid','light']),ans=w==='hybrid'?200/tot:(tot-2)/tot*100;return {q:`DNA labelled with ¹⁵N is replicated in ¹⁴N for ${g} generations. What percent of the DNA molecules are ${w==='hybrid'?'hybrid (¹⁵N/¹⁴N)':'light (¹⁴N/¹⁴N)'}?`,ans,unit:'%',abs:.06,chk:w==='hybrid'?2/tot*100:100-2/tot*100,hint:'After g generations there are 2^g molecules, and exactly 2 contain an original strand.',sol:`${tot} molecules; 2 are hybrid. ${w==='hybrid'?'Hybrid':'Light'} = <b>${fmt(ans,1)}%</b>.`};}});
+  PROBS.push({id:'rp-prim',topic:'replication',title:'Primers at a fork',gen(){const k=randInt(3,12),ans=k+1;return {q:`At one replication fork the lagging strand is made as ${k} Okazaki fragments. The leading strand needs one primer. How many primers are used at this fork in total?`,ans,unit:'',tol:0,chk:k+1,hint:'One primer per Okazaki fragment plus one for the leading strand.',sol:`${k} + 1 = <b>${ans}</b>.`};}});
+  const q=[['DNA polymerase adds new nucleotides to the','3′ end of the growing strand',['5′ end of the growing strand','5′ end of the template','either end']],['The enzyme that unwinds the double helix is','helicase',['ligase','primase','polymerase']],['Okazaki fragments are joined by','DNA ligase',['helicase','primase','RNA polymerase']],['The lagging strand is made in fragments because','polymerase only builds 5′ → 3′ and the strand runs away from the fork',['ligase is slower','helicase works only on one strand','the template is RNA']],['In semiconservative replication, each daughter molecule contains','one old strand and one new strand',['two old strands','two new strands','a mixture of old and new fragments']]];
+  PROBS.push({id:'rp-fact',topic:'replication',title:'Replication facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall the roles of the fork enzymes.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/transcription.js ===== */
+/* ---------------- Transcription & RNA processing ---------------- */
+(function transcription(){
+  const cv=$('#tx-canvas');if(!cv)return;
+  const ST=[{n:'1 · initiation',t:'RNA polymerase binds the promoter and unwinds a short region of DNA.'},{n:'2 · elongation',t:'RNA polymerase moves along the template strand, adding RNA nucleotides 5′ → 3′ (A–U, T–A, G–C, C–G).'},{n:'3 · termination',t:'At the terminator, the RNA and the polymerase are released and the DNA closes up.'},{n:'4 · RNA processing (eukaryotes)',t:'A 5′ cap and poly-A tail are added and introns are spliced out, leaving exons joined: mature mRNA.'}];
+  const sc=stageLab('tx','tx-canvas',ST,(ctx,w,h,i,t)=>{const dy=h*.3,x0=24,x1=w-24;
+    if(i<=2){ctx.lineWidth=4;[-6,6].forEach((o,k)=>{ctx.strokeStyle=k?T.ca:T.cx;ctx.beginPath();ctx.moveTo(x0,dy+o);ctx.lineTo(x1,dy+o);ctx.stroke();});label(ctx,'template strand',x0,dy+22,T.ca,'left','middle',MONO);label(ctx,'coding strand',x0,dy-20,T.cx,'left','middle',MONO);label(ctx,'promoter',x0+w*.08,dy-34,T.muted,'center','middle',MONO);label(ctx,'terminator',x1-w*.07,dy-34,T.muted,'center','middle',MONO);
+      ctx.fillStyle=alpha(T.muted,.3);ctx.fillRect(x0+4,dy-12,w*.16,24);ctx.fillRect(x1-w*.14,dy-12,w*.12,24);
+      const px=i===0?x0+w*.12:i===1?w*.5:x1-w*.12;ctx.beginPath();ctx.ellipse(px,dy,34,28,0,0,6.283);ctx.fillStyle=alpha(T.accent,.45);ctx.fill();ctx.strokeStyle=T.accent;ctx.lineWidth=2.5;ctx.stroke();label(ctx,'RNA polymerase',px,dy,T.ink,'center','middle',MONO);
+      if(i>=1){ctx.strokeStyle=T.cv;ctx.lineWidth=3;ctx.beginPath();const sx=x0+w*.12,ex=i===1?px:x1-w*.12;ctx.moveTo(sx,dy+8);ctx.bezierCurveTo(sx+30,dy+60,ex-30,dy+80,ex-30,dy+110);ctx.stroke();if(i===1)label(ctx,"growing mRNA (5′ → 3′)",px-40,dy+126,T.cv,'center','middle',MONO);else{label(ctx,'mRNA released',w*.6,dy+126,T.cv,'center','middle',MONO);}}}
+    else{const y=h*.3,gap=h*.38;label(ctx,'primary transcript (pre-mRNA)',x0,y-26,T.muted,'left','middle',MONO);const parts=[['5′ cap',.07,T.hot],['exon 1',.15,T.cv],['intron',.2,T.line],['exon 2',.15,T.cv],['intron',.14,T.line],['exon 3',.13,T.cv],['AAAA',.08,T.hot]];let x=x0;const tot=w-48,xs=[];parts.forEach(([nm,f,c])=>{const wd=tot*f;xs.push([x,wd,nm,c]);ctx.fillStyle=nm==='intron'?alpha(T.muted,.25):alpha(c,.6);ctx.fillRect(x,y-12,wd-2,24);ctx.strokeStyle=nm==='intron'?T.muted:c;ctx.lineWidth=2;ctx.strokeRect(x,y-12,wd-2,24);label(ctx,nm,x+wd/2-1,y,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));x+=wd;});
+      label(ctx,'mature mRNA',x0,y+gap-26,T.muted,'left','middle',MONO);let xx=x0;xs.filter(p=>p[2]!=='intron').forEach(([_,wd,nm,c])=>{ctx.fillStyle=alpha(c,.6);ctx.fillRect(xx,y+gap-12,wd-2,24);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(xx,y+gap-12,wd-2,24);label(ctx,nm,xx+wd/2-1,y+gap,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));xx+=wd;});
+      ctx.strokeStyle=T.muted;ctx.setLineDash([3,3]);ctx.beginPath();xs.filter(p=>p[2]==='intron').forEach(p=>{ctx.moveTo(p[0]+p[1]/2,y+14);ctx.lineTo(p[0]+p[1]/2,y+gap*.45);});ctx.stroke();ctx.setLineDash([]);label(ctx,'introns removed',w*.5,y+gap*.52,T.muted,'center','middle',MONO);}
+    },{h:w=>clamp(w*.46,240,300)});
+  $('#tx-lab').addEventListener('labreset',()=>sc.go(0));
+  const inp=$('#tx-in');
+  const clean=()=>inp.value.toUpperCase().replace(/[^ATGC]/g,'');
+  const sim=sim2d($('#tx-canvas2'),{h:w=>clamp(w*.3,170,220),draw(ctx,w,h){const tpl=clean(),m=compRNA(tpl),n=Math.max(tpl.length,1),dx=Math.min(26,(w-40)/n),x0=(w-dx*n)/2+dx/2,col={A:T.cx,T:T.cx,U:T.cx,G:T.ca,C:T.ca};ctx.font='700 14px '+MONO.split(' ').slice(1).join(' ');
+    label(ctx,"3′",x0-dx,h*.25,T.muted,'center','middle',MONO);label(ctx,"5′",x0+dx*n-dx*.2,h*.25,T.muted,'center','middle',MONO);label(ctx,'template',10,h*.12,T.muted,'left','middle',MONO);label(ctx,'mRNA',10,h*.72,T.muted,'left','middle',MONO);
+    for(let k=0;k<tpl.length;k++){const x=x0+k*dx;label(ctx,tpl[k],x,h*.25,col[tpl[k]],'center','middle',ctx.font);ctx.strokeStyle=T.line;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x,h*.34);ctx.lineTo(x,h*.56);ctx.stroke();label(ctx,m[k],x,h*.65,col[m[k]],'center','middle',ctx.font);if(k%3===0){ctx.strokeStyle=T.muted;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-dx/2+2,h*.82);ctx.lineTo(Math.min(x+dx*2.5,x0+(n-1)*dx+dx/2)-2,h*.82);ctx.stroke();}}}});
+  function upd(){const t=clean(),m=compRNA(t);setText('tx-mrna',m||'—');setText('tx-cod',m.match(/.{1,3}/g)?m.match(/.{1,3}/g).join(' '):'—');setText('tx-len',t.length+' nucleotides');sim.render();}
+  inp.addEventListener('input',upd);upd();
+  drawers.transcription=()=>{sc.render();sim.render();};
+  KEYS['tx-canvas']=['Blue: coding strand. Pink: template strand. Green: mRNA. Orange: RNA polymerase.',[['cx','coding strand'],['ca','template strand'],['cv','mRNA'],['accent','RNA polymerase']]];
+  KEYS['tx-canvas2']=['Letters are colored: A, T and U blue; G and C pink. The mRNA is the complement of the template.',[['cx','A, T, U'],['ca','G, C']]];
+  TIPS['tx-in']=()=>'The mRNA reads 5′ → 3′ from left to right when the template is written 3′ → 5′.';
+  GLOSS['promoter']='A DNA sequence where RNA polymerase binds to start transcription.';GLOSS['template strand']='The DNA strand that RNA polymerase reads; the mRNA is complementary to it.';GLOSS['intron']='A non-coding segment removed from the RNA transcript.';GLOSS['exon']='A segment retained in mature mRNA.';GLOSS['splicing']='Removal of introns and joining of exons.';GLOSS['rna polymerase']='The enzyme that builds an RNA strand from a DNA template.';
+  TT.transcription='Have students write the mRNA from both the template and the coding strand and compare.';
+})();
+(function(){
+  const rnd=n=>Array.from({length:n},()=>pick(['A','T','G','C'])).join('');
+  PROBS.push({id:'tx-mrna',topic:'transcription',title:'mRNA from the template',gen(){const t=rnd(randInt(6,9)),r=compRNA(t),m=mcq(r,[compRNA(t.split('').reverse().join('')),t.replace(/T/g,'U'),compDNAs(t)]);return {q:`A template strand reads 3′-${t}-5′. What is the mRNA, written 5′ → 3′ from left to right as the template is shown?`,choices:m.choices,ans:m.ans,hint:'Pair A–U, T–A, G–C, C–G. The RNA is made 5′ → 3′ antiparallel to the template, so with the template written 3′ → 5′ the mRNA reads left to right.',sol:`Complement with U for A: <b>5′-${r}-3′</b>.`};}});
+  PROBS.push({id:'tx-code',topic:'transcription',title:'mRNA from the coding strand',gen(){const c=rnd(randInt(6,9)),r=c.replace(/T/g,'U'),m=mcq(r,[compRNA(c),compDNAs(c),c]);return {q:`The coding (non-template) strand of a gene reads 5′-${c}-3′. What is the mRNA sequence, 5′ → 3′?`,choices:m.choices,ans:m.ans,hint:'The mRNA has the same sequence as the coding strand with U in place of T.',sol:`<b>5′-${r}-3′</b>.`};}});
+  const q=[['Which of these is removed from the primary transcript during RNA processing?','introns',['exons','the 5′ cap','the poly-A tail']],['RNA polymerase differs from DNA polymerase in that it','does not need a primer',['works 3′ → 5′','copies both strands','makes DNA']],['The mRNA of a eukaryotic gene is made in the','nucleus',['cytoplasm','ribosome','mitochondrion only']],['Alternative splicing allows','one gene to make several different proteins',['one protein to make several genes','DNA to be copied twice','introns to be translated']]];
+  PROBS.push({id:'tx-fact',topic:'transcription',title:'Transcription facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall what each step does.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/translation.js ===== */
+/* ---------------- Translation & the genetic code ---------------- */
+(function translation(){
+  const cv=$('#tl-canvas');if(!cv)return;
+  const ST=[{n:'1 · initiation',t:'The ribosome assembles on the mRNA at the start codon AUG. A tRNA carrying methionine pairs with it in the P site.'},{n:'2 · codon recognition',t:'A tRNA whose anticodon matches the next codon enters the A site.'},{n:'3 · peptide bond forms',t:'The ribosome joins the growing chain to the amino acid in the A site with a peptide bond.'},{n:'4 · translocation',t:'The ribosome moves one codon along the mRNA. The empty tRNA leaves from the E site and the A site is open.'},{n:'5 · termination',t:'A stop codon in the A site is recognized by a release factor. The polypeptide is released.'}];
+  const COD=['AUG','GCU','GAA','AAG','UAA'],AAs=['Met','Ala','Glu','Lys','Stop'];
+  const sc=stageLab('tl','tl-canvas',ST,(ctx,w,h,i)=>{const cw=Math.min(66,(w-30)/5.2),x0=(w-cw*5)/2,my=h*.66;
+    ctx.strokeStyle=T.cv;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(8,my+14);ctx.lineTo(w-8,my+14);ctx.stroke();
+    COD.forEach((c,k)=>{const x=x0+k*cw;ctx.fillStyle=alpha(k===4?T.bad:T.cv,.18);ctx.fillRect(x+1,my,cw-2,28);ctx.strokeStyle=k===4?T.bad:T.cv;ctx.lineWidth=1.6;ctx.strokeRect(x+1,my,cw-2,28);label(ctx,c,x+cw/2,my+14,T.ink,'center','middle',MONO);});
+    const r=[0,0,0,1,3][i];const sx=x0+(r-1)*cw+2,sw=cw*3-4;
+    ctx.beginPath();ctx.ellipse(sx+sw/2,my-34,sw/2+6,50,0,0,6.283);ctx.fillStyle=alpha(T.accent,.14);ctx.fill();ctx.strokeStyle=T.accent;ctx.lineWidth=2.4;ctx.stroke();
+    ['E','P','A'].forEach((s,k)=>label(ctx,s,sx+cw*k+cw/2,my-80,T.accent,'center','middle',MONO));
+    function trna(codIdx,aa,chain,filled=true){const x=x0+codIdx*cw+cw/2;ctx.strokeStyle=T.ca;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(x,my-4);ctx.lineTo(x,my-44);ctx.stroke();if(filled){dot2(ctx,x,my-54,T.ce,11);label(ctx,aa,x,my-54,T.ink,'center','middle','9px '+MONO.split(' ').slice(1).join(' '));}
+      label(ctx,compRNA(COD[codIdx]).split('').join(''),x,my-18,T.ca,'center','middle','9px '+MONO.split(' ').slice(1).join(' '));
+      if(chain>1){for(let q=1;q<chain;q++)dot2(ctx,x-4*q-8+q*0,my-54-q*18,T.ce,7);ctx.strokeStyle=T.ce;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,my-54);ctx.lineTo(x,my-54-(chain-1)*18);ctx.stroke();}}
+    if(i===0)trna(0,'Met',1);
+    if(i===1){trna(0,'Met',1);trna(1,'Ala',1);}
+    if(i===2){trna(0,'',1,false);trna(1,'Ala',2);label(ctx,'peptide bond',x0+cw*1.5,my-122,T.hot,'center','middle',MONO);}
+    if(i===3){trna(0,'',1,false);ctx.strokeStyle=T.muted;ctx.lineWidth=1.5;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(x0+cw*.5,my-70);ctx.lineTo(x0+cw*.5,my-100);ctx.stroke();ctx.setLineDash([]);trna(1,'Ala',2);label(ctx,'empty tRNA leaves',x0+cw*.5,my-108,T.muted,'center','middle',MONO);label(ctx,'→ ribosome moves',w*.78,my-110,T.accent,'center','middle',MONO);}
+    if(i===4){trna(2,'Glu',3);trna(3,'Lys',4);ctx.fillStyle=alpha(T.bad,.3);ctx.fillRect(x0+4*cw+6,my-44,cw-12,38);ctx.strokeStyle=T.bad;ctx.lineWidth=2;ctx.strokeRect(x0+4*cw+6,my-44,cw-12,38);label(ctx,'release',x0+4.5*cw,my-32,T.ink,'center','middle','9px '+MONO.split(' ').slice(1).join(' '));label(ctx,'factor',x0+4.5*cw,my-20,T.ink,'center','middle','9px '+MONO.split(' ').slice(1).join(' '));label(ctx,'Met–Ala–Glu–Lys released',w/2,14,T.good,'center','middle',MONO);}
+    label(ctx,"mRNA 5′ → 3′",8,my+44,T.cv,'left','middle',MONO);},{h:w=>clamp(w*.5,270,340)});
+  $('#tl-lab').addEventListener('labreset',()=>sc.go(0));
+  const inp=$('#tl-in'),clean=()=>inp.value.toUpperCase().replace(/[^AUGCT]/g,'').replace(/T/g,'U');
+  const CL={np:()=>T.ce,po:()=>T.cx,ch:()=>T.ca,stop:()=>T.bad};
+  const sim=sim2d($('#tl-canvas2'),{h:w=>{const r=translateFrom(clean()),n=Math.max(r.codons.length,1),per=Math.max(1,Math.floor((w-20)/56));return clamp(80+Math.ceil(n/per)*56,130,420);},draw(ctx,w,h){const s=clean(),r=translateFrom(s);
+    if(r.start<0){label(ctx,'no AUG start codon: translation does not begin',w/2,h/2,T.bad,'center','middle',MONO);return;}
+    label(ctx,'5′ …'+s.slice(0,r.start)+' (not translated)',10,14,T.muted,'left','middle',MONO);const per=Math.max(1,Math.floor((w-20)/56));
+    r.codons.forEach((c,k)=>{const a=r.aas[k],cl=aaClass(a),col=k===0?T.good:CL[cl](),x=10+(k%per)*56,y=34+Math.floor(k/per)*56;ctx.fillStyle=alpha(col,.3);ctx.fillRect(x,y,52,46);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(x,y,52,46);label(ctx,c,x+26,y+14,T.ink,'center','middle',MONO);label(ctx,AA3[a],x+26,y+32,T.ink,'center','middle','700 12px '+MONO.split(' ').slice(1).join(' '));});
+    const used=r.codons.length*3,leftover=s.length-r.start-used;if(!r.stopped&&leftover>0)label(ctx,'leftover '+s.slice(s.length-leftover)+' (incomplete codon)',10,h-10,T.muted,'left','middle',MONO);}});
+  function upd(){const s=clean(),r=translateFrom(s);setText('tl-pep',r.start<0?'none':pepText(r.aas)||'—');setText('tl-n',r.start<0?'0':String(r.aas.filter(x=>x!=='*').length));setText('tl-note',r.start<0?'no AUG start codon':r.stopped?'stop codon reached: translation ends':'no stop codon before the end of the sequence');sim.render();}
+  inp.addEventListener('input',upd);upd();
+  drawers.translation=()=>{sc.render();sim.render();};
+  KEYS['tl-canvas']=['Gold circles: amino acids. Pink: tRNA with its anticodon. Orange outline: ribosome (E, P and A sites).',[['ce','amino acid'],['ca','tRNA'],['accent','ribosome'],['cv','mRNA']]];
+  KEYS['tl-canvas2']=['Green: start codon. Gold: nonpolar. Blue: polar. Pink: charged. Red: stop.',[['good','start'],['ce','nonpolar'],['cx','polar'],['ca','charged'],['bad','stop']]];
+  TIPS['tl-in']=()=>'Translation starts at the first AUG and stops at UAA, UAG or UGA.';
+  GLOSS['codon']='A group of three mRNA bases that codes for one amino acid or a stop signal.';GLOSS['anticodon']='The three bases on a tRNA complementary to a codon.';GLOSS['trna']='Transfer RNA: carries an amino acid and has an anticodon.';GLOSS['ribosome']='The structure of rRNA and protein that carries out translation.';GLOSS['start codon']='AUG, which also codes for methionine.';GLOSS['stop codon']='UAA, UAG or UGA: signals the end of translation.';
+  TT.translation='Ask students to explain what would happen to the protein if the first base of the mRNA were deleted.';
+})();
+(function(){
+  const rc=()=>pick(['A','U','G','C']);
+  function mk(n){let s='AUG',used=['AUG'];while(used.length<n){const c=rc()+rc()+rc();if(codonAA(c)==='*')continue;s+=c;used.push(c);}return s;}
+  PROBS.push({id:'tl-pep',topic:'translation',title:'Translate an mRNA',gen(){const n=randInt(3,5),s=mk(n),stop=pick(['UAA','UAG','UGA']),full=s+stop,aas=translateFrom(full).aas.filter(x=>x!=='*'),ans=aas.map(x=>AA3[x]).join('–');const wrong=[0,1,2].map(()=>{const a=aas.slice();const i=randInt(0,a.length-1);a[i]=pick('FLSYCWPHQRITNKVADEG'.split('').filter(x=>x!==a[i]));return a.map(x=>AA3[x]).join('–');}).filter((x,i,arr)=>x!==ans&&arr.indexOf(x)===i);while(wrong.length<3)wrong.push(aas.slice().reverse().map(x=>AA3[x]).join('–')+'–Ser'.repeat(wrong.length+1));const m=mcq(ans,wrong);return {q:`The mRNA reads 5′-${full}-3′. Which polypeptide does it code for? (Use the genetic code table.)`,choices:m.choices,ans:m.ans,hint:'Split into codons from AUG and look each one up. The stop codon codes for no amino acid.',sol:`${translateFrom(full).codons.join(' ')} → <b>${ans}</b> then stop.`};}});
+  PROBS.push({id:'tl-len',topic:'translation',title:'Amino acids from mRNA length',gen(){const n=randInt(30,300),L=n*3+3,ans=n;return {q:`The coding region of an mRNA, from the start codon through the stop codon, is ${L} nucleotides long. How many amino acids are in the polypeptide?`,ans,unit:'',tol:0,chk:(L-3)/3,hint:'Three nucleotides per codon, and the stop codon does not code for an amino acid.',sol:`${L}/3 = ${L/3} codons, minus the stop codon = <b>${ans}</b>.`};}});
+  PROBS.push({id:'tl-anti',topic:'translation',title:'Anticodon',gen(){let c;do{c=rc()+rc()+rc();}while(codonAA(c)==='*');const a=compRNA(c),m=mcq(a,[c,compRNA(c.split('').reverse().join('')),compDNAs(c).replace(/T/g,'A')]);return {q:`A codon in mRNA is 5′-${c}-3′. What is the matching tRNA anticodon, written 3′ → 5′?`,choices:m.choices.map(x=>'3′-'+x+'-5′'),ans:m.ans,hint:'The anticodon is complementary and antiparallel to the codon. Pair A–U and G–C.',sol:`<b>3′-${a}-5′</b>.`};}});
+  const q=[['Which codon is the usual start codon?','AUG',['UAA','UGA','GGG']],['How many different codons are there?','64',['20','61','3']],['Which is NOT a stop codon?','UGG',['UAA','UAG','UGA']],['The genetic code is described as redundant because','several codons can code for the same amino acid',['one codon can code for several amino acids','all codons are stop codons','DNA is copied twice']]];
+  PROBS.push({id:'tl-fact',topic:'translation',title:'Genetic code facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Use the genetic code table.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/generegs.js ===== */
+/* ---------------- Regulation of gene expression ---------------- */
+(function generegs(){
+  const cv=$('#gr-canvas');if(!cv)return;
+  let lac='no',glu=true;
+  function operon(ctx,w,h,t,o){const y=h*.5,x0=24,seg=[['promoter',.09,T.muted],['operator',.09,T.ce],['lacZ',.2,T.cv],['lacY',.2,T.cv],['lacA',.2,T.cv]],tot=w-48,xs=[];let x=x0;
+    ctx.fillStyle=alpha(T.ink,.35);ctx.fillRect(x0,y-3,tot,6);seg.forEach(([nm,f,c])=>{const wd=tot*f;xs.push([x,wd]);ctx.fillStyle=alpha(c,.55);ctx.fillRect(x,y-14,wd-2,28);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(x,y-14,wd-2,28);label(ctx,nm,x+wd/2-1,y,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));x+=wd;});
+    const pm=xs[0],op=xs[1];
+    if(o.bound){ctx.fillStyle=alpha(T.ca,.7);ctx.strokeStyle=T.ca;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(op[0]+op[1]/2,y-34,24,16,0,0,6.283);ctx.fill();ctx.stroke();label(ctx,'repressor',op[0]+op[1]/2,y-34,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));}
+    else if(o.repLabel){const rx=op[0]+op[1]/2-10,ry=y-64+Math.sin(t*2)*3;ctx.fillStyle=alpha(T.ca,.35);ctx.strokeStyle=T.ca;ctx.setLineDash([3,3]);ctx.beginPath();ctx.ellipse(rx,ry,24,14,0,0,6.283);ctx.fill();ctx.stroke();ctx.setLineDash([]);label(ctx,o.repLabel,rx,ry,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));}
+    if(o.cap){ctx.fillStyle=alpha(T.accent,.7);ctx.strokeStyle=T.accent;ctx.beginPath();ctx.ellipse(pm[0]-6,y+34,26,14,0,0,6.283);ctx.fill();ctx.stroke();label(ctx,'CAP–cAMP',pm[0]-6,y+34,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));}
+    const px=pm[0]+pm[1]*.5;ctx.fillStyle=alpha(T.accent,.5);ctx.strokeStyle=T.accent;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(o.level>0?px+(((t*(30+o.level*40))%(tot*.6))):px,y+(o.level>0?-2:22),22,14,0,0,6.283);ctx.fill();ctx.stroke();label(ctx,'RNA pol',o.level>0?px+(((t*(30+o.level*40))%(tot*.6))):px,y+(o.level>0?-2:22),T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));
+    if(o.level>0){for(let k=0;k<o.level*2;k++){const sx=xs[2][0]+k*18,sy=y+46+k*10;ctx.strokeStyle=T.cv;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(xs[2][0]-6+k*4,y+16);ctx.bezierCurveTo(sx,sy,sx+40,sy+10,xs[4][0]+xs[4][1]*(.4+.12*k),sy+4);ctx.stroke();}label(ctx,'mRNA: '+(o.level>1?'lots':'a little'),w-30,y+86,T.cv,'right','middle',MONO);}
+    else label(ctx,'no transcription',w-30,y+86,T.bad,'right','middle',MONO);}
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,240,300),draw(ctx,w,h,t){const lev=lac==='no'?0:glu?1:2;operon(ctx,w,h,t,{bound:lac==='no',repLabel:lac==='yes'?'repressor + lactose':'',cap:!glu&&lac==='yes',level:lev});}});
+  function upd(){setText('gr-rep',lac==='no'?'bound to the operator: blocks RNA polymerase':'released (lactose derivative bound to it)');setText('gr-cap',glu?'inactive: glucose present, cAMP low':'active: glucose absent, cAMP high');setText('gr-out',lac==='no'?'none':glu?'low':'high');sim.render();}
+  segBind('gr-lac','k',v=>{lac=v;upd();});$('#gr-glu').addEventListener('click',()=>{glu=!glu;$('#gr-glu').setAttribute('aria-pressed',String(glu));$('#gr-glu').textContent='Glucose: '+(glu?'present':'absent');upd();});
+  $('#gr-lab').addEventListener('labreset',()=>{lac='no';glu=true;segSet('gr-lac',0);$('#gr-glu').textContent='Glucose: present';$('#gr-glu').setAttribute('aria-pressed','true');upd();});upd();
+  let trp='lo';
+  const sim2=sim2d($('#gr-canvas2'),{h:w=>clamp(w*.4,220,280),draw(ctx,w,h,t){const hi=trp==='hi';
+    operon(ctx,w,h,t,{bound:hi,repLabel:hi?'':'inactive repressor',level:hi?0:2});
+    if(hi){ctx.fillStyle=T.ce;dot2(ctx,w*.1,h*.2,T.ce,7);label(ctx,'tryptophan binds the repressor and activates it',w*.14,h*.2,T.muted,'left','middle',MONO);}}});
+  function upd2(){setText('gr-trep',trp==='hi'?'active (tryptophan bound): blocks the operator':'inactive: cannot bind the operator');setText('gr-tout',trp==='hi'?'off: enough tryptophan already':'on: the cell makes tryptophan');sim2.render();}
+  segBind('gr-trp','k',v=>{trp=v;upd2();});$('#gr-lab2').addEventListener('labreset',()=>{trp='lo';segSet('gr-trp',0);upd2();});upd2();
+  drawers.generegs=()=>{sim.render();sim2.render();};
+  KEYS['gr-canvas']=['Pink: repressor. Orange: RNA polymerase and CAP–cAMP. Green: mRNA. The lac genes (lacZ, lacY, lacA) are the structural genes.',[['ca','repressor'],['accent','RNA polymerase / CAP'],['cv','lac genes and mRNA']]];
+  KEYS['gr-canvas2']=['The same operon layout. Tryptophan activates the repressor.',[['ca','repressor'],['cv','trp genes']]];
+  TIPS['gr-lac']=()=>'Lactose acts as an inducer: it releases the repressor so transcription can happen.';
+  GLOSS['operon']='A group of genes under the control of one promoter and operator (bacteria).';GLOSS['operator']='The DNA segment where a repressor binds to block transcription.';GLOSS['repressor']='A protein that binds the operator and blocks transcription.';GLOSS['inducer']='A molecule (such as a lactose derivative) that inactivates a repressor so genes turn on.';GLOSS['transcription factor']='A protein that helps or blocks RNA polymerase at a gene.';GLOSS['epigenetics']='Heritable changes in gene expression that do not change the DNA sequence, such as DNA methylation.';GLOSS['enhancer']='A DNA sequence bound by activators that increases transcription of a gene.';
+  TT.generegs='Ask students to predict expression for each combination of lactose and glucose before using the controls.';
+})();
+(function(){
+  const sc=[['Lactose is absent and glucose is present. Transcription of the lac genes is','off (the repressor blocks the operator)',['high','low but not zero','high because glucose activates CAP']],['Lactose is present and glucose is present. Transcription of the lac genes is','low (repressor released but CAP not active)',['off','high','blocked by the repressor']],['Lactose is present and glucose is absent. Transcription of the lac genes is','high',['off','low','low because cAMP is high']],['A mutation prevents the lac repressor from binding the operator. Lac genes would be','expressed all the time',['never expressed','expressed only with lactose','expressed only with glucose']],['In the trp operon, high tryptophan causes','the repressor to become active and block transcription',['the repressor to leave the operator','more trp mRNA','RNA polymerase to speed up']]];
+  PROBS.push({id:'gr-lac',topic:'generegs',title:'Predict expression',gen(){const p=pick(sc),m=mcq(p[1],p[2]);return {q:p[0]+'.',choices:m.choices,ans:m.ans,hint:'Consider the repressor first, then the activator.',sol:`<b>${p[1]}</b>.`};}});
+  const q=[['Histone acetylation generally','loosens chromatin and increases gene expression',['tightens chromatin and silences genes','removes introns','adds a poly-A tail']],['DNA methylation typically','silences gene expression',['activates all nearby genes','copies the gene','removes the operator']],['Different cell types in one organism have the same DNA but different proteins because of','differential gene expression',['different genes in each cell','mutations in each cell','different numbers of chromosomes']],['MicroRNAs regulate genes by','binding mRNA and blocking translation or causing its breakdown',['adding methyl groups to DNA','making new ribosomes','copying DNA']]];
+  PROBS.push({id:'gr-fact',topic:'generegs',title:'Gene regulation facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0]+'?',choices:m.choices,ans:m.ans,hint:'Think about how the signal changes the regulator.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/mutation.js ===== */
+/* ---------------- Mutations ---------------- */
+(function mutation(){
+  const cv=$('#mt-canvas');if(!cv)return;
+  const ORIG='ATGGCTGAAAAGTTTGGATAA';
+  const MUT={none:ORIG,sil:'ATGGCTGAGAAGTTTGGATAA',mis:'ATGGCTGTAAAGTTTGGATAA',non:'ATGGCTGAATAGTTTGGATAA',ins:'ATGGCTCGAAAAGTTTGGATAA',del:'ATGGCTAAAAGTTTGGATAA',d3:'ATGGCTAAGTTTGGATAA'};
+  const EFF={none:['no mutation','normal protein'],sil:['silent point mutation (GAA → GAG)','same protein: the new codon still codes for Glu'],mis:['missense point mutation (GAA → GUA)','one amino acid changes (Glu → Val); the protein may fold or work differently'],non:['nonsense point mutation (AAG → UAG)','the protein is cut short after 3 amino acids: very likely nonfunctional'],ins:['insertion of 1 base: frameshift','every codon after the insertion changes and the stop codon is missed'],del:['deletion of 1 base: frameshift','every codon after the deletion changes; the stop is missed'],d3:['in-frame deletion of 3 bases','one amino acid (Glu) is lost; the rest of the protein is unchanged']};
+  let kind='none';
+  const cods=s=>{const r=[];for(let i=0;i<s.length;i+=3)r.push(s.slice(i,i+3));return r;};
+  function prot(s){const r=[];let stopped=false;for(let i=0;i+3<=s.length;i+=3){const a=codonAA(s.slice(i,i+3));if(a==='*'){stopped=true;r.push('*');break;}r.push(a);}return {aas:r,stopped};}
+  const sim=sim2d(cv,{h:w=>clamp(w*.4,210,270),draw(ctx,w,h){const bw=Math.min(54,(w-20)/8),rows=[['original',ORIG],['mutant',MUT[kind]]];const o=cods(ORIG).map(c=>codonAA(c));
+    rows.forEach(([nm,s],r)=>{const y=34+r*96;label(ctx,nm+' coding strand 5′ → 3′',10,y-16,T.muted,'left','middle',MONO);const cs=cods(s),p=prot(s);let stop=false;cs.forEach((c,k)=>{if(stop)return;const a=codonAA(c),full=c.length===3,x=10+k*bw,changed=r===1&&(c!==cods(ORIG)[k]||a!==o[k])&&kind!=='none',col=!full?T.muted:a==='*'?T.bad:changed?T.accent:T.cx;
+        ctx.fillStyle=alpha(col,changed?.4:.2);ctx.fillRect(x,y,bw-3,50);ctx.strokeStyle=col;ctx.lineWidth=changed?3:1.6;ctx.strokeRect(x,y,bw-3,50);label(ctx,c,x+bw/2-1,y+14,T.ink,'center','middle',MONO);label(ctx,full?AA3[a]:'—',x+bw/2-1,y+34,T.ink,'center','middle','700 11px '+MONO.split(' ').slice(1).join(' '));if(a==='*')stop=true;});});
+    label(ctx,'orange outline: codon or amino acid differs from the original',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){const e=EFF[kind],p=prot(MUT[kind]);setText('mt-type',e[0]);setText('mt-prot',pepText(p.aas)+(p.stopped?' (stop)':' (no stop codon reached)'));setText('mt-eff',e[1]);sim.render();}
+  segBind('mt-kind','k',v=>{kind=v;upd();});$('#mt-lab').addEventListener('labreset',()=>{kind='none';segSet('mt-kind',0);upd();});upd();
+  drawers.mutation=()=>sim.render();
+  KEYS['mt-canvas']=['Top row: original. Bottom row: mutant. Orange boxes mark what changed.',[['cx','unchanged codon'],['accent','changed'],['bad','stop codon']]];
+  TIPS['mt-kind']=()=>'A single-base insertion or deletion shifts the reading frame; deleting three bases does not.';
+  GLOSS['mutation']='A change in the DNA sequence.';GLOSS['missense']='A point mutation that changes one amino acid.';GLOSS['nonsense']='A point mutation that creates a stop codon.';GLOSS['silent mutation']='A point mutation that does not change the amino acid.';GLOSS['frameshift']='An insertion or deletion (not a multiple of 3 bases) that changes the reading frame.';GLOSS['mutagen']='An agent such as UV light or a chemical that causes mutations.';
+  TT.mutation='Ask students to predict the kind of mutation from the protein before opening the details.';
+})();
+(function(){
+  const bases='ACGT';
+  function seqOK(){let cs=['ATG'];while(cs.length<5){const c=Array.from({length:3},()=>pick(bases.split(''))).join('');if(codonAA(c)==='*')continue;cs.push(c);}return cs;}
+  PROBS.push({id:'mt-type',topic:'mutation',title:'Classify a point mutation',gen(){for(let tries=0;tries<200;tries++){const cs=seqOK(),k=randInt(1,4),pos=randInt(0,2),old=cs[k],nb=pick(bases.split('').filter(b=>b!==old[pos])),nw=old.slice(0,pos)+nb+old.slice(pos+1),a=codonAA(old),b=codonAA(nw),ans=b==='*'?'nonsense':a===b?'silent':'missense';
+      const m=mcq(ans,['silent','missense','nonsense','frameshift'].filter(x=>x!==ans));return {q:`In the coding strand, the codon ${old.replace(/T/g,'U')} (mRNA) is changed by a single base substitution to ${nw.replace(/T/g,'U')}. What type of mutation is this?`,choices:m.choices,ans:m.ans,hint:'Translate both codons: same amino acid, different amino acid, or stop?',sol:`${old.replace(/T/g,'U')} codes for ${AA3[a]} and ${nw.replace(/T/g,'U')} codes for ${AA3[b]}: <b>${ans}</b>.`};}}});
+  PROBS.push({id:'mt-shift',topic:'mutation',title:'Frameshift or not?',gen(){const k=pick([1,2,3,4,5,6]),what=pick(['insertion','deletion']),yes=k%3!==0,ans=yes?'a frameshift':'no frameshift (the reading frame is kept)',m=mcq(ans,['a frameshift','no frameshift (the reading frame is kept)','a silent mutation','a nonsense mutation']);return {q:`A ${what} of ${k} base${k>1?'s':''} occurs in the middle of a coding region. This causes`,choices:m.choices,ans:m.ans,hint:'A frameshift happens when the number of bases added or removed is not a multiple of 3.',sol:`${k} ${k%3?'is not':'is'} a multiple of 3: <b>${ans}</b>.`};}});
+  const q=[['A mutation in a body (somatic) cell, such as a skin cell, will','not be passed to offspring',['be passed to all offspring','always cause cancer','change the offspring\'s gametes']],['Which type of mutation is most likely to have no effect on the protein?','silent mutation',['nonsense mutation','frameshift mutation','deletion of one base']],['Sickle cell disease is caused by','a single base substitution that changes one amino acid',['a frameshift','a stop codon','a missing chromosome']],['Mutations provide the raw material for evolution because they','create new alleles',['remove alleles','always benefit the organism','only occur in somatic cells']]];
+  PROBS.push({id:'mt-fact',topic:'mutation',title:'Mutation facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Think about where and how the DNA changes.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/biotech.js ===== */
+/* ---------------- Biotechnology & genetic engineering ---------------- */
+(function biotech(){
+  const cv=$('#bt-canvas');if(!cv)return;
+  let n=10;
+  const sim=sim2d(cv,{h:w=>clamp(w*.5,250,330),draw(ctx,w,h){const L=40,R=w-14;const A=axes2(ctx,w,h*.46,{x0:0,x1:3,y0:30,y1:100,yt:35,xl:'',yl:'°C',L:44});
+    const pts=[[0,60],[.1,95],[.3,95],[.35,55],[.55,55],[.6,72],[.9,72]];ctx.strokeStyle=T.hot;ctx.lineWidth=3;ctx.beginPath();for(let c=0;c<3;c++)pts.forEach(([x,y],i)=>{const px=A.X(c+x*(1)),py=A.Y(y);(c===0&&i===0)?ctx.moveTo(px,py):ctx.lineTo(px,py);});ctx.stroke();
+    [[.2,95,'denature 95'],[.45,55,'anneal ~55'],[.75,72,'extend 72']].forEach(([x,y,t])=>label(ctx,t,A.X(x),A.Y(y)+(y>80?-9:y<60?12:-9),T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' ')));label(ctx,'one cycle repeated',A.X(1.5),h*.46+4,T.muted,'center','middle',MONO);
+    const bx=L,by=h*.62,bw=R-L,bh=26,mx=Math.log10(Math.pow(2,30));ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.strokeRect(bx,by,bw,bh);const wd=bw*(n*Math.log10(2))/mx;ctx.fillStyle=alpha(T.cx,.7);ctx.fillRect(bx,by,wd,bh);label(ctx,'copies: '+Math.pow(2,n).toLocaleString('en-US')+' (2^'+n+')',bx+4,by+bh+16,T.ink,'left','middle',MONO);label(ctx,'bar length is logarithmic (full bar = 2^30)',bx,by-10,T.muted,'left','middle',MONO);}});
+  function upd(){setText('bt-c',Math.pow(2,n).toLocaleString('en-US'));setText('bt-t','about '+(n*2)+' minutes');sim.render();}
+  bindRange('bt-n',v=>String(v),v=>{n=v;upd();});$('#bt-lab').addEventListener('labreset',()=>{n=10;setCtl('bt-n',10);upd();});upd();
+  /* gel */
+  const FR={none:[6000],E:[1500,2500,2000],B:[2400,3600],EB:[1500,900,1600,2000]},LAD=[500,1000,1500,2000,3000,4000,6000],LANES=[['ladder',LAD],['none',FR.none],['E',FR.E],['B',FR.B],['E + B',FR.EB]];
+  let enz='none';
+  const sim2=sim2d($('#bt-canvas2'),{h:w=>clamp(w*.62,300,380),draw(ctx,w,h){const lw=Math.min(70,(w-80)/5),gap=(w-lw*5)/6,top=40,bot=h-24,lg=s=>(Math.log10(6500)-Math.log10(s))/(Math.log10(6500)-Math.log10(300)),Y=s=>top+(bot-top)*lg(s);
+    ctx.fillStyle=alpha(T.sunk,.8);ctx.fillRect(6,top-16,w-12,bot-top+30);ctx.strokeStyle=T.line;ctx.lineWidth=1.5;ctx.strokeRect(6,top-16,w-12,bot-top+30);
+    const key={none:'none',E:'E',B:'B',EB:'E + B'}[enz];label(ctx,'wells ↑   DNA moves down toward the + electrode',w/2,top-26,T.muted,'center','middle',MONO);
+    LANES.forEach(([nm,fr],k)=>{const x=gap+k*(lw+gap),sel=nm===key;ctx.fillStyle=alpha(T.ink,.55);ctx.fillRect(x,top-12,lw,6);if(sel){ctx.strokeStyle=T.accent;ctx.lineWidth=2;ctx.strokeRect(x-3,top-14,lw+6,bot-top+26);}
+      fr.forEach(s=>{ctx.fillStyle=nm==='ladder'?alpha(T.muted,.8):alpha(T.cx,.9);ctx.fillRect(x+4,Y(s)-2.5,lw-8,5);if(nm==='ladder')label(ctx,String(s),x-3,Y(s),T.muted,'right','middle','9px '+MONO.split(' ').slice(1).join(' '));else if(sel)label(ctx,String(s),x+lw/2,Y(s)-9,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));});label(ctx,nm,x+lw/2,bot+10,T.ink,'center','middle',MONO);});}});
+  function upd2(){const f=FR[enz].slice().sort((a,b)=>b-a);setText('bt-fr',f.join(', '));setText('bt-n2',String(f.length));sim2.render();}
+  segBind('bt-enz','k',v=>{enz=v;upd2();});$('#bt-lab2').addEventListener('labreset',()=>{enz='none';segSet('bt-enz',0);upd2();});upd2();
+  drawers.biotech=()=>{sim.render();sim2.render();};
+  KEYS['bt-canvas']=['Top: the temperature of one PCR cycle. Bottom: copies after the chosen number of cycles.',[['hot','temperature'],['cx','copies']]];
+  KEYS['bt-canvas2']=['Lanes: size ladder, then the 6,000 bp DNA uncut, cut by E, cut by B, cut by both. The chosen lane is outlined.',[['muted','ladder bands'],['cx','sample bands']]];
+  TIPS['bt-n']=()=>'Each cycle doubles the number of copies of the target (ideal case).';
+  GLOSS['pcr']='Polymerase chain reaction: a method that copies a specific DNA region by repeated heating and cooling cycles.';GLOSS['restriction enzyme']='An enzyme that cuts DNA at a specific short sequence.';GLOSS['gel electrophoresis']='A method that separates DNA fragments by size using an electric field.';GLOSS['plasmid']='A small circular DNA molecule in bacteria, used as a vector.';GLOSS['crispr']='A system using a guide RNA and the Cas9 enzyme to cut DNA at a chosen site.';GLOSS['transformation']='Uptake of foreign DNA by a cell.';GLOSS['recombinant dna']='DNA made by combining sequences from different sources.';
+  TT.biotech='Ask students to predict the band pattern for each digest before reading the lanes.';
+})();
+(function(){
+  PROBS.push({id:'bt-pcr',topic:'biotech',title:'PCR copies',gen(){const n=randInt(3,20),ans=Math.pow(2,n);return {q:`Starting from a single copy of the target sequence, how many copies exist after ${n} PCR cycles, assuming perfect doubling?`,ans,unit:'',tol:0,chk:1<<n,hint:'Each cycle doubles the number of copies.',sol:`2<sup>${n}</sup> = <b>${ans.toLocaleString('en-US')}</b>.`};}});
+  PROBS.push({id:'bt-frag',topic:'biotech',title:'Missing fragment',gen(){const tot=pick([4000,5000,6000,8000,10000]),a=Math.round(pick([.15,.2,.25])*tot),b=Math.round(pick([.2,.25,.3])*tot),c=tot-a-b;return {q:`A linear DNA molecule of ${tot.toLocaleString('en-US')} bp is cut by restriction enzymes into three fragments. Two fragments are ${a} bp and ${b} bp. How long is the third fragment?`,ans:c,unit:'bp',tol:0,chk:tot-a-b,hint:'The fragments add up to the original length.',sol:`${tot} − ${a} − ${b} = <b>${c} bp</b>.`};}});
+  PROBS.push({id:'bt-far',topic:'biotech',title:'Which band moves farthest?',gen(){const f=shuffle([500,800,1200,1800,2600,3500]).slice(0,4).sort((x,y)=>x-y),ask=pick(['farthest','least']),ans=ask==='farthest'?f[0]:f[3],m=mcq(String(ans),f.map(String));return {q:`DNA fragments of ${f.join(', ')} bp are run on an agarose gel. Which fragment travels ${ask==='farthest'?'the farthest':'the least'} from the wells? (bp)`,choices:m.choices,ans:m.ans,hint:'Smaller fragments move through the gel faster and farther.',sol:`<b>${ans} bp</b>.`};}});
+  const q=[['During the denaturation step of PCR the DNA is heated to about 95 °C to','separate the two strands',['join the primers','allow Taq to extend','cut the DNA']],['Taq polymerase is used in PCR because it','is stable at high temperatures',['cuts DNA at specific sites','joins DNA fragments','makes RNA']],['DNA moves toward the positive electrode in a gel because DNA is','negatively charged (phosphate groups)',['positively charged','uncharged','hydrophobic']],['In CRISPR-Cas9, the sequence to cut is chosen by','a guide RNA',['the Cas9 protein alone','a restriction enzyme','a plasmid']],['Bacteria that took up a plasmid with an antibiotic resistance gene can be found by','growing them on the antibiotic',['heating them','their color under visible light only','cutting them with a restriction enzyme']]];
+  PROBS.push({id:'bt-fact',topic:'biotech',title:'Biotechnology facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall what each tool is designed to do.',sol:`<b>${p[1]}</b>.`};}});
 })();
 
 /* ===== overview.js ===== */

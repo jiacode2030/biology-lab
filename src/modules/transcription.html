@@ -1,0 +1,54 @@
+  <section class="view" id="v-transcription" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Transcription & RNA processing</h1>
+        <p class="lede">DNA stays in the nucleus; a working copy of one gene travels out. That copy is made of RNA.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Transcription</b> makes an RNA copy of a gene. <b>RNA polymerase</b> binds to the <b>promoter</b>, unwinds a short stretch of DNA and builds an RNA strand 5′ → 3′ by pairing RNA nucleotides with the <b>template strand</b> (A–U, T–A, G–C, C–G). No primer is needed. The RNA is complementary to the template and has the same sequence as the coding strand, with U in place of T. Transcription ends at a terminator sequence.</p>
+        <p>In prokaryotes the RNA is used immediately. In eukaryotes the primary transcript is processed before leaving the nucleus: a <b>5′ cap</b> and a <b>poly-A tail</b> are added, and <b>introns</b> are removed while <b>exons</b> are joined (<b>splicing</b>) to make mature mRNA. <b>Alternative splicing</b> lets one gene make several proteins. Other RNAs (tRNA, rRNA) are also made by transcription and are not translated.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>DNA directly made proteins</dd><dt>So we didn't need</dt><dd>that RNA is an intermediate copy and that eukaryotic RNA is edited</dd><dt>Now</dt><dd>why mRNA contains U and why splicing matters</dd><dt>So we need</dt><dd>promoter, template strand, RNA polymerase and splicing</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>RNA is made 5′ → 3′</span><small>RNA polymerase, no primer</small></div><div class="eqn"><span>pairs: A–U, T–A, G–C, C–G</span><small>template → mRNA</small></div><div class="eqn"><span>5′ cap + poly-A tail + splicing</span><small>eukaryotic mRNA processing</small></div><div class="eqn"><span>mRNA sequence = coding strand with U for T</span><small>same as non-template</small></div></div>
+      <div class="lab" id="tx-lab">
+        <div class="labbar"><span class="title">Making mRNA</span></div>
+        <div class="row"><button type="button" class="btn" id="tx-prev">Previous</button><button type="button" class="btn primary" id="tx-next">Next stage</button><button type="button" class="btn" id="tx-play">Play</button></div>
+        <canvas id="tx-canvas" aria-label="RNA polymerase moving along DNA, building mRNA, then eukaryotic processing removing introns and adding a cap and tail."></canvas>
+        <div class="controls"><div class="ctl"><label for="tx-st"><span>Stage</span> <output id="tx-st-out"></output></label><input type="range" id="tx-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="tx-name">—</strong></div><div><span>what is happening</span><strong class="" id="tx-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="tx-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Transcribe a template</span></div>
+        <div class="ctl"><label for="tx-in"><span>Template DNA, written 3′ → 5′ (A, T, G, C)</span></label><input type="text" id="tx-in" value="TACCGACTTTTCAAACCTATT" maxlength="36" autocomplete="off" spellcheck="false" style="font-family:var(--mono);width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)"></div>
+        <canvas id="tx-canvas2" aria-label="The template strand of DNA, the mRNA built from it and the codons."></canvas>
+        <div class="readout"><div><span>mRNA (5′ → 3′)</span><strong class="x" id="tx-mrna">—</strong></div><div><span>codons</span><strong class="a" id="tx-cod">—</strong></div><div><span>length</span><strong class="v" id="tx-len">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the processing stage. What is removed and what is added? <button type="button" class="btn link" data-show='[["#tx-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Introns are removed and exons joined (splicing); a 5′ cap and a poly-A tail are added.</p></details></li>
+        <li><p>The template reads 3′-TACGGATTC-5′. What is the mRNA? <button type="button" class="btn link" data-show='[["#tx-in", "TACGGATTC"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>5′-AUGCCUAAG-3′: each base is replaced by its RNA partner and the strand runs the other way.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A template strand reads 3′-TACCGATTT-5′. Write the mRNA and the coding strand.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Pair bases.</b> T→A, A→U, C→G, C→G, G→C, A→U, T→A, T→A, T→A: AUGGCUAAA.</li>
+          <li hidden><b>mRNA.</b> 5′-AUGGCUAAA-3′.</li>
+          <li hidden><b>Coding strand.</b> It has the same sequence with T for U: 5′-ATGGCTAAA-3′.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Writing T in mRNA.</li>
+        <li>Copying the template instead of its complement.</li>
+        <li>Reading the template in the wrong direction (the RNA is built 5′ → 3′, antiparallel to the template).</li>
+        <li>Saying introns are translated.</li>
+        <li>Confusing the template strand with the coding strand.</li>
+      </ul></div>
+      <div class="prose"><h2>Common question types</h2>
+        <p>Given a template or coding strand, write the mRNA and then the peptide. Given a mutation in the promoter or a splice site, predict the effect: no transcription, or the wrong exons joined.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Complement with U in place of T: AUG.">
+        <p class="q">Check yourself: Which sequence is the mRNA made from the DNA template 3′-TAC-5′?</p>
+        <div class="opts"><button type="button">5′-AUG-3′</button><button type="button">5′-ATG-3′</button><button type="button">5′-UAC-3′</button><button type="button">5′-TAC-3′</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

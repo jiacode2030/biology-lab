@@ -1,0 +1,54 @@
+  <section class="view" id="v-replication" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>DNA replication</h1>
+        <p class="lede">Before a cell divides it copies every base of its DNA. The copy is made by a machine that reads each old strand and builds a new partner.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Replication is <b>semiconservative</b>: each new DNA molecule has one old strand and one new strand. It starts at an <b>origin of replication</b>. <b>Helicase</b> unwinds the double helix, making a replication fork; single-strand binding proteins keep the strands apart; <b>topoisomerase</b> relieves twisting ahead of the fork. <b>Primase</b> makes a short RNA <b>primer</b> because DNA polymerase can only add nucleotides to an existing 3′ end. <b>DNA polymerase</b> then adds nucleotides only in the <b>5′ → 3′</b> direction, reading the template 3′ → 5′.</p>
+        <p>Because the strands are antiparallel, one new strand (the <b>leading strand</b>) is made continuously toward the fork. The other (the <b>lagging strand</b>) is made away from the fork in short pieces called <b>Okazaki fragments</b>, each needing its own primer. <b>DNA ligase</b> joins the fragments after the primers are replaced with DNA. DNA polymerase also proofreads, so errors are rare (about 1 in 10⁹–10¹⁰ bases after repair).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>DNA copying was just "unzip and match up"</dd><dt>So we didn't need</dt><dd>that the strands are antiparallel and polymerase only works 5′ → 3′, so one strand is made in pieces</dd><dt>Now</dt><dd>why replication needs primers and ligase and why it is so accurate</dd><dt>So we need</dt><dd>semiconservative replication and the enzymes of the fork</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>new strand is made 5′ → 3′</span><small>DNA polymerase</small></div><div class="eqn"><span>helicase unwinds; primase starts; ligase joins</span><small>fork enzymes</small></div><div class="eqn"><span>leading strand: continuous</span><small>lagging: Okazaki fragments</small></div><div class="eqn"><span>semiconservative: each daughter = 1 old + 1 new strand</span><small>Meselson–Stahl</small></div></div>
+      <div class="lab" id="rp-lab">
+        <div class="labbar"><span class="title">The replication fork</span></div>
+        <div class="row"><button type="button" class="btn" id="rp-prev">Previous</button><button type="button" class="btn primary" id="rp-next">Next stage</button><button type="button" class="btn" id="rp-play">Play</button></div>
+        <canvas id="rp-canvas" aria-label="A replication fork with helicase, primers, DNA polymerase, Okazaki fragments and ligase appearing in successive stages."></canvas>
+        <div class="controls"><div class="ctl"><label for="rp-st"><span>Stage</span> <output id="rp-st-out"></output></label><input type="range" id="rp-st" min="0" max="4" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="rp-name">—</strong></div><div><span>what is happening</span><strong class="" id="rp-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="rp-lab2" data-reset="own">
+        <div class="labbar"><span class="title">The Meselson–Stahl experiment</span></div>
+        <canvas id="rp-canvas2" aria-label="Bars showing the fraction of DNA molecules that are heavy, hybrid or light after each generation of growth in light nitrogen."></canvas>
+        <div class="controls"><div class="ctl"><label for="rp-g"><span>Generations in ¹⁴N</span> <output id="rp-g-out"></output></label><input type="range" id="rp-g" min="0" max="6" step="1" value="2"></div></div>
+        <div class="readout"><div><span>DNA molecules from one original</span><strong class="x" id="rp-tot">—</strong></div><div><span>hybrid (¹⁵N/¹⁴N)</span><strong class="a" id="rp-hyb">—</strong></div><div><span>light (¹⁴N/¹⁴N)</span><strong class="v" id="rp-lt">—</strong></div><div><span>heavy (¹⁵N/¹⁵N)</span><strong class="" id="rp-hv">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the stage with Okazaki fragments. Why does only one strand have them? <button type="button" class="btn link" data-show='[["#rp-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>DNA polymerase can only build 5′ → 3′. On one template that direction points toward the fork (continuous); on the other it points away, so the strand is built in pieces as the fork opens.</p></details></li>
+        <li><p>Set 2 generations. What fraction are hybrid? <button type="button" class="btn link" data-show='[["#rp-g", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>2 of 4 molecules (50%) are hybrid and 2 of 4 are light. No heavy DNA remains, and this matches semiconservative replication.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Bacteria grown for many generations in ¹⁵N are moved to ¹⁴N and allowed to divide three times. What fraction of DNA molecules are hybrid and what fraction light?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Molecules.</b> Each generation doubles the number: 2³ = 8 molecules from one.</li>
+          <li hidden><b>Old strands.</b> The two original ¹⁵N strands end up in 2 different molecules, each a hybrid (one old, one new).</li>
+          <li hidden><b>Fractions.</b> Hybrid = 2/8 = 1/4; light = 6/8 = 3/4; heavy = 0.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Writing that DNA polymerase works 3′ → 5′ (it adds to a 3′ end, building 5′ → 3′).</li>
+        <li>Thinking primers are DNA. They are short RNA.</li>
+        <li>Saying both strands are made in fragments.</li>
+        <li>Forgetting that the old strands are conserved (one in each daughter).</li>
+        <li>Confusing ligase (joins fragments) with polymerase.</li>
+      </ul></div>
+      <div class="prose"><h2>Predicting results</h2>
+        <p>If primase is missing, polymerase cannot start. If ligase is missing, the lagging strand has gaps. If helicase fails, the fork does not open. State which strand is affected and why.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="On the lagging strand the 5′ → 3′ direction points away from the fork, so synthesis is in pieces.">
+        <p class="q">Check yourself: Okazaki fragments are made because DNA polymerase</p>
+        <div class="opts"><button type="button">can only add nucleotides in the 5′ → 3′ direction</button><button type="button">cannot copy RNA</button><button type="button">works only at the end of chromosomes</button><button type="button">needs ATP to unwind DNA</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

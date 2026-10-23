@@ -1,0 +1,54 @@
+  <section class="view" id="v-translation" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Translation & the genetic code</h1>
+        <p class="lede">Ribosomes read the mRNA three bases at a time and string together amino acids in the order the codons specify.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The <b>genetic code</b> is read in <b>codons</b> of three bases. There are 64 codons: 61 code for amino acids and 3 are <b>stop</b> codons (UAA, UAG, UGA). <b>AUG</b> codes for methionine and is the <b>start</b> codon. The code is <b>redundant</b> (several codons for one amino acid) but <b>unambiguous</b> (each codon codes for only one), and it is nearly universal.</p>
+        <p>The <b>ribosome</b> (rRNA and protein) binds mRNA. Each <b>tRNA</b> carries one amino acid and has an <b>anticodon</b> complementary to a codon. At the start, a tRNA with methionine pairs with AUG in the P site. Then a tRNA enters the A site, a peptide bond forms, and the ribosome moves one codon (translocation). This repeats until a stop codon reaches the A site and release factors free the polypeptide.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>proteins were just "made from DNA"</dd><dt>So we didn't need</dt><dd>how the sequence of codons becomes the sequence of amino acids</dd><dt>Now</dt><dd>why one change in a base may or may not change the protein</dd><dt>So we need</dt><dd>codons, tRNA anticodons and the stages of translation</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>codon: three mRNA bases</span><small>AUG = start (Met); UAA, UAG, UGA = stop</small></div><div class="eqn"><span>anticodon is complementary to the codon</span><small>on tRNA</small></div><div class="eqn"><span>amino acids in peptide = (nucleotides before stop) / 3</span><small>coding region</small></div><div class="eqn"><span>code: redundant, unambiguous, universal</span><small>properties</small></div></div>
+      <div class="lab" id="tl-lab">
+        <div class="labbar"><span class="title">Building a polypeptide</span></div>
+        <div class="row"><button type="button" class="btn" id="tl-prev">Previous</button><button type="button" class="btn primary" id="tl-next">Next stage</button><button type="button" class="btn" id="tl-play">Play</button></div>
+        <canvas id="tl-canvas" aria-label="A ribosome on an mRNA: initiation with Met-tRNA, elongation with a new tRNA and a peptide bond, translocation, and termination at a stop codon."></canvas>
+        <div class="controls"><div class="ctl"><label for="tl-st"><span>Stage</span> <output id="tl-st-out"></output></label><input type="range" id="tl-st" min="0" max="4" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="tl-name">—</strong></div><div><span>what is happening</span><strong class="" id="tl-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="tl-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Translate an mRNA</span></div>
+        <div class="ctl"><label for="tl-in"><span>mRNA, written 5′ → 3′ (A, U, G, C)</span></label><input type="text" id="tl-in" value="GCAUGGCUGAAAAGUUUGGAUAAGC" maxlength="48" autocomplete="off" spellcheck="false" style="font-family:var(--mono);width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)"></div>
+        <canvas id="tl-canvas2" aria-label="Codons of the mRNA coloured by the amino acid they code for, from the start codon to a stop codon."></canvas>
+        <div class="readout"><div><span>polypeptide</span><strong class="x" id="tl-pep">—</strong></div><div><span>amino acids</span><strong class="a" id="tl-n">—</strong></div><div><span>note</span><strong class="" id="tl-note">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to the stage where the peptide bond forms. Which molecules join? <button type="button" class="btn link" data-show='[["#tl-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The amino acid on the tRNA in the P site is joined to the one on the tRNA in the A site (the ribosome catalyzes it).</p></details></li>
+        <li><p>Change the mRNA so the first AUG is missing. What happens? <button type="button" class="btn link" data-show='[["#tl-in", "GCAGGCUGAAAAGUUUGGAUAAGC"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>No start codon: translation does not begin (the tool reports no peptide).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">The mRNA 5′-AUGUUUGGCAAAUAG-3′ is translated. What is the polypeptide and how many amino acids does it have?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Codons.</b> AUG | UUU | GGC | AAA | UAG.</li>
+          <li hidden><b>Amino acids.</b> AUG = Met, UUU = Phe, GGC = Gly, AAA = Lys, UAG = stop.</li>
+          <li hidden><b>Answer.</b> Met–Phe–Gly–Lys: 4 amino acids. Stop codons do not code for an amino acid.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Counting the stop codon as an amino acid.</li>
+        <li>Starting to read at the first base instead of the first AUG.</li>
+        <li>Writing anticodons as identical to codons.</li>
+        <li>Saying the code is ambiguous (it is redundant, not ambiguous).</li>
+        <li>Mixing up tRNA (anticodon) with mRNA (codon).</li>
+      </ul></div>
+      <div class="prose"><h2>Using the code table</h2>
+        <p>Use the genetic code table on the Reference tab: first base on the left, second on top, third on the right. If given DNA, first make mRNA. For a tRNA anticodon, complement the codon (and remember the strands are antiparallel).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The codon is the complement: 5′-AUG-3′, the start codon.">
+        <p class="q">Check yourself: A tRNA has the anticodon 3′-UAC-5′. Which codon does it pair with?</p>
+        <div class="opts"><button type="button">5′-AUG-3′</button><button type="button">5′-UAC-3′</button><button type="button">5′-UUU-3′</button><button type="button">5′-ATG-3′</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,47 @@
+  <section class="view" id="v-mutation" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Mutations</h1>
+        <p class="lede">A change in the DNA sequence may change nothing, make a protein slightly different, or ruin it completely. What happens depends on the kind of change and where it occurs.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>point mutation</b> changes one base. A <b>silent</b> mutation changes the codon but not the amino acid (the code is redundant). A <b>missense</b> mutation changes one amino acid (sickle cell: GAG → GUG, glutamic acid → valine). A <b>nonsense</b> mutation turns an amino acid codon into a stop codon, so the protein is cut short. An <b>insertion</b> or <b>deletion</b> of bases that is not a multiple of three causes a <b>frameshift</b>: every codon after it is read differently, usually ruining the protein. Insertions or deletions of multiples of three add or remove amino acids without shifting the frame.</p>
+        <p>Mutations arise from copying errors, <b>mutagens</b> (UV, radiation, chemicals) and mistakes in repair. They create new alleles, the raw material for evolution. Only mutations in germ cells (gametes) are passed to offspring; somatic mutations can cause cancer. Many mutations are neutral, some harmful, and a few beneficial depending on the environment.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>mutations were always harmful</dd><dt>So we didn't need</dt><dd>that the effect depends on the type of change and its location</dd><dt>Now</dt><dd>why one base change can be harmless and another disastrous</dd><dt>So we need</dt><dd>silent, missense, nonsense and frameshift mutations</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>silent: same amino acid</span><small>missense: different amino acid</small></div><div class="eqn"><span>nonsense: becomes a stop codon</span><small>shortened protein</small></div><div class="eqn"><span>indel not a multiple of 3: frameshift</span><small>all later codons change</small></div><div class="eqn"><span>only germ-line mutations are inherited</span><small>somatic: not passed on</small></div></div>
+      <div class="lab" id="mt-lab" data-reset="own">
+        <div class="labbar"><span class="title">Mutate a gene</span></div>
+        <div class="ctl"><span class="lbl">Mutation</span><div class="seg" id="mt-kind" role="group" aria-label="Mutation"><button type="button" data-k="none" aria-pressed="true">none</button><button type="button" data-k="sil" aria-pressed="false">silent</button><button type="button" data-k="mis" aria-pressed="false">missense</button><button type="button" data-k="non" aria-pressed="false">nonsense</button><button type="button" data-k="ins" aria-pressed="false">insert 1 base</button><button type="button" data-k="del" aria-pressed="false">delete 1 base</button><button type="button" data-k="d3" aria-pressed="false">delete 3 bases</button></div></div>
+        <canvas id="mt-canvas" aria-label="Codons of a gene before and after the chosen mutation with the resulting amino acids. Changed codons are highlighted."></canvas>
+        <div class="readout"><div><span>type of change</span><strong class="x" id="mt-type">—</strong></div><div><span>protein</span><strong class="a" id="mt-prot">—</strong></div><div><span>effect</span><strong class="" id="mt-eff">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose missense. Which codon changed and what is the result? <button type="button" class="btn link" data-show='[["click", "#mt-kind [data-k=mis]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>GAA → GUA changes Glu to Val: one amino acid differs, the rest of the protein is the same.</p></details></li>
+        <li><p>Choose "insert 1 base". Compare with "delete 3 bases". <button type="button" class="btn link" data-show='[["click", "#mt-kind [data-k=ins]"]]'>Insert 1</button></p><details><summary>What you should see</summary><p>One base shifts the reading frame so all later codons change (frameshift). Deleting exactly three bases removes one amino acid and leaves the frame intact.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">The coding strand reads 5′-ATG GCT GAA AAG TTT GGA TAA-3′. A mutation changes AAG to TAG. Name the mutation and predict the protein.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Original.</b> Met–Ala–Glu–Lys–Phe–Gly (stop).</li>
+          <li hidden><b>Change.</b> AAG → TAG: in mRNA AAG (Lys) becomes UAG, a stop codon.</li>
+          <li hidden><b>Type and effect.</b> Nonsense. The protein is Met–Ala–Glu (3 amino acids), likely nonfunctional.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Calling all mutations harmful.</li>
+        <li>Saying a silent mutation does not change the DNA (it does, but not the amino acid).</li>
+        <li>Forgetting that a frameshift needs an insertion or deletion not divisible by 3.</li>
+        <li>Thinking somatic mutations are inherited.</li>
+        <li>Mixing nonsense (stop) with missense (different amino acid).</li>
+      </ul></div>
+      <div class="prose"><h2>Classify by comparing</h2>
+        <p>Translate the original and the mutant side by side. Same amino acids: silent. One different: missense. Stop appears early: nonsense. Many different after a point: frameshift. Remember the effect on function depends on where the change is.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="One amino acid is replaced by a different one.">
+        <p class="q">Check yourself: A base change turns a codon for glutamic acid into a codon for valine. This is a</p>
+        <div class="opts"><button type="button">missense mutation</button><button type="button">silent mutation</button><button type="button">nonsense mutation</button><button type="button">frameshift mutation</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

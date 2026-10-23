@@ -1,0 +1,55 @@
+  <section class="view" id="v-generegs" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 6</span></div>
+        <h1>Regulation of gene expression</h1>
+        <p class="lede">Every cell has the same genes but uses different ones. Cells switch genes on and off depending on conditions and identity.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>In bacteria, genes with related functions are grouped in an <b>operon</b> with one promoter and an <b>operator</b>. In the <b>lac operon</b> (inducible), a repressor normally blocks the operator so the genes for lactose digestion are off. If <b>lactose</b> is present, a derivative binds the repressor and releases it, and transcription can happen. When glucose is also present the CAP–cAMP activator is not active, so transcription is low even with lactose. In the <b>trp operon</b> (repressible), tryptophan binds the repressor and turns it on, so the genes are switched off when tryptophan is plentiful.</p>
+        <p>In eukaryotes there are more control points: <b>chromatin</b> structure (acetylation of histones loosens DNA; DNA methylation silences genes: epigenetics), <b>transcription factors</b> binding <b>enhancers</b> and promoters, <b>alternative splicing</b>, mRNA stability and <b>microRNAs</b> (RNA interference), and control of translation and protein breakdown. This is how identical DNA yields different cell types.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>genes were simply "on"</dd><dt>So we didn't need</dt><dd>that cells actively switch genes on and off using regulatory proteins and DNA sequences</dd><dt>Now</dt><dd>how cells respond to their environment and become different types</dd><dt>So we need</dt><dd>operons, transcription factors, chromatin and RNA control</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>lac operon: lactose present → repressor off → transcription</span><small>inducible</small></div><div class="eqn"><span>high glucose → low cAMP → little CAP activation</span><small>even with lactose</small></div><div class="eqn"><span>trp operon: tryptophan binds repressor → genes off</span><small>repressible</small></div><div class="eqn"><span>acetylation opens chromatin; methylation silences genes</span><small>eukaryotic control</small></div></div>
+      <div class="lab" id="gr-lab" data-reset="own">
+        <div class="labbar"><span class="title">The lac operon</span></div>
+        <div class="ctl"><span class="lbl">Lactose</span><div class="seg" id="gr-lac" role="group" aria-label="Lactose"><button type="button" data-k="no" aria-pressed="true">absent</button><button type="button" data-k="yes" aria-pressed="false">present</button></div></div>
+        <div class="row"><button type="button" class="btn" id="gr-glu" aria-pressed="true">Glucose: present</button></div>
+        <canvas id="gr-canvas" aria-label="The lac operon: promoter, operator and three genes, with the repressor bound or released and RNA polymerase transcribing or not depending on lactose and glucose."></canvas>
+        <div class="readout"><div><span>repressor</span><strong class="x" id="gr-rep">—</strong></div><div><span>CAP–cAMP activator</span><strong class="a" id="gr-cap">—</strong></div><div><span>transcription of lac genes</span><strong class="v" id="gr-out">—</strong></div></div>
+      </div>
+      <div class="lab" id="gr-lab2" data-reset="own">
+        <div class="labbar"><span class="title">The trp operon</span></div>
+        <div class="ctl"><span class="lbl">Tryptophan</span><div class="seg" id="gr-trp" role="group" aria-label="Tryptophan"><button type="button" data-k="lo" aria-pressed="true">low</button><button type="button" data-k="hi" aria-pressed="false">high</button></div></div>
+        <canvas id="gr-canvas2" aria-label="The trp operon with the repressor active or inactive depending on whether tryptophan is present."></canvas>
+        <div class="readout"><div><span>repressor</span><strong class="x" id="gr-trep">—</strong></div><div><span>transcription of trp genes</span><strong class="a" id="gr-tout">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Lactose present and glucose absent. What happens? <button type="button" class="btn link" data-show='[["click", "#gr-lac [data-k=yes]"], ["click", "#gr-glu"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The repressor is released and the CAP–cAMP activator is active: high transcription of the lac genes.</p></details></li>
+        <li><p>Now add glucose back with lactose present. <button type="button" class="btn link" data-show='[["click", "#gr-glu"]]'>Toggle glucose</button></p><details><summary>What you should see</summary><p>Transcription drops: cAMP is low so CAP does not activate, even though the repressor is off. The cell prefers glucose.</p></details></li>
+        <li><p>Set tryptophan high. Why are the trp genes off? <button type="button" class="btn link" data-show='[["click", "#gr-trp [data-k=hi]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Tryptophan binds the repressor and activates it, so it blocks the operator: no need to make more tryptophan.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">E. coli has a mutation so that the lac repressor cannot bind lactose (but still binds the operator). Predict lac gene expression with and without lactose.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Normal repressor.</b> Releases from the operator when lactose is present.</li>
+          <li hidden><b>Mutant.</b> It cannot respond to lactose, so it stays on the operator.</li>
+          <li hidden><b>Result.</b> The genes stay off with or without lactose. The cell cannot digest lactose.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying lactose binds the operator (it binds the repressor, via a derivative).</li>
+        <li>Mixing up inducible (lac, normally off) and repressible (trp, normally on) operons.</li>
+        <li>Saying operons are found in eukaryotes (they are typical of prokaryotes).</li>
+        <li>Assuming methylation always turns genes on (it usually silences them).</li>
+        <li>Forgetting that every cell has the same DNA; the difference is in gene expression.</li>
+      </ul></div>
+      <div class="prose"><h2>Prediction template</h2>
+        <p>State the signal (lactose, glucose, tryptophan), what it does to the regulatory protein, whether RNA polymerase can transcribe, and the effect on the proteins made. Mutation questions: ask which part (repressor, operator, promoter) no longer works.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The inducer releases the repressor from the operator.">
+        <p class="q">Check yourself: In the lac operon, lactose causes transcription by</p>
+        <div class="opts"><button type="button">binding the repressor so it leaves the operator</button><button type="button">binding RNA polymerase</button><button type="button">binding the promoter</button><button type="button">destroying the operator</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

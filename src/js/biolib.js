@@ -183,3 +183,13 @@ function axes2(ctx,w,h,o){const L=o.L||48,R=w-14,T0=o.T0||16,B=h-(o.xl?38:26),X=
   return {L,R,T0,B,X,Y};}
 function curve2(ctx,A,f,x0,x1,col,lw=2.6){ctx.strokeStyle=col;ctx.lineWidth=lw;ctx.beginPath();for(let i=0;i<=120;i++){const x=x0+(x1-x0)*i/120;i?ctx.lineTo(A.X(x),A.Y(f(x))):ctx.moveTo(A.X(x),A.Y(f(x)));}ctx.stroke();}
 function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillStyle=col;ctx.fill();ctx.strokeStyle=T.surface;ctx.lineWidth=2;ctx.stroke();}
+/* ----- genetic code helpers (standard code, base order T C A G) ----- */
+const GC_STR='FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG';
+const AA3={F:'Phe',L:'Leu',S:'Ser',Y:'Tyr',C:'Cys',W:'Trp',P:'Pro',H:'His',Q:'Gln',R:'Arg',I:'Ile',M:'Met',T:'Thr',N:'Asn',K:'Lys',V:'Val',A:'Ala',D:'Asp',E:'Glu',G:'Gly','*':'Stop'};
+function codonAA(c){c=c.toUpperCase().replace(/U/g,'T');const b='TCAG',i=b.indexOf(c[0]),j=b.indexOf(c[1]),k=b.indexOf(c[2]);if(c.length<3||i<0||j<0||k<0)return null;return GC_STR[i*16+j*4+k];}
+function aaClass(a){return a==='*'?'stop':'GAVLIMFWP'.includes(a)?'np':'STCYNQ'.includes(a)?'po':'ch';}
+/* translate an RNA/DNA string from its first AUG; returns {start,aas:[letters],stopped,codons:[...]} */
+function translateFrom(s){s=s.toUpperCase().replace(/T/g,'U');const st=s.indexOf('AUG');if(st<0)return {start:-1,aas:[],stopped:false,codons:[]};const aas=[],codons=[];let stopped=false;for(let i=st;i+3<=s.length;i+=3){const c=s.slice(i,i+3),a=codonAA(c);codons.push(c);if(a==='*'){stopped=true;aas.push('*');break;}aas.push(a);}return {start:st,aas,stopped,codons};}
+const pepText=a=>a.filter(x=>x!=='*').map(x=>AA3[x]).join('–');
+const compRNA=s=>s.split('').map(c=>({A:'U',T:'A',U:'A',G:'C',C:'G'}[c]||'?')).join('');
+const compDNAs=s=>s.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c]||'?')).join('');
