@@ -1,0 +1,54 @@
+  <section class="view" id="v-meiosis" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Meiosis & genetic variation</h1>
+        <p class="lede">Sexual reproduction mixes genes from two parents. Meiosis is the cell division that halves the chromosome number and shuffles the genes so that no two gametes are alike.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A diploid cell (2n) has two copies of each chromosome, one from each parent (<b>homologous chromosomes</b>). Meiosis makes <b>haploid</b> (n) gametes with one copy of each. After DNA replication, <b>meiosis I</b> separates the <i>homologs</i> (so the cells become haploid) and <b>meiosis II</b> separates the <i>sister chromatids</i> (like mitosis). One diploid cell yields <b>four</b> genetically different haploid cells.</p>
+        <p>Variation comes from three sources. <b>Crossing over</b> in prophase I swaps pieces between homologs, making new combinations of alleles on one chromosome. <b>Independent assortment</b> in metaphase I: each homologous pair lines up at random, so with n pairs there are 2<sup>n</sup> possible combinations (over 8 million in humans). <b>Random fertilization</b> then combines any egg with any sperm. Errors in separation (<b>nondisjunction</b>) produce gametes with extra or missing chromosomes, as in trisomy 21.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>cell division always made identical copies</dd><dt>So we didn't need</dt><dd>that a special division halves the chromosome number and creates variation</dd><dt>Now</dt><dd>why siblings differ and how chromosome number stays constant across generations</dd><dt>So we need</dt><dd>meiosis I and II, crossing over and independent assortment</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>2n → n (meiosis I) → n (meiosis II)</span><small>one cell → four cells</small></div><div class="eqn"><span>possible gametes (no crossing over) = 2ⁿ</span><small>n = haploid number</small></div><div class="eqn"><span>zygote: n + n = 2n</span><small>fertilization</small></div><div class="eqn"><span>meiosis I separates homologs; meiosis II separates sister chromatids</span><small>key difference from mitosis</small></div></div>
+      <div class="lab" id="me2-lab">
+        <div class="labbar"><span class="title">Meiosis step by step</span></div>
+        <div class="row"><button type="button" class="btn" id="ms-prev">Previous</button><button type="button" class="btn primary" id="ms-next">Next stage</button><button type="button" class="btn" id="ms-play">Play</button></div>
+        <canvas id="me2-canvas" aria-label="A cell with four chromosomes (two homologous pairs) shown at each stage of meiosis I and II."></canvas>
+        <div class="controls"><div class="ctl"><label for="ms-st"><span>Stage</span> <output id="ms-st-out"></output></label><input type="range" id="ms-st" min="0" max="6" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="ms-name">—</strong></div><div><span>what is happening</span><strong class="" id="ms-txt">—</strong></div><div><span>chromosome number per cell</span><strong class="a" id="ms-n">—</strong></div></div>
+      </div>
+      <div class="lab" id="me2-lab2" data-reset="own">
+        <div class="labbar"><span class="title">How many different gametes?</span></div>
+        <canvas id="me2-canvas2" aria-label="A bar showing the number of possible chromosome combinations in gametes as the number of chromosome pairs increases."></canvas>
+        <div class="controls"><div class="ctl"><label for="ms-pairs"><span>Chromosome pairs (n)</span> <output id="ms-pairs-out"></output></label><input type="range" id="ms-pairs" min="1" max="23" step="1" value="3"></div></div>
+        <div class="readout"><div><span>different gametes (no crossing over)</span><strong class="x" id="ms-g">—</strong></div><div><span>different zygotes from two such parents</span><strong class="a" id="ms-z">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to anaphase I. What separates? <button type="button" class="btn link" data-show='[["#ms-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The homologous chromosomes separate. Sister chromatids stay together, which is why cells after meiosis I are haploid.</p></details></li>
+        <li><p>Set n = 23. How many gametes are possible? <button type="button" class="btn link" data-show='[["#ms-pairs", 23]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>2²³ = 8,388,608 different combinations of maternal and paternal chromosomes, before crossing over is counted.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A fruit fly has 2n = 8. How many different gametes are possible from independent assortment alone, and how many chromosomes are in each gamete?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Haploid number.</b> n = 8/2 = 4 pairs.</li>
+          <li hidden><b>Combinations.</b> 2<sup>4</sup> = 16 different gametes.</li>
+          <li hidden><b>Each gamete.</b> 4 chromosomes (one from each pair).</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying meiosis I separates sister chromatids.</li>
+        <li>Saying meiosis makes two cells.</li>
+        <li>Counting chromosomes by chromatids: after meiosis I each cell has n chromosomes, each with two chromatids.</li>
+        <li>Mixing up crossing over (within a pair) and independent assortment (between pairs).</li>
+        <li>Believing meiosis II halves the chromosome number again.</li>
+      </ul></div>
+      <div class="prose"><h2>Compare mitosis and meiosis</h2>
+        <p>Mitosis: one division, two identical diploid cells, for growth and repair. Meiosis: two divisions, four different haploid cells, for gametes. Only meiosis has synapsis, crossing over and separation of homologs.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Crossing over exchanges segments between homologous chromosomes.">
+        <p class="q">Check yourself: Which event in meiosis directly creates new combinations of alleles on the same chromosome?</p>
+        <div class="opts"><button type="button">crossing over in prophase I</button><button type="button">independent assortment in metaphase I</button><button type="button">separation of sister chromatids</button><button type="button">fertilization</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

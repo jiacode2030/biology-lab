@@ -1,0 +1,54 @@
+  <section class="view" id="v-sexlink" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Sex linkage & pedigrees</h1>
+        <p class="lede">Genes on the X chromosome behave differently in males and females, because males have only one X.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Females are XX and males are XY. A gene on the X chromosome with no matching gene on the Y is <b>X-linked</b>. Males have one allele, so a single recessive allele (for red-green color blindness or hemophilia) shows. Females need two. A <b>carrier</b> female (X<sup>H</sup>X<sup>h</sup>) is unaffected. Sons inherit their X only from their mother and their Y from the father, so X-linked traits are never passed from father to son, and fathers pass their X to all daughters.</p>
+        <p>A <b>pedigree</b> is a family tree showing a trait (squares are males, circles are females, filled symbols are affected). Clues: <b>autosomal recessive</b>: two unaffected parents can have an affected child; both sexes equally affected. <b>Autosomal dominant</b>: every affected person has an affected parent; no skipped generations. <b>X-linked recessive</b>: many more affected males; affected males have unaffected father; passes through carrier daughters.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>all genes were inherited the same way in males and females</dd><dt>So we didn't need</dt><dd>that males have a single X, so X-linked recessives show more often in males</dd><dt>Now</dt><dd>how to read inheritance patterns from a family tree</dd><dt>So we need</dt><dd>X-linked crosses and pedigree patterns</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>X-linked recessive: X<sup>h</sup>Y is affected, X<sup>H</sup>X<sup>h</sup> is a carrier</span><small>X<sup>h</sup>X<sup>h</sup> is affected</small></div><div class="eqn"><span>carrier mother × normal father → 1/2 of sons affected</span><small>no daughters affected</small></div><div class="eqn"><span>father to son: Y only, never X</span><small>so no father-to-son transmission</small></div><div class="eqn"><span>squares = males, circles = females, filled = affected</span><small>pedigree symbols</small></div></div>
+      <div class="lab" id="sx-lab" data-reset="own">
+        <div class="labbar"><span class="title">X-linked cross</span></div>
+        <div class="ctl"><span class="lbl">Mother</span><div class="seg" id="sx-m" role="group" aria-label="Mother"><button type="button" data-k="XHXH" aria-pressed="true">XᴴXᴴ</button><button type="button" data-k="XHXh" aria-pressed="false">XᴴXʰ</button><button type="button" data-k="XhXh" aria-pressed="false">XʰXʰ</button></div></div><div class="ctl"><span class="lbl">Father</span><div class="seg" id="sx-f" role="group" aria-label="Father"><button type="button" data-k="XHY" aria-pressed="true">XᴴY</button><button type="button" data-k="XhY" aria-pressed="false">XʰY</button></div></div>
+        <canvas id="sx-canvas" aria-label="A Punnett square for an X-linked cross with the chosen mother and father."></canvas>
+        <div class="readout"><div><span>sons affected</span><strong class="x" id="sx-sons">—</strong></div><div><span>daughters affected / carriers</span><strong class="a" id="sx-dau">—</strong></div></div>
+      </div>
+      <div class="lab" id="sx-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Reading a pedigree</span></div>
+        <div class="ctl"><span class="lbl">Pattern</span><div class="seg" id="sx-pat" role="group" aria-label="Pattern"><button type="button" data-k="ar" aria-pressed="true">autosomal recessive</button><button type="button" data-k="ad" aria-pressed="false">autosomal dominant</button><button type="button" data-k="xr" aria-pressed="false">X-linked recessive</button></div></div>
+        <div class="row"><button type="button" class="btn" id="sx-gt" aria-pressed="false">Show genotypes</button></div>
+        <canvas id="sx-canvas2" aria-label="A three-generation pedigree for the chosen inheritance pattern. Filled symbols are affected."></canvas>
+        <div class="readout"><div><span>clue</span><strong class="x" id="sx-clue">—</strong></div><div><span>what to look for</span><strong class="" id="sx-note">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose a carrier mother and a normal father. What are the odds for sons? <button type="button" class="btn link" data-show='[["click", "#sx-m [data-k=XHXh]"], ["click", "#sx-f [data-k=XHY]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>1/2 of sons are affected (they got X<sup>h</sup>), 1/2 are normal. Half of daughters are carriers, none affected.</p></details></li>
+        <li><p>Choose an affected father (XʰY) and a normal mother (XᴴXᴴ). <button type="button" class="btn link" data-show='[["click", "#sx-m [data-k=XHXH]"], ["click", "#sx-f [data-k=XhY]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>No sons are affected (they get his Y); all daughters are carriers (they get his Xʰ).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A woman who is a carrier for hemophilia (X-linked recessive) has children with an unaffected man. What is the probability that a child (sex unknown) has hemophilia?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Cross.</b> X<sup>H</sup>X<sup>h</sup> × X<sup>H</sup>Y gives X<sup>H</sup>X<sup>H</sup>, X<sup>H</sup>X<sup>h</sup>, X<sup>H</sup>Y, X<sup>h</sup>Y.</li>
+          <li hidden><b>Affected.</b> Only X<sup>h</sup>Y: 1 of 4.</li>
+          <li hidden><b>Answer.</b> 1/4 (25%) for a child of unknown sex; for a son it is 1/2.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying a father can pass an X-linked allele to his son.</li>
+        <li>Writing a recessive X-linked trait as if females were affected as often as males.</li>
+        <li>Mixing up carriers (unaffected) with affected females.</li>
+        <li>Reading a pedigree and forgetting the trait could be autosomal.</li>
+        <li>Forgetting the question might ask about the probability for a son vs for any child.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading pedigrees</h2>
+        <p>Look first for two unaffected parents with an affected child: that points to recessive. Then ask whether more males are affected and whether affected males have unaffected fathers: that points to X-linked. Confirm by assigning genotypes and checking every mating.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The son gets his mother&#x27;s Xʰ with probability 1/2.">
+        <p class="q">Check yourself: Hemophilia is X-linked recessive. A normal father and a carrier mother have a son. His chance of hemophilia is</p>
+        <div class="opts"><button type="button">1/2</button><button type="button">1/4</button><button type="button">0</button><button type="button">1</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

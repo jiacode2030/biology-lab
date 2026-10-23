@@ -2372,6 +2372,280 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-meiosis" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Meiosis & genetic variation</h1>
+        <p class="lede">Sexual reproduction mixes genes from two parents. Meiosis is the cell division that halves the chromosome number and shuffles the genes so that no two gametes are alike.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A diploid cell (2n) has two copies of each chromosome, one from each parent (<b>homologous chromosomes</b>). Meiosis makes <b>haploid</b> (n) gametes with one copy of each. After DNA replication, <b>meiosis I</b> separates the <i>homologs</i> (so the cells become haploid) and <b>meiosis II</b> separates the <i>sister chromatids</i> (like mitosis). One diploid cell yields <b>four</b> genetically different haploid cells.</p>
+        <p>Variation comes from three sources. <b>Crossing over</b> in prophase I swaps pieces between homologs, making new combinations of alleles on one chromosome. <b>Independent assortment</b> in metaphase I: each homologous pair lines up at random, so with n pairs there are 2<sup>n</sup> possible combinations (over 8 million in humans). <b>Random fertilization</b> then combines any egg with any sperm. Errors in separation (<b>nondisjunction</b>) produce gametes with extra or missing chromosomes, as in trisomy 21.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>cell division always made identical copies</dd><dt>So we didn't need</dt><dd>that a special division halves the chromosome number and creates variation</dd><dt>Now</dt><dd>why siblings differ and how chromosome number stays constant across generations</dd><dt>So we need</dt><dd>meiosis I and II, crossing over and independent assortment</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>2n → n (meiosis I) → n (meiosis II)</span><small>one cell → four cells</small></div><div class="eqn"><span>possible gametes (no crossing over) = 2ⁿ</span><small>n = haploid number</small></div><div class="eqn"><span>zygote: n + n = 2n</span><small>fertilization</small></div><div class="eqn"><span>meiosis I separates homologs; meiosis II separates sister chromatids</span><small>key difference from mitosis</small></div></div>
+      <div class="lab" id="me2-lab">
+        <div class="labbar"><span class="title">Meiosis step by step</span></div>
+        <div class="row"><button type="button" class="btn" id="ms-prev">Previous</button><button type="button" class="btn primary" id="ms-next">Next stage</button><button type="button" class="btn" id="ms-play">Play</button></div>
+        <canvas id="me2-canvas" aria-label="A cell with four chromosomes (two homologous pairs) shown at each stage of meiosis I and II."></canvas>
+        <div class="controls"><div class="ctl"><label for="ms-st"><span>Stage</span> <output id="ms-st-out"></output></label><input type="range" id="ms-st" min="0" max="6" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="ms-name">—</strong></div><div><span>what is happening</span><strong class="" id="ms-txt">—</strong></div><div><span>chromosome number per cell</span><strong class="a" id="ms-n">—</strong></div></div>
+      </div>
+      <div class="lab" id="me2-lab2" data-reset="own">
+        <div class="labbar"><span class="title">How many different gametes?</span></div>
+        <canvas id="me2-canvas2" aria-label="A bar showing the number of possible chromosome combinations in gametes as the number of chromosome pairs increases."></canvas>
+        <div class="controls"><div class="ctl"><label for="ms-pairs"><span>Chromosome pairs (n)</span> <output id="ms-pairs-out"></output></label><input type="range" id="ms-pairs" min="1" max="23" step="1" value="3"></div></div>
+        <div class="readout"><div><span>different gametes (no crossing over)</span><strong class="x" id="ms-g">—</strong></div><div><span>different zygotes from two such parents</span><strong class="a" id="ms-z">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to anaphase I. What separates? <button type="button" class="btn link" data-show='[["#ms-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The homologous chromosomes separate. Sister chromatids stay together, which is why cells after meiosis I are haploid.</p></details></li>
+        <li><p>Set n = 23. How many gametes are possible? <button type="button" class="btn link" data-show='[["#ms-pairs", 23]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>2²³ = 8,388,608 different combinations of maternal and paternal chromosomes, before crossing over is counted.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A fruit fly has 2n = 8. How many different gametes are possible from independent assortment alone, and how many chromosomes are in each gamete?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Haploid number.</b> n = 8/2 = 4 pairs.</li>
+          <li hidden><b>Combinations.</b> 2<sup>4</sup> = 16 different gametes.</li>
+          <li hidden><b>Each gamete.</b> 4 chromosomes (one from each pair).</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying meiosis I separates sister chromatids.</li>
+        <li>Saying meiosis makes two cells.</li>
+        <li>Counting chromosomes by chromatids: after meiosis I each cell has n chromosomes, each with two chromatids.</li>
+        <li>Mixing up crossing over (within a pair) and independent assortment (between pairs).</li>
+        <li>Believing meiosis II halves the chromosome number again.</li>
+      </ul></div>
+      <div class="prose"><h2>Compare mitosis and meiosis</h2>
+        <p>Mitosis: one division, two identical diploid cells, for growth and repair. Meiosis: two divisions, four different haploid cells, for gametes. Only meiosis has synapsis, crossing over and separation of homologs.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Crossing over exchanges segments between homologous chromosomes.">
+        <p class="q">Check yourself: Which event in meiosis directly creates new combinations of alleles on the same chromosome?</p>
+        <div class="opts"><button type="button">crossing over in prophase I</button><button type="button">independent assortment in metaphase I</button><button type="button">separation of sister chromatids</button><button type="button">fertilization</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-mendel" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Mendelian inheritance</h1>
+        <p class="lede">Offspring get one allele for each gene from each parent. With a Punnett square you can predict the odds before anything is born.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Mendel's <b>law of segregation</b>: the two alleles for a gene separate into different gametes, so each gamete carries one. A <b>dominant</b> allele shows when present; a <b>recessive</b> allele shows only in two copies. <b>Genotype</b> is the allele combination (AA, Aa, aa); <b>phenotype</b> is the observable trait. A cross of two heterozygotes (Aa × Aa) gives genotypes 1 AA : 2 Aa : 1 aa and phenotypes 3 dominant : 1 recessive.</p>
+        <p>The <b>law of independent assortment</b>: genes on different chromosomes are inherited independently, so AaBb × AaBb gives a 9 : 3 : 3 : 1 phenotype ratio. A <b>test cross</b> (unknown × homozygous recessive) reveals an unknown genotype. Use the <b>product rule</b> (and) and the <b>sum rule</b> (or) for probabilities. Real counts only approximate the ratios, which is where the chi-square test comes in.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>traits blended in offspring</dd><dt>So we didn't need</dt><dd>that discrete alleles are inherited from each parent and can hide for a generation</dd><dt>Now</dt><dd>how to predict ratios and probabilities for crosses</dd><dt>So we need</dt><dd>Punnett squares, genotype vs phenotype, and ratios</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>Aa × Aa → 1 AA : 2 Aa : 1 aa</span><small>genotypes</small></div><div class="eqn"><span>3 dominant : 1 recessive</span><small>phenotypes</small></div><div class="eqn"><span>AaBb × AaBb → 9 : 3 : 3 : 1</span><small>dihybrid</small></div><div class="eqn"><span>P(A and B) = P(A) × P(B); P(A or B) = P(A) + P(B)</span><small>product and sum rules</small></div></div>
+      <div class="lab" id="md-lab" data-reset="own">
+        <div class="labbar"><span class="title">Punnett square: one gene</span></div>
+        <div class="ctl"><span class="lbl">Parent 1</span><div class="seg" id="md-p1" role="group" aria-label="Parent 1"><button type="button" data-k="AA" aria-pressed="true">AA</button><button type="button" data-k="Aa" aria-pressed="false">Aa</button><button type="button" data-k="aa" aria-pressed="false">aa</button></div></div><div class="ctl"><span class="lbl">Parent 2</span><div class="seg" id="md-p2" role="group" aria-label="Parent 2"><button type="button" data-k="AA" aria-pressed="true">AA</button><button type="button" data-k="Aa" aria-pressed="false">Aa</button><button type="button" data-k="aa" aria-pressed="false">aa</button></div></div><div class="row"><button type="button" class="btn" id="md-go">Make 100 offspring</button></div>
+        <canvas id="md-canvas" aria-label="A Punnett square for the chosen parent genotypes, with the offspring genotype and phenotype ratios."></canvas>
+        <div class="readout"><div><span>genotype ratio</span><strong class="x" id="md-gt">—</strong></div><div><span>phenotype ratio (dominant : recessive)</span><strong class="a" id="md-pt">—</strong></div><div><span>100 random offspring</span><strong class="v" id="md-obs">—</strong></div></div>
+      </div>
+      <div class="lab" id="md-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Two genes at once (AaBb × AaBb)</span></div>
+        <div class="ctl"><span class="lbl">Highlight</span><div class="seg" id="md-hl" role="group" aria-label="Highlight"><button type="button" data-k="all" aria-pressed="true">all</button><button type="button" data-k="AB" aria-pressed="false">dominant for both</button><button type="button" data-k="Ab" aria-pressed="false">dominant A, recessive b</button><button type="button" data-k="aB" aria-pressed="false">recessive a, dominant B</button><button type="button" data-k="ab" aria-pressed="false">recessive for both</button></div></div>
+        <canvas id="md-canvas2" aria-label="A sixteen-square grid. Each square is a possible offspring, coloured by phenotype."></canvas>
+        <div class="readout"><div><span>squares highlighted (of 16)</span><strong class="x" id="md-n">—</strong></div><div><span>fraction</span><strong class="a" id="md-r">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set both parents to Aa. What phenotype ratio results? <button type="button" class="btn link" data-show='[["click", "#md-p1 [data-k=Aa]"], ["click", "#md-p2 [data-k=Aa]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>3 dominant : 1 recessive (genotypes 1 AA : 2 Aa : 1 aa).</p></details></li>
+        <li><p>Make parent 1 Aa and parent 2 aa (a test cross). What do you see? <button type="button" class="btn link" data-show='[["click", "#md-p1 [data-k=Aa]"], ["click", "#md-p2 [data-k=aa]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>1 : 1 for both genotype and phenotype. A homozygous dominant parent would instead give all dominant offspring.</p></details></li>
+        <li><p>Highlight "recessive for both". What fraction of the 16? <button type="button" class="btn link" data-show='[["click", "#md-hl [data-k=ab]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>1/16. The four classes are 9 : 3 : 3 : 1.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In pea plants purple (P) is dominant to white (p). Two heterozygous purple plants are crossed. What is the probability that the first two offspring are both white?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>One offspring.</b> Pp × Pp gives 1/4 pp (white).</li>
+          <li hidden><b>Product rule.</b> P(both white) = 1/4 × 1/4.</li>
+          <li hidden><b>Answer.</b> 1/16 = 0.0625 (6.25%). Offspring are independent events, so earlier results do not change later odds.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the "ratio" must appear exactly in real data.</li>
+        <li>Thinking a family with three dominant children makes the next child likely recessive.</li>
+        <li>Mixing up genotype and phenotype ratios.</li>
+        <li>Forgetting each parent contributes one allele.</li>
+        <li>Using the sum rule when "and" requires the product rule.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading a cross</h2>
+        <p>First write the parent genotypes (use the phenotype of offspring to infer them). Then list gametes, fill the square, and count. For two genes, treat each separately and multiply: P(AaBb) = P(Aa) × P(Bb). Give answers as ratios or probabilities as asked.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Only aa shows the recessive phenotype: 1 of 4.">
+        <p class="q">Check yourself: Two parents are both Aa. What fraction of their offspring is expected to show the recessive phenotype?</p>
+        <div class="opts"><button type="button">1/4</button><button type="button">1/2</button><button type="button">3/4</button><button type="button">0</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-nonmendel" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Beyond simple dominance</h1>
+        <p class="lede">Not every trait is a simple dominant-recessive pair. Alleles can blend, share, or be hidden by other genes.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Incomplete dominance</b>: the heterozygote is intermediate (red × white snapdragons give pink; a 1 : 2 : 1 phenotype ratio in the next generation). <b>Codominance</b>: both alleles are fully expressed (AB blood type; a roan coat with both red and white hairs). <b>Multiple alleles</b>: a population can have more than two alleles of a gene (ABO blood: I<sup>A</sup>, I<sup>B</sup> and i; A and B are codominant, i is recessive).</p>
+        <p><b>Polygenic traits</b> depend on many genes and show a continuous range (height, skin colour) that forms a bell-shaped curve. <b>Epistasis</b>: one gene masks the expression of another (in labrador coat colour the gene for pigment deposition can hide the gene for pigment colour, giving 9 : 3 : 4). The <b>environment</b> also affects phenotype (hydrangea colour depends on soil pH). These patterns still follow Mendel's rules for how alleles are inherited; they differ in how alleles combine to make the phenotype.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>every heterozygote looked like one of its parents</dd><dt>So we didn't need</dt><dd>that alleles can share or blend expression, and genes can interact</dd><dt>Now</dt><dd>why ratios are sometimes 1 : 2 : 1 or 9 : 3 : 4 instead of 3 : 1</dd><dt>So we need</dt><dd>incomplete dominance, codominance, multiple alleles, polygenic traits, epistasis</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>incomplete dominance: 1 : 2 : 1 phenotype</span><small>heterozygote intermediate</small></div><div class="eqn"><span>codominance: both alleles show</span><small>AB blood type</small></div><div class="eqn"><span>epistasis: 9 : 3 : 4</span><small>one gene masks another</small></div><div class="eqn"><span>polygenic: bell curve</span><small>many genes, many small effects</small></div></div>
+      <div class="lab" id="nm-lab" data-reset="own">
+        <div class="labbar"><span class="title">Cross two heterozygotes</span></div>
+        <div class="ctl"><span class="lbl">Inheritance pattern</span><div class="seg" id="nm-pat" role="group" aria-label="Inheritance pattern"><button type="button" data-k="cd" aria-pressed="true">complete dominance</button><button type="button" data-k="id" aria-pressed="false">incomplete dominance</button><button type="button" data-k="co" aria-pressed="false">codominance</button><button type="button" data-k="ep" aria-pressed="false">epistasis (two genes)</button></div></div>
+        <canvas id="nm-canvas" aria-label="Bar graph of the expected phenotype ratio when two heterozygous parents are crossed, for the chosen pattern of inheritance."></canvas>
+        <div class="readout"><div><span>genotype ratio</span><strong class="x" id="nm-gt">—</strong></div><div><span>phenotype ratio</span><strong class="a" id="nm-pt">—</strong></div><div><span>example</span><strong class="" id="nm-ex">—</strong></div></div>
+      </div>
+      <div class="lab" id="nm-lab2" data-reset="own">
+        <div class="labbar"><span class="title">ABO blood types of children</span></div>
+        <div class="ctl"><span class="lbl">Parent 1</span><div class="seg" id="nm-b1" role="group" aria-label="Parent 1"><button type="button" data-k="IAIA" aria-pressed="true">IᴬIᴬ (A)</button><button type="button" data-k="IAi" aria-pressed="false">Iᴬi (A)</button><button type="button" data-k="IBIB" aria-pressed="false">IᴮIᴮ (B)</button><button type="button" data-k="IBi" aria-pressed="false">Iᴮi (B)</button><button type="button" data-k="IAIB" aria-pressed="false">IᴬIᴮ (AB)</button><button type="button" data-k="ii" aria-pressed="false">ii (O)</button></div></div><div class="ctl"><span class="lbl">Parent 2</span><div class="seg" id="nm-b2" role="group" aria-label="Parent 2"><button type="button" data-k="IAIA" aria-pressed="true">IᴬIᴬ (A)</button><button type="button" data-k="IAi" aria-pressed="false">Iᴬi (A)</button><button type="button" data-k="IBIB" aria-pressed="false">IᴮIᴮ (B)</button><button type="button" data-k="IBi" aria-pressed="false">Iᴮi (B)</button><button type="button" data-k="IAIB" aria-pressed="false">IᴬIᴮ (AB)</button><button type="button" data-k="ii" aria-pressed="false">ii (O)</button></div></div>
+        <canvas id="nm-canvas2" aria-label="Bars showing the probability of each blood type for children of the chosen parents."></canvas>
+        <div class="readout"><div><span>possible blood types</span><strong class="x" id="nm-bt">—</strong></div><div><span>probabilities</span><strong class="a" id="nm-bp">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose incomplete dominance. What fraction of the offspring look like the heterozygote? <button type="button" class="btn link" data-show='[["click", "#nm-pat [data-k=id]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>1/2 (the Aa genotype), and phenotypes are 1 : 2 : 1 instead of 3 : 1.</p></details></li>
+        <li><p>Choose epistasis. What ratio appears? <button type="button" class="btn link" data-show='[["click", "#nm-pat [data-k=ep]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>9 : 3 : 4. The 3 : 1 class and the 1 class that carry the masking genotype look identical (here, yellow).</p></details></li>
+        <li><p>Cross IᴬIᴮ with ii. What types can the children have? <button type="button" class="btn link" data-show='[["click", "#nm-b1 [data-k=IAIB]"], ["click", "#nm-b2 [data-k=ii]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Half type A (Iᴬi) and half type B (Iᴮi). No child is AB or O.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A man with blood type A (his mother was type O) and a woman with type B (her father was type O) have children. What are the parents' genotypes and what types are possible?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Man.</b> Type A, and he inherited i from his type O mother, so he is I<sup>A</sup>i.</li>
+          <li hidden><b>Woman.</b> Type B, and she inherited i from her type O father, so she is I<sup>B</sup>i.</li>
+          <li hidden><b>Cross.</b> I<sup>A</sup>i × I<sup>B</sup>i gives I<sup>A</sup>I<sup>B</sup> (AB), I<sup>A</sup>i (A), I<sup>B</sup>i (B) and ii (O), each 1/4. All four types are possible.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Calling incomplete dominance a "blend that cannot separate again". The alleles are still inherited separately, and red and white reappear in the next generation.</li>
+        <li>Thinking codominance and incomplete dominance are the same. In codominance both alleles show fully (distinct); in incomplete dominance the result is intermediate.</li>
+        <li>Saying a person has three ABO alleles. Each person has two; the population has three.</li>
+        <li>Thinking polygenic traits break Mendel's laws.</li>
+        <li>Missing that epistasis changes the 9 : 3 : 3 : 1 ratio.</li>
+      </ul></div>
+      <div class="prose"><h2>Matching ratios to patterns</h2>
+        <p>3 : 1 → simple dominance. 1 : 2 : 1 → incomplete dominance or codominance from a heterozygote cross. 9 : 3 : 4 (or 9 : 7, 12 : 3 : 1) → epistasis. A continuous range with a bell curve → polygenic with environment effects.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Heterozygotes cross to give 1 : 2 : 1, and each genotype has its own phenotype.">
+        <p class="q">Check yourself: A cross of two pink snapdragons (incomplete dominance) gives which phenotype ratio?</p>
+        <div class="opts"><button type="button">1 red : 2 pink : 1 white</button><button type="button">3 red : 1 white</button><button type="button">all pink</button><button type="button">1 : 1</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-sexlink" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Sex linkage & pedigrees</h1>
+        <p class="lede">Genes on the X chromosome behave differently in males and females, because males have only one X.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Females are XX and males are XY. A gene on the X chromosome with no matching gene on the Y is <b>X-linked</b>. Males have one allele, so a single recessive allele (for red-green color blindness or hemophilia) shows. Females need two. A <b>carrier</b> female (X<sup>H</sup>X<sup>h</sup>) is unaffected. Sons inherit their X only from their mother and their Y from the father, so X-linked traits are never passed from father to son, and fathers pass their X to all daughters.</p>
+        <p>A <b>pedigree</b> is a family tree showing a trait (squares are males, circles are females, filled symbols are affected). Clues: <b>autosomal recessive</b>: two unaffected parents can have an affected child; both sexes equally affected. <b>Autosomal dominant</b>: every affected person has an affected parent; no skipped generations. <b>X-linked recessive</b>: many more affected males; affected males have unaffected father; passes through carrier daughters.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>all genes were inherited the same way in males and females</dd><dt>So we didn't need</dt><dd>that males have a single X, so X-linked recessives show more often in males</dd><dt>Now</dt><dd>how to read inheritance patterns from a family tree</dd><dt>So we need</dt><dd>X-linked crosses and pedigree patterns</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>X-linked recessive: X<sup>h</sup>Y is affected, X<sup>H</sup>X<sup>h</sup> is a carrier</span><small>X<sup>h</sup>X<sup>h</sup> is affected</small></div><div class="eqn"><span>carrier mother × normal father → 1/2 of sons affected</span><small>no daughters affected</small></div><div class="eqn"><span>father to son: Y only, never X</span><small>so no father-to-son transmission</small></div><div class="eqn"><span>squares = males, circles = females, filled = affected</span><small>pedigree symbols</small></div></div>
+      <div class="lab" id="sx-lab" data-reset="own">
+        <div class="labbar"><span class="title">X-linked cross</span></div>
+        <div class="ctl"><span class="lbl">Mother</span><div class="seg" id="sx-m" role="group" aria-label="Mother"><button type="button" data-k="XHXH" aria-pressed="true">XᴴXᴴ</button><button type="button" data-k="XHXh" aria-pressed="false">XᴴXʰ</button><button type="button" data-k="XhXh" aria-pressed="false">XʰXʰ</button></div></div><div class="ctl"><span class="lbl">Father</span><div class="seg" id="sx-f" role="group" aria-label="Father"><button type="button" data-k="XHY" aria-pressed="true">XᴴY</button><button type="button" data-k="XhY" aria-pressed="false">XʰY</button></div></div>
+        <canvas id="sx-canvas" aria-label="A Punnett square for an X-linked cross with the chosen mother and father."></canvas>
+        <div class="readout"><div><span>sons affected</span><strong class="x" id="sx-sons">—</strong></div><div><span>daughters affected / carriers</span><strong class="a" id="sx-dau">—</strong></div></div>
+      </div>
+      <div class="lab" id="sx-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Reading a pedigree</span></div>
+        <div class="ctl"><span class="lbl">Pattern</span><div class="seg" id="sx-pat" role="group" aria-label="Pattern"><button type="button" data-k="ar" aria-pressed="true">autosomal recessive</button><button type="button" data-k="ad" aria-pressed="false">autosomal dominant</button><button type="button" data-k="xr" aria-pressed="false">X-linked recessive</button></div></div>
+        <div class="row"><button type="button" class="btn" id="sx-gt" aria-pressed="false">Show genotypes</button></div>
+        <canvas id="sx-canvas2" aria-label="A three-generation pedigree for the chosen inheritance pattern. Filled symbols are affected."></canvas>
+        <div class="readout"><div><span>clue</span><strong class="x" id="sx-clue">—</strong></div><div><span>what to look for</span><strong class="" id="sx-note">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose a carrier mother and a normal father. What are the odds for sons? <button type="button" class="btn link" data-show='[["click", "#sx-m [data-k=XHXh]"], ["click", "#sx-f [data-k=XHY]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>1/2 of sons are affected (they got X<sup>h</sup>), 1/2 are normal. Half of daughters are carriers, none affected.</p></details></li>
+        <li><p>Choose an affected father (XʰY) and a normal mother (XᴴXᴴ). <button type="button" class="btn link" data-show='[["click", "#sx-m [data-k=XHXH]"], ["click", "#sx-f [data-k=XhY]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>No sons are affected (they get his Y); all daughters are carriers (they get his Xʰ).</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A woman who is a carrier for hemophilia (X-linked recessive) has children with an unaffected man. What is the probability that a child (sex unknown) has hemophilia?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Cross.</b> X<sup>H</sup>X<sup>h</sup> × X<sup>H</sup>Y gives X<sup>H</sup>X<sup>H</sup>, X<sup>H</sup>X<sup>h</sup>, X<sup>H</sup>Y, X<sup>h</sup>Y.</li>
+          <li hidden><b>Affected.</b> Only X<sup>h</sup>Y: 1 of 4.</li>
+          <li hidden><b>Answer.</b> 1/4 (25%) for a child of unknown sex; for a son it is 1/2.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying a father can pass an X-linked allele to his son.</li>
+        <li>Writing a recessive X-linked trait as if females were affected as often as males.</li>
+        <li>Mixing up carriers (unaffected) with affected females.</li>
+        <li>Reading a pedigree and forgetting the trait could be autosomal.</li>
+        <li>Forgetting the question might ask about the probability for a son vs for any child.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading pedigrees</h2>
+        <p>Look first for two unaffected parents with an affected child: that points to recessive. Then ask whether more males are affected and whether affected males have unaffected fathers: that points to X-linked. Confirm by assigning genotypes and checking every mating.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The son gets his mother&#x27;s Xʰ with probability 1/2.">
+        <p class="q">Check yourself: Hemophilia is X-linked recessive. A normal father and a carrier mother have a son. His chance of hemophilia is</p>
+        <div class="opts"><button type="button">1/2</button><button type="button">1/4</button><button type="button">0</button><button type="button">1</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-linkage" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Linked genes & recombination</h1>
+        <p class="lede">Genes on the same chromosome tend to travel together. How often they separate tells you how far apart they are.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Independent assortment only applies to genes on <b>different chromosomes</b>. Genes close together on the same chromosome are <b>linked</b>: they are inherited together unless <b>crossing over</b> between them breaks the pairing. The offspring with the original (parental) combinations are <b>parental types</b>; those with new combinations are <b>recombinants</b>.</p>
+        <p>The <b>recombination frequency</b> = recombinants / total offspring × 100%. The farther apart two genes, the more often a crossover falls between them. By definition 1% recombination = 1 <b>map unit</b> (centimorgan). Recombination frequencies cannot exceed 50%; at 50% the genes behave as if unlinked. Distances from three genes let you order them on a chromosome. A <b>test cross</b> (AaBb × aabb) makes recombinants easy to count because the recessive parent contributes only recessive alleles.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>genes were always independent</dd><dt>So we didn't need</dt><dd>that genes on one chromosome move together unless crossing over separates them</dd><dt>Now</dt><dd>how crossover frequency gives distance and gene order</dd><dt>So we need</dt><dd>linkage, recombination frequency and map units</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>recombination frequency = recombinants / total × 100%</span><small>map units</small></div><div class="eqn"><span>1% recombination = 1 map unit</span><small>centimorgan</small></div><div class="eqn"><span>maximum observed recombination = 50%</span><small>looks unlinked</small></div><div class="eqn"><span>parental types are most common if genes are linked</span><small>in a test cross</small></div></div>
+      <div class="lab" id="lk-lab" data-reset="own">
+        <div class="labbar"><span class="title">Test cross of two linked genes</span></div>
+        <canvas id="lk-canvas" aria-label="A chromosome with two genes the chosen number of map units apart and bars showing expected numbers of parental and recombinant offspring from a test cross."></canvas>
+        <div class="controls"><div class="ctl"><label for="lk-d"><span>Distance between genes (map units)</span> <output id="lk-d-out"></output></label><input type="range" id="lk-d" min="0" max="50" step="1" value="12"></div><div class="ctl"><label for="lk-n"><span>Offspring counted</span> <output id="lk-n-out"></output></label><input type="range" id="lk-n" min="100" max="2000" step="50" value="1000"></div></div>
+        <div class="readout"><div><span>parental offspring</span><strong class="x" id="lk-par">—</strong></div><div><span>recombinant offspring</span><strong class="a" id="lk-rec">—</strong></div><div><span>recombination frequency</span><strong class="v" id="lk-f">—</strong></div></div>
+      </div>
+      <div class="lab" id="lk-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Order three genes</span></div>
+        <canvas id="lk-canvas2" aria-label="A chromosome with three genes at chosen positions and the recombination frequency between each pair."></canvas>
+        <div class="controls"><div class="ctl"><label for="lk-pa"><span>Position of gene A</span> <output id="lk-pa-out"></output></label><input type="range" id="lk-pa" min="0" max="60" step="1" value="5"></div><div class="ctl"><label for="lk-pb"><span>Position of gene B</span> <output id="lk-pb-out"></output></label><input type="range" id="lk-pb" min="0" max="60" step="1" value="15"></div><div class="ctl"><label for="lk-pc"><span>Position of gene C</span> <output id="lk-pc-out"></output></label><input type="range" id="lk-pc" min="0" max="60" step="1" value="21"></div></div>
+        <div class="readout"><div><span>A–B</span><strong class="x" id="lk-ab">—</strong></div><div><span>B–C</span><strong class="a" id="lk-bc">—</strong></div><div><span>A–C</span><strong class="v" id="lk-ac">—</strong></div><div><span>gene order</span><strong class="" id="lk-ord">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set the distance to 12 map units. What fraction of offspring are recombinants? <button type="button" class="btn link" data-show='[["#lk-d", 12], ["#lk-n", 1000]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>About 12% (120 of 1000), split evenly between the two recombinant types.</p></details></li>
+        <li><p>Set the distance to 50. What do you notice? <button type="button" class="btn link" data-show='[["#lk-d", 50]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Half the offspring are recombinants: the four classes are equal, just like independent assortment.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In a test cross, 1,000 offspring are produced: 440 AB, 440 ab, 60 Ab and 60 aB. Find the distance between the genes.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Recombinants.</b> Ab and aB are recombinants: 60 + 60 = 120.</li>
+          <li hidden><b>Frequency.</b> 120/1000 = 0.12 = 12%.</li>
+          <li hidden><b>Map distance.</b> 12 map units.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Counting parental types as recombinants.</li>
+        <li>Forgetting that the recombination frequency cannot exceed 50%.</li>
+        <li>Using the wrong total.</li>
+        <li>Saying genes at 50% recombination are on different chromosomes (they could be far apart on one).</li>
+        <li>Adding map distances without checking the order.</li>
+      </ul></div>
+      <div class="prose"><h2>Mapping three genes</h2>
+        <p>The two most distant genes have the largest recombination frequency, and it is close to the sum of the other two: A–B 10, B–C 6, A–C 16 means order A, B, C. Check that the largest equals the sum of the other two (approximately).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="1% recombination = 1 map unit.">
+        <p class="q">Check yourself: Two genes show 5% recombination. How far apart are they?</p>
+        <div class="opts"><button type="button">5 map units</button><button type="button">50 map units</button><button type="button">0.5 map units</button><button type="button">They are unlinked</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-practice" hidden>
     <div class="wrap">
       <div class="head">
@@ -2624,8 +2898,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"], "soon": []}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"], "soon": []}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"], "soon": []}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -3806,6 +4080,201 @@ function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillSt
   PROBS.push({id:'cr-dbl',topic:'cycleregs',title:'Doubling cells',gen(){const [t,d]=pick([[12,2],[12,3],[24,2],[24,4],[24,6],[24,8],[48,4],[48,6],[36,3],[36,6]]),k=d*24/t;const n0=pick([1,2,5]),ans=n0*Math.pow(2,k);return {q:`A cell population starts with ${n0} cell${n0>1?'s':''} and doubles every ${t} hours with no cell death. How many cells are there after ${d} days?`,ans,unit:'cells',tol:0,chk:n0*Math.pow(2,d*24/t),hint:'Number of doublings = time / doubling time. Cells = start × 2^doublings.',sol:`Doublings = ${d*24}/${t} = ${k}. Cells = ${n0} × 2<sup>${k}</sup> = <b>${fmt(ans,0)}</b>.`};}});
   const q=[['A mutation inactivates p53 in a cell with damaged DNA. The most likely result is','the cell divides with damaged DNA',['the cell stops at the G₁ checkpoint','the cell dies by apoptosis','the cell repairs its DNA faster']],['A mutated gene that is always "on" and promotes division is called a(n)','oncogene',['tumor suppressor gene','checkpoint','proto-oncogene']],['A gene whose normal product restrains the cell cycle is a','tumor suppressor gene',['proto-oncogene','oncogene','cyclin only']],['The M (spindle) checkpoint ensures that','all chromosomes are attached to spindle fibers before anaphase',['DNA is replicated accurately','the cell has grown enough','growth factor is present']],['A CDK is active only when it is bound to','a cyclin',['p53','ATP only','DNA']]];
   PROBS.push({id:'cr-fact',topic:'cycleregs',title:'Cycle control facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Name the checkpoint or gene type first.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/meiosis.js ===== */
+/* ---------------- Meiosis & genetic variation ---------------- */
+(function meiosis(){
+  const cv=$('#me2-canvas');if(!cv)return;
+  const ST=[{n:'interphase: DNA replicated',t:'Each of the 4 chromosomes is copied. Blue = from one parent, pink = from the other.',c:'4 (2n); each has 2 chromatids'},{n:'prophase I: synapsis and crossing over',t:'Homologous chromosomes pair up. Segments are exchanged between non-sister chromatids (crossing over).',c:'4 (2n)'},{n:'metaphase I: homologous pairs line up',t:'Pairs line up at the equator. Each pair\'s orientation is random: independent assortment.',c:'4 (2n)'},{n:'anaphase I: homologs separate',t:'Homologous chromosomes move to opposite poles. Sister chromatids stay together.',c:'4 in the cell, 2 at each pole'},{n:'telophase I and cytokinesis',t:'Two cells form, each haploid (n = 2 chromosomes), each chromosome still has two chromatids.',c:'2 per cell (n)'},{n:'meiosis II',t:'Sister chromatids separate, as in mitosis, and move to opposite poles.',c:'2 per cell (n); chromatids separating'},{n:'four haploid cells',t:'Four genetically different haploid cells. Each has one chromosome of each kind.',c:'2 per cell (n)'}];
+  const B=()=>T.cx,P=()=>T.ca;
+  function chr(ctx,x,y,len,ang,col,rep,tip){ctx.save();ctx.translate(x,y);ctx.rotate(ang);ctx.lineCap='round';ctx.lineWidth=4.5;ctx.strokeStyle=col;ctx.beginPath();if(rep===2){ctx.moveTo(-len/2,-3.5);ctx.lineTo(len/2,-3.5);ctx.moveTo(-len/2,3.5);ctx.lineTo(len/2,3.5);}else{ctx.moveTo(-len/2,0);ctx.lineTo(len/2,0);}ctx.stroke();if(tip){ctx.strokeStyle=tip;ctx.beginPath();ctx.moveTo(len/2-8,rep===2?3.5:0);ctx.lineTo(len/2,rep===2?3.5:0);ctx.stroke();}ctx.restore();}
+  function cell(ctx,x,y,rx,ry){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,6.283);ctx.fillStyle=alpha(T.sunk,.6);ctx.fill();ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.stroke();}
+  const sc=stageLab('ms','me2-canvas',ST,(ctx,w,h,i,t)=>{const cx=w/2,cy=h/2,R=Math.min(h*.42,w*.22),L=[36,24];
+    if(i<=3){cell(ctx,cx,cy,R*1.4,R);
+      if(i===0){ctx.beginPath();ctx.arc(cx,cy,R*.62,0,6.283);ctx.strokeStyle=T.cx;ctx.lineWidth=2.4;ctx.stroke();[[-.3,-.2,0,B(),0],[.1,-.3,1,P(),.6],[-.1,.25,2,B(),1.3],[.3,.2,3,P(),2]].forEach(([dx,dy,k,c,a])=>chr(ctx,cx+dx*R,cy+dy*R,L[k%2?1:0]*(k<2?1:.7)*(k<2?1:1),a,c,1));}
+      if(i===1){ctx.setLineDash([4,4]);ctx.beginPath();ctx.arc(cx,cy,R*.8,0,6.283);ctx.strokeStyle=T.cx;ctx.lineWidth=1.6;ctx.stroke();ctx.setLineDash([]);[[-.28,0,36,0],[.32,0,24,0]].forEach(([dx,dy,len,a],k)=>{chr(ctx,cx+dx*R*1.4-4,cy+dy*R-14+k*28,len,a+1.57,B(),2,P());chr(ctx,cx+dx*R*1.4+6,cy+dy*R-14+k*28,len,a+1.57,P(),2,B());});label(ctx,'crossing over: swapped tips',cx,cy+R*.95,T.muted,'center','middle',MONO);}
+      if(i===2){ctx.strokeStyle=alpha(T.accent,.8);ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx,cy-R*.95);ctx.lineTo(cx,cy+R*.95);ctx.stroke();[[0,-18,36],[0,22,24]].forEach(([dx,dy,len],k)=>{const f=k?1:-1;chr(ctx,cx-9*f,cy+dy,len,1.57,B(),2,P());chr(ctx,cx+9*f,cy+dy,len,1.57,P(),2,B());});[-1,1].forEach(s=>dot2(ctx,cx+s*R*1.3,cy,T.accent,5));label(ctx,'equator',cx+14,cy-R*.8,T.muted,'left','middle',MONO);}
+      if(i===3){[-1,1].forEach(s=>{dot2(ctx,cx+s*R*1.3,cy,T.accent,5);const a=s<0;chr(ctx,cx+s*R*.55,cy-16,36,1.57,a?B():P(),2,a?P():B());chr(ctx,cx+s*R*.55+12,cy+14,24,1.57,a?P():B(),2,a?B():P());});}}
+    if(i===4||i===5){[-1,1].forEach(s=>{const x=cx+s*R*.78;cell(ctx,x,cy,R*.72,R*.9);
+      if(i===4){const a=s<0;chr(ctx,x-10,cy-16,36,1.57,a?B():P(),2,a?P():B());chr(ctx,x+10,cy+12,24,1.57,a?P():B(),2,a?B():P());}
+      else{const a=s<0;ctx.strokeStyle=alpha(T.accent,.8);ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,cy-R*.8);ctx.lineTo(x,cy+R*.8);ctx.stroke();[-1,1].forEach(q=>{chr(ctx,x-9,cy+q*28,34*.9,0,a?B():P(),1);chr(ctx,x+9,cy+q*(18+Math.sin(t*2)*0),22,0,a?P():B(),1);});}});}
+    if(i===6){[[-1,-1],[-1,1],[1,-1],[1,1]].forEach(([sx,sy],k)=>{const x=cx+sx*R*.8,y=cy+sy*R*.5;cell(ctx,x,y,R*.62,R*.42);chr(ctx,x-9,y,30,1.57,[B(),P(),B(),P()][k],1,[P(),B(),B(),P()][k]);chr(ctx,x+9,y,20,1.57,[P(),B(),P(),B()][k],1,[B(),P(),P(),B()][k]);});}
+    label(ctx,'2n = 4: blue and pink are the two parents\' chromosomes',w/2,h-10,T.muted,'center','middle',MONO);},{h:w=>clamp(w*.46,250,330),onStage:i=>setText('ms-n',ST[i].c)});
+  $('#me2-lab').addEventListener('labreset',()=>sc.go(0));
+  let np=3;const big=n=>Math.pow(2,n),fm=v=>v.toLocaleString('en-US');
+  const sim=sim2d($('#me2-canvas2'),{h:w=>clamp(w*.34,170,220),draw(ctx,w,h){const L=14,R=w-14,mx=Math.log10(Math.pow(4,23)),bh=24;[[Math.log10(big(np)),'gametes: 2^'+np+' = '+fm(big(np)),T.cx,16],[Math.log10(Math.pow(4,np)),'zygotes (two parents): 4^'+np+' = '+fm(Math.pow(4,np)),T.ca,56]].forEach(([v,nm,col,y])=>{const wd=Math.max(2,(R-L)*v/mx);ctx.fillStyle=alpha(col,.65);ctx.fillRect(L,y,wd,bh);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(L,y,wd,bh);label(ctx,nm,L+4,y+bh+14,T.ink,'left','middle',MONO);});label(ctx,'bar length is logarithmic',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){setText('ms-g',fm(big(np)));setText('ms-z',fm(Math.pow(4,np)));sim.render();}
+  bindRange('ms-pairs',v=>String(v),v=>{np=v;upd();});$('#me2-lab2').addEventListener('labreset',()=>{np=3;setCtl('ms-pairs',3);upd();});upd();
+  drawers.meiosis=()=>{sc.render();sim.render();};
+  KEYS['me2-canvas']=['Blue and pink are the chromosomes from the two parents. Crossing over swaps the tips.',[['cx','one parent'],['ca','other parent'],['accent','spindle']]];
+  KEYS['me2-canvas2']=['Bars are logarithmic. Humans have n = 23.',[['cx','gametes'],['ca','zygotes']]];
+  TIPS['ms-st']=()=>'Meiosis I separates homologs. Meiosis II separates sister chromatids.';
+  GLOSS['homologous chromosomes']='A pair of chromosomes, one from each parent, carrying the same genes.';GLOSS['haploid']='Having one copy of each chromosome (n).';GLOSS['diploid']='Having two copies of each chromosome (2n).';GLOSS['crossing over']='Exchange of segments between homologous chromosomes during prophase I.';GLOSS['independent assortment']='Random orientation of each homologous pair at metaphase I, so alleles of different genes assort independently.';GLOSS['nondisjunction']='Failure of chromosomes to separate properly, producing gametes with extra or missing chromosomes.';GLOSS['gamete']='A haploid sex cell (egg or sperm).';
+  TT.meiosis='Ask students to compare the cells at the end of meiosis I and meiosis II in chromosome number and in chromatids.';
+})();
+(function(){
+  PROBS.push({id:'ms-gam',topic:'meiosis',title:'Possible gametes',gen(){const n=randInt(2,12),ans=Math.pow(2,n);return {q:`An organism has ${n} pairs of chromosomes (2n = ${2*n}). Ignoring crossing over, how many different gametes are possible from independent assortment?`,ans,unit:'',tol:0,chk:1<<n,hint:'2 raised to the number of pairs.',sol:`2<sup>${n}</sup> = <b>${ans}</b>.`};}});
+  PROBS.push({id:'ms-hap',topic:'meiosis',title:'Haploid number',gen(){const s=pick([8,12,20,24,46,78]),ans=s/2;return {q:`A diploid cell has ${s} chromosomes. How many chromosomes are in each gamete?`,ans,unit:'',tol:0,chk:s/2,hint:'Gametes are haploid.',sol:`${s}/2 = <b>${ans}</b>.`};}});
+  const q=[['Homologous chromosomes separate during','anaphase I',['anaphase II','metaphase II','S phase']],['Sister chromatids separate during','anaphase II',['anaphase I','prophase I','metaphase I']],['Crossing over occurs during','prophase I',['prophase II','metaphase I','telophase II']],['One diploid cell undergoing meiosis makes','four genetically different haploid cells',['two identical diploid cells','two haploid cells','four identical haploid cells']],['Random orientation of homologous pairs at the equator is called','independent assortment',['crossing over','nondisjunction','segregation of chromatids']]];
+  PROBS.push({id:'ms-fact',topic:'meiosis',title:'Meiosis facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Meiosis I separates homologs; II separates chromatids.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/mendel.js ===== */
+/* ---------------- Mendelian inheritance ---------------- */
+(function mendel(){
+  const cv=$('#md-canvas');if(!cv)return;
+  let p1='Aa',p2='Aa',obs='';
+  const gam=g=>[g[0],g[1]],gcd=(a,b)=>b?gcd(b,a%b):a;
+  function cells(){const r=[];gam(p1).forEach(a=>gam(p2).forEach(b=>r.push(a<b?a+b:b+a)));return r.map(x=>x==='aA'?'Aa':x);}
+  const dom=x=>x.indexOf('A')>=0;
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const cs=cells(),s=Math.min(h-70,(w-110)*.7,130)/2,x0=w/2-s,y0=46,g1=gam(p1),g2=gam(p2);
+    g1.forEach((a,k)=>label(ctx,a,x0+s*(k+.5),y0-16,T.cx,'center','middle','700 16px '+MONO.split(' ').slice(1).join(' ')));g2.forEach((a,k)=>label(ctx,a,x0-20,y0+s*(k+.5),T.cx,'center','middle','700 16px '+MONO.split(' ').slice(1).join(' ')));
+    label(ctx,'parent 1 gametes →',x0+s,y0-34,T.muted,'center','middle',MONO);
+    cs.forEach((g,k)=>{const c=k%2,r=Math.floor(k/2),d=dom(g);ctx.fillStyle=alpha(d?T.cx:T.ca,.3);ctx.fillRect(x0+c*s,y0+r*s,s,s);ctx.strokeStyle=d?T.cx:T.ca;ctx.lineWidth=2;ctx.strokeRect(x0+c*s,y0+r*s,s,s);label(ctx,g,x0+c*s+s/2,y0+r*s+s/2,T.ink,'center','middle','700 18px '+MONO.split(' ').slice(1).join(' '));});
+    label(ctx,'blue: dominant phenotype · pink: recessive phenotype',w/2,h-10,T.muted,'center','middle',MONO);}});
+  function upd(){const cs=cells(),n={AA:0,Aa:0,aa:0};cs.forEach(g=>n[g]++);const gr=['AA','Aa','aa'].filter(k=>n[k]).map(k=>n[k]+' '+k).join(' : ');const d=cs.filter(dom).length,rc=4-d,gg=gcd(d,rc)||1;setText('md-gt',gr);setText('md-pt',(d/gg)+' : '+(rc/gg));setText('md-obs',obs||'press the button to sample');sim.render();}
+  segBind('md-p1','k',v=>{p1=v;obs='';upd();});segBind('md-p2','k',v=>{p2=v;obs='';upd();});
+  $('#md-go').addEventListener('click',()=>{const cs=cells();let d=0;for(let i=0;i<100;i++)if(dom(pick(cs)))d++;const ed=cs.filter(dom).length*25;obs=d+' dominant : '+(100-d)+' recessive (expected '+ed+' : '+(100-ed)+')';upd();});
+  $('#md-lab').addEventListener('labreset',()=>{p1='Aa';p2='Aa';obs='';segSet('md-p1',1);segSet('md-p2',1);upd();});
+  segSet('md-p1',1);segSet('md-p2',1);upd();
+  /* dihybrid */
+  let hl='all';const G=['AB','Ab','aB','ab'];
+  const phen=(g1,g2)=>{const A=g1[0]==='A'||g2[0]==='A',B=g1[1]==='B'||g2[1]==='B';return (A?'A':'a')+(B?'B':'b');};
+  const sim2=sim2d($('#md-canvas2'),{h:w=>clamp(w*.52,250,330),draw(ctx,w,h){const s=Math.min((h-50)/4,(w-80)/4,64),x0=w/2-2*s,y0=34;const colr={AB:T.cx,Ab:T.cv,aB:T.ce,ab:T.ca};
+    G.forEach((g,k)=>{label(ctx,g,x0+s*(k+.5),y0-14,T.muted,'center','middle',MONO);label(ctx,g,x0-16,y0+s*(k+.5),T.muted,'center','middle',MONO);});
+    G.forEach((a,r)=>G.forEach((b,c)=>{const p=phen(a,b),on=hl==='all'||hl===p;ctx.globalAlpha=on?1:.22;ctx.fillStyle=alpha(colr[p],.55);ctx.fillRect(x0+c*s,y0+r*s,s,s);ctx.strokeStyle=colr[p];ctx.lineWidth=2;ctx.strokeRect(x0+c*s,y0+r*s,s,s);ctx.globalAlpha=1;}));
+    label(ctx,'gametes of each parent along the top and left',w/2,h-10,T.muted,'center','middle',MONO);}});
+  function upd2(){let n=0;G.forEach(a=>G.forEach(b=>{if(hl==='all'||hl===phen(a,b))n++;}));setText('md-n',String(n));setText('md-r',n+'/16'+(hl==='all'?'':' = '+fmt(n/16*100,1)+'%'));sim2.render();}
+  segBind('md-hl','k',v=>{hl=v;upd2();});$('#md-lab2').addEventListener('labreset',()=>{hl='all';segSet('md-hl',0);upd2();});upd2();
+  drawers.mendel=()=>{sim.render();sim2.render();};
+  KEYS['md-canvas']=['Each square is a possible offspring. The gametes of each parent are along the edges.',[['cx','dominant phenotype'],['ca','recessive phenotype']]];
+  KEYS['md-canvas2']=['Sixteen squares: the four phenotype classes appear 9 : 3 : 3 : 1.',[['cx','dominant both'],['cv','dominant A only'],['ce','dominant B only'],['ca','recessive both']]];
+  TIPS['md-go']=()=>'Real samples scatter around the expected ratio. A chi-square test judges whether the scatter is just chance.';
+  GLOSS['genotype']='The combination of alleles an individual has (such as Aa).';GLOSS['phenotype']='The observable trait that results from the genotype.';GLOSS['heterozygous']='Having two different alleles of a gene.';GLOSS['homozygous']='Having two identical alleles of a gene.';GLOSS['test cross']='Crossing an individual of unknown genotype with a homozygous recessive to reveal its genotype.';GLOSS['law of segregation']='The two alleles of a gene separate into different gametes.';
+  TT.mendel='Have students predict the ratio before choosing parents, then compare with a random sample.';
+})();
+(function(){
+  PROBS.push({id:'md-prob',topic:'mendel',title:'Probability of a phenotype',gen(){const c=pick([['Aa','Aa',1/4,'the recessive phenotype'],['Aa','Aa',3/4,'the dominant phenotype'],['Aa','aa',1/2,'the recessive phenotype'],['AA','Aa',1,'the dominant phenotype'],['aa','aa',1,'the recessive phenotype']]);return {q:`In a cross ${c[0]} × ${c[1]}, what is the probability that an offspring shows ${c[3]}? (Give a decimal.)`,ans:c[2],unit:'',abs:.011,chk:c[2],hint:'Fill in a Punnett square and count.',sol:`<b>${fmt(c[2],2)}</b>.`};}});
+  PROBS.push({id:'md-two',topic:'mendel',title:'Two independent events',gen(){const a=pick([[1/4,'1/4','a recessive offspring'],[3/4,'3/4','a dominant offspring'],[1/2,'1/2','a heterozygous offspring']]),n=pick([2,3]),ans=Math.pow(a[0],n);return {q:`Each offspring of a cross has probability ${a[1]} of being ${a[2].replace('a ','')}. What is the probability that ${n} offspring in a row are all ${a[2].replace('a ','')}?`,ans,unit:'',abs:.0011,chk:Math.pow(a[0],n),hint:'Product rule: multiply the probabilities.',sol:`(${a[1]})<sup>${n}</sup> = <b>${fmt(ans,4)}</b>.`};}});
+  PROBS.push({id:'md-dihy',topic:'mendel',title:'Dihybrid class sizes',gen(){const k=pick([['both dominant',9],['dominant for A, recessive for b',3],['recessive for A, dominant for B',3],['recessive for both',1]]),n=pick([160,320,480,800]),ans=n*k[1]/16;return {q:`AaBb × AaBb produces ${n} offspring and the genes assort independently. How many do you expect to be ${k[0]}?`,ans,unit:'',abs:.01,chk:n*k[1]/16,hint:'The classes are in the ratio 9 : 3 : 3 : 1 (of 16).',sol:`${n} × ${k[1]}/16 = <b>${fmt(ans,1)}</b>.`};}});
+  const q=[['The genotype of an individual with the recessive phenotype is','homozygous recessive',['heterozygous','homozygous dominant','either homozygous or heterozygous']],['A test cross uses a partner that is','homozygous recessive',['homozygous dominant','heterozygous','the same genotype']],['Two heterozygotes (Aa × Aa) have an offspring. The chance it is heterozygous is','1/2',['1/4','3/4','1']]];
+  PROBS.push({id:'md-fact',topic:'mendel',title:'Genetics facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Draw the Punnett square.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/nonmendel.js ===== */
+/* ---------------- Beyond simple dominance ---------------- */
+(function nonmendel(){
+  const cv=$('#nm-canvas');if(!cv)return;
+  const PAT={cd:{gt:'1 AA : 2 Aa : 1 aa',pt:'3 dominant : 1 recessive',ex:'pea flowers: purple is dominant to white',bars:[[3,'dominant',()=>T.cx],[1,'recessive',()=>T.ca]]},
+    id:{gt:'1 RR : 2 Rr : 1 rr',pt:'1 red : 2 pink : 1 white',ex:'snapdragons: red × white gives pink',bars:[[1,'red',()=>T.bad],[2,'pink',()=>T.ca],[1,'white',()=>T.surface]]},
+    co:{gt:'1 RR : 2 RW : 1 WW',pt:'1 red : 2 roan (red and white together) : 1 white',ex:'roan cattle; AB blood type',bars:[[1,'red',()=>T.bad],[2,'roan (both)',()=>T.accent],[1,'white',()=>T.surface]]},
+    ep:{gt:'9 B_E_ : 3 bbE_ : 3 B_ee : 1 bbee',pt:'9 black : 3 chocolate : 4 yellow',ex:'labrador coat colour: ee hides the B gene',bars:[[9,'black',()=>T.ink],[3,'chocolate',()=>'#7B4A2A'],[4,'yellow',()=>T.ce]]}};
+  let pat='cd';
+  const sim=sim2d(cv,{h:w=>clamp(w*.44,230,290),draw(ctx,w,h){const P=PAT[pat],tot=P.bars.reduce((s,b)=>s+b[0],0),L=40,R=w-20,B=h-44,top=26,bw=(R-L)/(P.bars.length*1.5+.5),mx=Math.max(...P.bars.map(b=>b[0]));
+    ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,top);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();label(ctx,'parts of '+tot,L+4,top-6,T.muted,'left','middle',MONO);
+    P.bars.forEach(([n,nm,c],k)=>{const x=L+bw*(.5+k*1.5),bh=(B-top-6)*n/mx;ctx.fillStyle=c();ctx.globalAlpha=.85;ctx.fillRect(x,B-bh,bw,bh);ctx.globalAlpha=1;ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.strokeRect(x,B-bh,bw,bh);label(ctx,String(n),x+bw/2,B-bh-9,T.ink,'center','middle',MONO);label(ctx,nm,x+bw/2,B+16,T.ink,'center','middle',MONO);});}});
+  function upd(){const P=PAT[pat];setText('nm-gt',P.gt);setText('nm-pt',P.pt);setText('nm-ex',P.ex);sim.render();}
+  segBind('nm-pat','k',v=>{pat=v;upd();});$('#nm-lab').addEventListener('labreset',()=>{pat='cd';segSet('nm-pat',0);upd();});upd();
+  /* ABO */
+  let b1='IAIA',b2='IAIA';
+  const typ=g=>g==='IAIB'?'AB':g==='ii'?'O':g.indexOf('A')>=0?'A':'B';
+  const al=g=>g==='ii'?['i','i']:g==='IAIB'?['IA','IB']:g==='IAIA'?['IA','IA']:g==='IBIB'?['IB','IB']:g==='IAi'?['IA','i']:['IB','i'];
+  function probs(){const r={A:0,B:0,AB:0,O:0};al(b1).forEach(a=>al(b2).forEach(b=>{const g=(a==='i'&&b==='i')?'ii':(a==='i'||b==='i')?(a==='i'?b:a)+'i':[a,b].sort().join('');r[typ(g==='IAIB'||g==='IBIA'?'IAIB':g)]+=.25;}));return r;}
+  const sim2=sim2d($('#nm-canvas2'),{h:w=>clamp(w*.36,190,250),draw(ctx,w,h){const r=probs(),L=40,R=w-20,B=h-34,top=20,bw=(R-L)/6.5;ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,top);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();
+    [['A',T.cx],['B',T.ca],['AB',T.accent],['O',T.ce]].forEach(([k,c],i)=>{const x=L+bw*(.5+i*1.5),bh=(B-top-8)*r[k];ctx.fillStyle=alpha(c,.7);ctx.fillRect(x,B-bh,bw,bh);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(x,B-bh,bw,bh);label(ctx,Math.round(r[k]*100)+'%',x+bw/2,B-bh-9,T.ink,'center','middle',MONO);label(ctx,'type '+k,x+bw/2,B+14,T.ink,'center','middle',MONO);});}});
+  function upd2(){const r=probs();const ks=['A','B','AB','O'].filter(k=>r[k]>0);setText('nm-bt',ks.join(', '));setText('nm-bp',ks.map(k=>k+' '+Math.round(r[k]*100)+'%').join(' · '));sim2.render();}
+  segBind('nm-b1','k',v=>{b1=v;upd2();});segBind('nm-b2','k',v=>{b2=v;upd2();});$('#nm-lab2').addEventListener('labreset',()=>{b1='IAIA';b2='IAIA';segSet('nm-b1',0);segSet('nm-b2',0);upd2();});upd2();
+  drawers.nonmendel=()=>{sim.render();sim2.render();};
+  KEYS['nm-canvas']=['Bars show the expected phenotype ratio from a cross of two heterozygotes (or double heterozygotes for epistasis).',[['cx','dominant'],['ca','recessive / pink'],['bad','red'],['accent','both alleles shown']]];
+  KEYS['nm-canvas2']=['Probability of each ABO blood type among children.',[['cx','type A'],['ca','type B'],['accent','type AB'],['ce','type O']]];
+  TIPS['nm-pat']=()=>'3 : 1 means simple dominance. 1 : 2 : 1 means the heterozygote looks different. 9 : 3 : 4 means one gene hides another.';
+  GLOSS['incomplete dominance']='The heterozygote\'s phenotype is intermediate between the two homozygotes.';GLOSS['codominance']='Both alleles are fully expressed in the heterozygote.';GLOSS['epistasis']='One gene affects the expression of a different gene.';GLOSS['polygenic']='A trait influenced by many genes, usually giving a continuous range of phenotypes.';GLOSS['multiple alleles']='More than two alleles of a gene present in a population.';
+  TT.nonmendel='Have students match each ratio with the pattern before checking the labels.';
+})();
+(function(){
+  const pairs=[['IAi','IBi',['A','B','AB','O']],['IAIB','ii',['A','B']],['IAIA','IBIB',['AB']],['IAi','IAi',['A','O']],['IBi','ii',['B','O']],['IAIB','IAIB',['A','B','AB']],['ii','ii',['O']],['IAi','IAIB',['A','B','AB']]];
+  const nm={IAi:'Iᴬi',IBi:'Iᴮi',IAIB:'IᴬIᴮ',ii:'ii',IAIA:'IᴬIᴬ',IBIB:'IᴮIᴮ'};
+  PROBS.push({id:'nm-abo',topic:'nonmendel',title:'Possible blood types',gen(){const p=pick(pairs),want=pick(['A','B','AB','O']),yes=p[2].includes(want),ans=yes?'yes':'no',m=mcq(ans,['yes','no']);return {q:`One parent has genotype ${nm[p[0]]} and the other ${nm[p[1]]}. Could they have a child with blood type ${want}?`,choices:m.choices,ans:m.ans,hint:'List the gametes of each parent and combine.',sol:`Possible types: ${p[2].join(', ')}. Type ${want}: <b>${ans}</b>.`};}});
+  PROBS.push({id:'nm-ratio',topic:'nonmendel',title:'Match the ratio',gen(){const t=pick([['1 : 2 : 1 with three different phenotypes (red, pink, white)','incomplete dominance'],['3 : 1','complete dominance'],['9 : 3 : 4','epistasis'],['a continuous bell-shaped range of phenotypes','polygenic inheritance'],['the heterozygote shows both parental phenotypes at once','codominance']]),m=mcq(t[1],['incomplete dominance','complete dominance','epistasis','polygenic inheritance','codominance'].filter(x=>x!==t[1]));return {q:`Which pattern of inheritance best fits: ${t[0]}?`,choices:m.choices,ans:m.ans,hint:'Compare the ratio and the heterozygote\'s phenotype.',sol:`<b>${t[1]}</b>.`};}});
+  PROBS.push({id:'nm-pink',topic:'nonmendel',title:'Pink snapdragons',gen(){const n=pick([80,100,200,400]),ph=pick([['red',1],['pink',2],['white',1]]),ans=n*ph[1]/4;return {q:`Two pink snapdragons (incomplete dominance) produce ${n} seedlings. How many are expected to be ${ph[0]}?`,ans,unit:'',abs:.01,chk:n*ph[1]/4,hint:'The ratio is 1 red : 2 pink : 1 white.',sol:`${n} × ${ph[1]}/4 = <b>${fmt(ans,0)}</b>.`};}});
+})();
+
+/* ===== modules/sexlink.js ===== */
+/* ---------------- Sex linkage & pedigrees ---------------- */
+(function sexlink(){
+  const cv=$('#sx-canvas');if(!cv)return;
+  let mo='XHXh',fa='XHY';
+  const gm=g=>g==='XHXH'?['XH','XH']:g==='XHXh'?['XH','Xh']:['Xh','Xh'],gf=g=>g==='XHY'?['XH','Y']:['Xh','Y'];
+  const kid=(m,f)=>f==='Y'?{sex:'M',g:m+'Y',st:m==='Xh'?'affected':'normal'}:{sex:'F',g:m+f,st:m==='Xh'&&f==='Xh'?'affected':(m==='Xh'||f==='Xh')?'carrier':'normal'};
+  function kids(){const r=[];gm(mo).forEach(m=>gf(fa).forEach(f=>r.push(kid(m,f))));return r;}
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,240,300),draw(ctx,w,h){const ks=kids(),s=Math.min((h-70)/2,(w-110)/2,120),x0=w/2-s,y0=46,F='700 15px '+MONO.split(' ').slice(1).join(' ');
+    gm(mo).forEach((a,k)=>label(ctx,a,x0+s*(k+.5),y0-16,T.ca,'center','middle',F));gf(fa).forEach((a,k)=>label(ctx,a,x0-26,y0+s*(k+.5),T.cx,'center','middle',F));label(ctx,'mother\'s eggs →',x0+s,y0-34,T.muted,'center','middle',MONO);
+    ks.forEach((k,i)=>{const c=i%2,r=Math.floor(i/2),col=k.st==='affected'?T.bad:k.st==='carrier'?T.ca:T.cx;ctx.fillStyle=alpha(col,k.st==='affected'?.55:.25);ctx.fillRect(x0+c*s,y0+r*s,s,s);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(x0+c*s,y0+r*s,s,s);label(ctx,k.g,x0+c*s+s/2,y0+r*s+s/2-16,T.ink,'center','middle',F);label(ctx,k.sex==='M'?'son':'daughter',x0+c*s+s/2,y0+r*s+s/2+4,T.muted,'center','middle',MONO);label(ctx,k.st,x0+c*s+s/2,y0+r*s+s/2+20,T.muted,'center','middle',MONO);});}});
+  function upd(){const ks=kids(),sons=ks.filter(k=>k.sex==='M'),dau=ks.filter(k=>k.sex==='F');const fr=(a,b)=>a===0?'none':a===b?'all':a+' of '+b;setText('sx-sons',fr(sons.filter(k=>k.st==='affected').length,sons.length));setText('sx-dau',fr(dau.filter(k=>k.st==='affected').length,dau.length)+' affected, '+fr(dau.filter(k=>k.st==='carrier').length,dau.length)+' carriers');sim.render();}
+  segBind('sx-m','k',v=>{mo=v;upd();});segBind('sx-f','k',v=>{fa=v;upd();});$('#sx-lab').addEventListener('labreset',()=>{mo='XHXh';fa='XHY';segSet('sx-m',1);segSet('sx-f',0);upd();});segSet('sx-m',1);upd();
+  /* pedigree */
+  const PED={ar:{sex:'MFMFFMMF',aff:[0,0,1,0,1,0,1,0],gt:['Aa','Aa','aa','A_','aa','Aa','aa','Aa'],clue:'two unaffected parents have an affected child (autosomal recessive)',note:'both sexes are affected; the trait can skip generations; affected child, unaffected parents'},
+    ad:{sex:'MFMFFMMF',aff:[1,0,1,0,1,0,1,0],gt:['Aa','aa','Aa','aa','Aa','aa','Aa','aa'],clue:'every affected person has an affected parent (autosomal dominant)',note:'does not skip generations; both sexes affected; about half of the children of an affected parent are affected'},
+    xr:{sex:'MFMMFMMF',aff:[0,0,1,0,0,0,1,0],gt:['XHY','XHXh','XhY','XHY','XHXh','XHY','XhY','XHX_'],clue:'mostly males affected, passing through unaffected carrier females (X-linked recessive)',note:'affected males have unaffected fathers; carrier mothers pass it to sons; no father-to-son transmission'}};
+  const POS=[[.3,0],[.7,0],[.12,1],[.36,1],[.6,1],[.86,1],[.64,2],[.84,2]];
+  let pt='ar',showG=false;
+  const sim2=sim2d($('#sx-canvas2'),{h:w=>clamp(w*.56,280,360),draw(ctx,w,h){const D=PED[pt],gy=i=>38+i*(h-70)/2,sz=Math.min(24,w*.04),px=i=>w*POS[i][0],py=i=>gy(POS[i][1]);ctx.strokeStyle=T.ink;ctx.lineWidth=2;
+    const couple=(a,b,ks)=>{ctx.beginPath();ctx.moveTo(px(a),py(a));ctx.lineTo(px(b),py(b));ctx.stroke();const mx=(px(a)+px(b))/2,my=py(a),by=my+(gy(1)-gy(0))*.45;ctx.beginPath();ctx.moveTo(mx,my);ctx.lineTo(mx,by);const xs=ks.map(k=>px(k));ctx.moveTo(Math.min(...xs,mx),by);ctx.lineTo(Math.max(...xs,mx),by);ks.forEach(k=>{ctx.moveTo(px(k),by);ctx.lineTo(px(k),py(k)-sz);});ctx.stroke();};
+    couple(0,1,[2,3,4]);couple(4,5,[6,7]);
+    for(let i=0;i<8;i++){const x=px(i),y=py(i),f=D.aff[i],male=D.sex[i]==='M';ctx.fillStyle=f?T.ink:T.surface;ctx.strokeStyle=T.ink;ctx.lineWidth=2.4;ctx.beginPath();if(male)ctx.rect(x-sz,y-sz,2*sz,2*sz);else ctx.arc(x,y,sz,0,6.283);ctx.fill();ctx.stroke();
+      if(showG)label(ctx,D.gt[i],x,y+sz+14,T.accent,'center','middle',MONO);}
+    label(ctx,'square = male · circle = female · filled = affected',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd2(){setText('sx-clue',PED[pt].clue);setText('sx-note',PED[pt].note);sim2.render();}
+  segBind('sx-pat','k',v=>{pt=v;upd2();});$('#sx-gt').addEventListener('click',()=>{showG=!showG;$('#sx-gt').setAttribute('aria-pressed',String(showG));$('#sx-gt').textContent=showG?'Hide genotypes':'Show genotypes';upd2();});
+  $('#sx-lab2').addEventListener('labreset',()=>{pt='ar';showG=false;segSet('sx-pat',0);$('#sx-gt').textContent='Show genotypes';$('#sx-gt').setAttribute('aria-pressed','false');upd2();});upd2();
+  drawers.sexlink=()=>{sim.render();sim2.render();};
+  KEYS['sx-canvas']=['Each square is a possible child. Pink = affected, light pink = carrier, blue = unaffected.',[['bad','affected'],['ca','carrier daughter'],['cx','unaffected']]];
+  KEYS['sx-canvas2']=['Filled symbols are affected. Switch patterns and compare how the trait passes between generations.',[['ink','affected']]];
+  TIPS['sx-m']=()=>'Sons get their X only from the mother. Daughters get one X from each parent.';
+  GLOSS['x-linked']='A gene located on the X chromosome.';GLOSS['carrier']='A heterozygous individual who does not show a recessive trait but can pass the allele on.';GLOSS['pedigree']='A family tree that shows how a trait is inherited.';GLOSS['autosomal']='Located on a non-sex chromosome.';
+  TT.sexlink='Ask students to assign genotypes to each person in the pedigree and check every mating.';
+})();
+(function(){
+  const m=[['XHXh','XHY',[1/2,'sons',1/4,'any child']],['XHXH','XhY',[0,'sons',0,'any child']],['XHXh','XhY',[1/2,'sons',1/2,'any child']],['XhXh','XHY',[1,'sons',1/2,'any child']]];
+  PROBS.push({id:'sx-son',topic:'sexlink',title:'Chance for a son',gen(){const mo=pick([['carrier mother (XᴴXʰ)',1/2],['mother with the trait (XʰXʰ)',1],['unaffected non-carrier mother (XᴴXᴴ)',0]]);return {q:`A recessive X-linked trait is carried on the X chromosome. Using Xᴴ for the normal allele and Xʰ for the trait, what is the probability that a son of a ${mo[0]} and an unaffected father shows the trait?`,ans:mo[1],unit:'',abs:.011,chk:mo[1],hint:'A son gets his X from his mother only.',sol:`<b>${fmt(mo[1],2)}</b>.`};}});
+  PROBS.push({id:'sx-any',topic:'sexlink',title:'Chance for any child',gen(){const c=pick([['carrier mother and unaffected father',.25],['carrier mother and affected father',.5],['unaffected mother (XᴴXᴴ) and affected father',0]]);return {q:`Hemophilia is X-linked recessive. A ${c[0]} have a child (sex unknown). What is the probability the child has hemophilia?`,ans:c[1],unit:'',abs:.011,chk:c[1],hint:'Draw the Punnett square for all four children.',sol:`<b>${fmt(c[1],2)}</b>.`};}});
+  const q=[['Two unaffected parents have an affected daughter. The trait is most likely','autosomal recessive',['X-linked recessive','autosomal dominant','Y-linked']],['A trait never passes from father to son. The best explanation is that it is','X-linked',['autosomal dominant','autosomal recessive','mitochondrial only']],['Every affected person has an affected parent and the trait appears in every generation. This suggests','autosomal dominant',['autosomal recessive','X-linked recessive','polygenic']],['Why are X-linked recessive traits seen more often in males?','males have only one X so one recessive allele is enough',['males have two X chromosomes','the Y chromosome carries the allele','males are heterozygous']]];
+  PROBS.push({id:'sx-ped',topic:'sexlink',title:'Reading a pedigree',gen(){const p=pick(q),m2=mcq(p[1],p[2]);return {q:p[0],choices:m2.choices,ans:m2.ans,hint:'Look for skipped generations and the sexes affected.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/linkage.js ===== */
+/* ---------------- Linked genes & recombination ---------------- */
+(function linkage(){
+  const cv=$('#lk-canvas');if(!cv)return;
+  let d=12,n=1000;
+  const sim=sim2d(cv,{h:w=>clamp(w*.5,250,330),draw(ctx,w,h){const r=d/100,par=n*(1-r)/2,rec=n*r/2,L=30,R=w-30,cy=34;
+    ctx.strokeStyle=T.ink;ctx.lineWidth=8;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(L,cy);ctx.lineTo(R,cy);ctx.stroke();ctx.lineCap='butt';const xa=L+(R-L)*.15,xb=xa+(R-L)*.7*d/50;ctx.strokeStyle=T.ca;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(xa,cy-14);ctx.lineTo(xa,cy+14);ctx.moveTo(xb,cy-14);ctx.lineTo(xb,cy+14);ctx.stroke();label(ctx,'A',xa,cy-24,T.ca,'center','middle',MONO);label(ctx,'B',xb,cy-24,T.ca,'center','middle',MONO);label(ctx,d+' map units',(xa+xb)/2,cy+24,T.muted,'center','middle',MONO);
+    const top=cy+40,B=h-30,bw=(R-L)/6.5,mx=n/2;
+    ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,top);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();
+    [['AB',par,T.cx,'parental'],['ab',par,T.cx,'parental'],['Ab',rec,T.accent,'recombinant'],['aB',rec,T.accent,'recombinant']].forEach(([nm,v,c,k],i)=>{const x=L+bw*(.4+i*1.55),bh=(B-top-14)*v/mx;ctx.fillStyle=alpha(c,.7);ctx.fillRect(x,B-bh,bw,bh);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(x,B-bh,bw,bh);label(ctx,fmt(v,0),x+bw/2,B-bh-9,T.ink,'center','middle',MONO);label(ctx,nm,x+bw/2,B+13,T.ink,'center','middle',MONO);});}});
+  function upd(){const r=d/100;setText('lk-par',fmt(n*(1-r),0));setText('lk-rec',fmt(n*r,0));setText('lk-f',d+'% = '+d+' map units');sim.render();}
+  bindRange('lk-d',v=>String(v),v=>{d=v;upd();});bindRange('lk-n',v=>String(v),v=>{n=v;upd();});
+  $('#lk-lab').addEventListener('labreset',()=>{d=12;n=1000;setCtl('lk-d',12);setCtl('lk-n',1000);upd();});upd();
+  let pa=5,pb=15,pc=21;
+  const sim2=sim2d($('#lk-canvas2'),{h:w=>clamp(w*.3,160,210),draw(ctx,w,h){const L=30,R=w-30,cy=h*.42,X=p=>L+(R-L)*p/60;ctx.strokeStyle=T.ink;ctx.lineWidth=8;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(L,cy);ctx.lineTo(R,cy);ctx.stroke();ctx.lineCap='butt';
+    [['A',pa],['B',pb],['C',pc]].forEach(([nm,p],i)=>{ctx.strokeStyle=[T.cx,T.ca,T.cv][i];ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(X(p),cy-14);ctx.lineTo(X(p),cy+14);ctx.stroke();label(ctx,nm,X(p),cy-26+(i%2)*0,T.ink,'center','middle',MONO);});
+    label(ctx,'positions in map units (0–60)',w/2,h-10,T.muted,'center','middle',MONO);}});
+  const rf=(a,b)=>Math.min(Math.abs(a-b),50);
+  function upd2(){setText('lk-ab',fmt(rf(pa,pb),0)+'%'+(Math.abs(pa-pb)>50?' (max)':''));setText('lk-bc',fmt(rf(pb,pc),0)+'%'+(Math.abs(pb-pc)>50?' (max)':''));setText('lk-ac',fmt(rf(pa,pc),0)+'%'+(Math.abs(pa-pc)>50?' (max)':''));setText('lk-ord',[['A',pa],['B',pb],['C',pc]].sort((x,y)=>x[1]-y[1]).map(x=>x[0]).join(' – '));sim2.render();}
+  bindRange('lk-pa',v=>String(v),v=>{pa=v;upd2();});bindRange('lk-pb',v=>String(v),v=>{pb=v;upd2();});bindRange('lk-pc',v=>String(v),v=>{pc=v;upd2();});
+  $('#lk-lab2').addEventListener('labreset',()=>{pa=5;pb=15;pc=21;setCtl('lk-pa',5);setCtl('lk-pb',15);setCtl('lk-pc',21);upd2();});upd2();
+  drawers.linkage=()=>{sim.render();sim2.render();};
+  KEYS['lk-canvas']=['Blue: parental types (most common if the genes are linked). Orange: recombinants.',[['cx','parental'],['accent','recombinant']]];
+  KEYS['lk-canvas2']=['Move the genes. The largest recombination frequency is between the two outer genes.',[['cx','gene A'],['ca','gene B'],['cv','gene C']]];
+  TIPS['lk-d']=()=>'The farther apart, the more often a crossover separates the genes. 50% looks unlinked.';
+  GLOSS['linked genes']='Genes close together on the same chromosome that tend to be inherited together.';GLOSS['recombinant']='An offspring with a combination of alleles different from either parent\'s chromosomes.';GLOSS['map unit']='A distance corresponding to 1% recombination frequency (a centimorgan).';
+  TT.linkage='Ask students which classes are parental and which are recombinant before counting.';
+})();
+(function(){
+  PROBS.push({id:'lk-rf',topic:'linkage',title:'Recombination frequency',gen(){const n=pick([500,800,1000,2000]),r=pick([.04,.06,.08,.1,.12,.15,.2,.25]),rec=Math.round(n*r),ans=rec/n*100;return {q:`In a test cross, ${n} offspring were counted and ${rec} of them were recombinants. What is the distance between the genes in map units?`,ans,unit:'map units',abs:.06,chk:rec*100/n,hint:'Recombinants divided by total, times 100.',sol:`${rec}/${n} × 100 = <b>${fmt(ans,1)} map units</b>.`};}});
+  PROBS.push({id:'lk-exp',topic:'linkage',title:'Expected recombinants',gen(){const n=pick([500,1000,2000]),dd=pick([5,10,12,20,30]),ans=n*dd/100;return {q:`Two genes are ${dd} map units apart. In a test cross with ${n} offspring, how many recombinants do you expect?`,ans,unit:'',abs:.5,chk:n*dd/100,hint:'Map units equal percent recombinants.',sol:`${n} × ${dd}% = <b>${fmt(ans,0)}</b>.`};}});
+  PROBS.push({id:'lk-ord',topic:'linkage',title:'Gene order',gen(){const x=pick([[8,5],[10,6],[12,7],[15,9]]),a=x[0],b=x[1],ac=a+b,mid=pick(['A','B','C']),orders={B:[['A','B'],['B','C'],['A','C']],A:[['B','A'],['A','C'],['B','C']],C:[['A','C'],['C','B'],['A','B']]};const [p1,p2,p3]=orders[mid];const ord=mid==='B'?'A – B – C':mid==='A'?'B – A – C':'A – C – B';const m=mcq(ord,['A – B – C','B – A – C','A – C – B'].filter(o=>o!==ord).concat(['C – A – B']));return {q:`Recombination frequencies: ${p1.join('–')} = ${a}%, ${p2.join('–')} = ${b}%, ${p3.join('–')} = ${ac}%. What is the order of the three genes on the chromosome?`,choices:m.choices,ans:m.ans,hint:'The two genes that are farthest apart have the largest value, and the third gene lies between them.',sol:`The largest value (${ac}%) is between ${p3.join(' and ')}, so those are the ends. Order: <b>${ord}</b>.`};}});
 })();
 
 /* ===== overview.js ===== */

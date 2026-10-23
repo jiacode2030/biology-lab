@@ -1,0 +1,53 @@
+  <section class="view" id="v-linkage" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Linked genes & recombination</h1>
+        <p class="lede">Genes on the same chromosome tend to travel together. How often they separate tells you how far apart they are.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Independent assortment only applies to genes on <b>different chromosomes</b>. Genes close together on the same chromosome are <b>linked</b>: they are inherited together unless <b>crossing over</b> between them breaks the pairing. The offspring with the original (parental) combinations are <b>parental types</b>; those with new combinations are <b>recombinants</b>.</p>
+        <p>The <b>recombination frequency</b> = recombinants / total offspring × 100%. The farther apart two genes, the more often a crossover falls between them. By definition 1% recombination = 1 <b>map unit</b> (centimorgan). Recombination frequencies cannot exceed 50%; at 50% the genes behave as if unlinked. Distances from three genes let you order them on a chromosome. A <b>test cross</b> (AaBb × aabb) makes recombinants easy to count because the recessive parent contributes only recessive alleles.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>genes were always independent</dd><dt>So we didn't need</dt><dd>that genes on one chromosome move together unless crossing over separates them</dd><dt>Now</dt><dd>how crossover frequency gives distance and gene order</dd><dt>So we need</dt><dd>linkage, recombination frequency and map units</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>recombination frequency = recombinants / total × 100%</span><small>map units</small></div><div class="eqn"><span>1% recombination = 1 map unit</span><small>centimorgan</small></div><div class="eqn"><span>maximum observed recombination = 50%</span><small>looks unlinked</small></div><div class="eqn"><span>parental types are most common if genes are linked</span><small>in a test cross</small></div></div>
+      <div class="lab" id="lk-lab" data-reset="own">
+        <div class="labbar"><span class="title">Test cross of two linked genes</span></div>
+        <canvas id="lk-canvas" aria-label="A chromosome with two genes the chosen number of map units apart and bars showing expected numbers of parental and recombinant offspring from a test cross."></canvas>
+        <div class="controls"><div class="ctl"><label for="lk-d"><span>Distance between genes (map units)</span> <output id="lk-d-out"></output></label><input type="range" id="lk-d" min="0" max="50" step="1" value="12"></div><div class="ctl"><label for="lk-n"><span>Offspring counted</span> <output id="lk-n-out"></output></label><input type="range" id="lk-n" min="100" max="2000" step="50" value="1000"></div></div>
+        <div class="readout"><div><span>parental offspring</span><strong class="x" id="lk-par">—</strong></div><div><span>recombinant offspring</span><strong class="a" id="lk-rec">—</strong></div><div><span>recombination frequency</span><strong class="v" id="lk-f">—</strong></div></div>
+      </div>
+      <div class="lab" id="lk-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Order three genes</span></div>
+        <canvas id="lk-canvas2" aria-label="A chromosome with three genes at chosen positions and the recombination frequency between each pair."></canvas>
+        <div class="controls"><div class="ctl"><label for="lk-pa"><span>Position of gene A</span> <output id="lk-pa-out"></output></label><input type="range" id="lk-pa" min="0" max="60" step="1" value="5"></div><div class="ctl"><label for="lk-pb"><span>Position of gene B</span> <output id="lk-pb-out"></output></label><input type="range" id="lk-pb" min="0" max="60" step="1" value="15"></div><div class="ctl"><label for="lk-pc"><span>Position of gene C</span> <output id="lk-pc-out"></output></label><input type="range" id="lk-pc" min="0" max="60" step="1" value="21"></div></div>
+        <div class="readout"><div><span>A–B</span><strong class="x" id="lk-ab">—</strong></div><div><span>B–C</span><strong class="a" id="lk-bc">—</strong></div><div><span>A–C</span><strong class="v" id="lk-ac">—</strong></div><div><span>gene order</span><strong class="" id="lk-ord">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set the distance to 12 map units. What fraction of offspring are recombinants? <button type="button" class="btn link" data-show='[["#lk-d", 12], ["#lk-n", 1000]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>About 12% (120 of 1000), split evenly between the two recombinant types.</p></details></li>
+        <li><p>Set the distance to 50. What do you notice? <button type="button" class="btn link" data-show='[["#lk-d", 50]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Half the offspring are recombinants: the four classes are equal, just like independent assortment.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In a test cross, 1,000 offspring are produced: 440 AB, 440 ab, 60 Ab and 60 aB. Find the distance between the genes.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Recombinants.</b> Ab and aB are recombinants: 60 + 60 = 120.</li>
+          <li hidden><b>Frequency.</b> 120/1000 = 0.12 = 12%.</li>
+          <li hidden><b>Map distance.</b> 12 map units.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Counting parental types as recombinants.</li>
+        <li>Forgetting that the recombination frequency cannot exceed 50%.</li>
+        <li>Using the wrong total.</li>
+        <li>Saying genes at 50% recombination are on different chromosomes (they could be far apart on one).</li>
+        <li>Adding map distances without checking the order.</li>
+      </ul></div>
+      <div class="prose"><h2>Mapping three genes</h2>
+        <p>The two most distant genes have the largest recombination frequency, and it is close to the sum of the other two: A–B 10, B–C 6, A–C 16 means order A, B, C. Check that the largest equals the sum of the other two (approximately).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="1% recombination = 1 map unit.">
+        <p class="q">Check yourself: Two genes show 5% recombination. How far apart are they?</p>
+        <div class="opts"><button type="button">5 map units</button><button type="button">50 map units</button><button type="button">0.5 map units</button><button type="button">They are unlinked</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

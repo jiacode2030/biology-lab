@@ -1,0 +1,54 @@
+  <section class="view" id="v-nonmendel" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Beyond simple dominance</h1>
+        <p class="lede">Not every trait is a simple dominant-recessive pair. Alleles can blend, share, or be hidden by other genes.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Incomplete dominance</b>: the heterozygote is intermediate (red × white snapdragons give pink; a 1 : 2 : 1 phenotype ratio in the next generation). <b>Codominance</b>: both alleles are fully expressed (AB blood type; a roan coat with both red and white hairs). <b>Multiple alleles</b>: a population can have more than two alleles of a gene (ABO blood: I<sup>A</sup>, I<sup>B</sup> and i; A and B are codominant, i is recessive).</p>
+        <p><b>Polygenic traits</b> depend on many genes and show a continuous range (height, skin colour) that forms a bell-shaped curve. <b>Epistasis</b>: one gene masks the expression of another (in labrador coat colour the gene for pigment deposition can hide the gene for pigment colour, giving 9 : 3 : 4). The <b>environment</b> also affects phenotype (hydrangea colour depends on soil pH). These patterns still follow Mendel's rules for how alleles are inherited; they differ in how alleles combine to make the phenotype.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>every heterozygote looked like one of its parents</dd><dt>So we didn't need</dt><dd>that alleles can share or blend expression, and genes can interact</dd><dt>Now</dt><dd>why ratios are sometimes 1 : 2 : 1 or 9 : 3 : 4 instead of 3 : 1</dd><dt>So we need</dt><dd>incomplete dominance, codominance, multiple alleles, polygenic traits, epistasis</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>incomplete dominance: 1 : 2 : 1 phenotype</span><small>heterozygote intermediate</small></div><div class="eqn"><span>codominance: both alleles show</span><small>AB blood type</small></div><div class="eqn"><span>epistasis: 9 : 3 : 4</span><small>one gene masks another</small></div><div class="eqn"><span>polygenic: bell curve</span><small>many genes, many small effects</small></div></div>
+      <div class="lab" id="nm-lab" data-reset="own">
+        <div class="labbar"><span class="title">Cross two heterozygotes</span></div>
+        <div class="ctl"><span class="lbl">Inheritance pattern</span><div class="seg" id="nm-pat" role="group" aria-label="Inheritance pattern"><button type="button" data-k="cd" aria-pressed="true">complete dominance</button><button type="button" data-k="id" aria-pressed="false">incomplete dominance</button><button type="button" data-k="co" aria-pressed="false">codominance</button><button type="button" data-k="ep" aria-pressed="false">epistasis (two genes)</button></div></div>
+        <canvas id="nm-canvas" aria-label="Bar graph of the expected phenotype ratio when two heterozygous parents are crossed, for the chosen pattern of inheritance."></canvas>
+        <div class="readout"><div><span>genotype ratio</span><strong class="x" id="nm-gt">—</strong></div><div><span>phenotype ratio</span><strong class="a" id="nm-pt">—</strong></div><div><span>example</span><strong class="" id="nm-ex">—</strong></div></div>
+      </div>
+      <div class="lab" id="nm-lab2" data-reset="own">
+        <div class="labbar"><span class="title">ABO blood types of children</span></div>
+        <div class="ctl"><span class="lbl">Parent 1</span><div class="seg" id="nm-b1" role="group" aria-label="Parent 1"><button type="button" data-k="IAIA" aria-pressed="true">IᴬIᴬ (A)</button><button type="button" data-k="IAi" aria-pressed="false">Iᴬi (A)</button><button type="button" data-k="IBIB" aria-pressed="false">IᴮIᴮ (B)</button><button type="button" data-k="IBi" aria-pressed="false">Iᴮi (B)</button><button type="button" data-k="IAIB" aria-pressed="false">IᴬIᴮ (AB)</button><button type="button" data-k="ii" aria-pressed="false">ii (O)</button></div></div><div class="ctl"><span class="lbl">Parent 2</span><div class="seg" id="nm-b2" role="group" aria-label="Parent 2"><button type="button" data-k="IAIA" aria-pressed="true">IᴬIᴬ (A)</button><button type="button" data-k="IAi" aria-pressed="false">Iᴬi (A)</button><button type="button" data-k="IBIB" aria-pressed="false">IᴮIᴮ (B)</button><button type="button" data-k="IBi" aria-pressed="false">Iᴮi (B)</button><button type="button" data-k="IAIB" aria-pressed="false">IᴬIᴮ (AB)</button><button type="button" data-k="ii" aria-pressed="false">ii (O)</button></div></div>
+        <canvas id="nm-canvas2" aria-label="Bars showing the probability of each blood type for children of the chosen parents."></canvas>
+        <div class="readout"><div><span>possible blood types</span><strong class="x" id="nm-bt">—</strong></div><div><span>probabilities</span><strong class="a" id="nm-bp">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose incomplete dominance. What fraction of the offspring look like the heterozygote? <button type="button" class="btn link" data-show='[["click", "#nm-pat [data-k=id]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>1/2 (the Aa genotype), and phenotypes are 1 : 2 : 1 instead of 3 : 1.</p></details></li>
+        <li><p>Choose epistasis. What ratio appears? <button type="button" class="btn link" data-show='[["click", "#nm-pat [data-k=ep]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>9 : 3 : 4. The 3 : 1 class and the 1 class that carry the masking genotype look identical (here, yellow).</p></details></li>
+        <li><p>Cross IᴬIᴮ with ii. What types can the children have? <button type="button" class="btn link" data-show='[["click", "#nm-b1 [data-k=IAIB]"], ["click", "#nm-b2 [data-k=ii]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Half type A (Iᴬi) and half type B (Iᴮi). No child is AB or O.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A man with blood type A (his mother was type O) and a woman with type B (her father was type O) have children. What are the parents' genotypes and what types are possible?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Man.</b> Type A, and he inherited i from his type O mother, so he is I<sup>A</sup>i.</li>
+          <li hidden><b>Woman.</b> Type B, and she inherited i from her type O father, so she is I<sup>B</sup>i.</li>
+          <li hidden><b>Cross.</b> I<sup>A</sup>i × I<sup>B</sup>i gives I<sup>A</sup>I<sup>B</sup> (AB), I<sup>A</sup>i (A), I<sup>B</sup>i (B) and ii (O), each 1/4. All four types are possible.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Calling incomplete dominance a "blend that cannot separate again". The alleles are still inherited separately, and red and white reappear in the next generation.</li>
+        <li>Thinking codominance and incomplete dominance are the same. In codominance both alleles show fully (distinct); in incomplete dominance the result is intermediate.</li>
+        <li>Saying a person has three ABO alleles. Each person has two; the population has three.</li>
+        <li>Thinking polygenic traits break Mendel's laws.</li>
+        <li>Missing that epistasis changes the 9 : 3 : 3 : 1 ratio.</li>
+      </ul></div>
+      <div class="prose"><h2>Matching ratios to patterns</h2>
+        <p>3 : 1 → simple dominance. 1 : 2 : 1 → incomplete dominance or codominance from a heterozygote cross. 9 : 3 : 4 (or 9 : 7, 12 : 3 : 1) → epistasis. A continuous range with a bell curve → polygenic with environment effects.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Heterozygotes cross to give 1 : 2 : 1, and each genotype has its own phenotype.">
+        <p class="q">Check yourself: A cross of two pink snapdragons (incomplete dominance) gives which phenotype ratio?</p>
+        <div class="opts"><button type="button">1 red : 2 pink : 1 white</button><button type="button">3 red : 1 white</button><button type="button">all pink</button><button type="button">1 : 1</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

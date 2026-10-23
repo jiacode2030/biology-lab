@@ -1,0 +1,54 @@
+  <section class="view" id="v-mendel" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 5</span></div>
+        <h1>Mendelian inheritance</h1>
+        <p class="lede">Offspring get one allele for each gene from each parent. With a Punnett square you can predict the odds before anything is born.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Mendel's <b>law of segregation</b>: the two alleles for a gene separate into different gametes, so each gamete carries one. A <b>dominant</b> allele shows when present; a <b>recessive</b> allele shows only in two copies. <b>Genotype</b> is the allele combination (AA, Aa, aa); <b>phenotype</b> is the observable trait. A cross of two heterozygotes (Aa × Aa) gives genotypes 1 AA : 2 Aa : 1 aa and phenotypes 3 dominant : 1 recessive.</p>
+        <p>The <b>law of independent assortment</b>: genes on different chromosomes are inherited independently, so AaBb × AaBb gives a 9 : 3 : 3 : 1 phenotype ratio. A <b>test cross</b> (unknown × homozygous recessive) reveals an unknown genotype. Use the <b>product rule</b> (and) and the <b>sum rule</b> (or) for probabilities. Real counts only approximate the ratios, which is where the chi-square test comes in.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>traits blended in offspring</dd><dt>So we didn't need</dt><dd>that discrete alleles are inherited from each parent and can hide for a generation</dd><dt>Now</dt><dd>how to predict ratios and probabilities for crosses</dd><dt>So we need</dt><dd>Punnett squares, genotype vs phenotype, and ratios</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>Aa × Aa → 1 AA : 2 Aa : 1 aa</span><small>genotypes</small></div><div class="eqn"><span>3 dominant : 1 recessive</span><small>phenotypes</small></div><div class="eqn"><span>AaBb × AaBb → 9 : 3 : 3 : 1</span><small>dihybrid</small></div><div class="eqn"><span>P(A and B) = P(A) × P(B); P(A or B) = P(A) + P(B)</span><small>product and sum rules</small></div></div>
+      <div class="lab" id="md-lab" data-reset="own">
+        <div class="labbar"><span class="title">Punnett square: one gene</span></div>
+        <div class="ctl"><span class="lbl">Parent 1</span><div class="seg" id="md-p1" role="group" aria-label="Parent 1"><button type="button" data-k="AA" aria-pressed="true">AA</button><button type="button" data-k="Aa" aria-pressed="false">Aa</button><button type="button" data-k="aa" aria-pressed="false">aa</button></div></div><div class="ctl"><span class="lbl">Parent 2</span><div class="seg" id="md-p2" role="group" aria-label="Parent 2"><button type="button" data-k="AA" aria-pressed="true">AA</button><button type="button" data-k="Aa" aria-pressed="false">Aa</button><button type="button" data-k="aa" aria-pressed="false">aa</button></div></div><div class="row"><button type="button" class="btn" id="md-go">Make 100 offspring</button></div>
+        <canvas id="md-canvas" aria-label="A Punnett square for the chosen parent genotypes, with the offspring genotype and phenotype ratios."></canvas>
+        <div class="readout"><div><span>genotype ratio</span><strong class="x" id="md-gt">—</strong></div><div><span>phenotype ratio (dominant : recessive)</span><strong class="a" id="md-pt">—</strong></div><div><span>100 random offspring</span><strong class="v" id="md-obs">—</strong></div></div>
+      </div>
+      <div class="lab" id="md-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Two genes at once (AaBb × AaBb)</span></div>
+        <div class="ctl"><span class="lbl">Highlight</span><div class="seg" id="md-hl" role="group" aria-label="Highlight"><button type="button" data-k="all" aria-pressed="true">all</button><button type="button" data-k="AB" aria-pressed="false">dominant for both</button><button type="button" data-k="Ab" aria-pressed="false">dominant A, recessive b</button><button type="button" data-k="aB" aria-pressed="false">recessive a, dominant B</button><button type="button" data-k="ab" aria-pressed="false">recessive for both</button></div></div>
+        <canvas id="md-canvas2" aria-label="A sixteen-square grid. Each square is a possible offspring, coloured by phenotype."></canvas>
+        <div class="readout"><div><span>squares highlighted (of 16)</span><strong class="x" id="md-n">—</strong></div><div><span>fraction</span><strong class="a" id="md-r">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set both parents to Aa. What phenotype ratio results? <button type="button" class="btn link" data-show='[["click", "#md-p1 [data-k=Aa]"], ["click", "#md-p2 [data-k=Aa]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>3 dominant : 1 recessive (genotypes 1 AA : 2 Aa : 1 aa).</p></details></li>
+        <li><p>Make parent 1 Aa and parent 2 aa (a test cross). What do you see? <button type="button" class="btn link" data-show='[["click", "#md-p1 [data-k=Aa]"], ["click", "#md-p2 [data-k=aa]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>1 : 1 for both genotype and phenotype. A homozygous dominant parent would instead give all dominant offspring.</p></details></li>
+        <li><p>Highlight "recessive for both". What fraction of the 16? <button type="button" class="btn link" data-show='[["click", "#md-hl [data-k=ab]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>1/16. The four classes are 9 : 3 : 3 : 1.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">In pea plants purple (P) is dominant to white (p). Two heterozygous purple plants are crossed. What is the probability that the first two offspring are both white?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>One offspring.</b> Pp × Pp gives 1/4 pp (white).</li>
+          <li hidden><b>Product rule.</b> P(both white) = 1/4 × 1/4.</li>
+          <li hidden><b>Answer.</b> 1/16 = 0.0625 (6.25%). Offspring are independent events, so earlier results do not change later odds.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the "ratio" must appear exactly in real data.</li>
+        <li>Thinking a family with three dominant children makes the next child likely recessive.</li>
+        <li>Mixing up genotype and phenotype ratios.</li>
+        <li>Forgetting each parent contributes one allele.</li>
+        <li>Using the sum rule when "and" requires the product rule.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading a cross</h2>
+        <p>First write the parent genotypes (use the phenotype of offspring to infer them). Then list gametes, fill the square, and count. For two genes, treat each separately and multiply: P(AaBb) = P(Aa) × P(Bb). Give answers as ratios or probabilities as asked.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Only aa shows the recessive phenotype: 1 of 4.">
+        <p class="q">Check yourself: Two parents are both Aa. What fraction of their offspring is expected to show the recessive phenotype?</p>
+        <div class="opts"><button type="button">1/4</button><button type="button">1/2</button><button type="button">3/4</button><button type="button">0</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
