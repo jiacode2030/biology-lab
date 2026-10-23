@@ -29,7 +29,7 @@ mod('chisq','Chi-square test',
  [lab('cs-lab','Does this cross fit 3 : 1?',canvas='cs-canvas',aria='Bars comparing observed and expected counts for a 3 to 1 ratio, with the chi-square result.',
    ctl=[('cs-n','Total offspring',40,400,4,200),('cs-o','Observed dominant phenotype',0,400,1,162)],
    out=[('cs-chi','χ²','x'),('cs-df','degrees of freedom','v'),('cs-crit','critical value, p = 0.05','a'),('cs-dec','decision','')],own=True)],
- [('Total 200, observed dominant 162 (expected 150). Is that consistent with 3 : 1? <button type="button" class="btn link" data-show=\'' + show(["#cs-n",200],["#cs-o",162]) + '\'>Set it up for me</button>','','χ² = 12²/150 + 12²/50 = 0.96 + 2.88 = 3.84, right at the critical value of 3.84: that is the boundary, so it just reaches significance. Try 160 to see a clear fail-to-reject.'),
+ [('Total 200, observed dominant 162 (expected 150). Is that consistent with 3 : 1? <button type="button" class="btn link" data-show=\'' + show(["#cs-n",200],["#cs-o",162]) + '\'>Set it up for me</button>','','χ² = 12²/150 + 12²/50 = 0.96 + 2.88 = 3.84, essentially at the critical value of 3.84 (the boundary of the decision). Try 160 to see a clear fail-to-reject.'),
   ('Keep the ratio but double the total to 400 with 324 dominant. <button type="button" class="btn link" data-show=\'' + show(["#cs-n",400],["#cs-o",324]) + '\'>Set it up for me</button>','','The same percentage miss now gives χ² = 7.68, well past 3.84. Bigger samples make the same proportional deviation more convincing.')],
  ('A cross is expected to give 9 : 3 : 3 : 1. Among 160 offspring you count 94, 28, 26, 12. Test the fit.',[
   '<b>Expected counts.</b> 160 × 9/16 = 90, 160 × 3/16 = 30, 30, and 160/16 = 10.',
