@@ -29,6 +29,12 @@ def lab(id, title, canvas=None, aria='', ctl=(), out=(), pre='', post='', own=Fa
     if post: s += '        ' + post + '\n'
     return s + '      </div>\n'
 
+def stagelab(id, title, canvas, aria, p, n, pre_extra='', out_extra=()):
+    """A lab that steps through n stages of a process (buttons, slider, optional autoplay)."""
+    pre = '<div class="row"><button type="button" class="btn" id="%s-prev">Previous</button><button type="button" class="btn primary" id="%s-next">Next stage</button><button type="button" class="btn" id="%s-play">Play</button></div>' % (p, p, p) + pre_extra
+    return lab(id, title, canvas=canvas, aria=aria, pre=pre, ctl=[(p + '-st', 'Stage', 0, n - 1, 1, 0)],
+               out=[(p + '-name', 'stage', 'x'), (p + '-txt', 'what is happening', '')] + list(out_extra))
+
 def show(*acts):
     return json.dumps(list(acts), ensure_ascii=False).replace("'", '&#39;')
 
@@ -64,5 +70,5 @@ if __name__ == '__main__':
     sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
     for p in sorted((pathlib.Path(__file__).resolve().parent / 'units').glob('*.py')):
         spec = importlib.util.spec_from_file_location(p.stem, p); m = importlib.util.module_from_spec(spec)
-        m.__dict__.update({'mod': mod, 'lab': lab, 'show': show}); spec.loader.exec_module(m)
+        m.__dict__.update({'mod': mod, 'lab': lab, 'show': show, 'stagelab': stagelab}); spec.loader.exec_module(m)
         print('ran', p.name)

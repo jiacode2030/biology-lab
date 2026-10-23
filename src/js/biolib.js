@@ -158,3 +158,14 @@ function areaSigned(ctx,P,f,a,b,posCol,negCol,n=300,al=.35){if(b<=a)return;const
   ctx.save();clip(ctx,P);[[posCol,P.box.y,y0],[negCol,y0,P.box.y+P.box.h]].forEach(([c,t,bt])=>{ctx.save();ctx.beginPath();ctx.rect(P.box.x,t,P.box.w,bt-t);ctx.clip();poly();ctx.fillStyle=alpha(c,al);ctx.fill();ctx.restore();});ctx.restore();}
 /* integrate terms [[c,p],...] (p ≠ −1) */
 const tint=ts=>ts.map(([c,p])=>[c/(p+1),p+1]);
+
+/* ----- stageLab: step through a process. stages: [{n:'name', t:'what is happening'}]; draw(ctx,w,h,i,t,stage). p is the id prefix of the stagelab() controls ----- */
+function stageLab(p,cvId,stages,draw,o={}){const cv=$('#'+cvId);if(!cv)return null;let i=0,playing=false,acc=0;
+  const sim=sim2d(cv,{h:o.h||(w=>clamp(w*.5,260,370)),paused:()=>false,step(dt){if(playing){acc+=dt;if(acc>(o.dwell||2.4)){acc=0;go((i+1)%stages.length);}}},draw(ctx,w,h,t){draw(ctx,w,h,i,t,stages[i]);}});
+  function go(k){i=clamp(k,0,stages.length-1);const sl=$('#'+p+'-st');if(sl){sl.value=i;const out=$('#'+p+'-st-out');if(out)out.textContent=(i+1)+' of '+stages.length;}setText(p+'-name',stages[i].n);setText(p+'-txt',stages[i].t);if(o.onStage)o.onStage(i);sim.render();}
+  bindRange(p+'-st',v=>(v+1)+' of '+stages.length,v=>go(v),false);
+  $('#'+p+'-prev').addEventListener('click',()=>{playing=false;$('#'+p+'-play').textContent='Play';go(i-1);});$('#'+p+'-next').addEventListener('click',()=>{playing=false;$('#'+p+'-play').textContent='Play';go(i+1);});
+  $('#'+p+'-play').addEventListener('click',()=>{playing=!playing;acc=0;$('#'+p+'-play').textContent=playing?'Pause':'Play';});
+  go(0);return {go,get i(){return i;},render:sim.render};}
+/* a small text-line label drawn with a rounded tag (for cell diagrams) */
+function tagText(ctx,t,x,y,col,al='center'){ctx.font=MONO;const w=ctx.measureText(t).width+10;const x0=al==='center'?x-w/2:al==='left'?x:x-w;ctx.fillStyle=alpha(T.surface,.88);ctx.fillRect(x0,y-9,w,18);label(ctx,t,x0+5,y,col||T.ink,'left','middle',MONO);}
