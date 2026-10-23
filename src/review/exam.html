@@ -1,0 +1,34 @@
+  <section class="view" id="v-exam" hidden>
+    <div class="wrap">
+      <div class="head"><div class="eyebrow">Review<span class="tag ap">AP Biology</span></div><h1>Exam review</h1><p class="lede">Build a mixed problem set from the units your exam covers. No hints during the set; everything is graded and explained when you submit.</p></div>
+      <div class="exfmt" aria-labelledby="exfmt-h">
+        <h2 id="exfmt-h">Exam format</h2>
+        <p class="exsub">AP Biology · Monday, May 3, 2027 · afternoon · about 3 hours of testing</p>
+        <div class="exsecs">
+          <div class="exsec"><b>Section I: Multiple choice</b><div class="exbig">60 questions · 90 min · 50%</div>Four answer choices each. About a minute and a half per question.</div>
+          <div class="exsec"><b>Section II: Free response</b><div class="exbig">6 questions · 90 min · 50%</div>Two long questions and four short ones, with experiments, data, graphs and models.</div>
+        </div>
+        <dl>
+          <dt>How you take it</dt><dd>Hybrid digital. You answer multiple choice in the Bluebook app, the free-response questions appear in Bluebook, and you handwrite your answers in a paper booklet.</dd>
+          <dt>Reference</dt><dd>An equation and formula sheet is provided. A calculator is allowed.</dd>
+          <dt>Unit weights</dt><dd>On the multiple-choice section: Unit 1 8–11%, Unit 2 10–13%, Unit 3 12–16%, Unit 4 10–15%, Unit 5 8–11%, Unit 6 12–16%, Unit 7 13–20%, Unit 8 10–15%.</dd>
+        </dl>
+        <p class="exsrc">Checked October 23, 2026 against College Board's published format. Formats can change, so confirm on <a href="https://apcentral.collegeboard.org/courses/ap-biology/exam" target="_blank" rel="noopener">AP Central</a> before your exam.</p>
+      </div>
+      <div class="lab" id="ex-setup" data-reset="own">
+        <div class="ctl"><span class="lbl">Which units does your exam cover?</span><div class="seg" id="ex-weeks" role="group" aria-label="Units"></div><div class="row"><button type="button" class="btn link" id="ex-all">Select all</button><button type="button" class="btn link" id="ex-none">Clear</button></div></div>
+        <div class="controls">
+          <div class="ctl"><span class="lbl">Number of problems</span><div class="seg" id="ex-n" role="group"><button type="button" data-n="5" aria-pressed="false">5</button><button type="button" data-n="10" aria-pressed="true">10</button><button type="button" data-n="15" aria-pressed="false">15</button></div></div>
+          <div class="ctl"><span class="lbl">Timer</span><div class="seg" id="ex-t" role="group"><button type="button" data-t="off" aria-pressed="true">Off</button><button type="button" data-t="on" aria-pressed="false">90 s per problem</button></div></div>
+        </div>
+        <div class="row"><button type="button" class="btn primary" id="ex-start">Start the set</button></div>
+        <p class="err" id="ex-msg" aria-live="polite"></p>
+      </div>
+      <div id="ex-run" hidden style="display:flex;flex-direction:column;gap:14px">
+        <div class="scorebar"><strong id="ex-timer" style="font-family:var(--f-mono)"></strong></div>
+        <div class="probs" id="ex-list"></div>
+        <div class="row"><button type="button" class="btn primary" id="ex-submit">Submit and grade</button></div>
+        <div class="lab" id="ex-result" hidden></div>
+      </div>
+    </div>
+  </section>

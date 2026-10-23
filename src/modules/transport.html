@@ -1,0 +1,59 @@
+  <section class="view" id="v-transport" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Diffusion & osmosis</h1>
+        <p class="lede">Nothing pushes a drop of dye through water. It spreads because molecules are always moving, and random motion has a direction once there are more molecules on one side.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Every molecule in a liquid is jostled constantly by thermal motion. Put more dye particles on the left than on the right and, just by chance, more of them wander left-to-right than right-to-left. The net movement is from high concentration to low concentration, and it stops (with the particles still moving) when the concentrations are equal. That is <b>diffusion</b>, and it is <b>passive</b>: it takes no energy from the cell.</p>
+        <p><b>Osmosis</b> is diffusion of <i>water</i> across a membrane that lets water through but holds back the solute. Water ends up moving toward the side with more solute, because that side has less free water. Compare two solutions by their solute concentration: the one with more solute is <b>hypertonic</b>, the one with less is <b>hypotonic</b>, equal is <b>isotonic</b>. An animal cell in a hypotonic solution swells (and can burst); in a hypertonic solution it shrinks. A plant cell has a wall: it becomes firm (<b>turgid</b>) in hypotonic solution and, in hypertonic solution, its membrane pulls away from the wall (<b>plasmolysis</b>).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>substances moved because something pushed or pulled them, so movement seemed to need energy</dd><dt>So we didn't need</dt><dd>that random motion alone produces net flow down a gradient, with no energy spent</dd><dt>Now</dt><dd>everything from oxygen entering blood to water entering root hairs</dd><dt>So we need</dt><dd>diffusion, osmosis and tonicity</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>net flow: high → low concentration</span><small>diffusion, passive</small></div><div class="eqn"><span>water moves toward higher solute</span><small>osmosis across a water-permeable membrane</small></div><div class="eqn"><span>rate ∝ (surface area × ΔC) / distance</span><small>faster with more area, steeper gradient, thinner barrier</small></div><div class="eqn"><span>% change = (final − initial)/initial × 100</span><small>used in potato-core labs</small></div></div>
+      <div class="lab" id="tr-lab" data-reset="own">
+        <div class="labbar"><span class="title">Two chambers and a membrane</span></div>
+        <div class="ctl"><span class="lbl">The membrane</span><div class="seg" id="tr-mode" role="group" aria-label="The membrane"><button type="button" data-k="diff" aria-pressed="true">lets solute through (diffusion)</button><button type="button" data-k="osm" aria-pressed="false">blocks solute (osmosis)</button></div></div>
+        <div class="row"><button type="button" class="btn primary" id="tr-run">Pause</button><button type="button" class="btn" id="tr-reset">Start over</button></div>
+        <canvas id="tr-canvas" aria-label="Two chambers separated by a membrane. Dots are solute and water particles. Water levels show osmosis."></canvas>
+        <div class="controls"><div class="ctl"><label for="tr-sl"><span>Solute on the left</span> <output id="tr-sl-out"></output></label><input type="range" id="tr-sl" min="0" max="60" step="1" value="40"></div><div class="ctl"><label for="tr-sr"><span>Solute on the right</span> <output id="tr-sr-out"></output></label><input type="range" id="tr-sr" min="0" max="60" step="1" value="10"></div></div>
+        <div class="readout"><div><span>left concentration</span><strong class="x" id="tr-cl">—</strong></div><div><span>right concentration</span><strong class="a" id="tr-cr">—</strong></div><div><span>water level, left minus right</span><strong class="v" id="tr-dh">—</strong></div><div><span>what is happening</span><strong class="" id="tr-state">—</strong></div></div>
+      </div>
+      <div class="lab" id="tr-lab2">
+        <div class="labbar"><span class="title">A cell in solutions of different strength</span></div>
+        <div class="ctl"><span class="lbl">Cell</span><div class="seg" id="tr-cell" role="group" aria-label="Cell"><button type="button" data-k="an" aria-pressed="true">animal cell (no wall)</button><button type="button" data-k="pl" aria-pressed="false">plant cell (cell wall)</button></div></div>
+        <p class="small" style="margin:0">The cell contains 0.30 M solute.</p>
+        <canvas id="tr-canvas2" aria-label="A cell drawn at the size it takes in a surrounding solution of the chosen strength."></canvas>
+        <div class="controls"><div class="ctl"><label for="tr-c"><span>Solute outside the cell</span> <output id="tr-c-out"></output></label><input type="range" id="tr-c" min="0" max="0.6" step="0.01" value="0.15"></div></div>
+        <div class="readout"><div><span>outside solution is</span><strong class="x" id="tr-ton">—</strong></div><div><span>net water movement</span><strong class="v" id="tr-mv">—</strong></div><div><span>the cell</span><strong class="" id="tr-look">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose <b>blocks solute</b> with 40 on the left and 10 on the right. Where does the water go? <button type="button" class="btn link" data-show='[["click", "#tr-mode [data-k=osm]"], ["#tr-sl", 40], ["#tr-sr", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Toward the left, the side with more solute. The left level rises and the right falls until the extra height pushes back as hard as osmosis pulls.</p></details></li>
+        <li><p>Switch to <b>lets solute through</b>. What equalizes now? <button type="button" class="btn link" data-show='[["click", "#tr-mode [data-k=diff]"], ["#tr-sl", 40], ["#tr-sr", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The solute, not the water. Particles cross until the concentrations match (25 and 25 here), and the water levels stay equal because nothing osmotic is left to pull water.</p></details></li>
+        <li><p>Put an animal cell in 0.05 M solute, then in 0.50 M. What happens in each? <button type="button" class="btn link" data-show='[["click", "#tr-cell [data-k=an]"], ["#tr-c", 0.05]]'>0.05 M</button></p><details><summary>What you should see</summary><p>In 0.05 M (hypotonic) water rushes in and the cell lyses. In 0.50 M (hypertonic) water leaves and the cell shrivels. Only at 0.30 M (isotonic) does it keep its size.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A potato core gains 8% of its mass in distilled water and loses 12% in 0.6 M sucrose. Estimate the solute concentration inside the potato cells, and say what the data show.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Plot or tabulate.</b> At 0 M the mass change is +8%; at 0.6 M it is −12%.</li>
+          <li hidden><b>Find where the change is zero.</b> That concentration is isotonic to the cells: no net water movement.</li>
+          <li hidden><b>Interpolate linearly.</b> The change falls by 20 percentage points over 0.6 M, so it falls 8 points over 0.6 × (8/20) = 0.24 M.</li>
+          <li hidden><b>Answer.</b> The cells are isotonic to about <b>0.24 M</b> sucrose. Below that the solution is hypotonic and the core gains water; above it, hypertonic, and the core loses water.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying water moves toward the side with more water. It moves toward the side with more <i>solute</i> (less free water).</li>
+        <li>Mixing up hypotonic and hypertonic: the prefix describes the solution relative to the cell (hyper = more solute).</li>
+        <li>Thinking diffusion stops when concentrations equalize. Particles keep moving; there is just no net movement.</li>
+        <li>Saying osmosis needs energy. It is passive.</li>
+        <li>Forgetting the cell wall: a plant cell cannot burst in hypotonic solution because the wall resists, which is why it becomes turgid.</li>
+      </ul></div>
+      <div class="prose"><h2>Calculations the exam likes</h2>
+        <p><b>Percent change in mass</b> = (final − initial)/initial × 100, from potato or dialysis-bag labs. Plot percent change against solute concentration and read the x-intercept: that is the concentration isotonic to the tissue. <b>Diffusion rate</b> scales with surface area and the concentration difference and falls with distance: doubling the area doubles the rate, doubling the thickness halves it. The next module turns "water moves toward more solute" into a number with water potential.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The solution has more solute (hypertonic), so water moves toward it: out of the cell.">
+        <p class="q">Check yourself: A cell with 0.2 M solute is put in a 0.5 M solution (water crosses, solute does not). The solution is</p>
+        <div class="opts"><button type="button">hypertonic, and the cell loses water</button><button type="button">hypotonic, and the cell gains water</button><button type="button">isotonic, and nothing moves</button><button type="button">hypertonic, and the cell gains water</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

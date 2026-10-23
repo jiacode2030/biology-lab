@@ -1,0 +1,237 @@
+{
+ "datastats": {
+  "t": "Data, graphs & statistics",
+  "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.",
+  "bc": false
+ },
+ "chisq": {
+  "t": "Chi-square test",
+  "d": "Do observed counts fit an expected ratio, or is the difference more than chance?",
+  "bc": false
+ },
+ "expdesign": {
+  "t": "Experimental design",
+  "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.",
+  "bc": false
+ },
+ "ratesq10": {
+  "t": "Rates, Q10 & dilutions",
+  "d": "Rate of change, temperature coefficients and serial dilutions.",
+  "bc": false
+ },
+ "water": {
+  "t": "Water & hydrogen bonds",
+  "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.",
+  "bc": false
+ },
+ "macromol": {
+  "t": "Biological macromolecules",
+  "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.",
+  "bc": false
+ },
+ "protein": {
+  "t": "Protein structure",
+  "d": "From amino-acid chain to folded machine: four levels of structure.",
+  "bc": false
+ },
+ "dnastruct": {
+  "t": "Nucleic acids: DNA & RNA",
+  "d": "Nucleotides, the double helix and base pairing.",
+  "bc": false
+ },
+ "organelles": {
+  "t": "Organelles & cell structure",
+  "d": "What each part of a cell does, and how the parts cooperate.",
+  "bc": false
+ },
+ "sav": {
+  "t": "Surface area to volume",
+  "d": "Why cells stay small and organs fold.",
+  "bc": false
+ },
+ "membrane": {
+  "t": "Membrane structure",
+  "d": "The fluid mosaic: phospholipids, proteins and selective permeability.",
+  "bc": false
+ },
+ "transport": {
+  "t": "Diffusion & osmosis",
+  "d": "Passive movement down a gradient, with and without a membrane.",
+  "bc": false
+ },
+ "watpot": {
+  "t": "Water potential",
+  "d": "Predict which way water moves using solute and pressure potential.",
+  "bc": false
+ },
+ "activetr": {
+  "t": "Active transport & bulk transport",
+  "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.",
+  "bc": false
+ },
+ "origin": {
+  "t": "Prokaryotes, eukaryotes & endosymbiosis",
+  "d": "How compartments and organelles arose.",
+  "bc": false
+ },
+ "enzymes": {
+  "t": "Enzymes",
+  "d": "Catalysts that lower the activation energy of reactions.",
+  "bc": false
+ },
+ "enzyenv": {
+  "t": "Enzyme activity & the environment",
+  "d": "Temperature, pH, substrate concentration and inhibitors.",
+  "bc": false
+ },
+ "atp": {
+  "t": "Energy, ATP & free energy",
+  "d": "Coupling reactions, ΔG and why life needs a constant energy supply.",
+  "bc": false
+ },
+ "photo": {
+  "t": "Photosynthesis",
+  "d": "Light reactions and the Calvin cycle: turning light into sugar.",
+  "bc": false
+ },
+ "resp": {
+  "t": "Cellular respiration",
+  "d": "Glycolysis, the Krebs cycle and the electron transport chain.",
+  "bc": false
+ },
+ "ferment": {
+  "t": "Fermentation & metabolic diversity",
+  "d": "What cells do without oxygen, and why.",
+  "bc": false
+ },
+ "signal": {
+  "t": "Cell signaling",
+  "d": "Receptors, signal transduction and cellular responses.",
+  "bc": false
+ },
+ "feedback": {
+  "t": "Feedback & homeostasis",
+  "d": "Negative and positive feedback keep systems stable or amplify them.",
+  "bc": false
+ },
+ "cellcycle": {
+  "t": "The cell cycle & mitosis",
+  "d": "Interphase, mitosis and cytokinesis.",
+  "bc": false
+ },
+ "cycleregs": {
+  "t": "Cell cycle regulation & cancer",
+  "d": "Checkpoints, cyclins and what goes wrong in cancer.",
+  "bc": false
+ },
+ "meiosis": {
+  "t": "Meiosis",
+  "d": "How one diploid cell makes four genetically different haploid cells.",
+  "bc": false
+ },
+ "mendel": {
+  "t": "Mendelian genetics",
+  "d": "Punnett squares, ratios and probability rules.",
+  "bc": false
+ },
+ "nonmendel": {
+  "t": "Non-Mendelian inheritance",
+  "d": "Incomplete dominance, codominance, epistasis and polygenic traits.",
+  "bc": false
+ },
+ "sexlink": {
+  "t": "Sex-linked inheritance & pedigrees",
+  "d": "X-linked traits and reading family trees.",
+  "bc": false
+ },
+ "linkage": {
+  "t": "Linked genes & recombination",
+  "d": "Genes that travel together, and how crossing over maps them.",
+  "bc": false
+ },
+ "replication": {
+  "t": "DNA replication",
+  "d": "Semiconservative copying with leading and lagging strands.",
+  "bc": false
+ },
+ "transcription": {
+  "t": "Transcription & RNA processing",
+  "d": "From a gene to a messenger RNA.",
+  "bc": false
+ },
+ "translation": {
+  "t": "Translation & the genetic code",
+  "d": "Reading codons to build a protein.",
+  "bc": false
+ },
+ "generegs": {
+  "t": "Regulation of gene expression",
+  "d": "Operons, transcription factors and why cells with the same DNA differ.",
+  "bc": false
+ },
+ "mutation": {
+  "t": "Mutations & genetic variation",
+  "d": "Point mutations, frameshifts and their effects.",
+  "bc": false
+ },
+ "biotech": {
+  "t": "Biotechnology",
+  "d": "PCR, gel electrophoresis, transformation and CRISPR.",
+  "bc": false
+ },
+ "selection": {
+  "t": "Natural selection",
+  "d": "Variation, heritability and differential reproduction.",
+  "bc": false
+ },
+ "hw": {
+  "t": "Hardy–Weinberg equilibrium",
+  "d": "A null model for allele frequencies, and how real populations differ.",
+  "bc": false
+ },
+ "drift": {
+  "t": "Genetic drift & gene flow",
+  "d": "Chance and migration change allele frequencies too.",
+  "bc": false
+ },
+ "speciation": {
+  "t": "Speciation",
+  "d": "How one species becomes two.",
+  "bc": false
+ },
+ "phylo": {
+  "t": "Phylogeny & cladograms",
+  "d": "Reading evolutionary trees.",
+  "bc": false
+ },
+ "originlife": {
+  "t": "Evidence of evolution & origin of life",
+  "d": "Common ancestry, fossils, molecular evidence and the early Earth.",
+  "bc": false
+ },
+ "popgrowth": {
+  "t": "Population growth",
+  "d": "Exponential and logistic growth, and carrying capacity.",
+  "bc": false
+ },
+ "community": {
+  "t": "Species interactions & communities",
+  "d": "Predation, competition, symbiosis and diversity.",
+  "bc": false
+ },
+ "energyflow": {
+  "t": "Energy flow & trophic levels",
+  "d": "Why only about 10% of energy moves up each level.",
+  "bc": false
+ },
+ "cycles": {
+  "t": "Nutrient cycles",
+  "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.",
+  "bc": false
+ },
+ "disruption": {
+  "t": "Disruptions to ecosystems",
+  "d": "Invasive species, climate change and biodiversity loss.",
+  "bc": false
+ }
+}

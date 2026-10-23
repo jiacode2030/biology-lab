@@ -1,0 +1,121 @@
+[
+ {
+  "w": "Optional",
+  "name": "Math and science practices",
+  "tag": "Math",
+  "bc": false,
+  "ids": [
+   "datastats",
+   "chisq",
+   "expdesign",
+   "ratesq10"
+  ]
+ },
+ {
+  "w": "Unit 1",
+  "name": "Chemistry of life",
+  "tag": "AP Unit 1",
+  "bc": false,
+  "ids": [
+   "water",
+   "macromol",
+   "protein",
+   "dnastruct"
+  ]
+ },
+ {
+  "w": "Unit 2",
+  "name": "Cell structure and function",
+  "tag": "AP Unit 2",
+  "bc": false,
+  "ids": [
+   "organelles",
+   "sav",
+   "membrane",
+   "transport",
+   "watpot",
+   "activetr",
+   "origin"
+  ]
+ },
+ {
+  "w": "Unit 3",
+  "name": "Cellular energetics",
+  "tag": "AP Unit 3",
+  "bc": false,
+  "ids": [
+   "enzymes",
+   "enzyenv",
+   "atp",
+   "photo",
+   "resp",
+   "ferment"
+  ]
+ },
+ {
+  "w": "Unit 4",
+  "name": "Cell communication and cell cycle",
+  "tag": "AP Unit 4",
+  "bc": false,
+  "ids": [
+   "signal",
+   "feedback",
+   "cellcycle",
+   "cycleregs"
+  ]
+ },
+ {
+  "w": "Unit 5",
+  "name": "Heredity",
+  "tag": "AP Unit 5",
+  "bc": false,
+  "ids": [
+   "meiosis",
+   "mendel",
+   "nonmendel",
+   "sexlink",
+   "linkage"
+  ]
+ },
+ {
+  "w": "Unit 6",
+  "name": "Gene expression and regulation",
+  "tag": "AP Unit 6",
+  "bc": false,
+  "ids": [
+   "replication",
+   "transcription",
+   "translation",
+   "generegs",
+   "mutation",
+   "biotech"
+  ]
+ },
+ {
+  "w": "Unit 7",
+  "name": "Natural selection",
+  "tag": "AP Unit 7",
+  "bc": false,
+  "ids": [
+   "selection",
+   "hw",
+   "drift",
+   "speciation",
+   "phylo",
+   "originlife"
+  ]
+ },
+ {
+  "w": "Unit 8",
+  "name": "Ecology",
+  "tag": "AP Unit 8",
+  "bc": false,
+  "ids": [
+   "popgrowth",
+   "community",
+   "energyflow",
+   "cycles",
+   "disruption"
+  ]
+ }
+]
