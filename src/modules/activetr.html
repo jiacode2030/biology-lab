@@ -1,0 +1,55 @@
+  <section class="view" id="v-activetr" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Active transport & bulk transport</h1>
+        <p class="lede">Moving a substance down its gradient is free. Moving it up the gradient costs energy, and cells spend a lot of ATP doing it.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Facilitated diffusion</b> uses channel or carrier proteins but still moves substances down their concentration gradient: no energy needed. <b>Active transport</b> uses energy (usually ATP) and a protein pump to move a substance against its gradient. The <b>sodium-potassium pump</b> moves 3 Na⁺ out and 2 K⁺ in per ATP, keeping Na⁺ low and K⁺ high inside the cell. <b>Cotransport</b> uses the gradient built by a pump to move a second substance (for example glucose with Na⁺).</p>
+        <p>Large molecules and particles move by vesicles: <b>endocytosis</b> brings material in (phagocytosis for particles, receptor-mediated for specific molecules) and <b>exocytosis</b> sends it out. These also use energy.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>all transport was either diffusion or osmosis</dd><dt>So we didn't need</dt><dd>that gradients can be built and used, and that cells can move substances uphill</dd><dt>Now</dt><dd>how nerve cells, kidney cells and plant roots accumulate substances</dd><dt>So we need</dt><dd>facilitated diffusion, active transport, cotransport and vesicles</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>passive: down gradient, no ATP</span><small>simple and facilitated diffusion</small></div><div class="eqn"><span>active: against gradient, ATP</span><small>pumps</small></div><div class="eqn"><span>Na⁺/K⁺ pump: 3 Na⁺ out, 2 K⁺ in</span><small>per ATP</small></div><div class="eqn"><span>endocytosis / exocytosis</span><small>bulk transport</small></div></div>
+      <div class="lab" id="at-lab">
+        <div class="labbar"><span class="title">The sodium-potassium pump</span></div>
+        <div class="row"><button type="button" class="btn" id="np-prev">Previous</button><button type="button" class="btn primary" id="np-next">Next stage</button><button type="button" class="btn" id="np-play">Play</button></div>
+        <canvas id="at-canvas" aria-label="A pump protein in the membrane cycling through six steps, moving sodium out and potassium in."></canvas>
+        <div class="controls"><div class="ctl"><label for="np-st"><span>Stage</span> <output id="np-st-out"></output></label><input type="range" id="np-st" min="0" max="5" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="np-name">—</strong></div><div><span>what is happening</span><strong class="" id="np-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="at-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Passive or active?</span></div>
+        <div class="ctl"><span class="lbl">Carrier</span><div class="seg" id="at-mode" role="group" aria-label="Carrier"><button type="button" data-k="fd" aria-pressed="true">facilitated diffusion (channel)</button><button type="button" data-k="ap" aria-pressed="false">active pump</button></div></div>
+        <div class="row"><button type="button" class="btn primary" id="at-atp">ATP: on</button><button type="button" class="btn" id="at-reset">Start over</button></div>
+        <canvas id="at-canvas2" aria-label="Two compartments separated by a membrane with a channel; particles move depending on the mode and on ATP."></canvas>
+        <div class="readout"><div><span>left side</span><strong class="x" id="at-l">—</strong></div><div><span>right side</span><strong class="a" id="at-r">—</strong></div><div><span>what is happening</span><strong class="" id="at-st">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Run the pump lab to the stage where ATP is used. What does it do? <button type="button" class="btn link" data-show='[["#np-st", 1]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>ATP transfers a phosphate to the pump, changing its shape so that the sodium binding site faces outside.</p></details></li>
+        <li><p>Choose facilitated diffusion and run it, then try the active pump with ATP off. What differs? <button type="button" class="btn link" data-show='[["click", "#at-mode [data-k=fd]"]]'>Facilitated</button></p><details><summary>What you should see</summary><p>Facilitated diffusion evens out the two sides without ATP. The pump moves particles to the side that already has more only when ATP is on; with ATP off it does nothing.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A cell has 10 mM K⁺ outside and 140 mM inside. K⁺ moves in through the Na⁺/K⁺ pump. Is this passive or active? Explain.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Gradient.</b> K⁺ is higher inside (140) than outside (10).</li>
+          <li hidden><b>Direction.</b> It moves in, toward the higher concentration: against the gradient.</li>
+          <li hidden><b>Conclusion.</b> Movement against a gradient requires energy: this is active transport using ATP.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Thinking facilitated diffusion uses ATP.</li>
+        <li>Saying active transport always moves substances in. It can move them out (Na⁺).</li>
+        <li>Mixing up the 3 and 2 in the sodium-potassium pump.</li>
+        <li>Forgetting that vesicle transport also requires energy.</li>
+        <li>Saying channel proteins pump ions. They let ions through down a gradient.</li>
+      </ul></div>
+      <div class="prose"><h2>Spotting the type</h2>
+        <p>Ask: which way relative to the gradient, and does it need a protein or ATP? Down the gradient and no protein: simple diffusion. Down the gradient with a protein: facilitated diffusion. Up the gradient: active transport. Large particle in a vesicle: endo- or exocytosis.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Against the gradient with a protein and energy: active transport.">
+        <p class="q">Check yourself: A substance moves from low to high concentration through a protein. This is</p>
+        <div class="opts"><button type="button">active transport</button><button type="button">facilitated diffusion</button><button type="button">simple diffusion</button><button type="button">osmosis</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

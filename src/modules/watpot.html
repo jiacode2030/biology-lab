@@ -1,0 +1,50 @@
+  <section class="view" id="v-watpot" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Water potential</h1>
+        <p class="lede">Water moves toward lower water potential. The number tells you the direction and, when you compare two places, which way the cell will swell or shrink.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Water potential</b> (Ψ) measures the tendency of water to move. Water always moves from higher to lower Ψ. It has two parts: <b>solute potential</b> Ψs = −iCRT (always zero or negative; more solute means lower) and <b>pressure potential</b> Ψp (positive in a turgid plant cell, zero in an open beaker). Ψ = Ψp + Ψs. Pure water in an open container has Ψ = 0.</p>
+        <p>Here <i>i</i> is the ionization constant (1 for sucrose, 2 for NaCl), C is molar concentration, R = 0.0831 L·bar/(mol·K) and T is in kelvin (°C + 273). The result is in bars. A plant cell in pure water takes in water until Ψp rises enough to make the cell Ψ equal to 0, so no net movement: turgor.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>we compared solute concentrations to guess where water goes</dd><dt>So we didn't need</dt><dd>that pressure also changes water movement, which matters for plants</dd><dt>Now</dt><dd>how to calculate the direction and size of the driving force</dd><dt>So we need</dt><dd>Ψ = Ψp + Ψs and Ψs = −iCRT</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>Ψ = Ψp + Ψs</span><small>total water potential</small></div><div class="eqn"><span>Ψs = −iCRT</span><small>R = 0.0831 L·bar/mol·K</small></div><div class="eqn"><span>i: sucrose 1, NaCl 2</span><small>ionization constant</small></div><div class="eqn"><span>water moves high Ψ → low Ψ</span><small>always</small></div></div>
+      <div class="lab" id="wp-lab" data-reset="own">
+        <div class="labbar"><span class="title">A cell in a beaker</span></div>
+        <div class="ctl"><span class="lbl">Solute in the beaker</span><div class="seg" id="wp-i" role="group" aria-label="Solute in the beaker"><button type="button" data-k="1" aria-pressed="true">sucrose (i = 1)</button><button type="button" data-k="2" aria-pressed="false">NaCl (i = 2)</button></div></div>
+        <p class="small" style="margin:0">Cell solute is sucrose (i = 1); beaker is open (Ψp = 0); 25 °C.</p>
+        <canvas id="wp-canvas" aria-label="A plant cell in a beaker. Bars show the water potential of the cell and of the solution and an arrow shows which way water moves."></canvas>
+        <div class="controls"><div class="ctl"><label for="wp-cc"><span>Cell solute</span> <output id="wp-cc-out"></output></label><input type="range" id="wp-cc" min="0" max="1" step="0.05" value="0.4"></div><div class="ctl"><label for="wp-p"><span>Cell pressure Ψp (bar)</span> <output id="wp-p-out"></output></label><input type="range" id="wp-p" min="0" max="10" step="0.5" value="0"></div><div class="ctl"><label for="wp-cs"><span>Beaker solute (M)</span> <output id="wp-cs-out"></output></label><input type="range" id="wp-cs" min="0" max="1" step="0.05" value="0.1"></div></div>
+        <div class="readout"><div><span>cell Ψ</span><strong class="x" id="wp-cpsi">—</strong></div><div><span>beaker Ψ</span><strong class="a" id="wp-spsi">—</strong></div><div><span>net water movement</span><strong class="v" id="wp-dir">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Cell solute 0.4 M, pressure 0, beaker 0.1 M sucrose. Where does water go? <button type="button" class="btn link" data-show='[["#wp-cc", 0.4], ["#wp-p", 0], ["#wp-cs", 0.1], ["click", "#wp-i [data-k=\"1\"]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Cell Ψ = −9.9 bar; beaker Ψ = −2.5 bar. Water moves into the cell (toward lower Ψ).</p></details></li>
+        <li><p>Raise the cell pressure until the cell Ψ equals the beaker Ψ. What is the pressure? <button type="button" class="btn link" data-show='[["#wp-p", 7.5]]'>Try 7.5</button></p><details><summary>What you should see</summary><p>About 7.4 bar (−9.9 + 7.4 = −2.5). Water stops entering: the cell is turgid.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A plant cell has solute concentration 0.3 M sucrose and Ψp = 0 at 25 °C. It is placed in 0.1 M sucrose. Find each Ψ and the direction of water movement.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Constants.</b> R = 0.0831, T = 298 K, RT ≈ 24.8 L·bar/mol; i = 1.</li>
+          <li hidden><b>Cell.</b> Ψs = −(1)(0.3)(24.8) = −7.4 bar; Ψ = 0 + (−7.4) = −7.4 bar.</li>
+          <li hidden><b>Beaker.</b> Ψs = −(1)(0.1)(24.8) = −2.5 bar; open so Ψp = 0 and Ψ = −2.5 bar.</li>
+          <li hidden><b>Direction.</b> Water moves from −2.5 (higher) to −7.4 (lower): <b>into the cell</b>.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Forgetting the negative sign on Ψs.</li>
+        <li>Using °C instead of kelvin.</li>
+        <li>Saying water moves toward higher Ψ.</li>
+        <li>Forgetting i for ionic solutes such as NaCl.</li>
+        <li>Thinking pressure potential is always zero. It is zero in an open container, positive in a turgid cell.</li>
+      </ul></div>
+      <div class="prose"><h2>What the FRQ asks</h2>
+        <p>Most questions give concentrations, ask for Ψ of each side, then ask which way water moves and what happens to the cell. Show the substitution with units, state the direction in words, and for plant cells mention the role of Ψp (turgor).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Ψs = −iCRT becomes more negative as C increases.">
+        <p class="q">Check yourself: A solution has a higher solute concentration. Compared with pure water, its solute potential is</p>
+        <div class="opts"><button type="button">more negative</button><button type="button">less negative</button><button type="button">equal</button><button type="button">positive</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

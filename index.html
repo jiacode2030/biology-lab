@@ -1448,6 +1448,166 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-organelles" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Cell organelles & compartments</h1>
+        <p class="lede">A eukaryotic cell is a set of rooms, each with its own job. Keeping reactions in separate compartments is what lets a cell run many incompatible processes at once.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The <b>nucleus</b> holds the DNA. <b>Ribosomes</b> (not membrane-bound) build proteins; those on the <b>rough ER</b> make proteins for export or membranes, and the <b>smooth ER</b> makes lipids and detoxifies. The <b>Golgi</b> modifies, sorts and packages proteins into vesicles. <b>Mitochondria</b> carry out most cellular respiration and have a double membrane with folded inner cristae. <b>Lysosomes</b> digest material with hydrolytic enzymes. Plant cells also have <b>chloroplasts</b> (photosynthesis), a large central <b>vacuole</b> and a cell wall.</p>
+        <p>Compartments matter because each has its own conditions. Lysosome enzymes work at acidic pH that would damage the rest of the cell; the inner mitochondrial membrane holds a proton gradient. Prokaryotes have no membrane-bound organelles, but they do have ribosomes, a plasma membrane, DNA in a nucleoid and (usually) a cell wall.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a cell was just a bag of chemistry</dd><dt>So we didn't need</dt><dd>that compartments keep different reactions and conditions separate</dd><dt>Now</dt><dd>why mitochondria and chloroplasts have membranes inside membranes</dd><dt>So we need</dt><dd>organelle structure and function</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>nucleus</span><small>DNA; makes RNA</small></div><div class="eqn"><span>rough ER → Golgi → vesicle</span><small>protein export pathway</small></div><div class="eqn"><span>mitochondrion</span><small>ATP from respiration</small></div><div class="eqn"><span>chloroplast</span><small>photosynthesis</small></div></div>
+      <div class="lab" id="og-lab" data-reset="own">
+        <div class="labbar"><span class="title">Find the organelle</span></div>
+        <div class="ctl"><span class="lbl">Organelle</span><div class="seg" id="og-sel" role="group" aria-label="Organelle"><button type="button" data-k="nuc" aria-pressed="true">nucleus</button><button type="button" data-k="rer" aria-pressed="false">rough ER</button><button type="button" data-k="gol" aria-pressed="false">Golgi</button><button type="button" data-k="mit" aria-pressed="false">mitochondrion</button><button type="button" data-k="lys" aria-pressed="false">lysosome</button><button type="button" data-k="chl" aria-pressed="false">chloroplast</button></div></div>
+        <canvas id="og-canvas" aria-label="A eukaryotic cell with the chosen organelle highlighted."></canvas>
+        <div class="readout"><div><span>function</span><strong class="x" id="og-fn">—</strong></div><div><span>membranes</span><strong class="a" id="og-mem">—</strong></div><div><span>found in</span><strong class="v" id="og-where">—</strong></div></div>
+      </div>
+      <div class="lab" id="og-lab2">
+        <div class="labbar"><span class="title">Following a secreted protein</span></div>
+        <div class="row"><button type="button" class="btn" id="ps-prev">Previous</button><button type="button" class="btn primary" id="ps-next">Next stage</button><button type="button" class="btn" id="ps-play">Play</button></div>
+        <canvas id="og-canvas2" aria-label="A protein moves from a ribosome on the rough ER through a vesicle to the Golgi and out of the cell."></canvas>
+        <div class="controls"><div class="ctl"><label for="ps-st"><span>Stage</span> <output id="ps-st-out"></output></label><input type="range" id="ps-st" min="0" max="4" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="ps-name">—</strong></div><div><span>what is happening</span><strong class="" id="ps-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Pick the mitochondrion. Why does it have two membranes? <button type="button" class="btn link" data-show='[["click", "#og-sel [data-k=mit]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The double membrane (with the inner one folded into cristae) creates two compartments and a large surface for the electron transport chain; it also reflects its origin as an engulfed bacterium.</p></details></li>
+        <li><p>Step through the secretion pathway to the Golgi. What happens there? <button type="button" class="btn link" data-show='[["#ps-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The protein is modified (for example by adding carbohydrate), sorted and packaged into a vesicle that carries it to the plasma membrane.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Insulin is a protein secreted by pancreas cells. List the organelles it passes through in order.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Made.</b> Translated by a ribosome on the rough ER; the growing chain enters the ER lumen.</li>
+          <li hidden><b>Transported.</b> A transport vesicle buds off the ER and fuses with the Golgi.</li>
+          <li hidden><b>Processed and packaged.</b> The Golgi modifies it and packages it in a secretory vesicle.</li>
+          <li hidden><b>Secreted.</b> The vesicle fuses with the plasma membrane and releases insulin by exocytosis.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying ribosomes are membrane-bound organelles.</li>
+        <li>Thinking the Golgi makes proteins. It processes and sorts them.</li>
+        <li>Mixing up smooth ER (lipids, detox) and rough ER (ribosomes, protein).</li>
+        <li>Believing prokaryotes have no ribosomes. They do, just not membrane-bound organelles.</li>
+        <li>Putting chloroplasts in animal cells.</li>
+      </ul></div>
+      <div class="prose"><h2>Why compartments help</h2>
+        <p>Compartments increase efficiency by concentrating enzymes and substrates, and protect the cell from hazardous reactions. Membranes inside organelles add surface area for reactions: cristae in mitochondria, thylakoids in chloroplasts, folded ER.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The Golgi modifies, sorts and packages proteins into vesicles.">
+        <p class="q">Check yourself: Which organelle modifies and packages proteins for secretion?</p>
+        <div class="opts"><button type="button">Golgi apparatus</button><button type="button">ribosome</button><button type="button">lysosome</button><button type="button">nucleolus</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-sav" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Surface area to volume</h1>
+        <p class="lede">A cell must take in nutrients through its surface but needs them for its whole volume. As a cell grows, the volume outpaces the surface, and that limits cell size.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>For a cube of side s: surface area = 6s², volume = s³, so SA:V = 6/s. For a sphere of radius r: SA = 4πr², V = (4/3)πr³, so SA:V = 3/r. In both cases SA:V <b>decreases</b> as the cell gets bigger. Doubling the side multiplies SA by 4 but volume by 8.</p>
+        <p>This explains why cells are small, why gas exchange organs (lungs, gills, root hairs, villi) are folded or branched to add surface area, and why large organisms need transport systems. A cell of any shape exchanges materials faster when its SA:V is higher, so a flattened or elongated cell does better than a sphere of the same volume.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>bigger cells just did the same things on a larger scale</dd><dt>So we didn't need</dt><dd>that exchange scales with surface but need scales with volume</dd><dt>Now</dt><dd>why cells stay small and why exchange surfaces are folded</dd><dt>So we need</dt><dd>surface area to volume calculations</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>cube: SA = 6s², V = s³</span><small>SA:V = 6/s</small></div><div class="eqn"><span>sphere: SA = 4πr², V = (4/3)πr³</span><small>SA:V = 3/r</small></div><div class="eqn"><span>rectangular solid: SA = 2(lw + lh + wh), V = lwh</span><small>from the sheet</small></div><div class="eqn"><span>bigger cell → smaller SA:V</span><small>limits size</small></div></div>
+      <div class="lab" id="sv-lab" data-reset="own">
+        <div class="labbar"><span class="title">Grow a cell</span></div>
+        <div class="ctl"><span class="lbl">Shape</span><div class="seg" id="sv-sh" role="group" aria-label="Shape"><button type="button" data-k="cube" aria-pressed="true">cube</button><button type="button" data-k="sph" aria-pressed="false">sphere</button></div></div>
+        <canvas id="sv-canvas" aria-label="A cell drawn at the chosen size and a graph of SA:V against size with a marker at the current size."></canvas>
+        <div class="controls"><div class="ctl"><label for="sv-s"><span>Size (side or radius)</span> <output id="sv-s-out"></output></label><input type="range" id="sv-s" min="1" max="10" step="0.5" value="3"></div></div>
+        <div class="readout"><div><span>surface area</span><strong class="x" id="sv-sa">—</strong></div><div><span>volume</span><strong class="a" id="sv-v">—</strong></div><div><span>SA : V</span><strong class="v" id="sv-r">—</strong></div><div><span>can it exchange fast enough?</span><strong class="" id="sv-n">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Double the size from 2 to 4 (cube). What happens to SA, V and SA:V? <button type="button" class="btn link" data-show='[["click", "#sv-sh [data-k=cube]"], ["#sv-s", 2]]'>Size 2</button></p><details><summary>What you should see</summary><p>SA goes 24 → 96 (×4), V goes 8 → 64 (×8), so SA:V falls from 3 to 1.5 (÷2).</p></details></li>
+        <li><p>Switch to a sphere at radius 3. Compare its SA:V with a cube of side 3. <button type="button" class="btn link" data-show='[["click", "#sv-sh [data-k=sph]"], ["#sv-s", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Sphere: 3/3 = 1.0; cube side 3: 6/3 = 2.0. They are measured differently: the sphere of radius 3 is much bigger than a cube of side 3.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Cell 1 is a cube of side 2 µm and Cell 2 is a cube of side 4 µm. Which is better at exchanging materials and by what factor?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Cell 1.</b> SA = 6 × 2² = 24 µm², V = 8 µm³, SA:V = 3.</li>
+          <li hidden><b>Cell 2.</b> SA = 6 × 4² = 96 µm², V = 64 µm³, SA:V = 1.5.</li>
+          <li hidden><b>Compare.</b> Cell 1 has twice the SA:V, so it is better at exchange (the smaller cell).</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Concluding that a bigger cell has more surface area per unit volume.</li>
+        <li>Mixing up SA:V with total surface area.</li>
+        <li>Applying 6/s to a sphere.</li>
+        <li>Forgetting units: µm², µm³ and µm⁻¹.</li>
+        <li>Thinking cells fix the problem by getting bigger. Folding, flattening or branching raises SA:V instead.</li>
+      </ul></div>
+      <div class="prose"><h2>Applying SA:V on the exam</h2>
+        <p>A typical FRQ gives dimensions, asks for SA:V of two cells, then asks which is better at exchange or how an adaptation (microvilli, root hairs, branching) helps. Show the calculation, compare the ratios, and tie it to diffusion distance and exchange rate.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="V = s³, so doubling s gives 2³ = 8 times the volume.">
+        <p class="q">Check yourself: If the side of a cube doubles, its volume changes by a factor of</p>
+        <div class="opts"><button type="button">8</button><button type="button">2</button><button type="button">4</button><button type="button">6</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-membrane" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Membrane structure & permeability</h1>
+        <p class="lede">A cell membrane is a thin oily film with proteins floating in it. It is selective because of what it is made of, not because it has holes.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The membrane is a <b>phospholipid bilayer</b>: each phospholipid has a hydrophilic head and two hydrophobic tails, so in water the tails hide in the middle. Proteins are embedded (integral) or attached (peripheral); carbohydrates on the outer surface help cells recognize each other. The pieces move around within the layer, which is why it is called a <b>fluid mosaic</b>. Cholesterol (in animal cells) buffers fluidity: it keeps the membrane from packing too tightly when cold and from becoming too loose when warm.</p>
+        <p>Because the middle is nonpolar, small nonpolar molecules (O₂, CO₂) cross easily. Small polar molecules like water cross slowly (aquaporins speed it up). Ions and large polar molecules (glucose) need <b>channel or carrier proteins</b>. Very large particles move by <b>endocytosis</b> and <b>exocytosis</b>.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a membrane was a barrier with holes</dd><dt>So we didn't need</dt><dd>that selectivity comes from the nonpolar interior and from specific proteins</dd><dt>Now</dt><dd>why oxygen passes freely but ions need help</dd><dt>So we need</dt><dd>phospholipids, proteins, cholesterol and permeability</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>phospholipid: hydrophilic head, hydrophobic tails</span><small>forms a bilayer</small></div><div class="eqn"><span>small nonpolar → crosses directly</span><small>O₂, CO₂</small></div><div class="eqn"><span>ions, glucose → protein needed</span><small>channels, carriers</small></div><div class="eqn"><span>cholesterol buffers fluidity</span><small>temperature effect</small></div></div>
+      <div class="lab" id="me-lab" data-reset="own">
+        <div class="labbar"><span class="title">Membrane fluidity</span></div>
+        <div class="ctl"><span class="lbl">Cholesterol</span><div class="seg" id="me-chol" role="group" aria-label="Cholesterol"><button type="button" data-k="no" aria-pressed="true">absent</button><button type="button" data-k="yes" aria-pressed="false">present</button></div></div>
+        <canvas id="me-canvas" aria-label="A phospholipid bilayer whose molecules move more or less depending on temperature and cholesterol."></canvas>
+        <div class="controls"><div class="ctl"><label for="me-t"><span>Temperature</span> <output id="me-t-out"></output></label><input type="range" id="me-t" min="0" max="50" step="1" value="25"></div></div>
+        <div class="readout"><div><span>fluidity</span><strong class="x" id="me-f">—</strong></div><div><span>what to expect</span><strong class="" id="me-s">—</strong></div></div>
+      </div>
+      <div class="lab" id="me-lab2" data-reset="own">
+        <div class="labbar"><span class="title">What can cross?</span></div>
+        <div class="ctl"><span class="lbl">Molecule</span><div class="seg" id="me-m" role="group" aria-label="Molecule"><button type="button" data-k="o2" aria-pressed="true">O₂</button><button type="button" data-k="h2o" aria-pressed="false">water</button><button type="button" data-k="glu" aria-pressed="false">glucose</button><button type="button" data-k="na" aria-pressed="false">Na⁺</button><button type="button" data-k="pro" aria-pressed="false">protein</button></div></div>
+        <canvas id="me-canvas2" aria-label="A membrane with a molecule approaching and the route it takes, if any."></canvas>
+        <div class="readout"><div><span>route across</span><strong class="x" id="me-how">—</strong></div><div><span>why</span><strong class="" id="me-why">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Remove cholesterol and cool to 5 °C. What happens to fluidity? <button type="button" class="btn link" data-show='[["click", "#me-chol [data-k=no]"], ["#me-t", 5]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Fluidity is very low: phospholipids pack tightly. With cholesterol present the membrane stays more fluid at this temperature.</p></details></li>
+        <li><p>Choose Na⁺. Why can't it cross directly? <button type="button" class="btn link" data-show='[["click", "#me-m [data-k=na]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Ions are charged and cannot pass through the hydrophobic interior. They need channel or carrier proteins.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A protein is found to span the membrane, with a hydrophobic section in the middle and hydrophilic ends. Explain why.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>The interior is nonpolar.</b> The fatty acid tails form a hydrophobic core.</li>
+          <li hidden><b>The middle section.</b> Its nonpolar amino acids interact with the tails, anchoring the protein in the bilayer.</li>
+          <li hidden><b>The ends.</b> Polar and charged amino acids face the watery cytoplasm and extracellular fluid.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the membrane is static. It is a moving fluid mosaic.</li>
+        <li>Saying water crosses only through channels. Some crosses directly, slowly.</li>
+        <li>Thinking cholesterol makes the membrane rigid at all temperatures.</li>
+        <li>Putting the hydrophilic heads in the middle.</li>
+        <li>Forgetting the carbohydrate groups on the outside.</li>
+      </ul></div>
+      <div class="prose"><h2>Predicting permeability</h2>
+        <p>Ask two questions: is it small and nonpolar (crosses directly), and is it charged or large (needs a protein or vesicle)? Then decide whether energy is needed: moving down a gradient is passive, up a gradient needs ATP.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Oxygen is small and nonpolar and dissolves in the hydrophobic core.">
+        <p class="q">Check yourself: Which molecule crosses the phospholipid bilayer most easily?</p>
+        <div class="opts"><button type="button">oxygen</button><button type="button">sodium ion</button><button type="button">glucose</button><button type="button">a protein</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-transport" hidden>
     <div class="wrap">
       <div class="head">
@@ -1503,6 +1663,162 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
       <div class="quiz" data-correct="0" data-explain="The solution has more solute (hypertonic), so water moves toward it: out of the cell.">
         <p class="q">Check yourself: A cell with 0.2 M solute is put in a 0.5 M solution (water crosses, solute does not). The solution is</p>
         <div class="opts"><button type="button">hypertonic, and the cell loses water</button><button type="button">hypotonic, and the cell gains water</button><button type="button">isotonic, and nothing moves</button><button type="button">hypertonic, and the cell gains water</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-watpot" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Water potential</h1>
+        <p class="lede">Water moves toward lower water potential. The number tells you the direction and, when you compare two places, which way the cell will swell or shrink.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Water potential</b> (Ψ) measures the tendency of water to move. Water always moves from higher to lower Ψ. It has two parts: <b>solute potential</b> Ψs = −iCRT (always zero or negative; more solute means lower) and <b>pressure potential</b> Ψp (positive in a turgid plant cell, zero in an open beaker). Ψ = Ψp + Ψs. Pure water in an open container has Ψ = 0.</p>
+        <p>Here <i>i</i> is the ionization constant (1 for sucrose, 2 for NaCl), C is molar concentration, R = 0.0831 L·bar/(mol·K) and T is in kelvin (°C + 273). The result is in bars. A plant cell in pure water takes in water until Ψp rises enough to make the cell Ψ equal to 0, so no net movement: turgor.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>we compared solute concentrations to guess where water goes</dd><dt>So we didn't need</dt><dd>that pressure also changes water movement, which matters for plants</dd><dt>Now</dt><dd>how to calculate the direction and size of the driving force</dd><dt>So we need</dt><dd>Ψ = Ψp + Ψs and Ψs = −iCRT</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>Ψ = Ψp + Ψs</span><small>total water potential</small></div><div class="eqn"><span>Ψs = −iCRT</span><small>R = 0.0831 L·bar/mol·K</small></div><div class="eqn"><span>i: sucrose 1, NaCl 2</span><small>ionization constant</small></div><div class="eqn"><span>water moves high Ψ → low Ψ</span><small>always</small></div></div>
+      <div class="lab" id="wp-lab" data-reset="own">
+        <div class="labbar"><span class="title">A cell in a beaker</span></div>
+        <div class="ctl"><span class="lbl">Solute in the beaker</span><div class="seg" id="wp-i" role="group" aria-label="Solute in the beaker"><button type="button" data-k="1" aria-pressed="true">sucrose (i = 1)</button><button type="button" data-k="2" aria-pressed="false">NaCl (i = 2)</button></div></div>
+        <p class="small" style="margin:0">Cell solute is sucrose (i = 1); beaker is open (Ψp = 0); 25 °C.</p>
+        <canvas id="wp-canvas" aria-label="A plant cell in a beaker. Bars show the water potential of the cell and of the solution and an arrow shows which way water moves."></canvas>
+        <div class="controls"><div class="ctl"><label for="wp-cc"><span>Cell solute</span> <output id="wp-cc-out"></output></label><input type="range" id="wp-cc" min="0" max="1" step="0.05" value="0.4"></div><div class="ctl"><label for="wp-p"><span>Cell pressure Ψp (bar)</span> <output id="wp-p-out"></output></label><input type="range" id="wp-p" min="0" max="10" step="0.5" value="0"></div><div class="ctl"><label for="wp-cs"><span>Beaker solute (M)</span> <output id="wp-cs-out"></output></label><input type="range" id="wp-cs" min="0" max="1" step="0.05" value="0.1"></div></div>
+        <div class="readout"><div><span>cell Ψ</span><strong class="x" id="wp-cpsi">—</strong></div><div><span>beaker Ψ</span><strong class="a" id="wp-spsi">—</strong></div><div><span>net water movement</span><strong class="v" id="wp-dir">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Cell solute 0.4 M, pressure 0, beaker 0.1 M sucrose. Where does water go? <button type="button" class="btn link" data-show='[["#wp-cc", 0.4], ["#wp-p", 0], ["#wp-cs", 0.1], ["click", "#wp-i [data-k=\"1\"]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Cell Ψ = −9.9 bar; beaker Ψ = −2.5 bar. Water moves into the cell (toward lower Ψ).</p></details></li>
+        <li><p>Raise the cell pressure until the cell Ψ equals the beaker Ψ. What is the pressure? <button type="button" class="btn link" data-show='[["#wp-p", 7.5]]'>Try 7.5</button></p><details><summary>What you should see</summary><p>About 7.4 bar (−9.9 + 7.4 = −2.5). Water stops entering: the cell is turgid.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A plant cell has solute concentration 0.3 M sucrose and Ψp = 0 at 25 °C. It is placed in 0.1 M sucrose. Find each Ψ and the direction of water movement.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Constants.</b> R = 0.0831, T = 298 K, RT ≈ 24.8 L·bar/mol; i = 1.</li>
+          <li hidden><b>Cell.</b> Ψs = −(1)(0.3)(24.8) = −7.4 bar; Ψ = 0 + (−7.4) = −7.4 bar.</li>
+          <li hidden><b>Beaker.</b> Ψs = −(1)(0.1)(24.8) = −2.5 bar; open so Ψp = 0 and Ψ = −2.5 bar.</li>
+          <li hidden><b>Direction.</b> Water moves from −2.5 (higher) to −7.4 (lower): <b>into the cell</b>.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Forgetting the negative sign on Ψs.</li>
+        <li>Using °C instead of kelvin.</li>
+        <li>Saying water moves toward higher Ψ.</li>
+        <li>Forgetting i for ionic solutes such as NaCl.</li>
+        <li>Thinking pressure potential is always zero. It is zero in an open container, positive in a turgid cell.</li>
+      </ul></div>
+      <div class="prose"><h2>What the FRQ asks</h2>
+        <p>Most questions give concentrations, ask for Ψ of each side, then ask which way water moves and what happens to the cell. Show the substitution with units, state the direction in words, and for plant cells mention the role of Ψp (turgor).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Ψs = −iCRT becomes more negative as C increases.">
+        <p class="q">Check yourself: A solution has a higher solute concentration. Compared with pure water, its solute potential is</p>
+        <div class="opts"><button type="button">more negative</button><button type="button">less negative</button><button type="button">equal</button><button type="button">positive</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-activetr" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Active transport & bulk transport</h1>
+        <p class="lede">Moving a substance down its gradient is free. Moving it up the gradient costs energy, and cells spend a lot of ATP doing it.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Facilitated diffusion</b> uses channel or carrier proteins but still moves substances down their concentration gradient: no energy needed. <b>Active transport</b> uses energy (usually ATP) and a protein pump to move a substance against its gradient. The <b>sodium-potassium pump</b> moves 3 Na⁺ out and 2 K⁺ in per ATP, keeping Na⁺ low and K⁺ high inside the cell. <b>Cotransport</b> uses the gradient built by a pump to move a second substance (for example glucose with Na⁺).</p>
+        <p>Large molecules and particles move by vesicles: <b>endocytosis</b> brings material in (phagocytosis for particles, receptor-mediated for specific molecules) and <b>exocytosis</b> sends it out. These also use energy.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>all transport was either diffusion or osmosis</dd><dt>So we didn't need</dt><dd>that gradients can be built and used, and that cells can move substances uphill</dd><dt>Now</dt><dd>how nerve cells, kidney cells and plant roots accumulate substances</dd><dt>So we need</dt><dd>facilitated diffusion, active transport, cotransport and vesicles</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>passive: down gradient, no ATP</span><small>simple and facilitated diffusion</small></div><div class="eqn"><span>active: against gradient, ATP</span><small>pumps</small></div><div class="eqn"><span>Na⁺/K⁺ pump: 3 Na⁺ out, 2 K⁺ in</span><small>per ATP</small></div><div class="eqn"><span>endocytosis / exocytosis</span><small>bulk transport</small></div></div>
+      <div class="lab" id="at-lab">
+        <div class="labbar"><span class="title">The sodium-potassium pump</span></div>
+        <div class="row"><button type="button" class="btn" id="np-prev">Previous</button><button type="button" class="btn primary" id="np-next">Next stage</button><button type="button" class="btn" id="np-play">Play</button></div>
+        <canvas id="at-canvas" aria-label="A pump protein in the membrane cycling through six steps, moving sodium out and potassium in."></canvas>
+        <div class="controls"><div class="ctl"><label for="np-st"><span>Stage</span> <output id="np-st-out"></output></label><input type="range" id="np-st" min="0" max="5" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="np-name">—</strong></div><div><span>what is happening</span><strong class="" id="np-txt">—</strong></div></div>
+      </div>
+      <div class="lab" id="at-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Passive or active?</span></div>
+        <div class="ctl"><span class="lbl">Carrier</span><div class="seg" id="at-mode" role="group" aria-label="Carrier"><button type="button" data-k="fd" aria-pressed="true">facilitated diffusion (channel)</button><button type="button" data-k="ap" aria-pressed="false">active pump</button></div></div>
+        <div class="row"><button type="button" class="btn primary" id="at-atp">ATP: on</button><button type="button" class="btn" id="at-reset">Start over</button></div>
+        <canvas id="at-canvas2" aria-label="Two compartments separated by a membrane with a channel; particles move depending on the mode and on ATP."></canvas>
+        <div class="readout"><div><span>left side</span><strong class="x" id="at-l">—</strong></div><div><span>right side</span><strong class="a" id="at-r">—</strong></div><div><span>what is happening</span><strong class="" id="at-st">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Run the pump lab to the stage where ATP is used. What does it do? <button type="button" class="btn link" data-show='[["#np-st", 1]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>ATP transfers a phosphate to the pump, changing its shape so that the sodium binding site faces outside.</p></details></li>
+        <li><p>Choose facilitated diffusion and run it, then try the active pump with ATP off. What differs? <button type="button" class="btn link" data-show='[["click", "#at-mode [data-k=fd]"]]'>Facilitated</button></p><details><summary>What you should see</summary><p>Facilitated diffusion evens out the two sides without ATP. The pump moves particles to the side that already has more only when ATP is on; with ATP off it does nothing.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A cell has 10 mM K⁺ outside and 140 mM inside. K⁺ moves in through the Na⁺/K⁺ pump. Is this passive or active? Explain.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Gradient.</b> K⁺ is higher inside (140) than outside (10).</li>
+          <li hidden><b>Direction.</b> It moves in, toward the higher concentration: against the gradient.</li>
+          <li hidden><b>Conclusion.</b> Movement against a gradient requires energy: this is active transport using ATP.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Thinking facilitated diffusion uses ATP.</li>
+        <li>Saying active transport always moves substances in. It can move them out (Na⁺).</li>
+        <li>Mixing up the 3 and 2 in the sodium-potassium pump.</li>
+        <li>Forgetting that vesicle transport also requires energy.</li>
+        <li>Saying channel proteins pump ions. They let ions through down a gradient.</li>
+      </ul></div>
+      <div class="prose"><h2>Spotting the type</h2>
+        <p>Ask: which way relative to the gradient, and does it need a protein or ATP? Down the gradient and no protein: simple diffusion. Down the gradient with a protein: facilitated diffusion. Up the gradient: active transport. Large particle in a vesicle: endo- or exocytosis.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Against the gradient with a protein and energy: active transport.">
+        <p class="q">Check yourself: A substance moves from low to high concentration through a protein. This is</p>
+        <div class="opts"><button type="button">active transport</button><button type="button">facilitated diffusion</button><button type="button">simple diffusion</button><button type="button">osmosis</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-origin" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Origins of cell compartments</h1>
+        <p class="lede">Mitochondria and chloroplasts look like small bacteria living inside our cells, and the evidence says that is close to what they are.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The <b>endosymbiotic theory</b> proposes that mitochondria arose when an ancestral cell engulfed an aerobic bacterium that survived and became a permanent partner, and that chloroplasts arose later when a cell engulfed a photosynthetic cyanobacterium. The nucleus and endomembrane system probably arose by infolding of the plasma membrane.</p>
+        <p>Evidence: both organelles have a <b>double membrane</b>, their own <b>circular DNA</b>, their own ribosomes similar to bacterial ribosomes, and they reproduce by <b>binary fission</b> independently of the cell. Prokaryotes lack membrane-bound organelles and have a nucleoid instead of a nucleus; eukaryotes have both.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>organelles were just parts of the cell</dd><dt>So we didn't need</dt><dd>that some organelles were once free-living cells</dd><dt>Now</dt><dd>why mitochondria and chloroplasts have their own DNA and ribosomes</dd><dt>So we need</dt><dd>endosymbiosis and its evidence</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>mitochondrion: from an aerobic bacterium</span><small>engulfed</small></div><div class="eqn"><span>chloroplast: from a cyanobacterium</span><small>engulfed later</small></div><div class="eqn"><span>evidence: own circular DNA, 70S-type ribosomes, double membrane, binary fission</span><small>organelle features</small></div><div class="eqn"><span>nucleus and ER: from infolded membrane</span><small>proposed</small></div></div>
+      <div class="lab" id="or-lab">
+        <div class="labbar"><span class="title">How a eukaryotic cell may have arisen</span></div>
+        <div class="row"><button type="button" class="btn" id="or-prev">Previous</button><button type="button" class="btn primary" id="or-next">Next stage</button><button type="button" class="btn" id="or-play">Play</button></div>
+        <canvas id="or-canvas" aria-label="Four stages: an ancestral cell, membrane infolding, engulfing an aerobic bacterium, and engulfing a cyanobacterium."></canvas>
+        <div class="controls"><div class="ctl"><label for="or-st"><span>Stage</span> <output id="or-st-out"></output></label><input type="range" id="or-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="or-name">—</strong></div><div><span>what is happening</span><strong class="" id="or-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to stage 3. What does the engulfed bacterium become? <button type="button" class="btn link" data-show='[["#or-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>A mitochondrion: it provides ATP to the host and gets a protected, nutrient-rich home.</p></details></li>
+        <li><p>Go to stage 4. How does this change the cell? <button type="button" class="btn link" data-show='[["#or-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The engulfed cyanobacterium becomes a chloroplast, so the cell can make its own sugars: the ancestor of algae and plants.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A researcher finds that an organelle has circular DNA, ribosomes that are sensitive to an antibiotic that stops bacterial protein synthesis, and divides by binary fission. What can be inferred?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Compare with bacteria.</b> Those are all bacterial features.</li>
+          <li hidden><b>Inference.</b> The organelle likely descended from a free-living bacterium that was engulfed: the endosymbiotic theory.</li>
+          <li hidden><b>Strength.</b> This is evidence consistent with the theory, not proof; combine it with DNA sequence similarity for stronger support.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying mitochondria and chloroplasts were made by the nucleus.</li>
+        <li>Thinking every organelle came from endosymbiosis. The nucleus and ER are thought to come from infolding.</li>
+        <li>Saying prokaryotes have no DNA.</li>
+        <li>Writing that the theory has been proven rather than strongly supported.</li>
+        <li>Mixing up which organelle came first (mitochondria first in the usual account).</li>
+      </ul></div>
+      <div class="prose"><h2>Evidence language</h2>
+        <p>Use "consistent with" for evidence. Name at least two features and link each to bacteria: circular DNA, bacterial-type ribosomes, binary fission, double membrane (from engulfing).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Own circular DNA and bacterial-type ribosomes resemble free-living bacteria.">
+        <p class="q">Check yourself: Which feature of mitochondria best supports the endosymbiotic theory?</p>
+        <div class="opts"><button type="button">they have their own circular DNA and ribosomes</button><button type="button">they are in animal cells</button><button type="button">they make ATP</button><button type="button">they have folded membranes</button></div>
         <p class="fb" aria-live="polite"></p>
       </div>
     </div>
@@ -1760,8 +2076,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"], "soon": ["organelles", "sav", "membrane", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": [], "soon": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": [], "soon": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -2262,6 +2578,132 @@ function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillSt
     return {q:`One DNA strand reads 5′-${s}-3′. Which is the complementary strand, written 5′ → 3′?`,choices:m.choices.map(x=>"5′-"+x+"-3′"),ans:m.ans,hint:'Pair A–T and G–C, then remember the strands are antiparallel: reverse the result to read 5′ → 3′.',sol:`Complement of ${s} is ${straight} (3′→5′ under it). Read 5′→3′: <b>5′-${rc}-3′</b>.`};}});
 })();
 
+/* ===== modules/organelles.js ===== */
+/* ---------------- Cell organelles & compartments ---------------- */
+(function organelles(){
+  const cv=$('#og-canvas');if(!cv)return;
+  let sel='nuc';
+  const INFO={nuc:['stores DNA, makes mRNA, assembles ribosome parts (nucleolus)','double membrane (nuclear envelope) with pores','all eukaryotes'],
+    rer:['makes proteins for membranes, lysosomes and export','single membrane, continuous with the nuclear envelope','all eukaryotes'],
+    gol:['modifies, sorts and packages proteins into vesicles','single-membrane stacks','all eukaryotes'],
+    mit:['most of cellular respiration: makes ATP','double membrane; inner membrane folded into cristae','nearly all eukaryotes'],
+    lys:['digests macromolecules and old organelles with hydrolytic enzymes at acidic pH','single membrane','animal cells (plant vacuoles do similar work)'],
+    chl:['photosynthesis: light reactions in thylakoids, Calvin cycle in the stroma','double membrane plus internal thylakoid membranes','plants and algae']};
+  function draw1(ctx,k,x,y,s,on,t){ctx.save();ctx.globalAlpha=on?1:.28;ctx.lineWidth=2;
+    if(k==='nuc'){ctx.beginPath();ctx.arc(x,y,s*1.15,0,6.283);ctx.fillStyle=alpha(T.cx,.2);ctx.fill();ctx.strokeStyle=T.cx;ctx.stroke();ctx.beginPath();ctx.arc(x,y,s*1.15+4,0,6.283);ctx.stroke();ctx.beginPath();ctx.arc(x-s*.2,y,s*.4,0,6.283);ctx.fillStyle=alpha(T.cx,.6);ctx.fill();}
+    if(k==='rer'){ctx.strokeStyle=T.ca;for(let i=0;i<4;i++){ctx.beginPath();for(let j=0;j<=20;j++){const px=x-s*1.1+j*s*.11,py=y+i*s*.3+Math.sin(j*.9+i)*s*.07;j?ctx.lineTo(px,py):ctx.moveTo(px,py);}ctx.stroke();for(let j=1;j<20;j+=3){dot2(ctx,x-s*1.1+j*s*.11,y+i*s*.3-s*.09,T.ink,1.6);}}}
+    if(k==='gol'){ctx.strokeStyle=T.accent;ctx.lineWidth=3.5;for(let i=0;i<4;i++){ctx.beginPath();ctx.arc(x,y+(i-1.5)*s*.28+s*.9,s*.9,Math.PI*1.2,Math.PI*1.8);ctx.stroke();}ctx.lineWidth=2;dot2(ctx,x+s*1.1,y+s*.2,T.accent,3);dot2(ctx,x-s*1.0,y+s*.5,T.accent,3);}
+    if(k==='mit'){ctx.beginPath();ctx.ellipse(x,y,s*1.2,s*.65,.3,0,6.283);ctx.fillStyle=alpha(T.hot,.22);ctx.fill();ctx.strokeStyle=T.hot;ctx.stroke();ctx.beginPath();ctx.moveTo(x-s*.9,y-s*.1);for(let i=0;i<5;i++)ctx.lineTo(x-s*.9+i*s*.4,y+(i%2?s*.3:-s*.3));ctx.stroke();}
+    if(k==='lys'){dot2(ctx,x,y,T.bad,s*.55);dot2(ctx,x-s*.15,y-s*.1,T.surface,s*.12);}
+    if(k==='chl'){ctx.beginPath();ctx.ellipse(x,y,s*1.3,s*.75,-.3,0,6.283);ctx.fillStyle=alpha(T.cv,.25);ctx.fill();ctx.strokeStyle=T.cv;ctx.stroke();for(let i=0;i<3;i++){ctx.fillStyle=alpha(T.cv,.8);ctx.fillRect(x-s*.7+i*s*.5,y-s*.2+i*s*.05,s*.32,s*.22);}}
+    ctx.restore();}
+  const POS={nuc:[.3,.42],rer:[.52,.4],gol:[.68,.5],mit:[.74,.27],lys:[.44,.78],chl:[.17,.72]};
+  const sim=sim2d(cv,{h:w=>clamp(w*.52,250,340),draw(ctx,w,h,t){const cx=w/2,cy=h/2;ctx.beginPath();ctx.ellipse(cx,cy,w*.46,h*.46,0,0,6.283);ctx.fillStyle=alpha(T.sunk,.6);ctx.fill();ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.stroke();
+    const s=Math.min(w,h*1.8)*.075;Object.keys(POS).forEach(k=>{const p=POS[k];draw1(ctx,k,w*(.04+.92*p[0]),h*(.06+.88*p[1]),s,k===sel,t);});
+    const p=POS[sel];ctx.strokeStyle=T.accent;ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();ctx.arc(w*(.04+.92*p[0]),h*(.06+.88*p[1]),s*1.9,0,6.283);ctx.stroke();ctx.setLineDash([]);
+    label(ctx,'a plant cell with all organelles shown',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){const I=INFO[sel];setText('og-fn',I[0]);setText('og-mem',I[1]);setText('og-where',I[2]);sim.render();}
+  segBind('og-sel','k',v=>{sel=v;upd();});
+  $('#og-lab').addEventListener('labreset',()=>{sel='nuc';segSet('og-sel',0);upd();});upd();
+  /* secretion pathway */
+  const ST=[{n:'ribosome on rough ER',t:'A ribosome on the rough ER makes the protein and threads it into the ER interior.'},{n:'transport vesicle',t:'A vesicle buds off the ER carrying the protein.'},{n:'vesicle fuses with Golgi',t:'The vesicle fuses with the Golgi, delivering the protein to its receiving side.'},{n:'Golgi processing',t:'The Golgi modifies the protein and packages it into a secretory vesicle.'},{n:'exocytosis',t:'The vesicle fuses with the plasma membrane and releases the protein outside.'}];
+  const sc=stageLab('ps','og-canvas2',ST,(ctx,w,h,i,t)=>{const y=h*.5,er=w*.16,gx=w*.52,pm=w*.9;
+    ctx.strokeStyle=T.ca;ctx.lineWidth=2.5;for(let k=0;k<3;k++){ctx.beginPath();for(let j=0;j<=24;j++){const px=er-w*.1+j*w*.0083*3,py=y-30+k*28+Math.sin(j*.9+k)*5;j?ctx.lineTo(px,py):ctx.moveTo(px,py);}ctx.stroke();}
+    for(let j=1;j<24;j+=3)dot2(ctx,er-w*.1+j*w*.025,y-36,T.ink,2);
+    ctx.strokeStyle=T.accent;ctx.lineWidth=4;for(let k=0;k<4;k++){ctx.beginPath();ctx.arc(gx,y+k*13+36,w*.1,Math.PI*1.2,Math.PI*1.8);ctx.stroke();}
+    ctx.strokeStyle=T.ink;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(pm,10);ctx.lineTo(pm,h-10);ctx.stroke();
+    label(ctx,'rough ER',er,h-12,T.ca,'center','middle',MONO);label(ctx,'Golgi',gx,h-12,T.accent,'center','middle',MONO);label(ctx,'plasma membrane',pm-4,12,T.muted,'right','middle',MONO);label(ctx,'outside',pm+6,h/2,T.muted,'left','middle',MONO);
+    const X=[er,(er+gx)/2,gx-w*.07,gx+w*.07,pm+24][i],Y=[y-10,y,y+6,y+10,y][i],ves=i===1||i===3||i===4&&false;
+    if(ves||i===2){ctx.beginPath();ctx.arc(X,Y,13,0,6.283);ctx.fillStyle=alpha(T.cx,.2);ctx.fill();ctx.strokeStyle=T.cx;ctx.lineWidth=2;ctx.stroke();}
+    dot2(ctx,X,Y,T.ca,i===4?5:6);if(i===3){ctx.beginPath();ctx.arc(gx+w*.2,y,13,0,6.283);ctx.strokeStyle=T.cx;ctx.stroke();}},{h:w=>clamp(w*.4,200,270)});
+  $('#og-lab2').addEventListener('labreset',()=>sc.go(0));
+  drawers.organelles=()=>{sim.render();sc.render();};
+  KEYS['og-canvas']=['The dashed circle marks the organelle you chose. Others are faded.',[['cx','nucleus'],['ca','rough ER'],['hot','mitochondrion'],['cv','chloroplast']]];
+  KEYS['og-canvas2']=['Pink dot = the protein. Blue circles are vesicles.',[['ca','protein and rough ER'],['accent','Golgi']]];
+  TIPS['ps-st']=()=>'Rough ER → vesicle → Golgi → vesicle → cell surface.';
+  GLOSS['endomembrane system']='The linked membranes (ER, Golgi, vesicles, lysosomes, plasma membrane) that make, modify and ship proteins and lipids.';GLOSS['vesicle']='A small membrane-bound sac that carries materials between compartments.';GLOSS['cristae']='Folds of the inner mitochondrial membrane that increase surface for ATP production.';
+  TT.organelles='Have students predict which organelle a given cell type has many of (muscle: mitochondria; pancreas: rough ER and Golgi).';
+})();
+(function(){
+  const F=[['the nucleus','stores DNA and makes mRNA'],['the Golgi apparatus','modifies, sorts and packages proteins'],['the mitochondrion','makes most of the ATP in respiration'],['the lysosome','digests macromolecules with hydrolytic enzymes'],['the rough ER','makes proteins destined for membranes or secretion'],['the chloroplast','carries out photosynthesis'],['the smooth ER','makes lipids and detoxifies chemicals']];
+  PROBS.push({id:'og-fn',topic:'organelles',title:'Organelle and function',gen(){const p=pick(F),m=mcq(p[1],F.filter(x=>x!==p).map(x=>x[1]));return {q:`What is the main job of ${p[0]}?`,choices:m.choices,ans:m.ans,hint:'Think about what the cell needs that compartment for.',sol:`${p[0][0].toUpperCase()+p[0].slice(1)} <b>${p[1]}</b>.`};}});
+  PROBS.push({id:'og-path',topic:'organelles',title:'Secretion pathway order',gen(){const right='ribosome on rough ER → Golgi → vesicle → plasma membrane',m=mcq(right,['Golgi → ribosome on rough ER → vesicle → plasma membrane','ribosome on rough ER → lysosome → Golgi → plasma membrane','nucleus → Golgi → mitochondrion → plasma membrane','vesicle → rough ER → plasma membrane → Golgi']);return {q:'Which path does a secreted protein follow?',choices:m.choices,ans:m.ans,hint:'Made on rough ER, processed in Golgi, shipped in vesicles.',sol:`<b>${right}</b>.`};}});
+})();
+
+/* ===== modules/sav.js ===== */
+/* ---------------- Surface area to volume ---------------- */
+(function sav(){
+  const cv=$('#sv-canvas');if(!cv)return;
+  let sh='cube',s=3;
+  const SA=()=>sh==='cube'?6*s*s:4*Math.PI*s*s,V=()=>sh==='cube'?s*s*s:4/3*Math.PI*s*s*s,K=()=>sh==='cube'?6:3;
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,310),draw(ctx,w,h){const gw=w*.42,cx=gw/2+8,cy=h/2,m=Math.min(gw,h)*.8,sz=m*(s/10)*.95+4;
+    if(sh==='cube'){const o=sz*.3;ctx.fillStyle=alpha(T.cx,.15);ctx.strokeStyle=T.cx;ctx.lineWidth=2.4;ctx.strokeRect(cx-sz/2+o,cy-sz/2-o,sz,sz);ctx.fillRect(cx-sz/2+o,cy-sz/2-o,sz,sz);ctx.fillStyle=alpha(T.cx,.3);ctx.fillRect(cx-sz/2,cy-sz/2,sz,sz);ctx.strokeRect(cx-sz/2,cy-sz/2,sz,sz);[[-1,-1],[1,-1],[1,1]].forEach(([a,b])=>{ctx.beginPath();ctx.moveTo(cx+a*sz/2,cy+b*sz/2);ctx.lineTo(cx+a*sz/2+o,cy+b*sz/2-o);ctx.stroke();});}
+    else{ctx.beginPath();ctx.arc(cx,cy,sz/2,0,6.283);ctx.fillStyle=alpha(T.cx,.25);ctx.fill();ctx.strokeStyle=T.cx;ctx.lineWidth=2.4;ctx.stroke();}
+    label(ctx,(sh==='cube'?'side ':'radius ')+fmt(s,1)+' µm',cx,h-10,T.muted,'center','middle',MONO);
+    const A=axes2(ctx,w,h,{x0:0,x1:10,y0:0,y1:6,xt:2,yt:2,xl:'size (µm)',yl:'SA : V (µm⁻¹)',L:gw+46});A.R=w-12;
+    curve2(ctx,A,x=>Math.min(6,K()/Math.max(x,.01)),.5,10,T.ca);dot2(ctx,A.X(s),A.Y(K()/s),T.accent,6);}});
+  function upd(){setText('sv-sa',fmt(SA(),1)+' µm²');setText('sv-v',fmt(V(),1)+' µm³');setText('sv-r',fmt(SA()/V(),2)+' µm⁻¹');const r=SA()/V();setText('sv-n',r>1.5?'yes: lots of surface for its volume':r>.6?'getting difficult':'no: too little surface for its volume');sim.render();}
+  segBind('sv-sh','k',v=>{sh=v;upd();});bindRange('sv-s',v=>fmt(v,1)+' µm',v=>{s=v;upd();});
+  $('#sv-lab').addEventListener('labreset',()=>{sh='cube';s=3;segSet('sv-sh',0);setCtl('sv-s',3,v=>fmt(v,1)+' µm');upd();});
+  upd();drawers.sav=()=>sim.render();
+  KEYS['sv-canvas']=['The pink curve is SA:V against size. The dot marks the current cell.',[['cx','the cell'],['ca','SA : V curve']]];
+  TIPS['sv-s']=()=>'Surface grows with the square of size, volume with the cube, so SA:V falls as the cell grows.';
+  GLOSS['sa:v']='Surface area divided by volume. Higher means faster exchange per unit of cell contents.';
+  TT.sav='Ask students to predict SA:V before doubling the size, then compare with the result.';
+})();
+(function(){
+  PROBS.push({id:'sv-cube',topic:'sav',title:'SA:V of a cube',gen(){const s=pick([1,2,3,4,5,6,8,10]),ans=6/s;return {q:`A cubic cell has sides of ${s} µm. What is its surface area to volume ratio?`,ans,unit:'µm⁻¹',abs:.011,chk:6*s*s/(s*s*s),hint:'SA = 6s², V = s³.',sol:`SA = 6·${s}² = ${6*s*s} µm²; V = ${s}³ = ${s**3} µm³; SA:V = <b>${fmt(ans,2)} µm⁻¹</b>.`};}});
+  PROBS.push({id:'sv-sph',topic:'sav',title:'SA:V of a sphere',gen(){const r=pick([1,2,3,4,5,6]),ans=3/r;return {q:`A spherical cell has radius ${r} µm. What is its SA:V? (SA = 4πr², V = (4/3)πr³)`,ans,unit:'µm⁻¹',abs:.011,chk:4*Math.PI*r*r/(4/3*Math.PI*r**3),hint:'The π and a factor of 4 cancel, leaving 3/r.',sol:`SA:V = 4πr² / ((4/3)πr³) = 3/r = 3/${r} = <b>${fmt(ans,2)} µm⁻¹</b>.`};}});
+  PROBS.push({id:'sv-scale',topic:'sav',title:'Growing a cell',gen(){const k=pick([2,3,4,5]),m=mcq(`SA:V falls to 1/${k} of its original value`,[`SA:V rises by a factor of ${k}`,`SA:V is unchanged`,`SA:V falls to 1/${k*k} of its original value`]);return {q:`All the dimensions of a cell are multiplied by ${k}. What happens to its surface area to volume ratio?`,choices:m.choices,ans:m.ans,hint:'SA scales as k², V as k³.',sol:`SA × ${k*k}, V × ${k**3}, so the ratio is multiplied by ${k*k}/${k**3} = 1/${k}. <b>${m.choices[m.ans]}</b>.`};}});
+  PROBS.push({id:'sv-vol',topic:'sav',title:'Volume change',gen(){const k=pick([2,3,4]),ans=k**3;return {q:`The side of a cubic cell is multiplied by ${k}. By what factor does its volume change?`,ans,unit:'×',tol:0,chk:Math.pow(k,3),hint:'V = s³.',sol:`${k}³ = <b>${ans}</b>.`};}});
+})();
+
+/* ===== modules/membrane.js ===== */
+/* ---------------- Membrane structure & permeability ---------------- */
+(function membrane(){
+  const cv=$('#me-canvas');if(!cv)return;
+  let chol='no',Tc=25;const N=18,ph=Array.from({length:N*2},()=>Math.random()*6.28);
+  const flu=()=>{const b=Tc/50;return chol==='yes'?.5+(b-.5)*.4:b;};
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h,t){const f=flu(),cy=h/2,sp=(w-30)/N,tl=h*.17,hr=Math.min(8,sp*.38);
+    for(let r=0;r<2;r++)for(let i=0;i<N;i++){const k=r*N+i,x=15+sp*(i+.5)+Math.sin(t*(1+3*f)+ph[k])*sp*.45*f*(1.1-.4*(r)) ,wob=Math.sin(t*(2+6*f)+ph[k]*2)*(1+tl*.25)*f,dir=r?1:-1,yh=cy+dir*(tl+hr+4);
+      ctx.strokeStyle=T.ce;ctx.lineWidth=2;[-.28,.28].forEach(o=>{ctx.beginPath();ctx.moveTo(x+o*hr*2,yh-dir*hr);ctx.lineTo(x+o*hr*2+wob*o*6,cy+dir*3);ctx.stroke();});dot2(ctx,x,yh,T.cx,hr);}
+    if(chol==='yes')for(let i=0;i<N;i+=3){const x=15+sp*(i+1.5)+Math.sin(t*2+i)*2;ctx.fillStyle=T.ce;[1,-1].forEach(d=>{ctx.fillRect(x-3,cy+d*(tl*.5)-tl*.33,6,tl*.66);});}
+    [[.28,T.ca],[.72,T.cv]].forEach(([p,c])=>{const x=w*p;ctx.fillStyle=alpha(c,.65);ctx.fillRect(x-12,cy-tl-hr*2-2,24,2*(tl+hr*2+2));ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(x-12,cy-tl-hr*2-2,24,2*(tl+hr*2+2));});
+    label(ctx,'outside the cell',12,12,T.muted,'left','middle',MONO);label(ctx,'inside the cell',12,h-10,T.muted,'left','middle',MONO);label(ctx,'gold tails: fatty acids · pink/green: membrane proteins'+(chol==='yes'?' · gold bars: cholesterol':''),w-12,h-10,T.muted,'right','middle',MONO);}});
+  function upd(){const f=flu();setText('me-f',f<.2?'very low':f<.4?'low':f<.65?'moderate':f<.85?'high':'very high');setText('me-s',f<.2?'tails pack tightly and the membrane can stiffen (gel)':f<.4?'less movement; transport proteins work poorly':f<.65?'a working fluid mosaic':f<.85?'membrane loosens and gets leaky':'membrane becomes too fluid and unstable');sim.render();}
+  segBind('me-chol','k',v=>{chol=v;upd();});bindRange('me-t',v=>v+' °C',v=>{Tc=v;upd();});
+  $('#me-lab').addEventListener('labreset',()=>{chol='no';Tc=25;segSet('me-chol',0);setCtl('me-t',25,v=>v+' °C');upd();});upd();
+  /* what can cross */
+  const MOL={o2:['O₂','crosses directly through the bilayer','small and nonpolar: dissolves in the hydrophobic core',0],h2o:['water','mostly slowly through the bilayer; faster through aquaporins','small but polar: slow directly, aquaporin channels help',1],glu:['glucose','through a carrier protein (facilitated diffusion)','large and polar: cannot dissolve in the core',2],na:['Na⁺','through a channel (down gradient) or a pump (against it)','charged: repelled by the hydrophobic core',3],pro:['protein','cannot cross; moves in a vesicle (endo- or exocytosis)','far too large and polar to pass through the membrane',4]};
+  let mol='o2';
+  const sim2=sim2d($('#me-canvas2'),{h:w=>clamp(w*.38,200,260),draw(ctx,w,h,t){const my=h/2,tl=22,u=(t*.5)%1,x=w/2;
+    ctx.fillStyle=alpha(T.ce,.35);ctx.fillRect(10,my-tl,w-20,tl*2);ctx.strokeStyle=T.ce;ctx.lineWidth=2;ctx.strokeRect(10,my-tl,w-20,tl*2);
+    const k=MOL[mol][3];
+    if(k===1||k===2||k===3){ctx.fillStyle=alpha(k===3?T.cv:T.ca,.7);ctx.fillRect(x-20,my-tl-6,40,tl*2+12);ctx.strokeStyle=k===3?T.cv:T.ca;ctx.strokeRect(x-20,my-tl-6,40,tl*2+12);ctx.fillStyle=T.surface;ctx.fillRect(x-4,my-tl-6,8,tl*2+12);}
+    if(k===4){ctx.beginPath();ctx.arc(x,my+(1-u)*(-tl-26)+u*(tl+26),0,0,0);ctx.stroke();}
+    let y=h*.15+u*(h*.7);
+    if(k===0)dot2(ctx,x-60,y,T.cx,7);
+    if(k===1){dot2(ctx,x-60,y,T.cx,6);dot2(ctx,x,y,T.cx,6);}
+    if(k===2||k===3)dot2(ctx,x,y,k===2?T.ce:T.ca,7);
+    if(k===4){const vy=h*.15+u*(h*.1);ctx.beginPath();ctx.arc(x,vy+10,17,0,6.283);ctx.fillStyle=alpha(T.cx,.2);ctx.fill();ctx.strokeStyle=T.cx;ctx.lineWidth=2;ctx.stroke();dot2(ctx,x,vy+10,T.ca,9);if(u>.7){ctx.fillStyle=T.bad;label(ctx,'✕ cannot pass through',x+40,my,T.bad,'left','middle',MONO);}}
+    label(ctx,'outside',14,12,T.muted,'left','middle',MONO);label(ctx,'inside',14,h-10,T.muted,'left','middle',MONO);label(ctx,MOL[mol][0],w-14,12,T.ink,'right','middle',MONO);}});
+  function upd2(){const m=MOL[mol];setText('me-how',m[1]);setText('me-why',m[2]);sim2.render();}
+  segBind('me-m','k',v=>{mol=v;upd2();});
+  $('#me-lab2').addEventListener('labreset',()=>{mol='o2';segSet('me-m',0);upd2();});upd2();
+  drawers.membrane=()=>{sim.render();sim2.render();};
+  KEYS['me-canvas']=['Blue circles are hydrophilic heads, gold lines are hydrophobic tails. Watch how much they move.',[['cx','phospholipid head'],['ce','fatty acid tails'],['ca','membrane proteins']]];
+  KEYS['me-canvas2']=['The particle approaches from outside. Its route depends on size and polarity.',[['ce','bilayer'],['ca','carrier or aquaporin'],['cv','ion channel']]];
+  TIPS['me-t']=()=>'Warmer: lipids move more. Cholesterol dampens both extremes.';
+  GLOSS['fluid mosaic']='The model of the membrane as a fluid phospholipid bilayer with proteins moving within it.';GLOSS['amphipathic']='Having both a hydrophilic and a hydrophobic region, like a phospholipid.';GLOSS['aquaporin']='A channel protein that lets water cross the membrane quickly.';
+  TT.membrane='Have students explain selectivity in terms of polarity, then name the protein needed for each exception.';
+})();
+(function(){
+  const items=[['oxygen','crosses directly through the lipid bilayer'],['carbon dioxide','crosses directly through the lipid bilayer'],['a sodium ion','needs a channel or pump protein'],['glucose','needs a carrier protein'],['a large protein','must be moved in a vesicle (endocytosis or exocytosis)'],['a potassium ion','needs a channel or pump protein']];
+  PROBS.push({id:'me-cross',topic:'membrane',title:'How does it cross?',gen(){const p=pick(items),m=mcq(p[1],[...new Set(items.map(x=>x[1]))].filter(x=>x!==p[1]));return {q:`How does ${p[0]} cross a cell membrane?`,choices:m.choices,ans:m.ans,hint:'Small and nonpolar: directly. Charged or polar: protein. Very large: vesicle.',sol:`${p[0][0].toUpperCase()+p[0].slice(1)} <b>${p[1]}</b>.`};}});
+  PROBS.push({id:'me-chol',topic:'membrane',title:'Role of cholesterol',gen(){const m=mcq('buffers fluidity: it keeps the membrane from freezing when cold and from becoming too loose when warm',['makes the membrane rigid at every temperature','makes the membrane permeable to ions','forms the channels for water']);return {q:'In animal cell membranes, cholesterol',choices:m.choices,ans:m.ans,hint:'It is a fluidity buffer.',sol:`Cholesterol <b>${m.choices[m.ans]}</b>.`};}});
+  PROBS.push({id:'me-orient',topic:'membrane',title:'Phospholipid orientation',gen(){const m=mcq('the hydrophilic heads face the watery surroundings and the hydrophobic tails face each other',['the heads face each other in the middle','all tails face the cytoplasm','the heads and tails are mixed randomly']);return {q:'In a phospholipid bilayer in water,',choices:m.choices,ans:m.ans,hint:'Tails avoid water.',sol:`<b>${m.choices[m.ans]}</b>.`};}});
+})();
+
 /* ===== modules/transport.js ===== */
 /* ---------------- Diffusion & osmosis ---------------- */
 (function transport(){
@@ -2339,6 +2781,112 @@ function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillSt
     return {q:`The rate of diffusion across a membrane is proportional to (surface area × concentration difference) / thickness. If the surface area is multiplied by ${a}, the concentration difference by ${b}, and the thickness by ${c}, by what factor does the rate change? Give a decimal.`,ans,unit:'×',tol:.01,chk:a*b/c,hint:'Area and concentration difference multiply the rate; thickness divides it.',sol:`Factor = ${a} × ${b} ÷ ${c} = <b>${fmt(ans,2)}</b>.`};}});
   PROBS.push({id:'tr-cross',topic:'transport',title:'What can cross a lipid bilayer?',gen(){const R=[['oxygen (O₂)','crosses directly: small and nonpolar'],['carbon dioxide (CO₂)','crosses directly: small and nonpolar'],['sodium ions (Na⁺)','needs a channel or pump: charged'],['glucose','needs a transport protein: large and polar'],['amino acids','need transport proteins: polar'],['steroid hormones','cross directly: nonpolar and lipid-soluble']],[s,ans]=pick(R),m=mcq(ans,R.map(r=>r[1]));
     return {q:`How does ${s} get across a plasma membrane?`,choices:m.choices,ans:m.ans,hint:'Small nonpolar molecules slip through the hydrophobic core; ions and large polar molecules need proteins.',sol:`<b>${ans}</b>.`};}});
+})();
+
+/* ===== modules/watpot.js ===== */
+/* ---------------- Water potential ---------------- */
+(function watpot(){
+  const cv=$('#wp-canvas');if(!cv)return;
+  const RT=.0831*298;let ii=1,cc=.4,pp=0,cs=.1;
+  const psC=()=>-cc*RT,psoC=()=>pp+psC(),psS=()=>-ii*cs*RT;
+  const sim=sim2d(cv,{h:w=>clamp(w*.5,250,330),draw(ctx,w,h,t){const A=axes2(ctx,w,h,{x0:0,x1:2,y0:-30,y1:5,yt:5,yl:'water potential (bar)',L:62});const y0=A.Y(0);ctx.strokeStyle=T.ink;ctx.lineWidth=1;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(A.L,y0);ctx.lineTo(A.R,y0);ctx.stroke();ctx.setLineDash([]);
+    const bw=(A.R-A.L)*.28;[[psoC(),'cell Ψ',T.cx,.18,psC(),pp],[psS(),'beaker Ψ',T.ca,.62,psS(),0]].forEach(([v,nm,col,p,s,pr])=>{const x=A.L+(A.R-A.L)*p;ctx.fillStyle=alpha(col,.6);ctx.fillRect(x,Math.min(y0,A.Y(v)),bw,Math.abs(A.Y(v)-y0));ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(x,Math.min(y0,A.Y(v)),bw,Math.abs(A.Y(v)-y0));
+      label(ctx,nm+' = '+fmt(v,1),x+bw/2,Math.max(A.Y(v),y0)+14,T.ink,'center','middle',MONO);
+      if(nm==='cell Ψ'){label(ctx,'Ψs '+fmt(s,1)+' + Ψp '+fmt(pr,1),x+bw/2,A.B-6,T.muted,'center','middle',MONO);}});
+    const d=psoC()-psS();const cx=w*.5;label(ctx,Math.abs(d)<.15?'no net water movement':d>0?'← water leaves the cell (cell Ψ higher)':'water enters the cell →  (cell Ψ lower)',w*.5,A.T0+8,T.accent,'center','middle',MONO);}});
+  function upd(){setText('wp-cpsi',fmt(psoC(),1)+' bar');setText('wp-spsi',fmt(psS(),1)+' bar');const d=psoC()-psS();setText('wp-dir',Math.abs(d)<.15?'none (equilibrium)':d>0?'out of the cell':'into the cell');sim.render();}
+  segBind('wp-i','k',v=>{ii=+v;upd();});bindRange('wp-cc',v=>fmt(v,2)+' M',v=>{cc=v;upd();});bindRange('wp-p',v=>fmt(v,1),v=>{pp=v;upd();});bindRange('wp-cs',v=>fmt(v,2)+' M',v=>{cs=v;upd();});
+  $('#wp-lab').addEventListener('labreset',()=>{ii=1;cc=.4;pp=0;cs=.1;segSet('wp-i',0);setCtl('wp-cc',.4,v=>fmt(v,2)+' M');setCtl('wp-p',0,v=>fmt(v,1));setCtl('wp-cs',.1,v=>fmt(v,2)+' M');upd();});
+  upd();drawers.watpot=()=>sim.render();
+  KEYS['wp-canvas']=['Bars hang below zero (pure water). Water moves toward the lower bar.',[['cx','cell Ψ'],['ca','beaker Ψ']]];
+  TIPS['wp-p']=()=>'Pressure potential raises the cell Ψ. A turgid cell can reach equilibrium with a solution that is still more dilute.';
+  GLOSS['water potential']='The tendency of water to move: Ψ = Ψp + Ψs. Water moves from higher to lower Ψ.';GLOSS['solute potential']='Ψs = −iCRT. More solute means more negative Ψs.';GLOSS['pressure potential']='The physical pressure on water; positive in a turgid cell, zero in an open container.';
+  TT.watpot='Ask students to state direction in terms of Ψ before they read the arrow.';
+})();
+(function(){
+  const RT=.0831*298;
+  PROBS.push({id:'wp-s',topic:'watpot',title:'Solute potential',gen(){const i=pick([1,1,2]),c=pick([.1,.2,.3,.4,.5,.6]),ans=-i*c*RT;return {q:`Calculate the solute potential of a ${c} M ${i===1?'sucrose':'NaCl'} solution at 25 °C. (i = ${i}; R = 0.0831 L·bar/mol·K; T = 298 K.)`,ans,unit:'bar',abs:.06,chk:-i*c*.0831*298,hint:'Ψs = −iCRT. Convert to kelvin.',sol:`Ψs = −(${i})(${c})(0.0831)(298) = <b>${fmt(ans,2)} bar</b>.`};}});
+  PROBS.push({id:'wp-tot',topic:'watpot',title:'Total water potential',gen(){const c=pick([.2,.3,.4,.5]),pp=pick([2,3,4,5]),ans=pp-c*RT;return {q:`A plant cell has a solute concentration of ${c} M sucrose (i = 1) at 25 °C and a pressure potential of +${pp} bar. What is its water potential?`,ans,unit:'bar',abs:.06,chk:pp-c*.0831*298,hint:'Ψ = Ψp + Ψs.',sol:`Ψs = −${c}(0.0831)(298) = ${fmt(-c*RT,2)}; Ψ = ${pp} + (${fmt(-c*RT,2)}) = <b>${fmt(ans,2)} bar</b>.`};}});
+  PROBS.push({id:'wp-dir',topic:'watpot',title:'Direction of water movement',gen(){const a=pick([-4.2,-6.5,-8.1,-10.3]),b=pick([-1.5,-2.8,-12.6,-14.0]),into=b>a?false:true,mAns=into?'into region B':'into region A',m=mcq(mAns,['into region B','into region A','no net movement','it depends on pressure only']);
+    return {q:`Region A has Ψ = ${a} bar and region B has Ψ = ${b} bar, separated by a membrane permeable to water. Water moves:`,choices:m.choices,ans:m.ans,hint:'Water moves toward the lower (more negative) water potential.',sol:`${a>b?'B':'A'} has the lower Ψ, so water moves <b>${mAns}</b>.`};}});
+  PROBS.push({id:'wp-turg',topic:'watpot',title:'Pressure needed for equilibrium',gen(){const cin=pick([.4,.5,.6]),cout=pick([.1,.15,.2]),ans=(cin-cout)*RT;return {q:`A plant cell contains ${cin} M sucrose and sits in an open beaker of ${cout} M sucrose at 25 °C. What pressure potential (in bar) must the cell reach for water to stop entering? (i = 1, R = 0.0831 L·bar/mol·K, T = 298 K)`,ans,unit:'bar',abs:.08,chk:(cin-cout)*.0831*298,hint:'At equilibrium cell Ψ equals beaker Ψ: Ψp + Ψs(cell) = Ψs(beaker).',sol:`Ψp = Ψs(beaker) − Ψs(cell) = ${fmt(-cout*RT,2)} − (${fmt(-cin*RT,2)}) = <b>${fmt(ans,2)} bar</b>.`};}});
+})();
+
+/* ===== modules/activetr.js ===== */
+/* ---------------- Active transport & bulk transport ---------------- */
+(function activetr(){
+  const cv=$('#at-canvas');if(!cv)return;
+  const ST=[{n:'1 · sodium binds',t:'Three Na⁺ ions from inside the cell bind to the pump, which is open to the cytoplasm.',s:'inside'},{n:'2 · ATP phosphorylates the pump',t:'ATP transfers a phosphate to the pump (ATP → ADP).',s:'inside'},{n:'3 · shape change, Na⁺ released',t:'The phosphate changes the pump\'s shape. It opens outward and releases 3 Na⁺ outside.',s:'outside'},{n:'4 · potassium binds',t:'Two K⁺ ions from outside bind to the pump.',s:'outside'},{n:'5 · phosphate released',t:'The phosphate leaves, and the pump returns to its original shape, opening inward.',s:'inside'},{n:'6 · potassium released',t:'The two K⁺ ions are released inside the cell. The pump is ready to cycle again.',s:'inside'}];
+  function ion(ctx,x,y,txt,col){dot2(ctx,x,y,col,8);label(ctx,txt,x,y,T.surface,'center','middle','700 9px '+MONO.split(' ').slice(1).join(' '));}
+  const sc=stageLab('np','at-canvas',ST,(ctx,w,h,i)=>{const cy=h*.5,cx=w/2,tl=34;
+    ctx.fillStyle=alpha(T.ce,.3);ctx.fillRect(6,cy-tl*.6,w-12,tl*1.2);ctx.strokeStyle=T.ce;ctx.lineWidth=2;ctx.strokeRect(6,cy-tl*.6,w-12,tl*1.2);
+    label(ctx,'outside (high Na⁺, low K⁺)',12,12,T.muted,'left','middle',MONO);label(ctx,'inside (low Na⁺, high K⁺)',12,h-10,T.muted,'left','middle',MONO);
+    for(let k=0;k<5;k++){ion(ctx,w*.1+k*w*.05+(k%2)*8,h*.22+(k%3)*10,'Na⁺',T.cx);}for(let k=0;k<5;k++){ion(ctx,w*.7+k*w*.05+(k%2)*8,h*.78-(k%3)*10,'K⁺',T.ce);}
+    const open=ST[i].s,pw=70,ph=tl*1.6;ctx.fillStyle=alpha(T.ca,.7);ctx.strokeStyle=T.ca;ctx.lineWidth=2.5;ctx.beginPath();ctx.rect(cx-pw/2,cy-ph/2,pw,ph);ctx.fill();ctx.stroke();
+    ctx.fillStyle=T.surface;ctx.beginPath();if(open==='inside'){ctx.moveTo(cx-20,cy+ph/2);ctx.lineTo(cx+20,cy+ph/2);ctx.lineTo(cx,cy-ph/4);}else{ctx.moveTo(cx-20,cy-ph/2);ctx.lineTo(cx+20,cy-ph/2);ctx.lineTo(cx,cy+ph/4);}ctx.closePath();ctx.fill();
+    const nai=[[-14,26],[0,28],[14,26]],kc=[[-8,-26],[8,-26]];
+    if(i===0)nai.forEach(p=>ion(ctx,cx+p[0],cy+ph/2+p[1]*.7,'Na⁺',T.cx));
+    if(i===1){nai.forEach((p,k)=>ion(ctx,cx+p[0],cy+ph/2-8+(k%2)*8,'Na⁺',T.cx));ctx.fillStyle=T.hot;ctx.beginPath();ctx.arc(cx+pw/2+30,cy+ph/2+10,9,0,6.283);ctx.fill();label(ctx,'ATP',cx+pw/2+30,cy+ph/2+10,T.surface,'center','middle',MONO);dot2(ctx,cx+pw/2-4,cy-4,T.hot,6);}
+    if(i===2)nai.forEach(p=>ion(ctx,cx+p[0]*1.3,cy-ph/2-18-(p[1]-26)*.3,'Na⁺',T.cx));
+    if(i===3)kc.forEach(p=>ion(ctx,cx+p[0],cy-ph/2+10+(p[1]+26)*.4,'K⁺',T.ce));
+    if(i===4){kc.forEach(p=>ion(ctx,cx+p[0],cy+ph/2-14,'K⁺',T.ce));dot2(ctx,cx+pw/2+26,cy-ph/2-8,T.hot,6);label(ctx,'Pi',cx+pw/2+44,cy-ph/2-8,T.muted,'left','middle',MONO);}
+    if(i===5)kc.forEach(p=>ion(ctx,cx+p[0]*1.5,cy+ph/2+18,'K⁺',T.ce));
+    },{h:w=>clamp(w*.52,260,340)});
+  $('#at-lab').addEventListener('labreset',()=>sc.go(0));
+  /* passive vs active */
+  let mode='fd',atp=true,L=40,R=10;
+  const rnd=Array.from({length:120},(_,i)=>[(Math.sin(i*12.9898)*43758.5453)%1,(Math.sin(i*78.233)*43758.5453)%1].map(v=>Math.abs(v)));
+  function init(){if(mode==='fd'){L=40;R=10;}else{L=30;R=30;}}
+  const sim=sim2d($('#at-canvas2'),{h:w=>clamp(w*.4,210,280),
+    step(dt){if(mode==='fd'){const f=(L-R)*.5*dt;L-=f;R+=f;}else if(atp&&L>.6&&R<5*L){const f=Math.min(L,4*dt);L-=f;R+=f;}update(true);},
+    draw(ctx,w,h){const mid=w/2,pad=14,top=24,bot=h-14;ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(mid,top);ctx.lineTo(mid,(top+bot)/2-16);ctx.moveTo(mid,(top+bot)/2+16);ctx.lineTo(mid,bot);ctx.stroke();
+      ctx.fillStyle=mode==='fd'?alpha(T.ca,.7):alpha(T.cv,.7);ctx.fillRect(mid-10,(top+bot)/2-16,20,32);ctx.strokeStyle=mode==='fd'?T.ca:T.cv;ctx.strokeRect(mid-10,(top+bot)/2-16,20,32);
+      [[Math.round(L),pad,mid-pad],[Math.round(R),mid+pad,w-pad]].forEach(([n,a,b])=>{for(let i=0;i<Math.min(n,115);i++){dot2(ctx,a+rnd[i][0]*(b-a),top+8+rnd[i][1]*(bot-top-16),T.ce,4);}});
+      label(ctx,'left',mid/2,10,T.muted,'center','middle',MONO);label(ctx,'right',mid+mid/2,10,T.muted,'center','middle',MONO);label(ctx,mode==='fd'?'channel: no energy':(atp?'pump, ATP available':'pump, no ATP'),mid,h-3,T.muted,'center','middle',MONO);}});
+  function update(skip){setText('at-l',fmt(L,0)+' particles');setText('at-r',fmt(R,0)+' particles');let s;if(mode==='fd')s=Math.abs(L-R)<1?'equal on both sides: no net movement (ATP is not needed)':'particles diffuse from left to right, down the gradient';else s=!atp?'pump is off: nothing moves':(R>=5*L||L<=.6?'gradient is steep: the pump has built a concentration difference':'pump is moving particles from left to right, even when right has more');setText('at-st',s);if(!skip)sim.render();}
+  segBind('at-mode','k',v=>{mode=v;init();update();});$('#at-atp').addEventListener('click',()=>{atp=!atp;$('#at-atp').textContent='ATP: '+(atp?'on':'off');update();});$('#at-reset').addEventListener('click',()=>{init();update();});
+  $('#at-lab2').addEventListener('labreset',()=>{mode='fd';atp=true;$('#at-atp').textContent='ATP: on';segSet('at-mode',0);init();update();});
+  init();update();drawers.activetr=()=>{sc.render();sim.render();};
+  KEYS['at-canvas']=['Step through one cycle. Blue Na⁺ goes out, gold K⁺ comes in.',[['cx','sodium ion'],['ce','potassium ion'],['ca','pump protein'],['hot','ATP / phosphate']]];
+  KEYS['at-canvas2']=['Dots are solute particles. Compare channel and pump with and without ATP.',[['ce','solute'],['ca','channel'],['cv','pump']]];
+  TIPS['np-st']=()=>'Each cycle uses one ATP: 3 Na⁺ out, 2 K⁺ in.';
+  GLOSS['active transport']='Movement of a substance against its concentration gradient using energy (usually ATP).';GLOSS['facilitated diffusion']='Passive movement down a gradient through a channel or carrier protein.';GLOSS['cotransport']='Using the gradient of one substance (made by a pump) to move another.';GLOSS['endocytosis']='Taking material into the cell by pinching off a vesicle from the plasma membrane.';
+  TT.activetr='Ask students to predict what happens to the gradient with ATP off for each kind of carrier.';
+})();
+(function(){
+  const kinds=[['Oxygen moves from the blood into a cell down its gradient with no protein.','simple diffusion'],['Glucose enters a red blood cell down its gradient through a carrier protein.','facilitated diffusion'],['A cell pumps calcium ions out against a steep gradient using ATP.','active transport'],['A white blood cell engulfs a bacterium in a vesicle.','endocytosis (phagocytosis)'],['A pancreas cell releases insulin from a vesicle fused with the plasma membrane.','exocytosis']];
+  PROBS.push({id:'at-type',topic:'activetr',title:'Type of transport',gen(){const p=pick(kinds),m=mcq(p[1],kinds.map(x=>x[1]).filter(x=>x!==p[1]));return {q:p[0]+' This is',choices:m.choices,ans:m.ans,hint:'Down or up the gradient? Protein? ATP? Vesicle?',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'at-pump',topic:'activetr',title:'Sodium-potassium pump arithmetic',gen(){const n=randInt(2,50),w=pick(['Na⁺ ions are moved out of the cell','K⁺ ions are moved into the cell']),a=w[0]==='N'?3*n:2*n;return {q:`The sodium-potassium pump runs ${n} cycles. How many ${w}?`,ans:a,unit:'ions',tol:0,chk:(w[0]==='N'?3:2)*n,hint:'Each cycle moves 3 Na⁺ out and 2 K⁺ in using one ATP.',sol:`${w[0]==='N'?3:2} × ${n} = <b>${a}</b>.`};}});
+  PROBS.push({id:'at-atp',topic:'activetr',title:'ATP used',gen(){const n=randInt(5,60),ans=n;return {q:`How many ATP molecules does the sodium-potassium pump use for ${n} complete cycles?`,ans,unit:'ATP',tol:0,chk:n,hint:'One ATP per cycle.',sol:`<b>${n}</b>.`};}});
+})();
+
+/* ===== modules/origin.js ===== */
+/* ---------------- Origins of cell compartments ---------------- */
+(function origin(){
+  const cv=$('#or-canvas');if(!cv)return;
+  const ST=[{n:'1 · ancestral prokaryote',t:'A simple cell with DNA in a nucleoid, ribosomes and a plasma membrane. No membrane-bound organelles.'},{n:'2 · membrane infolds',t:'Infolding of the plasma membrane forms the nuclear envelope and the endomembrane system (ER).'},{n:'3 · engulfs an aerobic bacterium',t:'The cell engulfs an aerobic bacterium that survives inside. It becomes a mitochondrion.'},{n:'4 · engulfs a cyanobacterium',t:'A cell with mitochondria engulfs a photosynthetic cyanobacterium, which becomes a chloroplast.'}];
+  function bact(ctx,x,y,s,col,dna){ctx.beginPath();ctx.ellipse(x,y,s*1.4,s*.8,.3,0,6.283);ctx.fillStyle=alpha(col,.35);ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=2;ctx.stroke();if(dna){ctx.beginPath();ctx.arc(x,y,s*.4,0,6.283);ctx.strokeStyle=T.ink;ctx.lineWidth=1.5;ctx.stroke();}}
+  const sc=stageLab('or','or-canvas',ST,(ctx,w,h,i,t)=>{const cx=w*.5,cy=h*.5,R=Math.min(w*.3,h*.42);
+    ctx.beginPath();ctx.ellipse(cx,cy,R*1.35,R,0,0,6.283);ctx.fillStyle=alpha(T.sunk,.7);ctx.fill();ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.stroke();
+    if(i===0){ctx.strokeStyle=T.ink;ctx.lineWidth=2;ctx.beginPath();for(let k=0;k<=40;k++){const a=k/40*6.283*2.2,r=R*.35+k*.5;k?ctx.lineTo(cx-R*.2+Math.cos(a)*r*.5,cy+Math.sin(a)*r*.5):ctx.moveTo(cx-R*.2,cy);}ctx.stroke();label(ctx,'DNA in nucleoid',cx-R*.2,cy+R*.62,T.muted,'center','middle',MONO);}
+    if(i>=1){ctx.beginPath();ctx.arc(cx-R*.35,cy,R*.42,0,6.283);ctx.fillStyle=alpha(T.cx,.2);ctx.fill();ctx.strokeStyle=T.cx;ctx.lineWidth=2.4;ctx.stroke();ctx.beginPath();ctx.arc(cx-R*.35,cy,R*.34,0,6.283);ctx.stroke();ctx.strokeStyle=T.ca;ctx.lineWidth=2.2;[0,1,2].forEach(k=>{ctx.beginPath();ctx.moveTo(cx-R*.05,cy-R*.3+k*R*.28);ctx.bezierCurveTo(cx+R*.4,cy-R*.4+k*R*.3,cx+R*.3,cy-R*.1+k*R*.3,cx+R*.65,cy-R*.2+k*R*.28);ctx.stroke();});label(ctx,'nucleus and ER',cx-R*.35,cy+R*.62,T.muted,'center','middle',MONO);}
+    if(i>=2){bact(ctx,cx+R*.7,cy+R*.45,R*.2,T.hot,true);ctx.beginPath();ctx.ellipse(cx+R*.7,cy+R*.45,R*.36,R*.24,.3,0,6.283);ctx.strokeStyle=T.hot;ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);label(ctx,'mitochondrion',cx+R*.7,cy+R*.82,T.hot,'center','middle',MONO);}
+    if(i>=3){bact(ctx,cx+R*.6,cy-R*.5,R*.2,T.cv,true);label(ctx,'chloroplast',cx+R*.6,cy-R*.8,T.cv,'center','middle',MONO);}
+    if(i===2){bact(ctx,w*.9,h*.78,R*.18,T.hot,true);ctx.strokeStyle=T.muted;ctx.beginPath();ctx.moveTo(w*.85,h*.74);ctx.lineTo(cx+R*1.1,cy+R*.6);ctx.stroke();label(ctx,'aerobic bacterium',w*.9,h*.9,T.muted,'center','middle',MONO);}
+    if(i===3){bact(ctx,w*.9,h*.2,R*.18,T.cv,true);ctx.strokeStyle=T.muted;ctx.beginPath();ctx.moveTo(w*.86,h*.24);ctx.lineTo(cx+R*1.1,cy-R*.6);ctx.stroke();label(ctx,'cyanobacterium',w*.88,h*.08,T.muted,'center','middle',MONO);}
+    },{h:w=>clamp(w*.52,260,340)});
+  $('#or-lab').addEventListener('labreset',()=>sc.go(0));
+  drawers.origin=()=>sc.render();
+  KEYS['or-canvas']=['Orange: aerobic bacterium that became the mitochondrion. Green: cyanobacterium that became the chloroplast.',[['hot','mitochondrion'],['cv','chloroplast'],['cx','nucleus']]];
+  TIPS['or-st']=()=>'Mitochondria are thought to come first, chloroplasts later.';
+  GLOSS['endosymbiosis']='A relationship in which one cell lives inside another. The endosymbiotic theory says mitochondria and chloroplasts came from engulfed bacteria.';GLOSS['nucleoid']='The region of a prokaryotic cell where the DNA is found, not enclosed by a membrane.';
+  TT.origin='Ask students to list evidence for endosymbiosis and tie each item to a bacterial feature.';
+})();
+(function(){
+  const ev=[['has its own circular DNA','a bacterial feature'],['divides by binary fission','a bacterial feature'],['has ribosomes similar to those of bacteria','a bacterial feature'],['is surrounded by two membranes','consistent with having been engulfed']];
+  PROBS.push({id:'or-evid',topic:'origin',title:'Evidence for endosymbiosis',gen(){const m=mcq('Mitochondria have their own circular DNA and bacteria-like ribosomes.',['Mitochondria are found in animal cells.','Mitochondria make ATP.','Mitochondria are larger than ribosomes.']);return {q:'Which observation best supports the idea that mitochondria were once free-living bacteria?',choices:m.choices,ans:m.ans,hint:'Look for features shared with bacteria and not with the rest of the eukaryotic cell.',sol:`<b>${m.choices[m.ans]}</b>`};}});
+  const cmp=[['a membrane-bound nucleus','eukaryotes only'],['DNA in a nucleoid region','prokaryotes only'],['ribosomes','both'],['a plasma membrane','both'],['membrane-bound organelles such as mitochondria','eukaryotes only']];
+  PROBS.push({id:'or-cmp',topic:'origin',title:'Prokaryote or eukaryote?',gen(){const p=pick(cmp),m=mcq(p[1],['eukaryotes only','prokaryotes only','both','neither'].filter(x=>x!==p[1]));return {q:`${p[0][0].toUpperCase()+p[0].slice(1)} is found in`,choices:m.choices,ans:m.ans,hint:'Prokaryotes lack membrane-bound organelles but all cells have ribosomes and a plasma membrane.',sol:`<b>${p[1]}</b>.`};}});
 })();
 
 /* ===== overview.js ===== */

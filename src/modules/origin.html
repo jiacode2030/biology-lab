@@ -1,0 +1,48 @@
+  <section class="view" id="v-origin" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Origins of cell compartments</h1>
+        <p class="lede">Mitochondria and chloroplasts look like small bacteria living inside our cells, and the evidence says that is close to what they are.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The <b>endosymbiotic theory</b> proposes that mitochondria arose when an ancestral cell engulfed an aerobic bacterium that survived and became a permanent partner, and that chloroplasts arose later when a cell engulfed a photosynthetic cyanobacterium. The nucleus and endomembrane system probably arose by infolding of the plasma membrane.</p>
+        <p>Evidence: both organelles have a <b>double membrane</b>, their own <b>circular DNA</b>, their own ribosomes similar to bacterial ribosomes, and they reproduce by <b>binary fission</b> independently of the cell. Prokaryotes lack membrane-bound organelles and have a nucleoid instead of a nucleus; eukaryotes have both.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>organelles were just parts of the cell</dd><dt>So we didn't need</dt><dd>that some organelles were once free-living cells</dd><dt>Now</dt><dd>why mitochondria and chloroplasts have their own DNA and ribosomes</dd><dt>So we need</dt><dd>endosymbiosis and its evidence</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>mitochondrion: from an aerobic bacterium</span><small>engulfed</small></div><div class="eqn"><span>chloroplast: from a cyanobacterium</span><small>engulfed later</small></div><div class="eqn"><span>evidence: own circular DNA, 70S-type ribosomes, double membrane, binary fission</span><small>organelle features</small></div><div class="eqn"><span>nucleus and ER: from infolded membrane</span><small>proposed</small></div></div>
+      <div class="lab" id="or-lab">
+        <div class="labbar"><span class="title">How a eukaryotic cell may have arisen</span></div>
+        <div class="row"><button type="button" class="btn" id="or-prev">Previous</button><button type="button" class="btn primary" id="or-next">Next stage</button><button type="button" class="btn" id="or-play">Play</button></div>
+        <canvas id="or-canvas" aria-label="Four stages: an ancestral cell, membrane infolding, engulfing an aerobic bacterium, and engulfing a cyanobacterium."></canvas>
+        <div class="controls"><div class="ctl"><label for="or-st"><span>Stage</span> <output id="or-st-out"></output></label><input type="range" id="or-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="or-name">—</strong></div><div><span>what is happening</span><strong class="" id="or-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Go to stage 3. What does the engulfed bacterium become? <button type="button" class="btn link" data-show='[["#or-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>A mitochondrion: it provides ATP to the host and gets a protected, nutrient-rich home.</p></details></li>
+        <li><p>Go to stage 4. How does this change the cell? <button type="button" class="btn link" data-show='[["#or-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The engulfed cyanobacterium becomes a chloroplast, so the cell can make its own sugars: the ancestor of algae and plants.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A researcher finds that an organelle has circular DNA, ribosomes that are sensitive to an antibiotic that stops bacterial protein synthesis, and divides by binary fission. What can be inferred?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Compare with bacteria.</b> Those are all bacterial features.</li>
+          <li hidden><b>Inference.</b> The organelle likely descended from a free-living bacterium that was engulfed: the endosymbiotic theory.</li>
+          <li hidden><b>Strength.</b> This is evidence consistent with the theory, not proof; combine it with DNA sequence similarity for stronger support.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying mitochondria and chloroplasts were made by the nucleus.</li>
+        <li>Thinking every organelle came from endosymbiosis. The nucleus and ER are thought to come from infolding.</li>
+        <li>Saying prokaryotes have no DNA.</li>
+        <li>Writing that the theory has been proven rather than strongly supported.</li>
+        <li>Mixing up which organelle came first (mitochondria first in the usual account).</li>
+      </ul></div>
+      <div class="prose"><h2>Evidence language</h2>
+        <p>Use "consistent with" for evidence. Name at least two features and link each to bacteria: circular DNA, bacterial-type ribosomes, binary fission, double membrane (from engulfing).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Own circular DNA and bacterial-type ribosomes resemble free-living bacteria.">
+        <p class="q">Check yourself: Which feature of mitochondria best supports the endosymbiotic theory?</p>
+        <div class="opts"><button type="button">they have their own circular DNA and ribosomes</button><button type="button">they are in animal cells</button><button type="button">they make ATP</button><button type="button">they have folded membranes</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

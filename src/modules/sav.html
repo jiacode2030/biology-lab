@@ -1,0 +1,48 @@
+  <section class="view" id="v-sav" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Surface area to volume</h1>
+        <p class="lede">A cell must take in nutrients through its surface but needs them for its whole volume. As a cell grows, the volume outpaces the surface, and that limits cell size.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>For a cube of side s: surface area = 6s², volume = s³, so SA:V = 6/s. For a sphere of radius r: SA = 4πr², V = (4/3)πr³, so SA:V = 3/r. In both cases SA:V <b>decreases</b> as the cell gets bigger. Doubling the side multiplies SA by 4 but volume by 8.</p>
+        <p>This explains why cells are small, why gas exchange organs (lungs, gills, root hairs, villi) are folded or branched to add surface area, and why large organisms need transport systems. A cell of any shape exchanges materials faster when its SA:V is higher, so a flattened or elongated cell does better than a sphere of the same volume.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>bigger cells just did the same things on a larger scale</dd><dt>So we didn't need</dt><dd>that exchange scales with surface but need scales with volume</dd><dt>Now</dt><dd>why cells stay small and why exchange surfaces are folded</dd><dt>So we need</dt><dd>surface area to volume calculations</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>cube: SA = 6s², V = s³</span><small>SA:V = 6/s</small></div><div class="eqn"><span>sphere: SA = 4πr², V = (4/3)πr³</span><small>SA:V = 3/r</small></div><div class="eqn"><span>rectangular solid: SA = 2(lw + lh + wh), V = lwh</span><small>from the sheet</small></div><div class="eqn"><span>bigger cell → smaller SA:V</span><small>limits size</small></div></div>
+      <div class="lab" id="sv-lab" data-reset="own">
+        <div class="labbar"><span class="title">Grow a cell</span></div>
+        <div class="ctl"><span class="lbl">Shape</span><div class="seg" id="sv-sh" role="group" aria-label="Shape"><button type="button" data-k="cube" aria-pressed="true">cube</button><button type="button" data-k="sph" aria-pressed="false">sphere</button></div></div>
+        <canvas id="sv-canvas" aria-label="A cell drawn at the chosen size and a graph of SA:V against size with a marker at the current size."></canvas>
+        <div class="controls"><div class="ctl"><label for="sv-s"><span>Size (side or radius)</span> <output id="sv-s-out"></output></label><input type="range" id="sv-s" min="1" max="10" step="0.5" value="3"></div></div>
+        <div class="readout"><div><span>surface area</span><strong class="x" id="sv-sa">—</strong></div><div><span>volume</span><strong class="a" id="sv-v">—</strong></div><div><span>SA : V</span><strong class="v" id="sv-r">—</strong></div><div><span>can it exchange fast enough?</span><strong class="" id="sv-n">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Double the size from 2 to 4 (cube). What happens to SA, V and SA:V? <button type="button" class="btn link" data-show='[["click", "#sv-sh [data-k=cube]"], ["#sv-s", 2]]'>Size 2</button></p><details><summary>What you should see</summary><p>SA goes 24 → 96 (×4), V goes 8 → 64 (×8), so SA:V falls from 3 to 1.5 (÷2).</p></details></li>
+        <li><p>Switch to a sphere at radius 3. Compare its SA:V with a cube of side 3. <button type="button" class="btn link" data-show='[["click", "#sv-sh [data-k=sph]"], ["#sv-s", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Sphere: 3/3 = 1.0; cube side 3: 6/3 = 2.0. They are measured differently: the sphere of radius 3 is much bigger than a cube of side 3.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Cell 1 is a cube of side 2 µm and Cell 2 is a cube of side 4 µm. Which is better at exchanging materials and by what factor?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Cell 1.</b> SA = 6 × 2² = 24 µm², V = 8 µm³, SA:V = 3.</li>
+          <li hidden><b>Cell 2.</b> SA = 6 × 4² = 96 µm², V = 64 µm³, SA:V = 1.5.</li>
+          <li hidden><b>Compare.</b> Cell 1 has twice the SA:V, so it is better at exchange (the smaller cell).</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Concluding that a bigger cell has more surface area per unit volume.</li>
+        <li>Mixing up SA:V with total surface area.</li>
+        <li>Applying 6/s to a sphere.</li>
+        <li>Forgetting units: µm², µm³ and µm⁻¹.</li>
+        <li>Thinking cells fix the problem by getting bigger. Folding, flattening or branching raises SA:V instead.</li>
+      </ul></div>
+      <div class="prose"><h2>Applying SA:V on the exam</h2>
+        <p>A typical FRQ gives dimensions, asks for SA:V of two cells, then asks which is better at exchange or how an adaptation (microvilli, root hairs, branching) helps. Show the calculation, compare the ratios, and tie it to diffusion distance and exchange rate.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="V = s³, so doubling s gives 2³ = 8 times the volume.">
+        <p class="q">Check yourself: If the side of a cube doubles, its volume changes by a factor of</p>
+        <div class="opts"><button type="button">8</button><button type="button">2</button><button type="button">4</button><button type="button">6</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

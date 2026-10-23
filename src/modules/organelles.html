@@ -1,0 +1,55 @@
+  <section class="view" id="v-organelles" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Cell organelles & compartments</h1>
+        <p class="lede">A eukaryotic cell is a set of rooms, each with its own job. Keeping reactions in separate compartments is what lets a cell run many incompatible processes at once.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The <b>nucleus</b> holds the DNA. <b>Ribosomes</b> (not membrane-bound) build proteins; those on the <b>rough ER</b> make proteins for export or membranes, and the <b>smooth ER</b> makes lipids and detoxifies. The <b>Golgi</b> modifies, sorts and packages proteins into vesicles. <b>Mitochondria</b> carry out most cellular respiration and have a double membrane with folded inner cristae. <b>Lysosomes</b> digest material with hydrolytic enzymes. Plant cells also have <b>chloroplasts</b> (photosynthesis), a large central <b>vacuole</b> and a cell wall.</p>
+        <p>Compartments matter because each has its own conditions. Lysosome enzymes work at acidic pH that would damage the rest of the cell; the inner mitochondrial membrane holds a proton gradient. Prokaryotes have no membrane-bound organelles, but they do have ribosomes, a plasma membrane, DNA in a nucleoid and (usually) a cell wall.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a cell was just a bag of chemistry</dd><dt>So we didn't need</dt><dd>that compartments keep different reactions and conditions separate</dd><dt>Now</dt><dd>why mitochondria and chloroplasts have membranes inside membranes</dd><dt>So we need</dt><dd>organelle structure and function</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>nucleus</span><small>DNA; makes RNA</small></div><div class="eqn"><span>rough ER → Golgi → vesicle</span><small>protein export pathway</small></div><div class="eqn"><span>mitochondrion</span><small>ATP from respiration</small></div><div class="eqn"><span>chloroplast</span><small>photosynthesis</small></div></div>
+      <div class="lab" id="og-lab" data-reset="own">
+        <div class="labbar"><span class="title">Find the organelle</span></div>
+        <div class="ctl"><span class="lbl">Organelle</span><div class="seg" id="og-sel" role="group" aria-label="Organelle"><button type="button" data-k="nuc" aria-pressed="true">nucleus</button><button type="button" data-k="rer" aria-pressed="false">rough ER</button><button type="button" data-k="gol" aria-pressed="false">Golgi</button><button type="button" data-k="mit" aria-pressed="false">mitochondrion</button><button type="button" data-k="lys" aria-pressed="false">lysosome</button><button type="button" data-k="chl" aria-pressed="false">chloroplast</button></div></div>
+        <canvas id="og-canvas" aria-label="A eukaryotic cell with the chosen organelle highlighted."></canvas>
+        <div class="readout"><div><span>function</span><strong class="x" id="og-fn">—</strong></div><div><span>membranes</span><strong class="a" id="og-mem">—</strong></div><div><span>found in</span><strong class="v" id="og-where">—</strong></div></div>
+      </div>
+      <div class="lab" id="og-lab2">
+        <div class="labbar"><span class="title">Following a secreted protein</span></div>
+        <div class="row"><button type="button" class="btn" id="ps-prev">Previous</button><button type="button" class="btn primary" id="ps-next">Next stage</button><button type="button" class="btn" id="ps-play">Play</button></div>
+        <canvas id="og-canvas2" aria-label="A protein moves from a ribosome on the rough ER through a vesicle to the Golgi and out of the cell."></canvas>
+        <div class="controls"><div class="ctl"><label for="ps-st"><span>Stage</span> <output id="ps-st-out"></output></label><input type="range" id="ps-st" min="0" max="4" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="ps-name">—</strong></div><div><span>what is happening</span><strong class="" id="ps-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Pick the mitochondrion. Why does it have two membranes? <button type="button" class="btn link" data-show='[["click", "#og-sel [data-k=mit]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The double membrane (with the inner one folded into cristae) creates two compartments and a large surface for the electron transport chain; it also reflects its origin as an engulfed bacterium.</p></details></li>
+        <li><p>Step through the secretion pathway to the Golgi. What happens there? <button type="button" class="btn link" data-show='[["#ps-st", 3]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The protein is modified (for example by adding carbohydrate), sorted and packaged into a vesicle that carries it to the plasma membrane.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Insulin is a protein secreted by pancreas cells. List the organelles it passes through in order.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Made.</b> Translated by a ribosome on the rough ER; the growing chain enters the ER lumen.</li>
+          <li hidden><b>Transported.</b> A transport vesicle buds off the ER and fuses with the Golgi.</li>
+          <li hidden><b>Processed and packaged.</b> The Golgi modifies it and packages it in a secretory vesicle.</li>
+          <li hidden><b>Secreted.</b> The vesicle fuses with the plasma membrane and releases insulin by exocytosis.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying ribosomes are membrane-bound organelles.</li>
+        <li>Thinking the Golgi makes proteins. It processes and sorts them.</li>
+        <li>Mixing up smooth ER (lipids, detox) and rough ER (ribosomes, protein).</li>
+        <li>Believing prokaryotes have no ribosomes. They do, just not membrane-bound organelles.</li>
+        <li>Putting chloroplasts in animal cells.</li>
+      </ul></div>
+      <div class="prose"><h2>Why compartments help</h2>
+        <p>Compartments increase efficiency by concentrating enzymes and substrates, and protect the cell from hazardous reactions. Membranes inside organelles add surface area for reactions: cristae in mitochondria, thylakoids in chloroplasts, folded ER.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The Golgi modifies, sorts and packages proteins into vesicles.">
+        <p class="q">Check yourself: Which organelle modifies and packages proteins for secretion?</p>
+        <div class="opts"><button type="button">Golgi apparatus</button><button type="button">ribosome</button><button type="button">lysosome</button><button type="button">nucleolus</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,54 @@
+  <section class="view" id="v-membrane" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 2</span></div>
+        <h1>Membrane structure & permeability</h1>
+        <p class="lede">A cell membrane is a thin oily film with proteins floating in it. It is selective because of what it is made of, not because it has holes.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The membrane is a <b>phospholipid bilayer</b>: each phospholipid has a hydrophilic head and two hydrophobic tails, so in water the tails hide in the middle. Proteins are embedded (integral) or attached (peripheral); carbohydrates on the outer surface help cells recognize each other. The pieces move around within the layer, which is why it is called a <b>fluid mosaic</b>. Cholesterol (in animal cells) buffers fluidity: it keeps the membrane from packing too tightly when cold and from becoming too loose when warm.</p>
+        <p>Because the middle is nonpolar, small nonpolar molecules (O₂, CO₂) cross easily. Small polar molecules like water cross slowly (aquaporins speed it up). Ions and large polar molecules (glucose) need <b>channel or carrier proteins</b>. Very large particles move by <b>endocytosis</b> and <b>exocytosis</b>.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a membrane was a barrier with holes</dd><dt>So we didn't need</dt><dd>that selectivity comes from the nonpolar interior and from specific proteins</dd><dt>Now</dt><dd>why oxygen passes freely but ions need help</dd><dt>So we need</dt><dd>phospholipids, proteins, cholesterol and permeability</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>phospholipid: hydrophilic head, hydrophobic tails</span><small>forms a bilayer</small></div><div class="eqn"><span>small nonpolar → crosses directly</span><small>O₂, CO₂</small></div><div class="eqn"><span>ions, glucose → protein needed</span><small>channels, carriers</small></div><div class="eqn"><span>cholesterol buffers fluidity</span><small>temperature effect</small></div></div>
+      <div class="lab" id="me-lab" data-reset="own">
+        <div class="labbar"><span class="title">Membrane fluidity</span></div>
+        <div class="ctl"><span class="lbl">Cholesterol</span><div class="seg" id="me-chol" role="group" aria-label="Cholesterol"><button type="button" data-k="no" aria-pressed="true">absent</button><button type="button" data-k="yes" aria-pressed="false">present</button></div></div>
+        <canvas id="me-canvas" aria-label="A phospholipid bilayer whose molecules move more or less depending on temperature and cholesterol."></canvas>
+        <div class="controls"><div class="ctl"><label for="me-t"><span>Temperature</span> <output id="me-t-out"></output></label><input type="range" id="me-t" min="0" max="50" step="1" value="25"></div></div>
+        <div class="readout"><div><span>fluidity</span><strong class="x" id="me-f">—</strong></div><div><span>what to expect</span><strong class="" id="me-s">—</strong></div></div>
+      </div>
+      <div class="lab" id="me-lab2" data-reset="own">
+        <div class="labbar"><span class="title">What can cross?</span></div>
+        <div class="ctl"><span class="lbl">Molecule</span><div class="seg" id="me-m" role="group" aria-label="Molecule"><button type="button" data-k="o2" aria-pressed="true">O₂</button><button type="button" data-k="h2o" aria-pressed="false">water</button><button type="button" data-k="glu" aria-pressed="false">glucose</button><button type="button" data-k="na" aria-pressed="false">Na⁺</button><button type="button" data-k="pro" aria-pressed="false">protein</button></div></div>
+        <canvas id="me-canvas2" aria-label="A membrane with a molecule approaching and the route it takes, if any."></canvas>
+        <div class="readout"><div><span>route across</span><strong class="x" id="me-how">—</strong></div><div><span>why</span><strong class="" id="me-why">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Remove cholesterol and cool to 5 °C. What happens to fluidity? <button type="button" class="btn link" data-show='[["click", "#me-chol [data-k=no]"], ["#me-t", 5]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Fluidity is very low: phospholipids pack tightly. With cholesterol present the membrane stays more fluid at this temperature.</p></details></li>
+        <li><p>Choose Na⁺. Why can't it cross directly? <button type="button" class="btn link" data-show='[["click", "#me-m [data-k=na]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Ions are charged and cannot pass through the hydrophobic interior. They need channel or carrier proteins.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A protein is found to span the membrane, with a hydrophobic section in the middle and hydrophilic ends. Explain why.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>The interior is nonpolar.</b> The fatty acid tails form a hydrophobic core.</li>
+          <li hidden><b>The middle section.</b> Its nonpolar amino acids interact with the tails, anchoring the protein in the bilayer.</li>
+          <li hidden><b>The ends.</b> Polar and charged amino acids face the watery cytoplasm and extracellular fluid.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying the membrane is static. It is a moving fluid mosaic.</li>
+        <li>Saying water crosses only through channels. Some crosses directly, slowly.</li>
+        <li>Thinking cholesterol makes the membrane rigid at all temperatures.</li>
+        <li>Putting the hydrophilic heads in the middle.</li>
+        <li>Forgetting the carbohydrate groups on the outside.</li>
+      </ul></div>
+      <div class="prose"><h2>Predicting permeability</h2>
+        <p>Ask two questions: is it small and nonpolar (crosses directly), and is it charged or large (needs a protein or vesicle)? Then decide whether energy is needed: moving down a gradient is passive, up a gradient needs ATP.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Oxygen is small and nonpolar and dissolves in the hydrophobic core.">
+        <p class="q">Check yourself: Which molecule crosses the phospholipid bilayer most easily?</p>
+        <div class="opts"><button type="button">oxygen</button><button type="button">sodium ion</button><button type="button">glucose</button><button type="button">a protein</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

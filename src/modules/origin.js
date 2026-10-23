@@ -1,0 +1,27 @@
+/* ---------------- Origins of cell compartments ---------------- */
+(function origin(){
+  const cv=$('#or-canvas');if(!cv)return;
+  const ST=[{n:'1 · ancestral prokaryote',t:'A simple cell with DNA in a nucleoid, ribosomes and a plasma membrane. No membrane-bound organelles.'},{n:'2 · membrane infolds',t:'Infolding of the plasma membrane forms the nuclear envelope and the endomembrane system (ER).'},{n:'3 · engulfs an aerobic bacterium',t:'The cell engulfs an aerobic bacterium that survives inside. It becomes a mitochondrion.'},{n:'4 · engulfs a cyanobacterium',t:'A cell with mitochondria engulfs a photosynthetic cyanobacterium, which becomes a chloroplast.'}];
+  function bact(ctx,x,y,s,col,dna){ctx.beginPath();ctx.ellipse(x,y,s*1.4,s*.8,.3,0,6.283);ctx.fillStyle=alpha(col,.35);ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=2;ctx.stroke();if(dna){ctx.beginPath();ctx.arc(x,y,s*.4,0,6.283);ctx.strokeStyle=T.ink;ctx.lineWidth=1.5;ctx.stroke();}}
+  const sc=stageLab('or','or-canvas',ST,(ctx,w,h,i,t)=>{const cx=w*.5,cy=h*.5,R=Math.min(w*.3,h*.42);
+    ctx.beginPath();ctx.ellipse(cx,cy,R*1.35,R,0,0,6.283);ctx.fillStyle=alpha(T.sunk,.7);ctx.fill();ctx.strokeStyle=T.ink;ctx.lineWidth=3;ctx.stroke();
+    if(i===0){ctx.strokeStyle=T.ink;ctx.lineWidth=2;ctx.beginPath();for(let k=0;k<=40;k++){const a=k/40*6.283*2.2,r=R*.35+k*.5;k?ctx.lineTo(cx-R*.2+Math.cos(a)*r*.5,cy+Math.sin(a)*r*.5):ctx.moveTo(cx-R*.2,cy);}ctx.stroke();label(ctx,'DNA in nucleoid',cx-R*.2,cy+R*.62,T.muted,'center','middle',MONO);}
+    if(i>=1){ctx.beginPath();ctx.arc(cx-R*.35,cy,R*.42,0,6.283);ctx.fillStyle=alpha(T.cx,.2);ctx.fill();ctx.strokeStyle=T.cx;ctx.lineWidth=2.4;ctx.stroke();ctx.beginPath();ctx.arc(cx-R*.35,cy,R*.34,0,6.283);ctx.stroke();ctx.strokeStyle=T.ca;ctx.lineWidth=2.2;[0,1,2].forEach(k=>{ctx.beginPath();ctx.moveTo(cx-R*.05,cy-R*.3+k*R*.28);ctx.bezierCurveTo(cx+R*.4,cy-R*.4+k*R*.3,cx+R*.3,cy-R*.1+k*R*.3,cx+R*.65,cy-R*.2+k*R*.28);ctx.stroke();});label(ctx,'nucleus and ER',cx-R*.35,cy+R*.62,T.muted,'center','middle',MONO);}
+    if(i>=2){bact(ctx,cx+R*.7,cy+R*.45,R*.2,T.hot,true);ctx.beginPath();ctx.ellipse(cx+R*.7,cy+R*.45,R*.36,R*.24,.3,0,6.283);ctx.strokeStyle=T.hot;ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);label(ctx,'mitochondrion',cx+R*.7,cy+R*.82,T.hot,'center','middle',MONO);}
+    if(i>=3){bact(ctx,cx+R*.6,cy-R*.5,R*.2,T.cv,true);label(ctx,'chloroplast',cx+R*.6,cy-R*.8,T.cv,'center','middle',MONO);}
+    if(i===2){bact(ctx,w*.9,h*.78,R*.18,T.hot,true);ctx.strokeStyle=T.muted;ctx.beginPath();ctx.moveTo(w*.85,h*.74);ctx.lineTo(cx+R*1.1,cy+R*.6);ctx.stroke();label(ctx,'aerobic bacterium',w*.9,h*.9,T.muted,'center','middle',MONO);}
+    if(i===3){bact(ctx,w*.9,h*.2,R*.18,T.cv,true);ctx.strokeStyle=T.muted;ctx.beginPath();ctx.moveTo(w*.86,h*.24);ctx.lineTo(cx+R*1.1,cy-R*.6);ctx.stroke();label(ctx,'cyanobacterium',w*.88,h*.08,T.muted,'center','middle',MONO);}
+    },{h:w=>clamp(w*.52,260,340)});
+  $('#or-lab').addEventListener('labreset',()=>sc.go(0));
+  drawers.origin=()=>sc.render();
+  KEYS['or-canvas']=['Orange: aerobic bacterium that became the mitochondrion. Green: cyanobacterium that became the chloroplast.',[['hot','mitochondrion'],['cv','chloroplast'],['cx','nucleus']]];
+  TIPS['or-st']=()=>'Mitochondria are thought to come first, chloroplasts later.';
+  GLOSS['endosymbiosis']='A relationship in which one cell lives inside another. The endosymbiotic theory says mitochondria and chloroplasts came from engulfed bacteria.';GLOSS['nucleoid']='The region of a prokaryotic cell where the DNA is found, not enclosed by a membrane.';
+  TT.origin='Ask students to list evidence for endosymbiosis and tie each item to a bacterial feature.';
+})();
+(function(){
+  const ev=[['has its own circular DNA','a bacterial feature'],['divides by binary fission','a bacterial feature'],['has ribosomes similar to those of bacteria','a bacterial feature'],['is surrounded by two membranes','consistent with having been engulfed']];
+  PROBS.push({id:'or-evid',topic:'origin',title:'Evidence for endosymbiosis',gen(){const m=mcq('Mitochondria have their own circular DNA and bacteria-like ribosomes.',['Mitochondria are found in animal cells.','Mitochondria make ATP.','Mitochondria are larger than ribosomes.']);return {q:'Which observation best supports the idea that mitochondria were once free-living bacteria?',choices:m.choices,ans:m.ans,hint:'Look for features shared with bacteria and not with the rest of the eukaryotic cell.',sol:`<b>${m.choices[m.ans]}</b>`};}});
+  const cmp=[['a membrane-bound nucleus','eukaryotes only'],['DNA in a nucleoid region','prokaryotes only'],['ribosomes','both'],['a plasma membrane','both'],['membrane-bound organelles such as mitochondria','eukaryotes only']];
+  PROBS.push({id:'or-cmp',topic:'origin',title:'Prokaryote or eukaryote?',gen(){const p=pick(cmp),m=mcq(p[1],['eukaryotes only','prokaryotes only','both','neither'].filter(x=>x!==p[1]));return {q:`${p[0][0].toUpperCase()+p[0].slice(1)} is found in`,choices:m.choices,ans:m.ans,hint:'Prokaryotes lack membrane-bound organelles but all cells have ribosomes and a plasma membrane.',sol:`<b>${p[1]}</b>.`};}});
+})();
