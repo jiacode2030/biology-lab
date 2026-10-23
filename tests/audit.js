@@ -16,7 +16,7 @@ const path = require('path');
       for (let i = 0; i < N; i++) {
         let d; try { d = q.gen(); } catch (e) { if (!seen.err) { seen.err = 1; bump(q.id, 'gen threw: ' + e.message); } continue; }
         const txt = strip(d.q) + ' ' + strip(d.sol || '') + ' ' + strip(d.hint || '');
-        if (/undefined|\bNaN\b|Infinity|\[object|\bnull\b/.test(txt) && !seen.txt) { seen.txt = 1; bump(q.id, 'bad text', txt.slice(0, 200)); }
+        if (/undefined|\bNaN\b|Infinity|\[object|\bnull\b(?! hypothesis)/.test(txt) && !seen.txt) { seen.txt = 1; bump(q.id, 'bad text', txt.slice(0, 200)); }
         if (d.choices) {
           if (!(d.ans >= 0 && d.ans < d.choices.length) && !seen.idx) { seen.idx = 1; bump(q.id, 'answer index out of range', JSON.stringify(d.ans)); }
           if (new Set(d.choices).size !== d.choices.length && !seen.dup) { seen.dup = 1; bump(q.id, 'duplicate choices', d.choices.join(' | ')); }

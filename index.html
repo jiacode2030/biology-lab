@@ -1039,6 +1039,106 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-datastats" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag na">Math</span></div>
+        <h1>Data, graphs & statistics</h1>
+        <p class="lede">Two bars of different heights do not prove two groups differ. How spread out the data are, and how many measurements there are, decide that.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>mean</b> summarizes a sample, but samples vary. The <b>standard deviation</b> (SD) says how far individual measurements typically fall from the mean. The <b>standard error of the mean</b> (SEM = SD/√n) says how precisely the mean itself is known, and it shrinks as you take more measurements.</p>
+        <p>Error bars are a way to see this. If you plot the mean ± 2 SEM (about a 95% confidence interval) for two groups and the bars <b>do not overlap</b>, the difference is probably real. If they overlap a lot, the data do not support a difference. Always say which kind of error bar a graph uses.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a bigger bar meant a bigger effect</dd><dt>So we didn't need</dt><dd>how much the data scatter, or how many trials were run</dd><dt>Now</dt><dd>a mean is only an estimate and carries uncertainty</dd><dt>So we need</dt><dd>SD, SEM and error bars to decide whether a difference is meaningful</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>mean = Σx / n</span><small>average of the sample</small></div><div class="eqn"><span>SD = √[ Σ(x − mean)² / (n − 1) ]</span><small>spread of individual values</small></div><div class="eqn"><span>SEM = SD / √n</span><small>precision of the mean</small></div><div class="eqn"><span>95% CI ≈ mean ± 2 SEM</span><small>used for error bars</small></div></div>
+      <div class="lab" id="ds-lab" data-reset="own">
+        <div class="labbar"><span class="title">Two groups with error bars</span></div>
+        <div class="ctl"><span class="lbl">Error bars show</span><div class="seg" id="ds-kind" role="group" aria-label="Error bars show"><button type="button" data-k="sd" aria-pressed="true">SD</button><button type="button" data-k="sem" aria-pressed="false">SEM</button><button type="button" data-k="ci" aria-pressed="false">2 × SEM (≈95% CI)</button></div></div>
+        <canvas id="ds-canvas" aria-label="Bar graph of two group means with error bars. Controls change the means, spread and sample size."></canvas>
+        <div class="controls"><div class="ctl"><label for="ds-ma"><span>Mean of group A</span> <output id="ds-ma-out"></output></label><input type="range" id="ds-ma" min="10" max="40" step="1" value="20"></div><div class="ctl"><label for="ds-mb"><span>Mean of group B</span> <output id="ds-mb-out"></output></label><input type="range" id="ds-mb" min="10" max="40" step="1" value="26"></div><div class="ctl"><label for="ds-sd"><span>SD (both groups)</span> <output id="ds-sd-out"></output></label><input type="range" id="ds-sd" min="1" max="12" step="0.5" value="6"></div><div class="ctl"><label for="ds-n"><span>Sample size n (both)</span> <output id="ds-n-out"></output></label><input type="range" id="ds-n" min="3" max="100" step="1" value="10"></div></div>
+        <div class="readout"><div><span>SEM</span><strong class="x" id="ds-sem">—</strong></div><div><span>difference in means</span><strong class="v" id="ds-diff">—</strong></div><div><span>2 × SEM bars</span><strong class="" id="ds-ov">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Leave the means at 20 and 26 with SD 6 and n 10. Do the 2 × SEM bars overlap? <button type="button" class="btn link" data-show='[["click", "#ds-kind [data-k=ci]"], ["#ds-sd", 6], ["#ds-n", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>They are separated: SEM = 6/√10 ≈ 1.9, so each bar is ±3.8, and 20 + 3.8 < 26 − 3.8. The difference is likely real.</p></details></li>
+        <li><p>Raise the SD to 12 without changing anything else. <button type="button" class="btn link" data-show='[["#ds-sd", 12]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The bars now overlap heavily. More scatter means less confidence that the means differ, even though the means are the same.</p></details></li>
+        <li><p>With SD 12, raise n to 100. <button type="button" class="btn link" data-show='[["#ds-sd", 12], ["#ds-n", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>SEM falls to 1.2, so the bars separate again. More measurements give a more precise mean.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Plant heights (cm) after two treatments: A = 12, 14, 15, 11, 13; B = 17, 19, 16, 18, 20. Find the mean and SD of A and decide whether the groups likely differ.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Mean of A.</b> (12+14+15+11+13)/5 = 13.</li>
+          <li hidden><b>Deviations squared.</b> (−1)², 1², 2², (−2)², 0² = 1, 1, 4, 4, 0, sum 10.</li>
+          <li hidden><b>SD.</b> √(10/(5−1)) = √2.5 ≈ 1.58. SEM = 1.58/√5 ≈ 0.71.</li>
+          <li hidden><b>Compare.</b> B has mean 18 and the same SD, so 2 × SEM is about 1.4 for each group. 13 + 1.4 is far below 18 − 1.4, so the bars do not overlap: the treatments likely differ.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Using n instead of n − 1 for a sample SD.</li>
+        <li>Confusing SD with SEM. SD describes the data; SEM describes the mean.</li>
+        <li>Saying overlapping error bars prove no difference. They mean the data do not show one.</li>
+        <li>Comparing bar heights without looking at the error bars or the sample size.</li>
+        <li>Forgetting to label the axes with units, or to say what the error bars represent.</li>
+      </ul></div>
+      <div class="prose"><h2>What a graph must show</h2>
+        <p><b>Independent variable on the x-axis, dependent on the y-axis</b>, both labeled with units, with an even scale. Use a line graph for continuous x (temperature, time), a bar graph for categories. For each point or bar, plot a mean and error bars when there are replicates. In an FRQ, describe the trend with numbers ("rate doubled from 20 to 30 °C"), then explain the biology.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Non-overlapping 2 × SEM bars suggest the means differ, though design and controls still decide about cause.">
+        <p class="q">Check yourself: Two group means have error bars of ±2 SEM that do not overlap. The best conclusion is</p>
+        <div class="opts"><button type="button">the difference is likely real</button><button type="button">the difference is certainly caused by the treatment</button><button type="button">the sample size must be too small</button><button type="button">the SDs must be equal</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-chisq" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag na">Math</span></div>
+        <h1>Chi-square test</h1>
+        <p class="lede">Flip a coin 100 times and you will not get exactly 50 heads. The chi-square test asks whether a miss is small enough to be luck.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Genetics predicts ratios, such as 3:1. Real counts never match exactly, so we need a rule for when the miss is too big. The <b>chi-square</b> statistic adds up how far each observed count is from the expected count, scaled by the expected count: χ² = Σ (o − e)² / e.</p>
+        <p>Compare χ² with a <b>critical value</b> that depends on the <b>degrees of freedom</b> (df = number of categories − 1) and a significance level, usually p = 0.05. If χ² is <b>less</b> than the critical value, you <b>fail to reject</b> the null hypothesis: the data are consistent with the expected ratio and chance can explain the difference. If χ² is <b>greater</b>, you reject it: the difference is probably not just chance.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>observed counts that differed from the prediction looked like a failed prediction</dd><dt>So we didn't need</dt><dd>that sampling error alone makes counts deviate</dd><dt>Now</dt><dd>a decision rule for "close enough"</dd><dt>So we need</dt><dd>chi-square, degrees of freedom and the critical value</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>χ² = Σ (o − e)² / e</span><small>sum over every category</small></div><div class="eqn"><span>df = categories − 1</span><small>for a ratio test</small></div><div class="eqn"><span>critical value (p = 0.05): df 1: 3.84, df 2: 5.99, df 3: 7.81</span><small>from the table</small></div><div class="eqn"><span>χ² < critical → fail to reject the null</span><small>difference can be due to chance</small></div></div>
+      <div class="lab" id="cs-lab" data-reset="own">
+        <div class="labbar"><span class="title">Does this cross fit 3 : 1?</span></div>
+        <canvas id="cs-canvas" aria-label="Bars comparing observed and expected counts for a 3 to 1 ratio, with the chi-square result."></canvas>
+        <div class="controls"><div class="ctl"><label for="cs-n"><span>Total offspring</span> <output id="cs-n-out"></output></label><input type="range" id="cs-n" min="40" max="400" step="4" value="200"></div><div class="ctl"><label for="cs-o"><span>Observed dominant phenotype</span> <output id="cs-o-out"></output></label><input type="range" id="cs-o" min="0" max="400" step="1" value="162"></div></div>
+        <div class="readout"><div><span>χ²</span><strong class="x" id="cs-chi">—</strong></div><div><span>degrees of freedom</span><strong class="v" id="cs-df">—</strong></div><div><span>critical value, p = 0.05</span><strong class="a" id="cs-crit">—</strong></div><div><span>decision</span><strong class="" id="cs-dec">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Total 200, observed dominant 162 (expected 150). Is that consistent with 3 : 1? <button type="button" class="btn link" data-show='[["#cs-n", 200], ["#cs-o", 162]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>χ² = 12²/150 + 12²/50 = 0.96 + 2.88 = 3.84, right at the critical value of 3.84: that is the boundary, so it just reaches significance. Try 160 to see a clear fail-to-reject.</p></details></li>
+        <li><p>Keep the ratio but double the total to 400 with 324 dominant. <button type="button" class="btn link" data-show='[["#cs-n", 400], ["#cs-o", 324]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The same percentage miss now gives χ² = 7.68, well past 3.84. Bigger samples make the same proportional deviation more convincing.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A cross is expected to give 9 : 3 : 3 : 1. Among 160 offspring you count 94, 28, 26, 12. Test the fit.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Expected counts.</b> 160 × 9/16 = 90, 160 × 3/16 = 30, 30, and 160/16 = 10.</li>
+          <li hidden><b>Each term (o − e)²/e.</b> 16/90 = 0.18; 4/30 = 0.13; 16/30 = 0.53; 4/10 = 0.40.</li>
+          <li hidden><b>Add.</b> χ² ≈ 1.24 with df = 4 − 1 = 3.</li>
+          <li hidden><b>Decide.</b> The critical value for df 3 at p = 0.05 is 7.81. Since 1.24 &lt; 7.81 you fail to reject the null: the data fit 9:3:3:1.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Using percentages or proportions instead of counts in the formula.</li>
+        <li>Computing expected from the observed totals incorrectly (expected must come from the ratio and the same total).</li>
+        <li>Using df = number of categories instead of categories − 1.</li>
+        <li>Saying "accept the null". You can only fail to reject it.</li>
+        <li>Thinking a small χ² proves the hypothesis. It means chance is a sufficient explanation.</li>
+      </ul></div>
+      <div class="prose"><h2>Writing the conclusion</h2>
+        <p>State the null hypothesis ("the observed ratio fits 3:1, deviations are due to chance"), give χ² and df, compare with the critical value, and conclude. "χ² = 3.1 &lt; 3.84, so I fail to reject the null; the data are consistent with 3:1."</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="df = number of categories − 1 = 3.">
+        <p class="q">Check yourself: For a cross with 4 phenotype classes, the degrees of freedom are</p>
+        <div class="opts"><button type="button">3</button><button type="button">4</button><button type="button">1</button><button type="button">2</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-transport" hidden>
     <div class="wrap">
       <div class="head">
@@ -1351,8 +1451,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": [], "soon": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": [], "soon": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"], "soon": ["organelles", "sav", "membrane", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": [], "soon": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq"], "soon": ["expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": [], "soon": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"], "soon": ["organelles", "sav", "membrane", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": [], "soon": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -1551,12 +1651,76 @@ function stageLab(p,cvId,stages,draw,o={}){const cv=$('#'+cvId);if(!cv)return nu
   go(0);return {go,get i(){return i;},render:sim.render};}
 /* a small text-line label drawn with a rounded tag (for cell diagrams) */
 function tagText(ctx,t,x,y,col,al='center'){ctx.font=MONO;const w=ctx.measureText(t).width+10;const x0=al==='center'?x-w/2:al==='left'?x:x-w;ctx.fillStyle=alpha(T.surface,.88);ctx.fillRect(x0,y-9,w,18);label(ctx,t,x0+5,y,col||T.ink,'left','middle',MONO);}
+const randInt=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 
 /* ===== data/frqs.js ===== */
 /* FRQs are added with the modules */
 
 /* ===== data/methods.js ===== */
 /* method clues are added with the modules */
+
+/* ===== modules/datastats.js ===== */
+/* ---------------- Data, graphs & statistics ---------------- */
+(function datastats(){
+  const cv=$('#ds-canvas');if(!cv)return;
+  let kind='sd',ma=20,mb=26,sd=6,n=10;
+  const sem=()=>sd/Math.sqrt(n),bar=()=>kind==='sd'?sd:kind==='sem'?sem():2*sem();
+  const sim=sim2d(cv,{h:w=>clamp(w*.55,260,360),draw(ctx,w,h){const L=50,R=w-16,T0=18,B=h-34,y=v=>B-(v/50)*(B-T0);
+    ctx.strokeStyle=T.muted;ctx.lineWidth=1;ctx.fillStyle=T.muted;ctx.font=MONO;
+    for(let v=0;v<=50;v+=10){ctx.globalAlpha=.25;ctx.beginPath();ctx.moveTo(L,y(v));ctx.lineTo(R,y(v));ctx.stroke();ctx.globalAlpha=1;label(ctx,String(v),L-6,y(v),T.muted,'right','middle',MONO);}
+    ctx.strokeStyle=T.ink;ctx.beginPath();ctx.moveTo(L,T0);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();
+    const bw=(R-L)/5;[[ma,'A',T.cx,L+bw*1],[mb,'B',T.ca,L+bw*3]].forEach(([m,nm,col,x0])=>{ctx.fillStyle=alpha(col,.55);ctx.fillRect(x0,y(m),bw,B-y(m));ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(x0,y(m),bw,B-y(m));
+      const e=bar(),cx=x0+bw/2;ctx.strokeStyle=T.ink;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx,y(m+e));ctx.lineTo(cx,y(Math.max(0,m-e)));ctx.moveTo(cx-9,y(m+e));ctx.lineTo(cx+9,y(m+e));ctx.moveTo(cx-9,y(Math.max(0,m-e)));ctx.lineTo(cx+9,y(Math.max(0,m-e)));ctx.stroke();
+      label(ctx,'group '+nm,cx,B+16,T.ink,'center','middle',MONO);});
+    label(ctx,'bars: mean · error bar: '+(kind==='sd'?'± 1 SD':kind==='sem'?'± 1 SEM':'± 2 SEM'),w/2,10,T.muted,'center','middle',MONO);}});
+  function upd(){const e2=2*sem(),gap=Math.abs(mb-ma)-2*e2;setText('ds-sem',fmt(sem(),2));setText('ds-diff',fmt(mb-ma,0));setText('ds-ov',gap>0?'do not overlap: difference likely real':'overlap: no clear difference');sim.render();}
+  segBind('ds-kind','k',v=>{kind=v;upd();});
+  bindRange('ds-ma',v=>String(v),v=>{ma=v;upd();});bindRange('ds-mb',v=>String(v),v=>{mb=v;upd();});bindRange('ds-sd',v=>fmt(v,1),v=>{sd=v;upd();});bindRange('ds-n',v=>String(v),v=>{n=v;upd();});
+  $('#ds-lab').addEventListener('labreset',()=>{[['ds-ma',20],['ds-mb',26],['ds-sd',6],['ds-n',10]].forEach(([id,v])=>{$('#'+id).value=v;});ma=20;mb=26;sd=6;n=10;setText('ds-ma-out','20');setText('ds-mb-out','26');setText('ds-sd-out','6.0');setText('ds-n-out','10');kind='sd';$$('#ds-kind button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===0)));upd();});
+  upd();drawers.datastats=()=>sim.render();
+  KEYS['ds-canvas']=['Switch the error bar type and watch how the bars change. Only 2 × SEM bars are used to judge overlap.',[['cx','group A'],['ca','group B']]];
+  TIPS['ds-n']=()=>'SEM = SD/√n: more measurements, smaller SEM, tighter error bars.';
+  GLOSS['standard deviation']='A measure of how spread out individual measurements are around the mean.';GLOSS['sem']='Standard error of the mean, SD/√n: how precisely the sample mean estimates the true mean.';
+  TT.datastats='Ask students to predict overlap before moving each slider, then explain which of SD or n is responsible.';
+})();
+(function(){
+  const sdOf=a=>{const m=a.reduce((s,x)=>s+x,0)/a.length;return Math.sqrt(a.reduce((s,x)=>s+(x-m)*(x-m),0)/(a.length-1));};
+  PROBS.push({id:'ds-mean',topic:'datastats',title:'Mean and sample SD',gen(){const m=randInt(8,20),d=[randInt(-3,3),randInt(-3,3),randInt(-3,3),randInt(-3,3)];d.push(-d.reduce((s,x)=>s+x,0));if(d.every(x=>x===0))d[0]=2,d[4]=-2;const x=d.map(v=>m+v),sd=sdOf(x);
+    return {q:`Five measurements (mm): ${x.join(', ')}. Find the sample standard deviation (divide by n − 1).`,ans:sd,unit:'mm',abs:.02,chk:sdOf(x),hint:'Find the mean, square the deviations, add, divide by 4, take the square root.',sol:`Mean = ${m}. Σ(x − mean)² = ${fmt(d.reduce((s,v)=>s+v*v,0),0)}. SD = √(${fmt(d.reduce((s,v)=>s+v*v,0),0)}/4) = <b>${fmt(sd,2)} mm</b>.`};}});
+  PROBS.push({id:'ds-sem',topic:'datastats',title:'Standard error of the mean',gen(){const sd=pick([2,3,4,5,6,8]),n=pick([4,9,16,25,36,64]),ans=sd/Math.sqrt(n);
+    return {q:`A sample of n = ${n} has SD = ${sd}. What is the standard error of the mean?`,ans,unit:'',abs:.011,chk:sd/Math.sqrt(n),hint:'SEM = SD/√n.',sol:`SEM = ${sd}/√${n} = ${sd}/${Math.sqrt(n)} = <b>${fmt(ans,2)}</b>.`};}});
+  PROBS.push({id:'ds-overlap',topic:'datastats',title:'Do the error bars overlap?',gen(){const sem=pick([1,1.5,2,2.5]),gap=pick([-3,-1,1,3])*sem/1.5,ma=randInt(10,20),mb=ma+4*sem+gap;const sep=Math.abs(mb-ma)>4*sem,ans=sep?'No: the means likely differ':'Yes: no clear difference',m=mcq(ans,['No: the means likely differ','Yes: no clear difference','Cannot tell without the SD','Only if n is the same']);
+    return {q:`Group A has mean ${ma} and group B has mean ${fmt(mb,1)}. Each has SEM = ${sem}. Do the 2 × SEM error bars overlap?`,choices:m.choices,ans:m.ans,hint:'Each bar extends 2 × SEM from its mean. They overlap if the means are closer than 4 × SEM.',sol:`The means differ by ${fmt(Math.abs(mb-ma),1)}; 4 × SEM = ${4*sem}. ${sep?'The difference is larger, so the bars do not overlap.':'The difference is not larger, so the bars overlap.'}`};}});
+})();
+
+/* ===== modules/chisq.js ===== */
+/* ---------------- Chi-square test ---------------- */
+(function chisq(){
+  const cv=$('#cs-canvas');if(!cv)return;
+  let n=200,o=162;
+  const calc=()=>{const e1=n*.75,e2=n*.25,o2=n-o;return {e1,e2,o2,chi:(o-e1)*(o-e1)/e1+(o2-e2)*(o2-e2)/e2};};
+  const sim=sim2d(cv,{h:w=>clamp(w*.5,240,330),draw(ctx,w,h){const c=calc(),L=44,R=w-16,T0=20,B=h-36,mx=Math.max(n,10),y=v=>B-v/mx*(B-T0),bw=(R-L)/6;
+    ctx.strokeStyle=T.ink;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(L,T0);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();
+    [[c.e1,c.e2,'expected'],[o,c.o2,'observed']].forEach(([a,b,nm],i)=>{const x0=L+bw*(1+i*2.2);[[a,T.cx],[b,T.ca]].forEach(([v,col],j)=>{ctx.fillStyle=alpha(col,i?.85:.35);ctx.fillRect(x0+j*bw*.95,y(v),bw*.9,B-y(v));ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(x0+j*bw*.95,y(v),bw*.9,B-y(v));label(ctx,fmt(v,v%1?1:0),x0+j*bw*.95+bw*.45,y(v)-8,T.ink,'center','middle',MONO);});label(ctx,nm,x0+bw*.93,B+16,T.ink,'center','middle',MONO);});
+    label(ctx,'blue: dominant · pink: recessive',w/2,10,T.muted,'center','middle',MONO);}});
+  function upd(){const sl=$('#cs-o');sl.max=n;if(o>n){o=n;sl.value=n;setText('cs-o-out',String(o));}const c=calc();setText('cs-chi',fmt(c.chi,2));setText('cs-df','1');setText('cs-crit','3.84');setText('cs-dec',c.chi<3.84?'fail to reject: fits 3 : 1':'reject: not just chance');sim.render();}
+  bindRange('cs-n',v=>String(v),v=>{n=v;upd();});bindRange('cs-o',v=>String(v),v=>{o=v;upd();});
+  $('#cs-lab').addEventListener('labreset',()=>{n=200;o=162;$('#cs-n').value=200;$('#cs-o').max=400;$('#cs-o').value=162;setText('cs-n-out','200');setText('cs-o-out','162');upd();});
+  upd();drawers.chisq=()=>sim.render();
+  KEYS['cs-canvas']=['Move the observed count and watch χ². Compare it with 3.84 for 1 degree of freedom.',[['cx','dominant'],['ca','recessive']]];
+  TIPS['cs-o']=()=>'Expected is 75% of the total. The farther observed is from that, the bigger χ².';
+  GLOSS['chi-square']='A statistic, Σ(o − e)²/e, that measures how far observed counts are from expected counts.';GLOSS['null hypothesis']='The statement that any difference between observed and expected is due only to chance.';
+  TT.chisq='Have students predict whether a given deviation passes before sliding, then explain why a larger total changes the verdict.';
+})();
+(function(){
+  const chi=(o,e)=>o.reduce((s,x,i)=>s+(x-e[i])*(x-e[i])/e[i],0);
+  PROBS.push({id:'cs-two',topic:'chisq',title:'Chi-square for a 3 : 1 cross',gen(){const n=pick([80,120,160,200,240]),e1=n*.75,o1=Math.round(e1+pick([-1,1])*randInt(2,Math.round(n*.07))),o2=n-o1,ans=chi([o1,o2],[e1,n*.25]);
+    return {q:`A cross is expected to give a 3 : 1 ratio. Of ${n} offspring, ${o1} show the dominant phenotype and ${o2} the recessive. Calculate χ².`,ans,unit:'',abs:.02,chk:(o1-e1)**2/e1+(o2-n*.25)**2/(n*.25),hint:'Expected = 3/4 and 1/4 of the total. Then Σ(o − e)²/e.',sol:`Expected ${fmt(e1,1)} and ${fmt(n*.25,1)}. χ² = (${o1}−${fmt(e1,1)})²/${fmt(e1,1)} + (${o2}−${fmt(n*.25,1)})²/${fmt(n*.25,1)} = <b>${fmt(ans,2)}</b>.`};}});
+  PROBS.push({id:'cs-df',topic:'chisq',title:'Degrees of freedom',gen(){const k=pick([2,3,4,6]),m=mcq(String(k-1),[String(k-1),String(k),String(k+1),String(k-2<1?k+2:k-2)]);
+    return {q:`A chi-square test compares observed counts to an expected ratio with ${k} phenotype classes. How many degrees of freedom?`,choices:m.choices,ans:m.ans,hint:'Categories minus one.',sol:`df = ${k} − 1 = <b>${k-1}</b>.`};}});
+  PROBS.push({id:'cs-decide',topic:'chisq',title:'Reject or fail to reject?',gen(){const df=pick([1,2,3]),crit={1:3.84,2:5.99,3:7.81}[df],x=+(crit+pick([-1,1])*(.4+Math.random()*2)).toFixed(2),rej=x>crit,ans=rej?'reject the null hypothesis':'fail to reject the null hypothesis',m=mcq(ans,['reject the null hypothesis','fail to reject the null hypothesis','accept the null hypothesis','prove the alternative hypothesis']);
+    return {q:`A test gives χ² = ${x} with ${df} degree${df>1?'s':''} of freedom. The critical value at p = 0.05 is ${crit}. The correct conclusion is to`,choices:m.choices,ans:m.ans,hint:'Compare χ² with the critical value. Bigger means reject.',sol:`${x} is ${rej?'greater':'less'} than ${crit}, so you <b>${ans}</b>.`};}});
+})();
 
 /* ===== modules/transport.js ===== */
 /* ---------------- Diffusion & osmosis ---------------- */

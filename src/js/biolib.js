@@ -169,3 +169,4 @@ function stageLab(p,cvId,stages,draw,o={}){const cv=$('#'+cvId);if(!cv)return nu
   go(0);return {go,get i(){return i;},render:sim.render};}
 /* a small text-line label drawn with a rounded tag (for cell diagrams) */
 function tagText(ctx,t,x,y,col,al='center'){ctx.font=MONO;const w=ctx.measureText(t).width+10;const x0=al==='center'?x-w/2:al==='left'?x:x-w;ctx.fillStyle=alpha(T.surface,.88);ctx.fillRect(x0,y-9,w,18);label(ctx,t,x0+5,y,col||T.ink,'left','middle',MONO);}
+const randInt=(a,b)=>a+Math.floor(Math.random()*(b-a+1));

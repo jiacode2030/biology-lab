@@ -1,0 +1,50 @@
+  <section class="view" id="v-datastats" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag na">Math</span></div>
+        <h1>Data, graphs & statistics</h1>
+        <p class="lede">Two bars of different heights do not prove two groups differ. How spread out the data are, and how many measurements there are, decide that.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>mean</b> summarizes a sample, but samples vary. The <b>standard deviation</b> (SD) says how far individual measurements typically fall from the mean. The <b>standard error of the mean</b> (SEM = SD/√n) says how precisely the mean itself is known, and it shrinks as you take more measurements.</p>
+        <p>Error bars are a way to see this. If you plot the mean ± 2 SEM (about a 95% confidence interval) for two groups and the bars <b>do not overlap</b>, the difference is probably real. If they overlap a lot, the data do not support a difference. Always say which kind of error bar a graph uses.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a bigger bar meant a bigger effect</dd><dt>So we didn't need</dt><dd>how much the data scatter, or how many trials were run</dd><dt>Now</dt><dd>a mean is only an estimate and carries uncertainty</dd><dt>So we need</dt><dd>SD, SEM and error bars to decide whether a difference is meaningful</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>mean = Σx / n</span><small>average of the sample</small></div><div class="eqn"><span>SD = √[ Σ(x − mean)² / (n − 1) ]</span><small>spread of individual values</small></div><div class="eqn"><span>SEM = SD / √n</span><small>precision of the mean</small></div><div class="eqn"><span>95% CI ≈ mean ± 2 SEM</span><small>used for error bars</small></div></div>
+      <div class="lab" id="ds-lab" data-reset="own">
+        <div class="labbar"><span class="title">Two groups with error bars</span></div>
+        <div class="ctl"><span class="lbl">Error bars show</span><div class="seg" id="ds-kind" role="group" aria-label="Error bars show"><button type="button" data-k="sd" aria-pressed="true">SD</button><button type="button" data-k="sem" aria-pressed="false">SEM</button><button type="button" data-k="ci" aria-pressed="false">2 × SEM (≈95% CI)</button></div></div>
+        <canvas id="ds-canvas" aria-label="Bar graph of two group means with error bars. Controls change the means, spread and sample size."></canvas>
+        <div class="controls"><div class="ctl"><label for="ds-ma"><span>Mean of group A</span> <output id="ds-ma-out"></output></label><input type="range" id="ds-ma" min="10" max="40" step="1" value="20"></div><div class="ctl"><label for="ds-mb"><span>Mean of group B</span> <output id="ds-mb-out"></output></label><input type="range" id="ds-mb" min="10" max="40" step="1" value="26"></div><div class="ctl"><label for="ds-sd"><span>SD (both groups)</span> <output id="ds-sd-out"></output></label><input type="range" id="ds-sd" min="1" max="12" step="0.5" value="6"></div><div class="ctl"><label for="ds-n"><span>Sample size n (both)</span> <output id="ds-n-out"></output></label><input type="range" id="ds-n" min="3" max="100" step="1" value="10"></div></div>
+        <div class="readout"><div><span>SEM</span><strong class="x" id="ds-sem">—</strong></div><div><span>difference in means</span><strong class="v" id="ds-diff">—</strong></div><div><span>2 × SEM bars</span><strong class="" id="ds-ov">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Leave the means at 20 and 26 with SD 6 and n 10. Do the 2 × SEM bars overlap? <button type="button" class="btn link" data-show='[["click", "#ds-kind [data-k=ci]"], ["#ds-sd", 6], ["#ds-n", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>They are separated: SEM = 6/√10 ≈ 1.9, so each bar is ±3.8, and 20 + 3.8 < 26 − 3.8. The difference is likely real.</p></details></li>
+        <li><p>Raise the SD to 12 without changing anything else. <button type="button" class="btn link" data-show='[["#ds-sd", 12]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>The bars now overlap heavily. More scatter means less confidence that the means differ, even though the means are the same.</p></details></li>
+        <li><p>With SD 12, raise n to 100. <button type="button" class="btn link" data-show='[["#ds-sd", 12], ["#ds-n", 100]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>SEM falls to 1.2, so the bars separate again. More measurements give a more precise mean.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Plant heights (cm) after two treatments: A = 12, 14, 15, 11, 13; B = 17, 19, 16, 18, 20. Find the mean and SD of A and decide whether the groups likely differ.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Mean of A.</b> (12+14+15+11+13)/5 = 13.</li>
+          <li hidden><b>Deviations squared.</b> (−1)², 1², 2², (−2)², 0² = 1, 1, 4, 4, 0, sum 10.</li>
+          <li hidden><b>SD.</b> √(10/(5−1)) = √2.5 ≈ 1.58. SEM = 1.58/√5 ≈ 0.71.</li>
+          <li hidden><b>Compare.</b> B has mean 18 and the same SD, so 2 × SEM is about 1.4 for each group. 13 + 1.4 is far below 18 − 1.4, so the bars do not overlap: the treatments likely differ.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Using n instead of n − 1 for a sample SD.</li>
+        <li>Confusing SD with SEM. SD describes the data; SEM describes the mean.</li>
+        <li>Saying overlapping error bars prove no difference. They mean the data do not show one.</li>
+        <li>Comparing bar heights without looking at the error bars or the sample size.</li>
+        <li>Forgetting to label the axes with units, or to say what the error bars represent.</li>
+      </ul></div>
+      <div class="prose"><h2>What a graph must show</h2>
+        <p><b>Independent variable on the x-axis, dependent on the y-axis</b>, both labeled with units, with an even scale. Use a line graph for continuous x (temperature, time), a bar graph for categories. For each point or bar, plot a mean and error bars when there are replicates. In an FRQ, describe the trend with numbers ("rate doubled from 20 to 30 °C"), then explain the biology.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Non-overlapping 2 × SEM bars suggest the means differ, though design and controls still decide about cause.">
+        <p class="q">Check yourself: Two group means have error bars of ±2 SEM that do not overlap. The best conclusion is</p>
+        <div class="opts"><button type="button">the difference is likely real</button><button type="button">the difference is certainly caused by the treatment</button><button type="button">the sample size must be too small</button><button type="button">the SDs must be equal</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
