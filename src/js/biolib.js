@@ -170,3 +170,16 @@ function stageLab(p,cvId,stages,draw,o={}){const cv=$('#'+cvId);if(!cv)return nu
 /* a small text-line label drawn with a rounded tag (for cell diagrams) */
 function tagText(ctx,t,x,y,col,al='center'){ctx.font=MONO;const w=ctx.measureText(t).width+10;const x0=al==='center'?x-w/2:al==='left'?x:x-w;ctx.fillStyle=alpha(T.surface,.88);ctx.fillRect(x0,y-9,w,18);label(ctx,t,x0+5,y,col||T.ink,'left','middle',MONO);}
 const randInt=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+/* ----- small shared helpers for module labs ----- */
+function setCtl(id,v,f){const el=$('#'+id);if(!el)return;el.value=v;const o=$('#'+id+'-out');if(o)o.textContent=f?f(+v):String(v);}
+function segSet(id,i){$$('#'+id+' button').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));}
+/* axes2: draw labelled axes in a canvas; returns pixel maps. o:{x0,x1,y0,y1,xl,yl,xt,yt} (ticks every xt/yt) */
+function axes2(ctx,w,h,o){const L=o.L||48,R=w-14,T0=o.T0||16,B=h-(o.xl?38:26),X=v=>L+(v-o.x0)/(o.x1-o.x0)*(R-L),Y=v=>B-(v-o.y0)/(o.y1-o.y0)*(B-T0);
+  ctx.lineWidth=1;ctx.strokeStyle=T.grid;ctx.fillStyle=T.muted;
+  if(o.yt)for(let v=o.y0;v<=o.y1+1e-9;v+=o.yt){ctx.beginPath();ctx.moveTo(L,Y(v));ctx.lineTo(R,Y(v));ctx.stroke();label(ctx,String(+v.toFixed(3)),L-6,Y(v),T.muted,'right','middle',MONO);}
+  if(o.xt)for(let v=o.x0;v<=o.x1+1e-9;v+=o.xt){label(ctx,String(+v.toFixed(3)),X(v),B+12,T.muted,'center','middle',MONO);}
+  ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,T0);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();
+  if(o.xl)label(ctx,o.xl,(L+R)/2,h-8,T.muted,'center','middle',MONO);if(o.yl){ctx.save();ctx.translate(11,(T0+B)/2);ctx.rotate(-Math.PI/2);label(ctx,o.yl,0,0,T.muted,'center','middle',MONO);ctx.restore();}
+  return {L,R,T0,B,X,Y};}
+function curve2(ctx,A,f,x0,x1,col,lw=2.6){ctx.strokeStyle=col;ctx.lineWidth=lw;ctx.beginPath();for(let i=0;i<=120;i++){const x=x0+(x1-x0)*i/120;i?ctx.lineTo(A.X(x),A.Y(f(x))):ctx.moveTo(A.X(x),A.Y(f(x)));}ctx.stroke();}
+function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillStyle=col;ctx.fill();ctx.strokeStyle=T.surface;ctx.lineWidth=2;ctx.stroke();}

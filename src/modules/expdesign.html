@@ -1,0 +1,49 @@
+  <section class="view" id="v-expdesign" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag na">Math</span></div>
+        <h1>Experimental design</h1>
+        <p class="lede">Every experiment is a fair test of one idea. If two things change at once, you cannot say which one mattered.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The <b>independent variable</b> is the one thing you change on purpose. The <b>dependent variable</b> is what you measure in response. A good test also has a <b>control group</b> that does not get the treatment (so you have something to compare with) and <b>constants</b>: everything else held the same, such as temperature, volume, time and source of organisms.</p>
+        <p>Two more ideas make conclusions trustworthy. <b>Replicates</b> (several samples per group) let you see natural variation and compute error bars. A <b>hypothesis</b> is a testable prediction, often written "If ... then ... because ...". A conclusion must stay inside the data: say what changed, by how much, and what that supports, without claiming more than the design can show.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>an experiment was just doing a thing and seeing what happened</dd><dt>So we didn't need</dt><dd>that control, constants and replicates are what turn a result into evidence</dd><dt>Now</dt><dd>why one trial is not enough</dd><dt>So we need</dt><dd>independent, dependent and control variables and replicates</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>independent variable</span><small>what you change</small></div><div class="eqn"><span>dependent variable</span><small>what you measure</small></div><div class="eqn"><span>control group</span><small>no treatment, baseline for comparison</small></div><div class="eqn"><span>constants</span><small>everything else held equal</small></div></div>
+      <div class="lab" id="ed-lab" data-reset="own">
+        <div class="labbar"><span class="title">Pick an experiment and name its parts</span></div>
+        <div class="ctl"><span class="lbl">Scenario</span><div class="seg" id="ed-sc" role="group" aria-label="Scenario"><button type="button" data-k="pl" aria-pressed="true">fertilizer and plants</button><button type="button" data-k="en" aria-pressed="false">temperature and catalase</button><button type="button" data-k="ye" aria-pressed="false">sugar and yeast</button></div></div>
+        <canvas id="ed-canvas" aria-label="Diagram of a control group and treatment groups with the variables labelled."></canvas>
+        <div class="controls"><div class="ctl"><label for="ed-n"><span>Replicates per group</span> <output id="ed-n-out"></output></label><input type="range" id="ed-n" min="1" max="10" step="1" value="3"></div></div>
+        <div class="readout"><div><span>independent variable</span><strong class="x" id="ed-iv">—</strong></div><div><span>dependent variable</span><strong class="a" id="ed-dv">—</strong></div><div><span>control</span><strong class="v" id="ed-ct">—</strong></div><div><span>held constant</span><strong class="" id="ed-co">—</strong></div><div><span>samples in total</span><strong class="" id="ed-rep">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose the temperature and catalase scenario. Which group is the control? <button type="button" class="btn link" data-show='[["click", "#ed-sc [data-k=en]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Catalase at room temperature (about 22 °C) with the same hydrogen peroxide volume and time. It is the baseline the heated and chilled groups are compared with.</p></details></li>
+        <li><p>Set replicates to 1, then to 6. What changes? <button type="button" class="btn link" data-show='[["#ed-n", 1]]'>Set 1</button></p><details><summary>What you should see</summary><p>Total samples go from 3 to 18 here. With one sample per group you cannot tell whether a difference is real or ordinary variation; with six you can compute a mean and SEM.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Design a test of whether light color affects the rate of oxygen production by an aquatic plant. Name the variables and a control.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Independent variable.</b> Color (wavelength) of light: for example red, green, blue, and white.</li>
+          <li hidden><b>Dependent variable.</b> Rate of oxygen produced, such as bubbles per minute or mL of gas collected per 10 minutes.</li>
+          <li hidden><b>Control group.</b> Plants under white light (or a plant in the dark as a negative control).</li>
+          <li hidden><b>Constants.</b> Plant species and size, light intensity, distance from the lamp, temperature, water volume and bicarbonate concentration, and time. <b>Replicates.</b> Several plants per color.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Changing more than one variable at a time.</li>
+        <li>Calling the thing you measure the independent variable.</li>
+        <li>Having no control group, so there is nothing to compare with.</li>
+        <li>Using one trial and calling the result reliable.</li>
+        <li>Writing a conclusion that claims more than the data show (for example proving a mechanism the experiment did not test).</li>
+      </ul></div>
+      <div class="prose"><h2>Writing FRQ answers about design</h2>
+        <p>Use the words the question uses. "Identify" means name it. "Describe" means state what you would do or see. A strong design answer names the independent variable, the dependent variable you would measure and how, a control, at least two constants, and replicates. A prediction needs a reason: "If more fertilizer is added, growth will increase up to a point, because nitrogen limits protein synthesis."</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The control matches everything except the drug, so any difference can be attributed to it.">
+        <p class="q">Check yourself: Which is the best control for a test of whether a drug lowers blood pressure in mice?</p>
+        <div class="opts"><button type="button">a group of mice given an inactive substance in the same way</button><button type="button">a group given double the drug</button><button type="button">mice of a different species</button><button type="button">no mice, only a graph</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

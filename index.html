@@ -1139,6 +1139,111 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-expdesign" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag na">Math</span></div>
+        <h1>Experimental design</h1>
+        <p class="lede">Every experiment is a fair test of one idea. If two things change at once, you cannot say which one mattered.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>The <b>independent variable</b> is the one thing you change on purpose. The <b>dependent variable</b> is what you measure in response. A good test also has a <b>control group</b> that does not get the treatment (so you have something to compare with) and <b>constants</b>: everything else held the same, such as temperature, volume, time and source of organisms.</p>
+        <p>Two more ideas make conclusions trustworthy. <b>Replicates</b> (several samples per group) let you see natural variation and compute error bars. A <b>hypothesis</b> is a testable prediction, often written "If ... then ... because ...". A conclusion must stay inside the data: say what changed, by how much, and what that supports, without claiming more than the design can show.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>an experiment was just doing a thing and seeing what happened</dd><dt>So we didn't need</dt><dd>that control, constants and replicates are what turn a result into evidence</dd><dt>Now</dt><dd>why one trial is not enough</dd><dt>So we need</dt><dd>independent, dependent and control variables and replicates</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>independent variable</span><small>what you change</small></div><div class="eqn"><span>dependent variable</span><small>what you measure</small></div><div class="eqn"><span>control group</span><small>no treatment, baseline for comparison</small></div><div class="eqn"><span>constants</span><small>everything else held equal</small></div></div>
+      <div class="lab" id="ed-lab" data-reset="own">
+        <div class="labbar"><span class="title">Pick an experiment and name its parts</span></div>
+        <div class="ctl"><span class="lbl">Scenario</span><div class="seg" id="ed-sc" role="group" aria-label="Scenario"><button type="button" data-k="pl" aria-pressed="true">fertilizer and plants</button><button type="button" data-k="en" aria-pressed="false">temperature and catalase</button><button type="button" data-k="ye" aria-pressed="false">sugar and yeast</button></div></div>
+        <canvas id="ed-canvas" aria-label="Diagram of a control group and treatment groups with the variables labelled."></canvas>
+        <div class="controls"><div class="ctl"><label for="ed-n"><span>Replicates per group</span> <output id="ed-n-out"></output></label><input type="range" id="ed-n" min="1" max="10" step="1" value="3"></div></div>
+        <div class="readout"><div><span>independent variable</span><strong class="x" id="ed-iv">—</strong></div><div><span>dependent variable</span><strong class="a" id="ed-dv">—</strong></div><div><span>control</span><strong class="v" id="ed-ct">—</strong></div><div><span>held constant</span><strong class="" id="ed-co">—</strong></div><div><span>samples in total</span><strong class="" id="ed-rep">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose the temperature and catalase scenario. Which group is the control? <button type="button" class="btn link" data-show='[["click", "#ed-sc [data-k=en]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Catalase at room temperature (about 22 °C) with the same hydrogen peroxide volume and time. It is the baseline the heated and chilled groups are compared with.</p></details></li>
+        <li><p>Set replicates to 1, then to 6. What changes? <button type="button" class="btn link" data-show='[["#ed-n", 1]]'>Set 1</button></p><details><summary>What you should see</summary><p>Total samples go from 3 to 18 here. With one sample per group you cannot tell whether a difference is real or ordinary variation; with six you can compute a mean and SEM.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Design a test of whether light color affects the rate of oxygen production by an aquatic plant. Name the variables and a control.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Independent variable.</b> Color (wavelength) of light: for example red, green, blue, and white.</li>
+          <li hidden><b>Dependent variable.</b> Rate of oxygen produced, such as bubbles per minute or mL of gas collected per 10 minutes.</li>
+          <li hidden><b>Control group.</b> Plants under white light (or a plant in the dark as a negative control).</li>
+          <li hidden><b>Constants.</b> Plant species and size, light intensity, distance from the lamp, temperature, water volume and bicarbonate concentration, and time. <b>Replicates.</b> Several plants per color.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Changing more than one variable at a time.</li>
+        <li>Calling the thing you measure the independent variable.</li>
+        <li>Having no control group, so there is nothing to compare with.</li>
+        <li>Using one trial and calling the result reliable.</li>
+        <li>Writing a conclusion that claims more than the data show (for example proving a mechanism the experiment did not test).</li>
+      </ul></div>
+      <div class="prose"><h2>Writing FRQ answers about design</h2>
+        <p>Use the words the question uses. "Identify" means name it. "Describe" means state what you would do or see. A strong design answer names the independent variable, the dependent variable you would measure and how, a control, at least two constants, and replicates. A prediction needs a reason: "If more fertilizer is added, growth will increase up to a point, because nitrogen limits protein synthesis."</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The control matches everything except the drug, so any difference can be attributed to it.">
+        <p class="q">Check yourself: Which is the best control for a test of whether a drug lowers blood pressure in mice?</p>
+        <div class="opts"><button type="button">a group of mice given an inactive substance in the same way</button><button type="button">a group given double the drug</button><button type="button">mice of a different species</button><button type="button">no mice, only a graph</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-ratesq10" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag na">Math</span></div>
+        <h1>Rates, Q10 & dilutions</h1>
+        <p class="lede">Biology is full of "how fast": how fast a reaction runs, how fast a population grows, how diluted a solution is. A few formulas cover most of it.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>rate</b> is a change per unit time: rate = Δquantity / Δtime. On a graph of quantity against time, the rate is the slope. To compare conditions, measure the same change over the same time.</p>
+        <p>The <b>temperature coefficient Q<sub>10</sub></b> says how much a rate changes for a 10 °C rise: Q<sub>10</sub> = (R<sub>2</sub>/R<sub>1</sub>)<sup>10/(T<sub>2</sub> − T<sub>1</sub>)</sup>. Many biological rates have Q<sub>10</sub> near 2. This only holds below the temperature that denatures the enzymes. A <b>serial dilution</b> makes a solution weaker in equal steps: each step multiplies the dilution by the same factor.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a rate was just "how much happened"</dd><dt>So we didn't need</dt><dd>the time over which the change was measured</dd><dt>Now</dt><dd>rates depend strongly on temperature</dd><dt>So we need</dt><dd>rate, Q10 and dilution calculations</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>rate = Δquantity / Δtime</span><small>slope of the graph</small></div><div class="eqn"><span>Q<sub>10</sub> = (R<sub>2</sub>/R<sub>1</sub>)<sup>10/(T<sub>2</sub>−T<sub>1</sub>)</sup></span><small>temperature coefficient</small></div><div class="eqn"><span>C<sub>1</sub>V<sub>1</sub> = C<sub>2</sub>V<sub>2</sub></span><small>dilution of a stock</small></div><div class="eqn"><span>after k steps: C = C<sub>0</sub> / factor<sup>k</sup></span><small>serial dilution</small></div></div>
+      <div class="lab" id="rq-lab" data-reset="own">
+        <div class="labbar"><span class="title">Rate against temperature</span></div>
+        <canvas id="rq-canvas" aria-label="Graph of reaction rate against temperature for the chosen Q10."></canvas>
+        <div class="controls"><div class="ctl"><label for="rq-t"><span>Temperature</span> <output id="rq-t-out"></output></label><input type="range" id="rq-t" min="5" max="40" step="1" value="25"></div><div class="ctl"><label for="rq-q"><span>Q10</span> <output id="rq-q-out"></output></label><input type="range" id="rq-q" min="1" max="4" step="0.1" value="2"></div></div>
+        <div class="readout"><div><span>rate (relative to 20 °C = 10)</span><strong class="x" id="rq-r">—</strong></div><div><span>rate 10 °C colder</span><strong class="a" id="rq-r10">—</strong></div><div><span>ratio of the two</span><strong class="v" id="rq-rat">—</strong></div></div>
+      </div>
+      <div class="lab" id="rq-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Serial dilution</span></div>
+        <div class="ctl"><span class="lbl">Dilution factor per step</span><div class="seg" id="rq-f" role="group" aria-label="Dilution factor per step"><button type="button" data-k="2" aria-pressed="true">1 : 2</button><button type="button" data-k="5" aria-pressed="false">1 : 5</button><button type="button" data-k="10" aria-pressed="false">1 : 10</button></div></div>
+        <canvas id="rq-canvas2" aria-label="A row of test tubes, each a tenfold or other fixed dilution of the one before."></canvas>
+        <div class="controls"><div class="ctl"><label for="rq-c0"><span>Starting concentration (mg/mL)</span> <output id="rq-c0-out"></output></label><input type="range" id="rq-c0" min="1" max="100" step="1" value="80"></div></div>
+        <div class="readout"><div><span>tube 3</span><strong class="x" id="rq-c3">—</strong></div><div><span>tube 5</span><strong class="a" id="rq-c5">—</strong></div><div><span>total dilution at tube 5</span><strong class="v" id="rq-tot">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set Q10 to 2 and the temperature to 30 °C. By how much did the rate change from 20 °C? <button type="button" class="btn link" data-show='[["#rq-t", 30], ["#rq-q", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It doubled (10 → 20). That is what Q10 = 2 means for a 10 °C rise.</p></details></li>
+        <li><p>Make a 1 : 10 dilution series starting at 80 mg/mL. What is tube 3? <button type="button" class="btn link" data-show='[["click", "#rq-f [data-k=\"10\"]"], ["#rq-c0", 80]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>80 / 10³ = 0.08 mg/mL. Every tube is a tenth of the one before.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A reaction runs at 6 µmol/min at 20 °C and 15 µmol/min at 35 °C. Find Q10 and estimate the rate at 25 °C.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Setup.</b> R1 = 6 at 20 °C, R2 = 15 at 35 °C, so T2 − T1 = 15.</li>
+          <li hidden><b>Q10.</b> (15/6)<sup>10/15</sup> = 2.5<sup>0.667</sup> ≈ 1.84.</li>
+          <li hidden><b>Rate at 25 °C.</b> That is 5 °C above 20, so multiply by 1.84<sup>5/10</sup> = 1.36: 6 × 1.36 ≈ 8.1 µmol/min.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Using the temperature difference in the exponent as 1 instead of 10/ΔT.</li>
+        <li>Forgetting to square-root or cube-root fractional exponents when ΔT is not 10.</li>
+        <li>Applying Q10 above the temperature where enzymes denature.</li>
+        <li>In serial dilutions, using the factor once instead of once per tube.</li>
+        <li>Comparing rates measured over different time intervals.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading rates from graphs</h2>
+        <p>For a straight section of a quantity-time graph, rate is rise over run with units. If the graph curves, take the slope of the tangent at the point asked (an initial rate is the slope near t = 0). Always keep the units, for example mL O<sub>2</sub> per minute.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Q10 is the factor by which the rate changes per 10 °C.">
+        <p class="q">Check yourself: A rate doubles when temperature rises by 10 °C. Q10 is</p>
+        <div class="opts"><button type="button">2</button><button type="button">10</button><button type="button">1</button><button type="button">20</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-transport" hidden>
     <div class="wrap">
       <div class="head">
@@ -1451,8 +1556,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq"], "soon": ["expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": [], "soon": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"], "soon": ["organelles", "sav", "membrane", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": [], "soon": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": [], "soon": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["transport"], "soon": ["organelles", "sav", "membrane", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": [], "soon": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": [], "soon": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": [], "soon": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": [], "soon": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": [], "soon": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -1652,6 +1757,19 @@ function stageLab(p,cvId,stages,draw,o={}){const cv=$('#'+cvId);if(!cv)return nu
 /* a small text-line label drawn with a rounded tag (for cell diagrams) */
 function tagText(ctx,t,x,y,col,al='center'){ctx.font=MONO;const w=ctx.measureText(t).width+10;const x0=al==='center'?x-w/2:al==='left'?x:x-w;ctx.fillStyle=alpha(T.surface,.88);ctx.fillRect(x0,y-9,w,18);label(ctx,t,x0+5,y,col||T.ink,'left','middle',MONO);}
 const randInt=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+/* ----- small shared helpers for module labs ----- */
+function setCtl(id,v,f){const el=$('#'+id);if(!el)return;el.value=v;const o=$('#'+id+'-out');if(o)o.textContent=f?f(+v):String(v);}
+function segSet(id,i){$$('#'+id+' button').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));}
+/* axes2: draw labelled axes in a canvas; returns pixel maps. o:{x0,x1,y0,y1,xl,yl,xt,yt} (ticks every xt/yt) */
+function axes2(ctx,w,h,o){const L=o.L||48,R=w-14,T0=o.T0||16,B=h-(o.xl?38:26),X=v=>L+(v-o.x0)/(o.x1-o.x0)*(R-L),Y=v=>B-(v-o.y0)/(o.y1-o.y0)*(B-T0);
+  ctx.lineWidth=1;ctx.strokeStyle=T.grid;ctx.fillStyle=T.muted;
+  if(o.yt)for(let v=o.y0;v<=o.y1+1e-9;v+=o.yt){ctx.beginPath();ctx.moveTo(L,Y(v));ctx.lineTo(R,Y(v));ctx.stroke();label(ctx,String(+v.toFixed(3)),L-6,Y(v),T.muted,'right','middle',MONO);}
+  if(o.xt)for(let v=o.x0;v<=o.x1+1e-9;v+=o.xt){label(ctx,String(+v.toFixed(3)),X(v),B+12,T.muted,'center','middle',MONO);}
+  ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,T0);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();
+  if(o.xl)label(ctx,o.xl,(L+R)/2,h-8,T.muted,'center','middle',MONO);if(o.yl){ctx.save();ctx.translate(11,(T0+B)/2);ctx.rotate(-Math.PI/2);label(ctx,o.yl,0,0,T.muted,'center','middle',MONO);ctx.restore();}
+  return {L,R,T0,B,X,Y};}
+function curve2(ctx,A,f,x0,x1,col,lw=2.6){ctx.strokeStyle=col;ctx.lineWidth=lw;ctx.beginPath();for(let i=0;i<=120;i++){const x=x0+(x1-x0)*i/120;i?ctx.lineTo(A.X(x),A.Y(f(x))):ctx.moveTo(A.X(x),A.Y(f(x)));}ctx.stroke();}
+function dot2(ctx,x,y,col,r=5){ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fillStyle=col;ctx.fill();ctx.strokeStyle=T.surface;ctx.lineWidth=2;ctx.stroke();}
 
 /* ===== data/frqs.js ===== */
 /* FRQs are added with the modules */
@@ -1720,6 +1838,78 @@ const randInt=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
     return {q:`A chi-square test compares observed counts to an expected ratio with ${k} phenotype classes. How many degrees of freedom?`,choices:m.choices,ans:m.ans,hint:'Categories minus one.',sol:`df = ${k} − 1 = <b>${k-1}</b>.`};}});
   PROBS.push({id:'cs-decide',topic:'chisq',title:'Reject or fail to reject?',gen(){const df=pick([1,2,3]),crit={1:3.84,2:5.99,3:7.81}[df],x=+(crit+pick([-1,1])*(.4+Math.random()*2)).toFixed(2),rej=x>crit,ans=rej?'reject the null hypothesis':'fail to reject the null hypothesis',m=mcq(ans,['reject the null hypothesis','fail to reject the null hypothesis','accept the null hypothesis','prove the alternative hypothesis']);
     return {q:`A test gives χ² = ${x} with ${df} degree${df>1?'s':''} of freedom. The critical value at p = 0.05 is ${crit}. The correct conclusion is to`,choices:m.choices,ans:m.ans,hint:'Compare χ² with the critical value. Bigger means reject.',sol:`${x} is ${rej?'greater':'less'} than ${crit}, so you <b>${ans}</b>.`};}});
+})();
+
+/* ===== modules/expdesign.js ===== */
+/* ---------------- Experimental design ---------------- */
+(function expdesign(){
+  const cv=$('#ed-canvas');if(!cv)return;
+  const SC={
+    pl:{iv:'amount of fertilizer',dv:'plant height after 3 weeks (cm)',ct:'no fertilizer (water only)',co:'species, light, soil, watering, pot size',groups:['0 g (control)','2 g','4 g','8 g']},
+    en:{iv:'temperature of the reaction',dv:'volume of O₂ gas in 2 minutes (mL)',ct:'catalase at room temperature (22 °C)',co:'volume of H₂O₂, catalase amount, pH, time',groups:['22 °C (control)','4 °C','37 °C','60 °C']},
+    ye:{iv:'type of sugar added',dv:'CO₂ produced in 10 minutes (mL)',ct:'yeast in water with no sugar',co:'yeast mass, water volume, temperature, time',groups:['no sugar (control)','glucose','sucrose','lactose']}};
+  let sc='pl',rep=3;
+  const sim=sim2d(cv,{h:w=>clamp(w*.5,230,310),draw(ctx,w,h){const g=SC[sc].groups,gw=(w-30)/4;ctx.font=MONO;
+    g.forEach((nm,i)=>{const x=15+i*gw+4,col=i?T.ca:T.cx,bw=gw-8,by=44,bh=h-96;ctx.fillStyle=alpha(col,.14);ctx.fillRect(x,by,bw,bh);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(x,by,bw,bh);
+      const cols=Math.min(rep,5);for(let k=0;k<rep;k++){const cx=x+bw/2+((k%cols)-(cols-1)/2)*Math.min(20,bw/6),cy=by+bh/2+(Math.floor(k/cols)-.5)*24;dot2(ctx,cx,cy,col,7);}
+      label(ctx,nm,x+bw/2,by-10,T.ink,'center','middle',MONO);label(ctx,i?'treatment':'control',x+bw/2,by+bh+16,col,'center','middle',MONO);});
+    label(ctx,'independent variable: '+SC[sc].iv,w/2,12,T.muted,'center','middle',MONO);label(ctx,'each dot = one replicate',w/2,h-8,T.muted,'center','middle',MONO);}});
+  function upd(){const s=SC[sc];setText('ed-iv',s.iv);setText('ed-dv',s.dv);setText('ed-ct',s.ct);setText('ed-co',s.co);setText('ed-rep',String(rep*4));sim.render();}
+  segBind('ed-sc','k',v=>{sc=v;upd();});bindRange('ed-n',v=>String(v),v=>{rep=v;upd();});
+  $('#ed-lab').addEventListener('labreset',()=>{sc='pl';rep=3;setCtl('ed-n',3);segSet('ed-sc',0);upd();});
+  upd();drawers.expdesign=()=>sim.render();
+  KEYS['ed-canvas']=['The blue box is the control; pink boxes get the treatment. Dots are replicates.',[['cx','control group'],['ca','treatment group']]];
+  TIPS['ed-n']=()=>'Replicates show how much results vary naturally, so you can tell a real difference from noise.';
+  GLOSS['independent variable']='The factor the experimenter changes on purpose.';GLOSS['dependent variable']='The factor measured in response to the change.';GLOSS['control group']='The group that does not receive the treatment, used as a baseline.';
+  TT.expdesign='Have students name the variables for a scenario of their own before checking the labels.';
+})();
+(function(){
+  const vars=[
+   {q:'A student grows bean plants under different amounts of fertilizer and measures height after three weeks. Which is the independent variable?',a:'amount of fertilizer',d:['plant height','number of plants','light level']},
+   {q:'Catalase activity is measured at 4, 22, 37 and 60 °C by collecting the oxygen released in 2 minutes. Which is the dependent variable?',a:'volume of oxygen released',d:['temperature','time (2 minutes)','amount of catalase']},
+   {q:'Yeast is given glucose, sucrose or lactose and the CO₂ made in 10 minutes is measured. Which is held constant?',a:'temperature and yeast mass',d:['type of sugar','CO₂ produced','nothing; all variables change']},
+   {q:'A drug is tested on mice. Which is the best control group?',a:'mice given an inactive substance in the same way',d:['mice given twice the dose','mice that are older','no mice measured']}];
+  PROBS.push({id:'ed-var',topic:'expdesign',title:'Name the variable',gen(){const v=pick(vars),m=mcq(v.a,v.d);return {q:v.q,choices:m.choices,ans:m.ans,hint:'Independent: changed by the experimenter. Dependent: measured. Control: baseline with no treatment.',sol:`The answer is <b>${v.a}</b>.`};}});
+  PROBS.push({id:'ed-samples',topic:'expdesign',title:'Counting samples',gen(){const g=randInt(3,6),r=randInt(3,8),ans=g*r;return {q:`A test uses ${g} groups (including the control) with ${r} replicate samples in each group. How many samples are needed in total?`,ans,unit:'samples',tol:0,chk:g*r,hint:'Groups × replicates.',sol:`${g} × ${r} = <b>${ans}</b> samples.`};}});
+})();
+
+/* ===== modules/ratesq10.js ===== */
+/* ---------------- Rates, Q10 & dilutions ---------------- */
+(function ratesq10(){
+  const cv=$('#rq-canvas');if(!cv)return;
+  let T1=25,Q=2;const R=(t,q)=>10*Math.pow(q,(t-20)/10);
+  const sim=sim2d(cv,{h:w=>clamp(w*.5,240,320),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:5,x1:40,y0:0,y1:40,xt:5,yt:10,xl:'temperature (°C)',yl:'relative rate'});
+    curve2(ctx,A,t=>Math.min(R(t,Q),40),5,40,T.cx);const t0=Math.max(5,T1-10);ctx.setLineDash([4,4]);ctx.strokeStyle=T.muted;ctx.beginPath();ctx.moveTo(A.X(T1),A.B);ctx.lineTo(A.X(T1),A.Y(Math.min(R(T1,Q),40)));ctx.stroke();ctx.setLineDash([]);dot2(ctx,A.X(t0),A.Y(Math.min(R(t0,Q),40)),T.cv);dot2(ctx,A.X(T1),A.Y(Math.min(R(T1,Q),40)),T.ca);
+    label(ctx,'rate = 10 × Q10^((T − 20)/10)  (valid below denaturation)',w-16,18,T.muted,'right','middle',MONO);}});
+  function upd(){const r=R(T1,Q),r0=R(T1-10,Q);setText('rq-r',fmt(r,1));setText('rq-r10',fmt(r0,1));setText('rq-rat',fmt(r/r0,2));sim.render();}
+  bindRange('rq-t',v=>v+' °C',v=>{T1=v;upd();});bindRange('rq-q',v=>fmt(v,1),v=>{Q=v;upd();});
+  $('#rq-lab').addEventListener('labreset',()=>{T1=25;Q=2;setCtl('rq-t',25,v=>v+' °C');setCtl('rq-q',2,v=>fmt(v,1));upd();});
+  upd();
+  let f=2,c0=80;const cv2=$('#rq-canvas2');
+  const sim2=sim2d(cv2,{h:w=>clamp(w*.34,150,210),draw(ctx,w,h){const n=6,gw=(w-20)/n;for(let i=0;i<n;i++){const c=c0/Math.pow(f,i),x=10+i*gw+gw/2,tw=Math.min(36,gw*.6),th=h-62,y0=16;
+      const inten=clamp(Math.log10(c+1)/Math.log10(101),0,1);ctx.fillStyle=alpha(T.ca,.08+.8*inten);ctx.fillRect(x-tw/2,y0+th*.2,tw,th*.8);ctx.strokeStyle=T.ink;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-tw/2,y0);ctx.lineTo(x-tw/2,y0+th);ctx.lineTo(x+tw/2,y0+th);ctx.lineTo(x+tw/2,y0);ctx.stroke();
+      label(ctx,'tube '+(i+1),x,y0+th+14,T.muted,'center','middle',MONO);label(ctx,fmt(c,c<1?3:c<10?2:1),x,y0+th+30,T.ink,'center','middle',MONO);}
+    label(ctx,'mg/mL, each tube is 1/'+f+' of the one before',w/2,10,T.muted,'center','middle',MONO);}});
+  const conc=i=>c0/Math.pow(f,i);
+  function upd2(){setText('rq-c3',fmt(conc(2),3)+' mg/mL');setText('rq-c5',fmt(conc(4),4)+' mg/mL');setText('rq-tot','1 : '+Math.pow(f,4));sim2.render();}
+  segBind('rq-f','k',v=>{f=+v;upd2();});bindRange('rq-c0',v=>String(v),v=>{c0=v;upd2();});
+  $('#rq-lab2').addEventListener('labreset',()=>{f=2;c0=80;segSet('rq-f',0);setCtl('rq-c0',80);upd2();});
+  upd2();drawers.ratesq10=()=>{sim.render();sim2.render();};
+  KEYS['rq-canvas']=['The pink dot is the chosen temperature; the green dot is 10 °C colder. Their ratio is Q10.',[['ca','chosen temperature'],['cv','10 °C colder']]];
+  KEYS['rq-canvas2']=['Tube 1 is the first dilution of the stock. Colour fades by the same factor each tube.',[['ca','solution']]];
+  TIPS['rq-q']=()=>'Q10 is the factor the rate changes by for every 10 °C rise.';
+  GLOSS['q10']='The factor by which a rate increases when temperature rises by 10 °C.';GLOSS['serial dilution']='A series of equal dilution steps, each tube made from the one before.';
+  TT.ratesq10='Ask for the answer to a Q10 question as a ratio before looking at the graph.';
+})();
+(function(){
+  PROBS.push({id:'rq-q10',topic:'ratesq10',title:'Calculate Q10',gen(){const q=pick([1.5,2,2.5,3]),dt=pick([10,10,10,5,20]),t1=pick([15,20,25]),r1=pick([4,6,8,10]),r2=+(r1*Math.pow(q,dt/10)).toFixed(2),ans=Math.pow(r2/r1,10/dt);
+    return {q:`A reaction rate is ${r1} units/min at ${t1} °C and ${r2} units/min at ${t1+dt} °C. Calculate Q10 (two decimals).`,ans,unit:'',abs:.02,chk:ans,hint:'Q10 = (R2/R1)^(10/(T2 − T1)).',sol:`Q10 = (${r2}/${r1})^(10/${dt}) = <b>${fmt(ans,2)}</b>.`};}});
+  PROBS.push({id:'rq-rate',topic:'ratesq10',title:'Rate from a time course',gen(){const t=pick([2,4,5,10]),a=pick([2,4,6]),b=a+pick([12,18,24,30]),ans=(b-a)/t;
+    return {q:`A student measures oxygen collected: ${a} mL at 0 min and ${b} mL after ${t} min. What is the average rate?`,ans,unit:'mL/min',abs:.01,chk:(b-a)/t,hint:'Change in volume divided by time.',sol:`(${b} − ${a}) mL / ${t} min = <b>${fmt(ans,2)} mL/min</b>.`};}});
+  PROBS.push({id:'rq-dil',topic:'ratesq10',title:'Serial dilution',gen(){const c0=pick([50,80,100,200]),f=pick([2,5,10]),k=randInt(2,4),ans=c0/Math.pow(f,k);
+    return {q:`A ${c0} mg/mL stock is serially diluted 1 : ${f} for ${k} steps (each tube made from the previous). What is the concentration in the last tube?`,ans,unit:'mg/mL',abs:ans*.01+.0005,chk:c0/Math.pow(f,k),hint:'Divide by the factor once for every step.',sol:`${c0} / ${f}<sup>${k}</sup> = ${c0} / ${Math.pow(f,k)} = <b>${fmt(ans,4)} mg/mL</b>.`};}});
+  PROBS.push({id:'rq-c1v1',topic:'ratesq10',title:'Making a dilution (C₁V₁ = C₂V₂)',gen(){const c1=pick([10,20,50]),c2=pick([1,2,5]),v2=pick([50,100,200]),ans=c2*v2/c1;
+    return {q:`You have a ${c1} M stock. How many mL of stock are needed to prepare ${v2} mL of ${c2} M solution?`,ans,unit:'mL',abs:.02,chk:c2*v2/c1,hint:'C1V1 = C2V2, solve for V1.',sol:`V1 = (${c2} × ${v2})/${c1} = <b>${fmt(ans,2)} mL</b> of stock plus water to ${v2} mL.`};}});
 })();
 
 /* ===== modules/transport.js ===== */

@@ -1,0 +1,54 @@
+  <section class="view" id="v-ratesq10" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag na">Math</span></div>
+        <h1>Rates, Q10 & dilutions</h1>
+        <p class="lede">Biology is full of "how fast": how fast a reaction runs, how fast a population grows, how diluted a solution is. A few formulas cover most of it.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>A <b>rate</b> is a change per unit time: rate = Δquantity / Δtime. On a graph of quantity against time, the rate is the slope. To compare conditions, measure the same change over the same time.</p>
+        <p>The <b>temperature coefficient Q<sub>10</sub></b> says how much a rate changes for a 10 °C rise: Q<sub>10</sub> = (R<sub>2</sub>/R<sub>1</sub>)<sup>10/(T<sub>2</sub> − T<sub>1</sub>)</sup>. Many biological rates have Q<sub>10</sub> near 2. This only holds below the temperature that denatures the enzymes. A <b>serial dilution</b> makes a solution weaker in equal steps: each step multiplies the dilution by the same factor.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>a rate was just "how much happened"</dd><dt>So we didn't need</dt><dd>the time over which the change was measured</dd><dt>Now</dt><dd>rates depend strongly on temperature</dd><dt>So we need</dt><dd>rate, Q10 and dilution calculations</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>rate = Δquantity / Δtime</span><small>slope of the graph</small></div><div class="eqn"><span>Q<sub>10</sub> = (R<sub>2</sub>/R<sub>1</sub>)<sup>10/(T<sub>2</sub>−T<sub>1</sub>)</sup></span><small>temperature coefficient</small></div><div class="eqn"><span>C<sub>1</sub>V<sub>1</sub> = C<sub>2</sub>V<sub>2</sub></span><small>dilution of a stock</small></div><div class="eqn"><span>after k steps: C = C<sub>0</sub> / factor<sup>k</sup></span><small>serial dilution</small></div></div>
+      <div class="lab" id="rq-lab" data-reset="own">
+        <div class="labbar"><span class="title">Rate against temperature</span></div>
+        <canvas id="rq-canvas" aria-label="Graph of reaction rate against temperature for the chosen Q10."></canvas>
+        <div class="controls"><div class="ctl"><label for="rq-t"><span>Temperature</span> <output id="rq-t-out"></output></label><input type="range" id="rq-t" min="5" max="40" step="1" value="25"></div><div class="ctl"><label for="rq-q"><span>Q10</span> <output id="rq-q-out"></output></label><input type="range" id="rq-q" min="1" max="4" step="0.1" value="2"></div></div>
+        <div class="readout"><div><span>rate (relative to 20 °C = 10)</span><strong class="x" id="rq-r">—</strong></div><div><span>rate 10 °C colder</span><strong class="a" id="rq-r10">—</strong></div><div><span>ratio of the two</span><strong class="v" id="rq-rat">—</strong></div></div>
+      </div>
+      <div class="lab" id="rq-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Serial dilution</span></div>
+        <div class="ctl"><span class="lbl">Dilution factor per step</span><div class="seg" id="rq-f" role="group" aria-label="Dilution factor per step"><button type="button" data-k="2" aria-pressed="true">1 : 2</button><button type="button" data-k="5" aria-pressed="false">1 : 5</button><button type="button" data-k="10" aria-pressed="false">1 : 10</button></div></div>
+        <canvas id="rq-canvas2" aria-label="A row of test tubes, each a tenfold or other fixed dilution of the one before."></canvas>
+        <div class="controls"><div class="ctl"><label for="rq-c0"><span>Starting concentration (mg/mL)</span> <output id="rq-c0-out"></output></label><input type="range" id="rq-c0" min="1" max="100" step="1" value="80"></div></div>
+        <div class="readout"><div><span>tube 3</span><strong class="x" id="rq-c3">—</strong></div><div><span>tube 5</span><strong class="a" id="rq-c5">—</strong></div><div><span>total dilution at tube 5</span><strong class="v" id="rq-tot">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set Q10 to 2 and the temperature to 30 °C. By how much did the rate change from 20 °C? <button type="button" class="btn link" data-show='[["#rq-t", 30], ["#rq-q", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It doubled (10 → 20). That is what Q10 = 2 means for a 10 °C rise.</p></details></li>
+        <li><p>Make a 1 : 10 dilution series starting at 80 mg/mL. What is tube 3? <button type="button" class="btn link" data-show='[["click", "#rq-f [data-k=\"10\"]"], ["#rq-c0", 80]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>80 / 10³ = 0.08 mg/mL. Every tube is a tenth of the one before.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A reaction runs at 6 µmol/min at 20 °C and 15 µmol/min at 35 °C. Find Q10 and estimate the rate at 25 °C.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Setup.</b> R1 = 6 at 20 °C, R2 = 15 at 35 °C, so T2 − T1 = 15.</li>
+          <li hidden><b>Q10.</b> (15/6)<sup>10/15</sup> = 2.5<sup>0.667</sup> ≈ 1.84.</li>
+          <li hidden><b>Rate at 25 °C.</b> That is 5 °C above 20, so multiply by 1.84<sup>5/10</sup> = 1.36: 6 × 1.36 ≈ 8.1 µmol/min.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Using the temperature difference in the exponent as 1 instead of 10/ΔT.</li>
+        <li>Forgetting to square-root or cube-root fractional exponents when ΔT is not 10.</li>
+        <li>Applying Q10 above the temperature where enzymes denature.</li>
+        <li>In serial dilutions, using the factor once instead of once per tube.</li>
+        <li>Comparing rates measured over different time intervals.</li>
+      </ul></div>
+      <div class="prose"><h2>Reading rates from graphs</h2>
+        <p>For a straight section of a quantity-time graph, rate is rise over run with units. If the graph curves, take the slope of the tangent at the point asked (an initial rate is the slope near t = 0). Always keep the units, for example mL O<sub>2</sub> per minute.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Q10 is the factor by which the rate changes per 10 °C.">
+        <p class="q">Check yourself: A rate doubles when temperature rises by 10 °C. Q10 is</p>
+        <div class="opts"><button type="button">2</button><button type="button">10</button><button type="button">1</button><button type="button">20</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
