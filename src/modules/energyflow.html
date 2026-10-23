@@ -1,0 +1,53 @@
+  <section class="view" id="v-energyflow" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Energy flow & trophic levels</h1>
+        <p class="lede">Energy enters ecosystems as sunlight and leaves as heat. Only a small part of it passes from one feeding level to the next.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Producers</b> (autotrophs) capture light and make organic matter; <b>consumers</b> (heterotrophs) eat it; <b>decomposers</b> break down dead material and return nutrients. Each feeding step is a <b>trophic level</b>. At each step most energy is lost, mainly as heat from cell respiration and in material that is not eaten or digested; typically only about <b>10%</b> of the energy in one level is stored in the next. So energy pyramids narrow quickly and food chains rarely have more than four or five levels.</p>
+        <p><b>Gross primary productivity (GPP)</b> is the total energy captured by producers; <b>net primary productivity (NPP) = GPP − R</b> (R is the producers' respiration) is what is available to consumers. Unlike energy, <b>nutrients cycle</b>. A <b>food web</b> shows many interconnected food chains. Biomass and numbers can also be shown in pyramids, though these can be inverted (for example a pyramid of numbers with one tree and many insects).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>energy was transferred completely between organisms</dd><dt>So we didn't need</dt><dd>that most energy is lost as heat at every level</dd><dt>Now</dt><dd>why top predators are rare and food chains short</dd><dt>So we need</dt><dd>trophic levels, the 10% rule, GPP and NPP</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>energy transferred ≈ 10% per level</span><small>rest lost as heat and waste</small></div><div class="eqn"><span>NPP = GPP − R</span><small>available to consumers</small></div><div class="eqn"><span>energy flows one way; matter cycles</span><small>sun → heat</small></div><div class="eqn"><span>producers → primary → secondary → tertiary consumers</span><small>trophic levels</small></div></div>
+      <div class="lab" id="ef-lab" data-reset="own">
+        <div class="labbar"><span class="title">An energy pyramid</span></div>
+        <canvas id="ef-canvas" aria-label="A pyramid of four trophic levels with the energy in each level."></canvas>
+        <div class="controls"><div class="ctl"><label for="ef-p"><span>Energy captured by producers (kJ)</span> <output id="ef-p-out"></output></label><input type="range" id="ef-p" min="1000" max="100000" step="1000" value="50000"></div><div class="ctl"><label for="ef-e"><span>Transfer efficiency between levels</span> <output id="ef-e-out"></output></label><input type="range" id="ef-e" min="0.05" max="0.3" step="0.01" value="0.1"></div></div>
+        <div class="readout"><div><span>primary consumers</span><strong class="x" id="ef-1">—</strong></div><div><span>secondary consumers</span><strong class="a" id="ef-2">—</strong></div><div><span>tertiary consumers</span><strong class="v" id="ef-3">—</strong></div><div><span>quaternary consumers</span><strong class="" id="ef-4">—</strong></div></div>
+      </div>
+      <div class="lab" id="ef-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Gross and net primary productivity</span></div>
+        <canvas id="ef-canvas2" aria-label="A bar showing gross primary productivity split into the producers&#x27; respiration and net primary productivity."></canvas>
+        <div class="controls"><div class="ctl"><label for="ef-g"><span>GPP (kJ per m² per year)</span> <output id="ef-g-out"></output></label><input type="range" id="ef-g" min="1000" max="30000" step="500" value="12000"></div><div class="ctl"><label for="ef-r"><span>Respiration as a fraction of GPP</span> <output id="ef-r-out"></output></label><input type="range" id="ef-r" min="0.1" max="0.8" step="0.01" value="0.4"></div></div>
+        <div class="readout"><div><span>NPP</span><strong class="x" id="ef-npp">—</strong></div><div><span>NPP as a share of GPP</span><strong class="a" id="ef-pct">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Use 50,000 kJ at producers and 10% efficiency. How much reaches secondary consumers? <button type="button" class="btn link" data-show='[["#ef-p", 50000], ["#ef-e", 0.1]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>5,000 kJ reaches primary consumers and 500 kJ reaches secondary consumers.</p></details></li>
+        <li><p>Raise the efficiency to 20%. What changes? <button type="button" class="btn link" data-show='[["#ef-e", 0.2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Each level holds twice as much as before, so the top levels get far more (4 times at the second step, 8 times at the third), and the food chain could support more levels.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A grassland produces 20,000 kJ of NPP per m² per year. If 10% passes to each higher level, how much energy do secondary consumers (level 3) get?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Producers.</b> 20,000 kJ.</li>
+          <li hidden><b>Primary consumers.</b> 10% × 20,000 = 2,000 kJ.</li>
+          <li hidden><b>Secondary consumers.</b> 10% × 2,000 = 200 kJ.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying 90% of energy is "used up". It is lost mainly as heat and in unconsumed or undigested matter.</li>
+        <li>Thinking energy cycles (it does not).</li>
+        <li>Starting the pyramid with the wrong level.</li>
+        <li>Mixing GPP and NPP.</li>
+        <li>Saying decomposers are not part of energy flow.</li>
+      </ul></div>
+      <div class="prose"><h2>Explaining the limit on chain length</h2>
+        <p>Energy declines by about 90% per level, so after four or five levels there is too little left to support a population. Mention heat loss from cellular respiration and uneaten matter.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="10,000 → 1,000 → 100 → 10 kJ.">
+        <p class="q">Check yourself: If 10,000 kJ is in producers, about how much is available to tertiary consumers (10% efficiency)?</p>
+        <div class="opts"><button type="button">10 kJ</button><button type="button">100 kJ</button><button type="button">1,000 kJ</button><button type="button">1 kJ</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

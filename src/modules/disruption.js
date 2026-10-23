@@ -1,0 +1,33 @@
+/* ---------------- Human impact & ecosystem disruption ---------------- */
+(function disruption(){
+  const cv=$('#dp-canvas2');if(!cv)return;
+  let w0=.01,f=10;
+  const NM=['algae','zooplankton','small fish','large fish','fish-eating bird'];
+  const val=k=>w0*Math.pow(f,k+1);
+  const sim=sim2d(cv,{h:w=>clamp(w*.44,220,290),draw(ctx,w,h){const L=110,R=w-16,mn=-3,mx=7,bh=22,gap=8,X=v=>L+(R-L)*(Math.log10(Math.max(v,1e-3))-mn)/(mx-mn);
+    ctx.strokeStyle=T.grid;ctx.lineWidth=1;for(let e=mn;e<=mx;e+=2){ctx.beginPath();ctx.moveTo(X(Math.pow(10,e)),8);ctx.lineTo(X(Math.pow(10,e)),h-26);ctx.stroke();label(ctx,'10^'+e,X(Math.pow(10,e)),h-12,T.muted,'center','middle',MONO);}
+    NM.forEach((nm,k)=>{const y=12+k*(bh+gap),v=val(k),col=[T.cv,T.cx,T.ce,T.ca,T.bad][k];ctx.fillStyle=alpha(col,.65);ctx.fillRect(L,y,X(v)-L,bh);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(L,y,X(v)-L,bh);label(ctx,nm,L-6,y+bh/2,T.ink,'right','middle',MONO);label(ctx,fmt(v,v<1?3:0)+' ppb',Math.min(X(v)+6,R-70),y+bh/2,T.ink,'left','middle',MONO);});}});
+  function upd(){for(let k=0;k<5;k++){const v=val(k);setText('dp-'+(k+1),fmt(v,v<1?3:0)+' ppb');}sim.render();}
+  bindRange('dp-w',v=>fmt(v,3)+' ppb',v=>{w0=v;upd();});bindRange('dp-f',v=>'×'+v,v=>{f=v;upd();});
+  $('#dp-lab').addEventListener('labreset',()=>{w0=.01;f=10;setCtl('dp-w',.01,v=>fmt(v,3)+' ppb');setCtl('dp-f',10,v=>'×'+v);upd();});upd();
+  const ST=[{n:'1 · nutrient runoff',t:'Fertilizer and sewage carry nitrogen and phosphorus into the lake.'},{n:'2 · algal bloom',t:'The nutrients let algae grow explosively. The water turns green and blocks light for plants below.'},{n:'3 · die-off and decomposition',t:'Algae die and sink. Decomposers use up the dissolved oxygen as they break them down.'},{n:'4 · oxygen depletion',t:'With almost no oxygen left, fish and other aerobic organisms die: a dead zone.'}];
+  const sc=stageLab('eu','dp-canvas',ST,(ctx,w,h,i,t)=>{const wy=h*.32,wh=h*.58;ctx.fillStyle=alpha(T.cx,.18);ctx.fillRect(10,wy,w-20,wh);ctx.strokeStyle=T.cx;ctx.lineWidth=2;ctx.strokeRect(10,wy,w-20,wh);
+    ctx.fillStyle=alpha(T.ce,.5);ctx.fillRect(10,h*.1,w*.3,h*.22);label(ctx,'farm field',10+w*.15,h*.21,T.ink,'center','middle',MONO);
+    if(i===0){ctx.strokeStyle=T.ce;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(10+w*.3,h*.28);ctx.bezierCurveTo(w*.42,h*.3,w*.4,wy,w*.5,wy+8);ctx.stroke();label(ctx,'N and P runoff',w*.5,h*.14,T.ce,'left','middle',MONO);}
+    const bloom=i===0?0:i===1?1:i===2?.8:.5;if(bloom>0){ctx.fillStyle=alpha(T.cv,.55*bloom);ctx.fillRect(10,wy,w-20,wh*.18);label(ctx,'algal bloom',w*.5,wy+wh*.09,T.ink,'center','middle',MONO);}
+    if(i>=2){for(let k=0;k<14;k++)dot2(ctx,30+(k*(w-60)/14),wy+wh*.55+Math.sin(k*3+t)*6+(k%3)*10,T.hot,3);label(ctx,'decomposers using O₂',w*.5,wy+wh*.45,T.hot,'center','middle',MONO);}
+    for(let k=0;k<5;k++){const x=w*.2+k*w*.14,y=wy+wh*.78;ctx.save();ctx.translate(x,y);if(i===3){ctx.rotate(Math.PI);ctx.fillStyle=alpha(T.muted,.8);}else ctx.fillStyle=alpha(T.ca,.8);ctx.beginPath();ctx.ellipse(0,0,15,7,0,0,6.283);ctx.fill();ctx.beginPath();ctx.moveTo(14,0);ctx.lineTo(24,-6);ctx.lineTo(24,6);ctx.closePath();ctx.fill();ctx.restore();}
+    const o2=[1,.9,.45,.05][i];ctx.fillStyle=T.line;ctx.fillRect(w-34,wy+8,14,wh-16);ctx.fillStyle=o2>.4?T.good:T.bad;ctx.fillRect(w-34,wy+8+(wh-16)*(1-o2),14,(wh-16)*o2);label(ctx,'O₂',w-27,wy-6,T.muted,'center','middle',MONO);},{h:w=>clamp(w*.48,240,320)});
+  $('#dp-lab2').addEventListener('labreset',()=>sc.go(0));
+  drawers.disruption=()=>{sim.render();sc.render();};
+  KEYS['dp-canvas2']=['Each bar is the concentration at one trophic level on a log scale. The bird has the most.',[['cv','algae'],['cx','zooplankton'],['ce','small fish'],['ca','large fish'],['bad','fish-eating bird']]];
+  KEYS['dp-canvas']=['Green layer: algae. The bar at the right shows dissolved oxygen. Gray fish at the end are dead.',[['cv','algae'],['ca','fish'],['hot','decomposers']]];
+  TIPS['dp-f']=()=>'The factor is how much more concentrated the toxin is at each step up the food chain.';
+  GLOSS['eutrophication']='Nutrient enrichment of water that leads to algal blooms and oxygen depletion.';GLOSS['biomagnification']='The increase in concentration of a persistent toxin at each higher trophic level.';GLOSS['invasive species']='A non-native species that spreads and harms the ecosystem.';GLOSS['habitat fragmentation']='Splitting of habitat into small isolated patches.';GLOSS['ocean acidification']='A decrease in ocean pH caused by dissolved CO₂.';GLOSS['resilience']='The ability of an ecosystem to recover from a disturbance.';
+  TT.disruption='Ask students to trace why decomposers, not algae, remove the oxygen.';
+})();
+(function(){
+  PROBS.push({id:'dp-mag',topic:'disruption',title:'Biomagnification',gen(){const w=pick([.01,.05,.1,.5]),f=pick([5,10]),k=randInt(2,4),nm=['algae','zooplankton','small fish','large fish','a heron'][k],ans=w*Math.pow(f,k+1);return {q:`A persistent pesticide is ${w} ppb in lake water. At each step it is concentrated ${f}-fold: algae take up ${f} times the water concentration, and each higher level concentrates it ${f}-fold again. What is the concentration in ${nm} (ppb)? The food chain is algae → zooplankton → small fish → large fish → heron.`,ans,unit:'ppb',abs:ans*.005+.001,chk:w*Math.pow(f,k+1),hint:'Multiply by the factor once for each level, starting with algae.',sol:`${w} × ${f}<sup>${k+1}</sup> = <b>${fmt(ans,3)} ppb</b>.`};}});
+  const q=[['Algal blooms cause fish kills mainly because','decomposers use up the dissolved oxygen',['algae release toxins that always kill fish','algae use all the carbon dioxide','algae block the fish\'s food']],['Fertilizer runoff most directly causes','eutrophication',['biomagnification','habitat fragmentation','ocean acidification']],['A pollutant that builds up to the highest concentration in top predators shows','biomagnification',['eutrophication','succession','competitive exclusion']],['Why do invasive species often spread quickly?','they lack the predators and competitors of their home range',['they are always larger','they mutate faster','they do not need resources']],['Habitat fragmentation harms populations mainly by','reducing gene flow and creating small isolated populations',['increasing mutation rate directly','removing producers only','warming the oceans']]];
+  PROBS.push({id:'dp-fact',topic:'disruption',title:'Human impact facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Think about the sequence of effects.',sol:`<b>${p[1]}</b>.`};}});
+})();

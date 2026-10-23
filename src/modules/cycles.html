@@ -1,0 +1,53 @@
+  <section class="view" id="v-cycles" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Biogeochemical cycles</h1>
+        <p class="lede">Atoms are reused over and over. Carbon, nitrogen, phosphorus and water move between living things, air, water and rock.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Carbon cycle</b>: producers fix CO₂ into organic molecules by photosynthesis; all organisms release CO₂ by respiration; decomposers return carbon from dead matter; burning fossil fuels and wood adds CO₂ to the atmosphere; the ocean exchanges CO₂ with the air. <b>Nitrogen cycle</b>: bacteria perform <b>nitrogen fixation</b> (N₂ → NH₃/NH₄⁺), <b>nitrification</b> (NH₄⁺ → NO₂⁻ → NO₃⁻, the form plants take up), <b>assimilation</b> into proteins and nucleic acids, <b>ammonification</b> by decomposers and <b>denitrification</b> (NO₃⁻ → N₂ back to the air). <b>Phosphorus</b> has no gas phase: it cycles through rock, soil, water and organisms. <b>Water cycle</b>: evaporation, transpiration, condensation, precipitation, runoff.</p>
+        <p>Human activities change the cycles. Burning fossil fuels raises atmospheric CO₂ (about 420 ppm in recent years, up from about 280 ppm before the industrial era), which enhances the greenhouse effect and warms the climate; some CO₂ dissolves in the oceans and causes <b>ocean acidification</b>. Fertilizer runoff adds nitrogen and phosphorus to waters (see eutrophication).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>matter was used once and gone</dd><dt>So we didn't need</dt><dd>that elements cycle between reservoirs through living and non-living steps</dd><dt>Now</dt><dd>how human activity shifts those cycles</dd><dt>So we need</dt><dd>carbon, nitrogen, phosphorus and water cycles</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>photosynthesis: CO₂ → organic carbon</span><small>respiration, combustion: organic carbon → CO₂</small></div><div class="eqn"><span>N₂ → NH₃ → NO₃⁻ → N₂</span><small>fixation, nitrification, denitrification</small></div><div class="eqn"><span>phosphorus: no atmospheric phase</span><small>weathering, uptake, decomposition</small></div><div class="eqn"><span>1 ppm CO₂ ≈ 2.1 GtC; about half stays in the air</span><small>approximate</small></div></div>
+      <div class="lab" id="cy-lab" data-reset="own">
+        <div class="labbar"><span class="title">Follow the atoms</span></div>
+        <div class="ctl"><span class="lbl">Cycle</span><div class="seg" id="cy-sel" role="group" aria-label="Cycle"><button type="button" data-k="c" aria-pressed="true">carbon</button><button type="button" data-k="n" aria-pressed="false">nitrogen</button><button type="button" data-k="p" aria-pressed="false">phosphorus</button><button type="button" data-k="w" aria-pressed="false">water</button></div></div>
+        <canvas id="cy-canvas" aria-label="A diagram of the chosen cycle with boxes for reservoirs and arrows for the processes that move atoms between them."></canvas>
+        <div class="readout"><div><span>key organisms or process</span><strong class="x" id="cy-key">—</strong></div><div><span>human effect</span><strong class="a" id="cy-human">—</strong></div></div>
+      </div>
+      <div class="lab" id="cy-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Atmospheric CO₂ from emissions</span></div>
+        <canvas id="cy-canvas2" aria-label="A graph of atmospheric carbon dioxide concentration over time for the chosen emission rate."></canvas>
+        <div class="controls"><div class="ctl"><label for="cy-em"><span>Emissions (billion tonnes of carbon per year)</span> <output id="cy-em-out"></output></label><input type="range" id="cy-em" min="0" max="15" step="0.5" value="10"></div><div class="ctl"><label for="cy-yr"><span>Years from now</span> <output id="cy-yr-out"></output></label><input type="range" id="cy-yr" min="0" max="100" step="1" value="30"></div></div>
+        <div class="readout"><div><span>atmospheric CO₂</span><strong class="x" id="cy-co2">—</strong></div><div><span>increase from today</span><strong class="a" id="cy-inc">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose the nitrogen cycle. Which step makes nitrate that plants can use? <button type="button" class="btn link" data-show='[["click", "#cy-sel [data-k=n]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Nitrification by soil bacteria: ammonium → nitrite → nitrate.</p></details></li>
+        <li><p>Set emissions to 10 GtC per year and look 30 years ahead. <button type="button" class="btn link" data-show='[["#cy-em", 10], ["#cy-yr", 30]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>About 63 ppm higher (10 × 0.45 / 2.13 ≈ 2.1 ppm per year): a simple model for a rough idea.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Explain how nitrogen from a dead plant becomes available to a living plant.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Decomposers.</b> Bacteria and fungi break down the dead plant and release ammonium (ammonification).</li>
+          <li hidden><b>Nitrifying bacteria.</b> Convert ammonium to nitrite and then nitrate (nitrification).</li>
+          <li hidden><b>Uptake.</b> The living plant takes up nitrate (or ammonium) through its roots and assimilates it into amino acids and nucleotides.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying plants take up N₂ from the air.</li>
+        <li>Mixing up nitrification and denitrification.</li>
+        <li>Thinking phosphorus has an atmospheric phase.</li>
+        <li>Saying decomposers are not part of the carbon cycle.</li>
+        <li>Believing atmospheric CO₂ rises only because of deforestation (fossil fuels are the largest source).</li>
+      </ul></div>
+      <div class="prose"><h2>Cycle questions</h2>
+        <p>Draw the reservoirs and label each arrow with a process and the organisms involved. For human effects, say which flux increased and what that changed in the reservoirs.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Denitrifying bacteria convert nitrate to N₂ in low-oxygen soils.">
+        <p class="q">Check yourself: Which process returns nitrogen gas to the atmosphere?</p>
+        <div class="opts"><button type="button">denitrification</button><button type="button">nitrification</button><button type="button">nitrogen fixation</button><button type="button">ammonification</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

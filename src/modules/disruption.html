@@ -1,0 +1,55 @@
+  <section class="view" id="v-disruption" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Human impact & ecosystem disruption</h1>
+        <p class="lede">Ecosystems can absorb some disturbance, but human activity often pushes them past what they can recover from.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Eutrophication</b>: fertilizer or sewage adds nitrogen and phosphorus to a lake; algae bloom; when they die, decomposers use up the oxygen, and fish and other animals suffocate. <b>Biomagnification</b>: toxins that are fat-soluble or not broken down (DDT, mercury, PCBs) become more concentrated at each trophic level, so top predators are most affected. <b>Invasive species</b> can outcompete natives. <b>Habitat fragmentation</b> splits populations and reduces gene flow. <b>Climate change</b> shifts ranges and timing of life cycles, and <b>ocean acidification</b> harms organisms with calcium carbonate shells.</p>
+        <p>Biodiversity matters for ecosystem stability and services. Ecosystems with more species and more genetic diversity tend to be more <b>resilient</b>. Conservation tools include protected areas and corridors, restoring habitat, reducing pollution, controlling invasives and sustainable harvesting. <b>Keystone species</b> and <b>indicator species</b> help monitor ecosystem health.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>pollution just spreads out and disappears</dd><dt>So we didn't need</dt><dd>that some pollutants accumulate along food chains and some nutrients overload ecosystems</dd><dt>Now</dt><dd>why top predators and small populations are most vulnerable</dd><dt>So we need</dt><dd>eutrophication, biomagnification, invasive species and climate impacts</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>eutrophication: nutrients → algae → low O₂</span><small>dead zones</small></div><div class="eqn"><span>biomagnification: concentration × factor per level</span><small>top predators highest</small></div><div class="eqn"><span>habitat fragmentation → small isolated populations</span><small>less gene flow</small></div><div class="eqn"><span>CO₂ ↑ → warming and ocean acidification</span><small>climate impacts</small></div></div>
+      <div class="lab" id="dp-lab" data-reset="own">
+        <div class="labbar"><span class="title">Biomagnification</span></div>
+        <canvas id="dp-canvas2" aria-label="Bars on a logarithmic scale showing the concentration of a pollutant at each level of a food chain."></canvas>
+        <div class="controls"><div class="ctl"><label for="dp-w"><span>Concentration in water (ppb)</span> <output id="dp-w-out"></output></label><input type="range" id="dp-w" min="0.001" max="1" step="0.001" value="0.01"></div><div class="ctl"><label for="dp-f"><span>Concentration factor per level</span> <output id="dp-f-out"></output></label><input type="range" id="dp-f" min="2" max="20" step="1" value="10"></div></div>
+        <div class="readout"><div><span>algae</span><strong class="x" id="dp-1">—</strong></div><div><span>zooplankton</span><strong class="a" id="dp-2">—</strong></div><div><span>small fish</span><strong class="v" id="dp-3">—</strong></div><div><span>large fish</span><strong class="a" id="dp-4">—</strong></div><div><span>fish-eating bird</span><strong class="x" id="dp-5">—</strong></div></div>
+      </div>
+      <div class="lab" id="dp-lab2">
+        <div class="labbar"><span class="title">A lake turns green</span></div>
+        <div class="row"><button type="button" class="btn" id="eu-prev">Previous</button><button type="button" class="btn primary" id="eu-next">Next stage</button><button type="button" class="btn" id="eu-play">Play</button></div>
+        <canvas id="dp-canvas" aria-label="Stages of eutrophication in a lake: nutrient input, algal bloom, decomposition and oxygen loss, then fish die."></canvas>
+        <div class="controls"><div class="ctl"><label for="eu-st"><span>Stage</span> <output id="eu-st-out"></output></label><input type="range" id="eu-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="eu-name">—</strong></div><div><span>what is happening</span><strong class="" id="eu-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set the water at 0.01 ppb and a factor of 10. How concentrated is it in the bird? <button type="button" class="btn link" data-show='[["#dp-w", 0.01], ["#dp-f", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>0.01 × 10⁵ = 1,000 ppb: a hundred thousand times higher than in the water.</p></details></li>
+        <li><p>Go to the stage when algae die. Where does the oxygen go? <button type="button" class="btn link" data-show='[["#eu-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Decomposers (bacteria) use it up as they break down the dead algae by aerobic respiration.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A pesticide is 0.5 ppb in lake water. Each trophic level concentrates it 10-fold. Algae take it up from water and are eaten by zooplankton, then small fish, then a heron. What is the concentration in the heron?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Algae.</b> 0.5 × 10 = 5 ppb.</li>
+          <li hidden><b>Zooplankton.</b> 50 ppb.</li>
+          <li hidden><b>Small fish.</b> 500 ppb.</li>
+          <li hidden><b>Heron.</b> 5,000 ppb.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying toxins are diluted as they go up the food chain.</li>
+        <li>Mixing up eutrophication (nutrient overload) and biomagnification (toxin accumulation).</li>
+        <li>Saying algae blooms add oxygen to the lake when they die.</li>
+        <li>Thinking invasive species are always harmful in their home range.</li>
+        <li>Forgetting that fragmentation reduces gene flow.</li>
+      </ul></div>
+      <div class="prose"><h2>Explaining effects</h2>
+        <p>Name the human action, the first thing it changes in the ecosystem, the chain of consequences, and the final effect on populations (use the trophic levels and decomposers).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Biomagnification concentrates persistent toxins at higher trophic levels.">
+        <p class="q">Check yourself: A chemical that is not broken down is found at the highest concentration in</p>
+        <div class="opts"><button type="button">top predators</button><button type="button">producers</button><button type="button">decomposers only</button><button type="button">the soil only</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

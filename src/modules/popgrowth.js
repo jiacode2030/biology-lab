@@ -1,0 +1,32 @@
+/* ---------------- Population growth ---------------- */
+(function popgrowth(){
+  const cv=$('#pg-canvas');if(!cv)return;
+  let mode='exp',r=.4,K=1000,N0=10;
+  const Nt=t=>mode==='exp'?N0*Math.exp(r*t):K/(1+((K-N0)/N0)*Math.exp(-r*t));
+  const rate=n=>mode==='exp'?r*n:r*n*(K-n)/K;
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const ymax=Math.max(K*1.2,N0*1.1),A=axes2(ctx,w,h,{x0:0,x1:20,y0:0,y1:ymax,xt:5,yt:ymax/4,xl:'years',yl:'population size',L:52});
+    if(mode==='log'){ctx.setLineDash([5,4]);ctx.strokeStyle=T.good;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(A.L,A.Y(K));ctx.lineTo(A.R,A.Y(K));ctx.stroke();ctx.setLineDash([]);label(ctx,'K = '+K,A.R-4,A.Y(K)-8,T.good,'right','middle',MONO);}
+    ctx.save();ctx.beginPath();ctx.rect(A.L,A.T0-4,A.R-A.L,A.B-A.T0+4);ctx.clip();curve2(ctx,A,Nt,0,20,mode==='exp'?T.ca:T.cx);ctx.restore();
+    if(mode==='exp'&&Nt(20)>ymax)label(ctx,'off the chart: keeps accelerating',A.R-4,A.T0+10,T.muted,'right','middle',MONO);}});
+  function upd(){const n=Nt(20);setText('pg-n',n>1e6?fmt(n,0):fmt(n,0));setText('pg-rate',fmt(rate(n),1)+' per year');setText('pg-peak',mode==='exp'?'no peak: rate keeps rising':'N = K/2 = '+fmt(K/2,0)+(N0<K/2?' (about year '+fmt(Math.log((K-N0)/N0)/r,1)+')':''));sim.render();}
+  segBind('pg-mode','k',v=>{mode=v;upd();});bindRange('pg-r',v=>fmt(v,2),v=>{r=v;upd();});bindRange('pg-k',v=>String(v),v=>{K=v;upd();});bindRange('pg-n0',v=>String(v),v=>{N0=v;upd();});
+  $('#pg-lab').addEventListener('labreset',()=>{mode='exp';r=.4;K=1000;N0=10;segSet('pg-mode',0);setCtl('pg-r',.4,v=>fmt(v,2));setCtl('pg-k',1000);setCtl('pg-n0',10);upd();});upd();
+  const SV={'1':{f:x=>Math.max(1,1000*(1-Math.pow(x,4.5))),ex:'humans, elephants, many large mammals',st:'few offspring, heavy parental care (K-selected)'},'2':{f:x=>Math.max(1,1000*Math.pow(10,-3*x)),ex:'songbirds, hydra, some lizards',st:'constant chance of dying at any age'},'3':{f:x=>Math.max(1,1000*Math.pow(10,-3*Math.pow(Math.max(x,0),.3))),ex:'oysters, most fish, many plants',st:'many offspring, most die young (r-selected)'}};
+  let ty='1';
+  const sim2=sim2d($('#pg-canvas2'),{h:w=>clamp(w*.42,210,270),draw(ctx,w,h){const L=52,R=w-14,B=h-36,top=14,X=x=>L+(R-L)*x,Y=v=>B-(B-top)*Math.log10(v)/3;ctx.strokeStyle=T.grid;ctx.lineWidth=1;[1,10,100,1000].forEach(v=>{ctx.beginPath();ctx.moveTo(L,Y(v));ctx.lineTo(R,Y(v));ctx.stroke();label(ctx,String(v),L-6,Y(v),T.muted,'right','middle',MONO);});ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,top);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();label(ctx,'age (fraction of the maximum lifespan)',(L+R)/2,h-8,T.muted,'center','middle',MONO);
+    ['1','2','3'].forEach(k=>{ctx.strokeStyle=k===ty?T.ca:T.line;ctx.lineWidth=k===ty?3:1.6;ctx.beginPath();for(let i=0;i<=80;i++){const x=i/80,y=SV[k].f(x);i?ctx.lineTo(X(x),Y(y)):ctx.moveTo(X(x),Y(y));}ctx.stroke();});label(ctx,'survivors per 1000 (log scale)',L+4,top+2,T.muted,'left','middle',MONO);}});
+  function upd2(){setText('pg-ex',SV[ty].ex);setText('pg-st',SV[ty].st);sim2.render();}
+  segBind('pg-type','k',v=>{ty=v;upd2();});$('#pg-lab2').addEventListener('labreset',()=>{ty='1';segSet('pg-type',0);upd2();});upd2();
+  drawers.popgrowth=()=>{sim.render();sim2.render();};
+  KEYS['pg-canvas']=['Pink curve: exponential. Blue curve: logistic. The green dashed line is the carrying capacity.',[['ca','exponential'],['cx','logistic'],['good','carrying capacity K']]];
+  KEYS['pg-canvas2']=['The chosen type is highlighted; the others are faint.',[['ca','chosen survivorship type']]];
+  TIPS['pg-k']=()=>'Carrying capacity is the largest population the environment can sustain.';
+  GLOSS['carrying capacity']='The maximum population size an environment can sustain.';GLOSS['density-dependent']='A factor whose effect on a population grows with population density.';GLOSS['r-selected']='Species with high growth rate, many small offspring and little parental care.';GLOSS['k-selected']='Species with low growth rate, few offspring and heavy parental care, living near carrying capacity.';GLOSS['survivorship curve']='A graph of the proportion of a cohort surviving at each age.';
+  TT.popgrowth='Ask students where the logistic curve is steepest and why.';
+})();
+(function(){
+  PROBS.push({id:'pg-exp',topic:'popgrowth',title:'Exponential growth rate',gen(){const r=pick([.1,.2,.25,.5]),N=pick([100,200,500,1000,2500]),ans=r*N;return {q:`A population of ${N} has a per capita growth rate r = ${r} per year and unlimited resources. What is dN/dt? (individuals per year)`,ans,unit:'per year',abs:.06,chk:r*N,hint:'dN/dt = r N.',sol:`${r} × ${N} = <b>${fmt(ans,1)} per year</b>.`};}});
+  PROBS.push({id:'pg-log',topic:'popgrowth',title:'Logistic growth rate',gen(){const K=pick([500,1000,2000]),r=pick([.2,.3,.4,.5]),f=pick([.1,.2,.25,.5,.75,.9]),N=K*f,ans=r*N*(K-N)/K;return {q:`A population has r<sub>max</sub> = ${r}, carrying capacity K = ${K} and size N = ${N}. What is dN/dt from the logistic model?`,ans,unit:'per year',abs:ans*.005+.06,chk:r*N*(K-N)/K,hint:'dN/dt = r N (K − N)/K.',sol:`${r} × ${N} × (${K} − ${N})/${K} = <b>${fmt(ans,1)} per year</b>.`};}});
+  const q=[['A graph of population size over time is J-shaped and does not level off. This indicates','exponential growth with unlimited resources',['logistic growth near carrying capacity','a density-dependent decline','a stable population']],['Which is a density-dependent factor?','disease spreading faster in crowded populations',['a forest fire','a hurricane','a severe freeze']],['A species produces thousands of tiny offspring with no parental care. Most die young. Its survivorship curve is most likely','Type III',['Type I','Type II','a straight line on a linear axis']],['At the carrying capacity of a logistic population, the growth rate is','zero',['maximum','negative','equal to r']]];
+  PROBS.push({id:'pg-fact',topic:'popgrowth',title:'Growth models',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Think about what limits the population.',sol:`<b>${p[1]}</b>.`};}});
+})();

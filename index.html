@@ -3303,6 +3303,280 @@ body.is-ab .mitem.bc,body.is-ab .frq.bc,body.is-ab tr.bc{display:none!important}
     </div>
   </section>
 
+  <section class="view" id="v-popgrowth" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Population growth</h1>
+        <p class="lede">A population grows quickly when resources are plentiful and levels off when they run short. The shape of the curve says what is limiting it.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>If resources are unlimited, a population grows <b>exponentially</b>: the growth rate is proportional to the number of individuals, <b>dN/dt = r<sub>max</sub> N</b>, where r is the per capita growth rate (births minus deaths per individual). The curve is J-shaped and gets steeper as N rises. Real populations eventually face limits, so growth follows the <b>logistic model</b>: <b>dN/dt = r<sub>max</sub> N (K − N)/K</b>, with <b>carrying capacity K</b> the largest population the environment can sustain. Growth is fastest at N = K/2 and falls to zero at K.</p>
+        <p><b>Density-dependent</b> factors (competition, predation, disease, waste) slow growth more as the population gets crowded. <b>Density-independent</b> factors (fire, storms, freezes) affect a population regardless of its size. Species with high r and many small offspring that get little care are <b>r-selected</b>; species with low r, few offspring and heavy parental care are <b>K-selected</b>. <b>Survivorship curves</b> show how many individuals survive with age: Type I (most live long, die old: humans), Type II (constant death rate: many birds), Type III (high early death: oysters, most plants).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>populations just grew until something stopped them</dd><dt>So we didn't need</dt><dd>that growth rate depends on population size, and limits shape the curve</dd><dt>Now</dt><dd>how to predict and calculate growth and what carrying capacity means</dd><dt>So we need</dt><dd>exponential and logistic growth, K, density dependence and survivorship</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>dN/dt = r_max N</span><small>exponential growth</small></div><div class="eqn"><span>dN/dt = r_max N (K − N)/K</span><small>logistic growth</small></div><div class="eqn"><span>growth is fastest at N = K/2</span><small>logistic maximum</small></div><div class="eqn"><span>Type I, II, III survivorship</span><small>life history</small></div></div>
+      <div class="lab" id="pg-lab" data-reset="own">
+        <div class="labbar"><span class="title">Exponential and logistic growth</span></div>
+        <div class="ctl"><span class="lbl">Model</span><div class="seg" id="pg-mode" role="group" aria-label="Model"><button type="button" data-k="exp" aria-pressed="true">exponential</button><button type="button" data-k="log" aria-pressed="false">logistic</button></div></div>
+        <canvas id="pg-canvas" aria-label="A graph of population size over time for exponential growth or logistic growth with a carrying capacity."></canvas>
+        <div class="controls"><div class="ctl"><label for="pg-r"><span>Growth rate r (per year)</span> <output id="pg-r-out"></output></label><input type="range" id="pg-r" min="0.05" max="1" step="0.01" value="0.4"></div><div class="ctl"><label for="pg-k"><span>Carrying capacity K</span> <output id="pg-k-out"></output></label><input type="range" id="pg-k" min="100" max="2000" step="50" value="1000"></div><div class="ctl"><label for="pg-n0"><span>Starting population</span> <output id="pg-n0-out"></output></label><input type="range" id="pg-n0" min="1" max="200" step="1" value="10"></div></div>
+        <div class="readout"><div><span>population at year 20</span><strong class="x" id="pg-n">—</strong></div><div><span>growth rate dN/dt at the end</span><strong class="a" id="pg-rate">—</strong></div><div><span>fastest growth at</span><strong class="v" id="pg-peak">—</strong></div></div>
+      </div>
+      <div class="lab" id="pg-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Survivorship curves</span></div>
+        <div class="ctl"><span class="lbl">Type</span><div class="seg" id="pg-type" role="group" aria-label="Type"><button type="button" data-k="1" aria-pressed="true">Type I</button><button type="button" data-k="2" aria-pressed="false">Type II</button><button type="button" data-k="3" aria-pressed="false">Type III</button></div></div>
+        <canvas id="pg-canvas2" aria-label="A graph of the number of survivors against age for the chosen survivorship type."></canvas>
+        <div class="readout"><div><span>examples</span><strong class="x" id="pg-ex">—</strong></div><div><span>strategy</span><strong class="a" id="pg-st">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose logistic with K = 1000. At what population is growth fastest? <button type="button" class="btn link" data-show='[["click", "#pg-mode [data-k=log]"], ["#pg-k", 1000]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>At N = K/2 = 500, where (K − N)/K and N are balanced. Past that, growth slows as resources run out.</p></details></li>
+        <li><p>Switch to exponential. What happens to the curve? <button type="button" class="btn link" data-show='[["click", "#pg-mode [data-k=exp]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It keeps getting steeper (J-shaped) with no limit, which cannot continue for long in nature.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A population of 200 deer in a reserve has r<sub>max</sub> = 0.3 per year and K = 1,000. Find dN/dt at N = 200 and at N = 500.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Formula.</b> dN/dt = r N (K − N)/K.</li>
+          <li hidden><b>At N = 200.</b> 0.3 × 200 × (800/1000) = 48 deer per year.</li>
+          <li hidden><b>At N = 500.</b> 0.3 × 500 × (500/1000) = 75 deer per year, the maximum.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying logistic growth is fastest at K.</li>
+        <li>Using r as the total growth rather than per capita.</li>
+        <li>Forgetting density-dependent factors act more strongly at high density.</li>
+        <li>Thinking carrying capacity never changes.</li>
+        <li>Confusing survivorship types with growth types.</li>
+      </ul></div>
+      <div class="prose"><h2>Using the equations</h2>
+        <p>Substitute the values into the formula from the sheet and keep units (individuals per year). For graph questions: a J-shape means unlimited resources; an S-shape that levels at K means limited resources. Explain the limit with a density-dependent factor (food, space, disease).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Growth rate r N (K − N)/K is largest at N = K/2.">
+        <p class="q">Check yourself: In logistic growth, the population growth rate is highest when N is about</p>
+        <div class="opts"><button type="button">K/2</button><button type="button">K</button><button type="button">0</button><button type="button">2K</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-community" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Communities & species interactions</h1>
+        <p class="lede">Species do not live alone. They compete, eat each other, and help each other, and those interactions shape which species live where.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Interactions are described by their effect on each species. <b>Competition</b> (−/−): two species use the same limiting resource; <b>competitive exclusion</b> says that if their niches are identical, one will eliminate the other, so similar species often partition resources. <b>Predation</b> and <b>herbivory</b> (+/−), <b>parasitism</b> (+/−), <b>mutualism</b> (+/+) and <b>commensalism</b> (+/0). A <b>keystone species</b> (for example the sea star <i>Pisaster</i>) has an effect on community structure much larger than its abundance suggests. Predators and prey often show coupled population cycles.</p>
+        <p><b>Species richness</b> is the number of species; <b>species diversity</b> also takes relative abundance into account. <b>Simpson's diversity index</b>: <b>D = 1 − Σ(n/N)²</b> (n = number of individuals of one species, N = total). Values near 1 mean high diversity. After a disturbance, <b>ecological succession</b> follows: <b>primary</b> (starts without soil: bare rock after a volcano or glacier) and <b>secondary</b> (soil remains: after a fire or abandoned field). <b>Invasive species</b> can outcompete natives because they lack their natural predators.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>species just existed side by side</dd><dt>So we didn't need</dt><dd>that interactions have signs (+, −, 0) that determine who wins and who thrives</dd><dt>Now</dt><dd>how to quantify diversity and predict community change</dd><dt>So we need</dt><dd>competition, predation, symbiosis, keystone species, diversity indices</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>D = 1 − Σ(n/N)²</span><small>Simpson's index</small></div><div class="eqn"><span>mutualism +/+, commensalism +/0</span><small>parasitism and predation +/−</small></div><div class="eqn"><span>competitive exclusion</span><small>same niche cannot coexist</small></div><div class="eqn"><span>primary vs secondary succession</span><small>soil absent vs present</small></div></div>
+      <div class="lab" id="cm-lab" data-reset="own">
+        <div class="labbar"><span class="title">Predator and prey</span></div>
+        <div class="row"><button type="button" class="btn" id="cm-reset">Restart</button></div>
+        <canvas id="cm-canvas" aria-label="A graph of prey and predator numbers over time showing coupled cycles."></canvas>
+        <div class="controls"><div class="ctl"><label for="cm-b"><span>Prey growth rate</span> <output id="cm-b-out"></output></label><input type="range" id="cm-b" min="0.2" max="1.2" step="0.05" value="0.7"></div><div class="ctl"><label for="cm-a"><span>Predation rate</span> <output id="cm-a-out"></output></label><input type="range" id="cm-a" min="0.2" max="1.5" step="0.05" value="0.6"></div><div class="ctl"><label for="cm-d"><span>Predator death rate</span> <output id="cm-d-out"></output></label><input type="range" id="cm-d" min="0.2" max="1.2" step="0.05" value="0.5"></div></div>
+        <div class="readout"><div><span>prey</span><strong class="x" id="cm-pn">—</strong></div><div><span>predators</span><strong class="a" id="cm-qn">—</strong></div><div><span>what is happening</span><strong class="" id="cm-msg">—</strong></div></div>
+      </div>
+      <div class="lab" id="cm-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Simpson's diversity index</span></div>
+        <canvas id="cm-canvas2" aria-label="Bars showing the number of individuals of four species in a sample and the resulting diversity index."></canvas>
+        <div class="controls"><div class="ctl"><label for="cm-s1"><span>Species A</span> <output id="cm-s1-out"></output></label><input type="range" id="cm-s1" min="0" max="100" step="1" value="40"></div><div class="ctl"><label for="cm-s2"><span>Species B</span> <output id="cm-s2-out"></output></label><input type="range" id="cm-s2" min="0" max="100" step="1" value="30"></div><div class="ctl"><label for="cm-s3"><span>Species C</span> <output id="cm-s3-out"></output></label><input type="range" id="cm-s3" min="0" max="100" step="1" value="20"></div><div class="ctl"><label for="cm-s4"><span>Species D</span> <output id="cm-s4-out"></output></label><input type="range" id="cm-s4" min="0" max="100" step="1" value="10"></div></div>
+        <div class="readout"><div><span>total individuals</span><strong class="x" id="cm-n">—</strong></div><div><span>species richness</span><strong class="a" id="cm-rich">—</strong></div><div><span>Simpson's D = 1 − Σ(n/N)²</span><strong class="v" id="cm-dx">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Run the predator–prey lab as set. Which peaks first? <button type="button" class="btn link" data-show='[["click", "#cm-reset"]]'>Restart</button></p><details><summary>What you should see</summary><p>Prey peak first; predators follow with a delay because they need time to grow on the extra food, then crash after the prey decline.</p></details></li>
+        <li><p>Make all four species equal (25 each). <button type="button" class="btn link" data-show='[["#cm-s1", 25], ["#cm-s2", 25], ["#cm-s3", 25], ["#cm-s4", 25]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>D = 1 − 4(0.25²) = 0.75, the maximum for four species: an even community is the most diverse.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A sample has 40 individuals of species A, 30 of B, 20 of C and 10 of D. Calculate Simpson's diversity index.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>N.</b> 100 individuals.</li>
+          <li hidden><b>Σ(n/N)².</b> 0.4² + 0.3² + 0.2² + 0.1² = 0.16 + 0.09 + 0.04 + 0.01 = 0.30.</li>
+          <li hidden><b>D.</b> 1 − 0.30 = 0.70.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Mixing up richness (how many species) and diversity (also evenness).</li>
+        <li>Forgetting to square each fraction.</li>
+        <li>Calling a +/0 relationship mutualism.</li>
+        <li>Thinking keystone species must be abundant.</li>
+        <li>Confusing primary succession (no soil) with secondary.</li>
+      </ul></div>
+      <div class="prose"><h2>Classifying interactions</h2>
+        <p>Write the effect on each species (+, −, 0). Both +: mutualism. One +, one 0: commensalism. One +, one −: predation, parasitism or herbivory. Both −: competition.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The bird benefits and the grazer is unaffected: +/0.">
+        <p class="q">Check yourself: A bird eats insects from the skin of a grazing animal without affecting it. This is</p>
+        <div class="opts"><button type="button">commensalism</button><button type="button">mutualism</button><button type="button">parasitism</button><button type="button">competition</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-energyflow" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Energy flow & trophic levels</h1>
+        <p class="lede">Energy enters ecosystems as sunlight and leaves as heat. Only a small part of it passes from one feeding level to the next.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Producers</b> (autotrophs) capture light and make organic matter; <b>consumers</b> (heterotrophs) eat it; <b>decomposers</b> break down dead material and return nutrients. Each feeding step is a <b>trophic level</b>. At each step most energy is lost, mainly as heat from cell respiration and in material that is not eaten or digested; typically only about <b>10%</b> of the energy in one level is stored in the next. So energy pyramids narrow quickly and food chains rarely have more than four or five levels.</p>
+        <p><b>Gross primary productivity (GPP)</b> is the total energy captured by producers; <b>net primary productivity (NPP) = GPP − R</b> (R is the producers' respiration) is what is available to consumers. Unlike energy, <b>nutrients cycle</b>. A <b>food web</b> shows many interconnected food chains. Biomass and numbers can also be shown in pyramids, though these can be inverted (for example a pyramid of numbers with one tree and many insects).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>energy was transferred completely between organisms</dd><dt>So we didn't need</dt><dd>that most energy is lost as heat at every level</dd><dt>Now</dt><dd>why top predators are rare and food chains short</dd><dt>So we need</dt><dd>trophic levels, the 10% rule, GPP and NPP</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>energy transferred ≈ 10% per level</span><small>rest lost as heat and waste</small></div><div class="eqn"><span>NPP = GPP − R</span><small>available to consumers</small></div><div class="eqn"><span>energy flows one way; matter cycles</span><small>sun → heat</small></div><div class="eqn"><span>producers → primary → secondary → tertiary consumers</span><small>trophic levels</small></div></div>
+      <div class="lab" id="ef-lab" data-reset="own">
+        <div class="labbar"><span class="title">An energy pyramid</span></div>
+        <canvas id="ef-canvas" aria-label="A pyramid of four trophic levels with the energy in each level."></canvas>
+        <div class="controls"><div class="ctl"><label for="ef-p"><span>Energy captured by producers (kJ)</span> <output id="ef-p-out"></output></label><input type="range" id="ef-p" min="1000" max="100000" step="1000" value="50000"></div><div class="ctl"><label for="ef-e"><span>Transfer efficiency between levels</span> <output id="ef-e-out"></output></label><input type="range" id="ef-e" min="0.05" max="0.3" step="0.01" value="0.1"></div></div>
+        <div class="readout"><div><span>primary consumers</span><strong class="x" id="ef-1">—</strong></div><div><span>secondary consumers</span><strong class="a" id="ef-2">—</strong></div><div><span>tertiary consumers</span><strong class="v" id="ef-3">—</strong></div><div><span>quaternary consumers</span><strong class="" id="ef-4">—</strong></div></div>
+      </div>
+      <div class="lab" id="ef-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Gross and net primary productivity</span></div>
+        <canvas id="ef-canvas2" aria-label="A bar showing gross primary productivity split into the producers&#x27; respiration and net primary productivity."></canvas>
+        <div class="controls"><div class="ctl"><label for="ef-g"><span>GPP (kJ per m² per year)</span> <output id="ef-g-out"></output></label><input type="range" id="ef-g" min="1000" max="30000" step="500" value="12000"></div><div class="ctl"><label for="ef-r"><span>Respiration as a fraction of GPP</span> <output id="ef-r-out"></output></label><input type="range" id="ef-r" min="0.1" max="0.8" step="0.01" value="0.4"></div></div>
+        <div class="readout"><div><span>NPP</span><strong class="x" id="ef-npp">—</strong></div><div><span>NPP as a share of GPP</span><strong class="a" id="ef-pct">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Use 50,000 kJ at producers and 10% efficiency. How much reaches secondary consumers? <button type="button" class="btn link" data-show='[["#ef-p", 50000], ["#ef-e", 0.1]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>5,000 kJ reaches primary consumers and 500 kJ reaches secondary consumers.</p></details></li>
+        <li><p>Raise the efficiency to 20%. What changes? <button type="button" class="btn link" data-show='[["#ef-e", 0.2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Each level holds twice as much as before, so the top levels get far more (4 times at the second step, 8 times at the third), and the food chain could support more levels.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A grassland produces 20,000 kJ of NPP per m² per year. If 10% passes to each higher level, how much energy do secondary consumers (level 3) get?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Producers.</b> 20,000 kJ.</li>
+          <li hidden><b>Primary consumers.</b> 10% × 20,000 = 2,000 kJ.</li>
+          <li hidden><b>Secondary consumers.</b> 10% × 2,000 = 200 kJ.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying 90% of energy is "used up". It is lost mainly as heat and in unconsumed or undigested matter.</li>
+        <li>Thinking energy cycles (it does not).</li>
+        <li>Starting the pyramid with the wrong level.</li>
+        <li>Mixing GPP and NPP.</li>
+        <li>Saying decomposers are not part of energy flow.</li>
+      </ul></div>
+      <div class="prose"><h2>Explaining the limit on chain length</h2>
+        <p>Energy declines by about 90% per level, so after four or five levels there is too little left to support a population. Mention heat loss from cellular respiration and uneaten matter.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="10,000 → 1,000 → 100 → 10 kJ.">
+        <p class="q">Check yourself: If 10,000 kJ is in producers, about how much is available to tertiary consumers (10% efficiency)?</p>
+        <div class="opts"><button type="button">10 kJ</button><button type="button">100 kJ</button><button type="button">1,000 kJ</button><button type="button">1 kJ</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-cycles" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Biogeochemical cycles</h1>
+        <p class="lede">Atoms are reused over and over. Carbon, nitrogen, phosphorus and water move between living things, air, water and rock.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Carbon cycle</b>: producers fix CO₂ into organic molecules by photosynthesis; all organisms release CO₂ by respiration; decomposers return carbon from dead matter; burning fossil fuels and wood adds CO₂ to the atmosphere; the ocean exchanges CO₂ with the air. <b>Nitrogen cycle</b>: bacteria perform <b>nitrogen fixation</b> (N₂ → NH₃/NH₄⁺), <b>nitrification</b> (NH₄⁺ → NO₂⁻ → NO₃⁻, the form plants take up), <b>assimilation</b> into proteins and nucleic acids, <b>ammonification</b> by decomposers and <b>denitrification</b> (NO₃⁻ → N₂ back to the air). <b>Phosphorus</b> has no gas phase: it cycles through rock, soil, water and organisms. <b>Water cycle</b>: evaporation, transpiration, condensation, precipitation, runoff.</p>
+        <p>Human activities change the cycles. Burning fossil fuels raises atmospheric CO₂ (about 420 ppm in recent years, up from about 280 ppm before the industrial era), which enhances the greenhouse effect and warms the climate; some CO₂ dissolves in the oceans and causes <b>ocean acidification</b>. Fertilizer runoff adds nitrogen and phosphorus to waters (see eutrophication).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>matter was used once and gone</dd><dt>So we didn't need</dt><dd>that elements cycle between reservoirs through living and non-living steps</dd><dt>Now</dt><dd>how human activity shifts those cycles</dd><dt>So we need</dt><dd>carbon, nitrogen, phosphorus and water cycles</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>photosynthesis: CO₂ → organic carbon</span><small>respiration, combustion: organic carbon → CO₂</small></div><div class="eqn"><span>N₂ → NH₃ → NO₃⁻ → N₂</span><small>fixation, nitrification, denitrification</small></div><div class="eqn"><span>phosphorus: no atmospheric phase</span><small>weathering, uptake, decomposition</small></div><div class="eqn"><span>1 ppm CO₂ ≈ 2.1 GtC; about half stays in the air</span><small>approximate</small></div></div>
+      <div class="lab" id="cy-lab" data-reset="own">
+        <div class="labbar"><span class="title">Follow the atoms</span></div>
+        <div class="ctl"><span class="lbl">Cycle</span><div class="seg" id="cy-sel" role="group" aria-label="Cycle"><button type="button" data-k="c" aria-pressed="true">carbon</button><button type="button" data-k="n" aria-pressed="false">nitrogen</button><button type="button" data-k="p" aria-pressed="false">phosphorus</button><button type="button" data-k="w" aria-pressed="false">water</button></div></div>
+        <canvas id="cy-canvas" aria-label="A diagram of the chosen cycle with boxes for reservoirs and arrows for the processes that move atoms between them."></canvas>
+        <div class="readout"><div><span>key organisms or process</span><strong class="x" id="cy-key">—</strong></div><div><span>human effect</span><strong class="a" id="cy-human">—</strong></div></div>
+      </div>
+      <div class="lab" id="cy-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Atmospheric CO₂ from emissions</span></div>
+        <canvas id="cy-canvas2" aria-label="A graph of atmospheric carbon dioxide concentration over time for the chosen emission rate."></canvas>
+        <div class="controls"><div class="ctl"><label for="cy-em"><span>Emissions (billion tonnes of carbon per year)</span> <output id="cy-em-out"></output></label><input type="range" id="cy-em" min="0" max="15" step="0.5" value="10"></div><div class="ctl"><label for="cy-yr"><span>Years from now</span> <output id="cy-yr-out"></output></label><input type="range" id="cy-yr" min="0" max="100" step="1" value="30"></div></div>
+        <div class="readout"><div><span>atmospheric CO₂</span><strong class="x" id="cy-co2">—</strong></div><div><span>increase from today</span><strong class="a" id="cy-inc">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose the nitrogen cycle. Which step makes nitrate that plants can use? <button type="button" class="btn link" data-show='[["click", "#cy-sel [data-k=n]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Nitrification by soil bacteria: ammonium → nitrite → nitrate.</p></details></li>
+        <li><p>Set emissions to 10 GtC per year and look 30 years ahead. <button type="button" class="btn link" data-show='[["#cy-em", 10], ["#cy-yr", 30]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>About 63 ppm higher (10 × 0.45 / 2.13 ≈ 2.1 ppm per year): a simple model for a rough idea.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">Explain how nitrogen from a dead plant becomes available to a living plant.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Decomposers.</b> Bacteria and fungi break down the dead plant and release ammonium (ammonification).</li>
+          <li hidden><b>Nitrifying bacteria.</b> Convert ammonium to nitrite and then nitrate (nitrification).</li>
+          <li hidden><b>Uptake.</b> The living plant takes up nitrate (or ammonium) through its roots and assimilates it into amino acids and nucleotides.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying plants take up N₂ from the air.</li>
+        <li>Mixing up nitrification and denitrification.</li>
+        <li>Thinking phosphorus has an atmospheric phase.</li>
+        <li>Saying decomposers are not part of the carbon cycle.</li>
+        <li>Believing atmospheric CO₂ rises only because of deforestation (fossil fuels are the largest source).</li>
+      </ul></div>
+      <div class="prose"><h2>Cycle questions</h2>
+        <p>Draw the reservoirs and label each arrow with a process and the organisms involved. For human effects, say which flux increased and what that changed in the reservoirs.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Denitrifying bacteria convert nitrate to N₂ in low-oxygen soils.">
+        <p class="q">Check yourself: Which process returns nitrogen gas to the atmosphere?</p>
+        <div class="opts"><button type="button">denitrification</button><button type="button">nitrification</button><button type="button">nitrogen fixation</button><button type="button">ammonification</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-disruption" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Human impact & ecosystem disruption</h1>
+        <p class="lede">Ecosystems can absorb some disturbance, but human activity often pushes them past what they can recover from.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p><b>Eutrophication</b>: fertilizer or sewage adds nitrogen and phosphorus to a lake; algae bloom; when they die, decomposers use up the oxygen, and fish and other animals suffocate. <b>Biomagnification</b>: toxins that are fat-soluble or not broken down (DDT, mercury, PCBs) become more concentrated at each trophic level, so top predators are most affected. <b>Invasive species</b> can outcompete natives. <b>Habitat fragmentation</b> splits populations and reduces gene flow. <b>Climate change</b> shifts ranges and timing of life cycles, and <b>ocean acidification</b> harms organisms with calcium carbonate shells.</p>
+        <p>Biodiversity matters for ecosystem stability and services. Ecosystems with more species and more genetic diversity tend to be more <b>resilient</b>. Conservation tools include protected areas and corridors, restoring habitat, reducing pollution, controlling invasives and sustainable harvesting. <b>Keystone species</b> and <b>indicator species</b> help monitor ecosystem health.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>pollution just spreads out and disappears</dd><dt>So we didn't need</dt><dd>that some pollutants accumulate along food chains and some nutrients overload ecosystems</dd><dt>Now</dt><dd>why top predators and small populations are most vulnerable</dd><dt>So we need</dt><dd>eutrophication, biomagnification, invasive species and climate impacts</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>eutrophication: nutrients → algae → low O₂</span><small>dead zones</small></div><div class="eqn"><span>biomagnification: concentration × factor per level</span><small>top predators highest</small></div><div class="eqn"><span>habitat fragmentation → small isolated populations</span><small>less gene flow</small></div><div class="eqn"><span>CO₂ ↑ → warming and ocean acidification</span><small>climate impacts</small></div></div>
+      <div class="lab" id="dp-lab" data-reset="own">
+        <div class="labbar"><span class="title">Biomagnification</span></div>
+        <canvas id="dp-canvas2" aria-label="Bars on a logarithmic scale showing the concentration of a pollutant at each level of a food chain."></canvas>
+        <div class="controls"><div class="ctl"><label for="dp-w"><span>Concentration in water (ppb)</span> <output id="dp-w-out"></output></label><input type="range" id="dp-w" min="0.001" max="1" step="0.001" value="0.01"></div><div class="ctl"><label for="dp-f"><span>Concentration factor per level</span> <output id="dp-f-out"></output></label><input type="range" id="dp-f" min="2" max="20" step="1" value="10"></div></div>
+        <div class="readout"><div><span>algae</span><strong class="x" id="dp-1">—</strong></div><div><span>zooplankton</span><strong class="a" id="dp-2">—</strong></div><div><span>small fish</span><strong class="v" id="dp-3">—</strong></div><div><span>large fish</span><strong class="a" id="dp-4">—</strong></div><div><span>fish-eating bird</span><strong class="x" id="dp-5">—</strong></div></div>
+      </div>
+      <div class="lab" id="dp-lab2">
+        <div class="labbar"><span class="title">A lake turns green</span></div>
+        <div class="row"><button type="button" class="btn" id="eu-prev">Previous</button><button type="button" class="btn primary" id="eu-next">Next stage</button><button type="button" class="btn" id="eu-play">Play</button></div>
+        <canvas id="dp-canvas" aria-label="Stages of eutrophication in a lake: nutrient input, algal bloom, decomposition and oxygen loss, then fish die."></canvas>
+        <div class="controls"><div class="ctl"><label for="eu-st"><span>Stage</span> <output id="eu-st-out"></output></label><input type="range" id="eu-st" min="0" max="3" step="1" value="0"></div></div>
+        <div class="readout"><div><span>stage</span><strong class="x" id="eu-name">—</strong></div><div><span>what is happening</span><strong class="" id="eu-txt">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Set the water at 0.01 ppb and a factor of 10. How concentrated is it in the bird? <button type="button" class="btn link" data-show='[["#dp-w", 0.01], ["#dp-f", 10]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>0.01 × 10⁵ = 1,000 ppb: a hundred thousand times higher than in the water.</p></details></li>
+        <li><p>Go to the stage when algae die. Where does the oxygen go? <button type="button" class="btn link" data-show='[["#eu-st", 2]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>Decomposers (bacteria) use it up as they break down the dead algae by aerobic respiration.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A pesticide is 0.5 ppb in lake water. Each trophic level concentrates it 10-fold. Algae take it up from water and are eaten by zooplankton, then small fish, then a heron. What is the concentration in the heron?</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Algae.</b> 0.5 × 10 = 5 ppb.</li>
+          <li hidden><b>Zooplankton.</b> 50 ppb.</li>
+          <li hidden><b>Small fish.</b> 500 ppb.</li>
+          <li hidden><b>Heron.</b> 5,000 ppb.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 4</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying toxins are diluted as they go up the food chain.</li>
+        <li>Mixing up eutrophication (nutrient overload) and biomagnification (toxin accumulation).</li>
+        <li>Saying algae blooms add oxygen to the lake when they die.</li>
+        <li>Thinking invasive species are always harmful in their home range.</li>
+        <li>Forgetting that fragmentation reduces gene flow.</li>
+      </ul></div>
+      <div class="prose"><h2>Explaining effects</h2>
+        <p>Name the human action, the first thing it changes in the ecosystem, the chain of consequences, and the final effect on populations (use the trophic levels and decomposers).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Biomagnification concentrates persistent toxins at higher trophic levels.">
+        <p class="q">Check yourself: A chemical that is not broken down is found at the highest concentration in</p>
+        <div class="opts"><button type="button">top predators</button><button type="button">producers</button><button type="button">decomposers only</button><button type="button">the soil only</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
   <section class="view" id="v-practice" hidden>
     <div class="wrap">
       <div class="head">
@@ -3555,8 +3829,8 @@ function view3d(cv,o){
 
 /* ---------------- Roster and registries (the data blocks are injected by build.py) ---------------- */
 const MODS={"datastats": {"t": "Data, graphs & statistics", "d": "Mean, standard deviation, standard error and error bars: how to read and compare data.", "bc": false}, "chisq": {"t": "Chi-square test", "d": "Do observed counts fit an expected ratio, or is the difference more than chance?", "bc": false}, "expdesign": {"t": "Experimental design", "d": "Variables, controls, hypotheses and what a conclusion is allowed to say.", "bc": false}, "ratesq10": {"t": "Rates, Q10 & dilutions", "d": "Rate of change, temperature coefficients and serial dilutions.", "bc": false}, "water": {"t": "Water & hydrogen bonds", "d": "Why a bent molecule with partial charges explains cohesion, heat capacity and ice that floats.", "bc": false}, "macromol": {"t": "Biological macromolecules", "d": "Carbohydrates, lipids, proteins and nucleic acids: monomers, bonds and jobs.", "bc": false}, "protein": {"t": "Protein structure", "d": "From amino-acid chain to folded machine: four levels of structure.", "bc": false}, "dnastruct": {"t": "Nucleic acids: DNA & RNA", "d": "Nucleotides, the double helix and base pairing.", "bc": false}, "organelles": {"t": "Organelles & cell structure", "d": "What each part of a cell does, and how the parts cooperate.", "bc": false}, "sav": {"t": "Surface area to volume", "d": "Why cells stay small and organs fold.", "bc": false}, "membrane": {"t": "Membrane structure", "d": "The fluid mosaic: phospholipids, proteins and selective permeability.", "bc": false}, "transport": {"t": "Diffusion & osmosis", "d": "Passive movement down a gradient, with and without a membrane.", "bc": false}, "watpot": {"t": "Water potential", "d": "Predict which way water moves using solute and pressure potential.", "bc": false}, "activetr": {"t": "Active transport & bulk transport", "d": "Pumps, cotransport, endocytosis and exocytosis: moving things uphill.", "bc": false}, "origin": {"t": "Prokaryotes, eukaryotes & endosymbiosis", "d": "How compartments and organelles arose.", "bc": false}, "enzymes": {"t": "Enzymes", "d": "Catalysts that lower the activation energy of reactions.", "bc": false}, "enzyenv": {"t": "Enzyme activity & the environment", "d": "Temperature, pH, substrate concentration and inhibitors.", "bc": false}, "atp": {"t": "Energy, ATP & free energy", "d": "Coupling reactions, ΔG and why life needs a constant energy supply.", "bc": false}, "photo": {"t": "Photosynthesis", "d": "Light reactions and the Calvin cycle: turning light into sugar.", "bc": false}, "resp": {"t": "Cellular respiration", "d": "Glycolysis, the Krebs cycle and the electron transport chain.", "bc": false}, "ferment": {"t": "Fermentation & metabolic diversity", "d": "What cells do without oxygen, and why.", "bc": false}, "signal": {"t": "Cell signaling", "d": "Receptors, signal transduction and cellular responses.", "bc": false}, "feedback": {"t": "Feedback & homeostasis", "d": "Negative and positive feedback keep systems stable or amplify them.", "bc": false}, "cellcycle": {"t": "The cell cycle & mitosis", "d": "Interphase, mitosis and cytokinesis.", "bc": false}, "cycleregs": {"t": "Cell cycle regulation & cancer", "d": "Checkpoints, cyclins and what goes wrong in cancer.", "bc": false}, "meiosis": {"t": "Meiosis", "d": "How one diploid cell makes four genetically different haploid cells.", "bc": false}, "mendel": {"t": "Mendelian genetics", "d": "Punnett squares, ratios and probability rules.", "bc": false}, "nonmendel": {"t": "Non-Mendelian inheritance", "d": "Incomplete dominance, codominance, epistasis and polygenic traits.", "bc": false}, "sexlink": {"t": "Sex-linked inheritance & pedigrees", "d": "X-linked traits and reading family trees.", "bc": false}, "linkage": {"t": "Linked genes & recombination", "d": "Genes that travel together, and how crossing over maps them.", "bc": false}, "replication": {"t": "DNA replication", "d": "Semiconservative copying with leading and lagging strands.", "bc": false}, "transcription": {"t": "Transcription & RNA processing", "d": "From a gene to a messenger RNA.", "bc": false}, "translation": {"t": "Translation & the genetic code", "d": "Reading codons to build a protein.", "bc": false}, "generegs": {"t": "Regulation of gene expression", "d": "Operons, transcription factors and why cells with the same DNA differ.", "bc": false}, "mutation": {"t": "Mutations & genetic variation", "d": "Point mutations, frameshifts and their effects.", "bc": false}, "biotech": {"t": "Biotechnology", "d": "PCR, gel electrophoresis, transformation and CRISPR.", "bc": false}, "selection": {"t": "Natural selection", "d": "Variation, heritability and differential reproduction.", "bc": false}, "hw": {"t": "Hardy–Weinberg equilibrium", "d": "A null model for allele frequencies, and how real populations differ.", "bc": false}, "drift": {"t": "Genetic drift & gene flow", "d": "Chance and migration change allele frequencies too.", "bc": false}, "speciation": {"t": "Speciation", "d": "How one species becomes two.", "bc": false}, "phylo": {"t": "Phylogeny & cladograms", "d": "Reading evolutionary trees.", "bc": false}, "originlife": {"t": "Evidence of evolution & origin of life", "d": "Common ancestry, fossils, molecular evidence and the early Earth.", "bc": false}, "popgrowth": {"t": "Population growth", "d": "Exponential and logistic growth, and carrying capacity.", "bc": false}, "community": {"t": "Species interactions & communities", "d": "Predation, competition, symbiosis and diversity.", "bc": false}, "energyflow": {"t": "Energy flow & trophic levels", "d": "Why only about 10% of energy moves up each level.", "bc": false}, "cycles": {"t": "Nutrient cycles", "d": "Carbon, nitrogen, water and phosphorus move through ecosystems.", "bc": false}, "disruption": {"t": "Disruptions to ecosystems", "d": "Invasive species, climate change and biodiversity loss.", "bc": false}};
-const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}];
-const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"], "soon": []}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"], "soon": []}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"], "soon": []}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": ["selection", "hw", "drift", "speciation", "phylo", "originlife"], "soon": []}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": [], "soon": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}]; /* every unit, with ids (built) and soon (planned, not built yet) */
+const GROUPS=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"]}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"]}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"]}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"]}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"]}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"]}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"]}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": ["selection", "hw", "drift", "speciation", "phylo", "originlife"]}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": ["popgrowth", "community", "energyflow", "cycles", "disruption"]}];
+const ROADMAP=[{"w": "Optional", "name": "Math and science practices", "tag": "Math", "bc": false, "ids": ["datastats", "chisq", "expdesign", "ratesq10"], "soon": []}, {"w": "Unit 1", "name": "Chemistry of life", "tag": "AP Unit 1", "bc": false, "ids": ["water", "macromol", "protein", "dnastruct"], "soon": []}, {"w": "Unit 2", "name": "Cell structure and function", "tag": "AP Unit 2", "bc": false, "ids": ["organelles", "sav", "membrane", "transport", "watpot", "activetr", "origin"], "soon": []}, {"w": "Unit 3", "name": "Cellular energetics", "tag": "AP Unit 3", "bc": false, "ids": ["enzymes", "enzyenv", "atp", "photo", "resp", "ferment"], "soon": []}, {"w": "Unit 4", "name": "Cell communication and cell cycle", "tag": "AP Unit 4", "bc": false, "ids": ["signal", "feedback", "cellcycle", "cycleregs"], "soon": []}, {"w": "Unit 5", "name": "Heredity", "tag": "AP Unit 5", "bc": false, "ids": ["meiosis", "mendel", "nonmendel", "sexlink", "linkage"], "soon": []}, {"w": "Unit 6", "name": "Gene expression and regulation", "tag": "AP Unit 6", "bc": false, "ids": ["replication", "transcription", "translation", "generegs", "mutation", "biotech"], "soon": []}, {"w": "Unit 7", "name": "Natural selection", "tag": "AP Unit 7", "bc": false, "ids": ["selection", "hw", "drift", "speciation", "phylo", "originlife"], "soon": []}, {"w": "Unit 8", "name": "Ecology", "tag": "AP Unit 8", "bc": false, "ids": ["popgrowth", "community", "energyflow", "cycles", "disruption"], "soon": []}]; /* every unit, with ids (built) and soon (planned, not built yet) */
 const TIPS={},TT={},GLOSS={},KEYS={},PROBS=[],FRQS=[],GLYPH={};
 const METHODS={clues:[],items:[]};
 Object.keys(MODS).forEach(id=>{const g=ROADMAP.find(g=>g.ids.includes(id)||g.soon.includes(id));MODS[id].ap=g?g.tag:'';MODS[id].w=g?g.w:'';});
@@ -5181,7 +5455,7 @@ const compDNAs=s=>s.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c]||'?')).join('
   const cv=$('#ns-canvas');if(!cv)return;
   const NB=40;let mode='dir',s=5,gen=0,P=[],P0=[];
   function init(){P=[];let z=0;for(let i=0;i<NB;i++){const x=(i+.5)*100/NB;P.push(Math.exp(-Math.pow((x-50)/12,2)/2));z+=P[i];}P=P.map(v=>v/z);P0=P.slice();gen=0;}
-  const fit=(x)=>{const z=(x-50)/50;return mode==='dir'?Math.exp(.15*s*z):mode==='sta'?Math.exp(-s*z*z):Math.exp(.6*s*z*z);};
+  const fit=(x)=>{const z=(x-50)/50;return mode==='dir'?Math.exp(.15*s*z):mode==='sta'?Math.exp(-.4*s*z*z):Math.exp(.12*s*z*z);};
   function step(){let z=0;const q=P.map((v,i)=>{const w=v*fit((i+.5)*100/NB);z+=w;return w;}).map(v=>v/z);const r=q.map((v,i)=>.1*(q[i-1]||q[i])+.8*v+.1*(q[i+1]||q[i]));let t=0;r.forEach(v=>t+=v);P=r.map(v=>v/t);gen++;}
   const stats=()=>{let m=0;P.forEach((v,i)=>m+=v*(i+.5)*100/NB);let va=0;P.forEach((v,i)=>va+=v*Math.pow((i+.5)*100/NB-m,2));return [m,Math.sqrt(va)];};
   const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:100,y0:0,y1:.2,xt:20,xl:'trait value (for example beak depth)',yl:'fraction of population',L:46}),bw=(A.R-A.L)/NB,mx=.2;
@@ -5390,6 +5664,179 @@ const compDNAs=s=>s.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c]||'?')).join('
   PROBS.push({id:'ol-rem',topic:'originlife',title:'Fraction remaining',gen(){const n=randInt(1,5),hl=5730,age=n*hl,ans=100/Math.pow(2,n);return {q:`A fossil is ${age.toLocaleString('en-US')} years old. The half-life of carbon-14 is 5,730 years. What percent of its original carbon-14 remains?`,ans,unit:'%',abs:.011*ans+.01,chk:100*Math.pow(.5,age/hl),hint:'Number of half-lives = age / half-life. Remaining = (½)^n.',sol:`${age}/5730 = ${n} half-lives; (½)<sup>${n}</sup> = <b>${fmt(ans,2)}%</b>.`};}});
   const q=[['The Miller–Urey experiment showed that','amino acids can form from simple gases and energy',['life can be made in a laboratory','DNA formed before RNA','oxygen was abundant on early Earth']],['The RNA world hypothesis proposes that','RNA stored information and catalyzed reactions before DNA and proteins',['DNA was the first genetic material','proteins came first','viruses were the first cells']],['Which pair is in the correct order from oldest to youngest?','first prokaryotes, oxygen rise, first eukaryotes',['first eukaryotes, first prokaryotes, oxygen rise','oxygen rise, first prokaryotes, first eukaryotes','first eukaryotes, oxygen rise, first prokaryotes']],['Carbon-14 dating is suitable for','remains younger than about 50,000 years',['rocks billions of years old','all fossils','volcanic ash millions of years old']]];
   PROBS.push({id:'ol-fact',topic:'originlife',title:'Origin of life facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Recall the evidence and the order of events.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/popgrowth.js ===== */
+/* ---------------- Population growth ---------------- */
+(function popgrowth(){
+  const cv=$('#pg-canvas');if(!cv)return;
+  let mode='exp',r=.4,K=1000,N0=10;
+  const Nt=t=>mode==='exp'?N0*Math.exp(r*t):K/(1+((K-N0)/N0)*Math.exp(-r*t));
+  const rate=n=>mode==='exp'?r*n:r*n*(K-n)/K;
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const ymax=Math.max(K*1.2,N0*1.1),A=axes2(ctx,w,h,{x0:0,x1:20,y0:0,y1:ymax,xt:5,yt:ymax/4,xl:'years',yl:'population size',L:52});
+    if(mode==='log'){ctx.setLineDash([5,4]);ctx.strokeStyle=T.good;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(A.L,A.Y(K));ctx.lineTo(A.R,A.Y(K));ctx.stroke();ctx.setLineDash([]);label(ctx,'K = '+K,A.R-4,A.Y(K)-8,T.good,'right','middle',MONO);}
+    ctx.save();ctx.beginPath();ctx.rect(A.L,A.T0-4,A.R-A.L,A.B-A.T0+4);ctx.clip();curve2(ctx,A,Nt,0,20,mode==='exp'?T.ca:T.cx);ctx.restore();
+    if(mode==='exp'&&Nt(20)>ymax)label(ctx,'off the chart: keeps accelerating',A.R-4,A.T0+10,T.muted,'right','middle',MONO);}});
+  function upd(){const n=Nt(20);setText('pg-n',n>1e6?fmt(n,0):fmt(n,0));setText('pg-rate',fmt(rate(n),1)+' per year');setText('pg-peak',mode==='exp'?'no peak: rate keeps rising':'N = K/2 = '+fmt(K/2,0)+(N0<K/2?' (about year '+fmt(Math.log((K-N0)/N0)/r,1)+')':''));sim.render();}
+  segBind('pg-mode','k',v=>{mode=v;upd();});bindRange('pg-r',v=>fmt(v,2),v=>{r=v;upd();});bindRange('pg-k',v=>String(v),v=>{K=v;upd();});bindRange('pg-n0',v=>String(v),v=>{N0=v;upd();});
+  $('#pg-lab').addEventListener('labreset',()=>{mode='exp';r=.4;K=1000;N0=10;segSet('pg-mode',0);setCtl('pg-r',.4,v=>fmt(v,2));setCtl('pg-k',1000);setCtl('pg-n0',10);upd();});upd();
+  const SV={'1':{f:x=>Math.max(1,1000*(1-Math.pow(x,4.5))),ex:'humans, elephants, many large mammals',st:'few offspring, heavy parental care (K-selected)'},'2':{f:x=>Math.max(1,1000*Math.pow(10,-3*x)),ex:'songbirds, hydra, some lizards',st:'constant chance of dying at any age'},'3':{f:x=>Math.max(1,1000*Math.pow(10,-3*Math.pow(Math.max(x,0),.3))),ex:'oysters, most fish, many plants',st:'many offspring, most die young (r-selected)'}};
+  let ty='1';
+  const sim2=sim2d($('#pg-canvas2'),{h:w=>clamp(w*.42,210,270),draw(ctx,w,h){const L=52,R=w-14,B=h-36,top=14,X=x=>L+(R-L)*x,Y=v=>B-(B-top)*Math.log10(v)/3;ctx.strokeStyle=T.grid;ctx.lineWidth=1;[1,10,100,1000].forEach(v=>{ctx.beginPath();ctx.moveTo(L,Y(v));ctx.lineTo(R,Y(v));ctx.stroke();label(ctx,String(v),L-6,Y(v),T.muted,'right','middle',MONO);});ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,top);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();label(ctx,'age (fraction of the maximum lifespan)',(L+R)/2,h-8,T.muted,'center','middle',MONO);
+    ['1','2','3'].forEach(k=>{ctx.strokeStyle=k===ty?T.ca:T.line;ctx.lineWidth=k===ty?3:1.6;ctx.beginPath();for(let i=0;i<=80;i++){const x=i/80,y=SV[k].f(x);i?ctx.lineTo(X(x),Y(y)):ctx.moveTo(X(x),Y(y));}ctx.stroke();});label(ctx,'survivors per 1000 (log scale)',L+4,top+2,T.muted,'left','middle',MONO);}});
+  function upd2(){setText('pg-ex',SV[ty].ex);setText('pg-st',SV[ty].st);sim2.render();}
+  segBind('pg-type','k',v=>{ty=v;upd2();});$('#pg-lab2').addEventListener('labreset',()=>{ty='1';segSet('pg-type',0);upd2();});upd2();
+  drawers.popgrowth=()=>{sim.render();sim2.render();};
+  KEYS['pg-canvas']=['Pink curve: exponential. Blue curve: logistic. The green dashed line is the carrying capacity.',[['ca','exponential'],['cx','logistic'],['good','carrying capacity K']]];
+  KEYS['pg-canvas2']=['The chosen type is highlighted; the others are faint.',[['ca','chosen survivorship type']]];
+  TIPS['pg-k']=()=>'Carrying capacity is the largest population the environment can sustain.';
+  GLOSS['carrying capacity']='The maximum population size an environment can sustain.';GLOSS['density-dependent']='A factor whose effect on a population grows with population density.';GLOSS['r-selected']='Species with high growth rate, many small offspring and little parental care.';GLOSS['k-selected']='Species with low growth rate, few offspring and heavy parental care, living near carrying capacity.';GLOSS['survivorship curve']='A graph of the proportion of a cohort surviving at each age.';
+  TT.popgrowth='Ask students where the logistic curve is steepest and why.';
+})();
+(function(){
+  PROBS.push({id:'pg-exp',topic:'popgrowth',title:'Exponential growth rate',gen(){const r=pick([.1,.2,.25,.5]),N=pick([100,200,500,1000,2500]),ans=r*N;return {q:`A population of ${N} has a per capita growth rate r = ${r} per year and unlimited resources. What is dN/dt? (individuals per year)`,ans,unit:'per year',abs:.06,chk:r*N,hint:'dN/dt = r N.',sol:`${r} × ${N} = <b>${fmt(ans,1)} per year</b>.`};}});
+  PROBS.push({id:'pg-log',topic:'popgrowth',title:'Logistic growth rate',gen(){const K=pick([500,1000,2000]),r=pick([.2,.3,.4,.5]),f=pick([.1,.2,.25,.5,.75,.9]),N=K*f,ans=r*N*(K-N)/K;return {q:`A population has r<sub>max</sub> = ${r}, carrying capacity K = ${K} and size N = ${N}. What is dN/dt from the logistic model?`,ans,unit:'per year',abs:ans*.005+.06,chk:r*N*(K-N)/K,hint:'dN/dt = r N (K − N)/K.',sol:`${r} × ${N} × (${K} − ${N})/${K} = <b>${fmt(ans,1)} per year</b>.`};}});
+  const q=[['A graph of population size over time is J-shaped and does not level off. This indicates','exponential growth with unlimited resources',['logistic growth near carrying capacity','a density-dependent decline','a stable population']],['Which is a density-dependent factor?','disease spreading faster in crowded populations',['a forest fire','a hurricane','a severe freeze']],['A species produces thousands of tiny offspring with no parental care. Most die young. Its survivorship curve is most likely','Type III',['Type I','Type II','a straight line on a linear axis']],['At the carrying capacity of a logistic population, the growth rate is','zero',['maximum','negative','equal to r']]];
+  PROBS.push({id:'pg-fact',topic:'popgrowth',title:'Growth models',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Think about what limits the population.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/community.js ===== */
+/* ---------------- Communities & species interactions ---------------- */
+(function community(){
+  const cv=$('#cm-canvas');if(!cv)return;
+  let b=.7,a=.6,d=.5,x=1.5,y=1,hx=[],hy=[];const C=.8;
+  function restart(){x=1.5;y=1;hx=[];hy=[];}
+  function f(x,y){return [b*x-a*x*y,-d*y+C*a*x*y];}
+  const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),
+    step(dt){const T0=3*dt,n=30,h=T0/n;for(let i=0;i<n;i++){const k1=f(x,y),k2=f(x+h/2*k1[0],y+h/2*k1[1]),k3=f(x+h/2*k2[0],y+h/2*k2[1]),k4=f(x+h*k3[0],y+h*k3[1]);x+=h/6*(k1[0]+2*k2[0]+2*k3[0]+k4[0]);y+=h/6*(k1[1]+2*k2[1]+2*k3[1]+k4[1]);x=Math.max(x,1e-4);y=Math.max(y,1e-4);}hx.push(x);hy.push(y);if(hx.length>300){hx.shift();hy.shift();}upd(true);},
+    draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:300,y0:0,y1:6,yt:2,xl:'time →',yl:'relative numbers',L:46});[[hx,T.cv,'prey'],[hy,T.ca,'predators']].forEach(([arr,col,nm])=>{ctx.strokeStyle=col;ctx.lineWidth=2.6;ctx.beginPath();arr.forEach((v,i)=>{const X=A.X(300-arr.length+i),Y=A.Y(Math.min(v,6));i?ctx.lineTo(X,Y):ctx.moveTo(X,Y);});ctx.stroke();});label(ctx,'green: prey · pink: predators',A.R-4,A.T0+8,T.muted,'right','middle',MONO);}});
+  function upd(skip){const dv=f(x,y);setText('cm-pn',String(Math.round(x*100)));setText('cm-qn',String(Math.round(y*100)));setText('cm-msg',dv[0]>0&&dv[1]>0?'both rising: plenty of prey for predators':dv[0]<0&&dv[1]>0?'predators still rising while prey fall':dv[0]<0&&dv[1]<0?'prey scarce, predators starving':'prey recovering while predators decline');if(!skip)sim.render();}
+  bindRange('cm-b',v=>fmt(v,2),v=>{b=v;});bindRange('cm-a',v=>fmt(v,2),v=>{a=v;});bindRange('cm-d',v=>fmt(v,2),v=>{d=v;});$('#cm-reset').addEventListener('click',()=>{restart();upd();});
+  $('#cm-lab').addEventListener('labreset',()=>{b=.7;a=.6;d=.5;setCtl('cm-b',.7,v=>fmt(v,2));setCtl('cm-a',.6,v=>fmt(v,2));setCtl('cm-d',.5,v=>fmt(v,2));restart();upd();});upd();
+  let s=[40,30,20,10];
+  const sim2=sim2d($('#cm-canvas2'),{h:w=>clamp(w*.4,200,260),draw(ctx,w,h){const N=s.reduce((p,q)=>p+q,0),L=40,R=w-14,B=h-30,top=22,mx=Math.max(...s,10),bw=(R-L)/6;ctx.strokeStyle=T.ink;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(L,top);ctx.lineTo(L,B);ctx.lineTo(R,B);ctx.stroke();[T.cx,T.ca,T.cv,T.ce].forEach((c,i)=>{const hh=(B-top)*s[i]/mx,x0=L+bw*(.4+i*1.4);ctx.fillStyle=alpha(c,.65);ctx.fillRect(x0,B-hh,bw,hh);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(x0,B-hh,bw,hh);label(ctx,String(s[i]),x0+bw/2,B-hh-9,T.ink,'center','middle',MONO);label(ctx,'species '+'ABCD'[i],x0+bw/2,B+14,T.ink,'center','middle',MONO);});}});
+  function upd2(){const N=s.reduce((p,q)=>p+q,0),D=N?1-s.reduce((p,q)=>p+(q/N)*(q/N),0):0;setText('cm-n',String(N));setText('cm-rich',String(s.filter(v=>v>0).length));setText('cm-dx',N?fmt(D,3):'—');sim2.render();}
+  [['cm-s1',0],['cm-s2',1],['cm-s3',2],['cm-s4',3]].forEach(([id,i])=>bindRange(id,v=>String(v),v=>{s[i]=v;upd2();}));
+  $('#cm-lab2').addEventListener('labreset',()=>{s=[40,30,20,10];['cm-s1','cm-s2','cm-s3','cm-s4'].forEach((id,i)=>setCtl(id,s[i]));upd2();});upd2();
+  drawers.community=()=>{sim.render();sim2.render();};
+  KEYS['cm-canvas']=['Green: prey. Pink: predators. Their numbers rise and fall in coupled cycles (a Lotka–Volterra model).',[['cv','prey'],['ca','predators']]];
+  KEYS['cm-canvas2']=['Bars: individuals of each species in the sample.',[['cx','species A'],['ca','species B'],['cv','species C'],['ce','species D']]];
+  TIPS['cm-s1']=()=>'Simpson\'s D is highest when individuals are spread evenly among many species.';
+  GLOSS['keystone species']='A species with an effect on its community much larger than its abundance would suggest.';GLOSS['competitive exclusion']='When two species compete for the same limiting resource, one eventually eliminates the other.';GLOSS['mutualism']='An interaction in which both species benefit.';GLOSS['commensalism']='An interaction in which one species benefits and the other is unaffected.';GLOSS['parasitism']='An interaction in which one species benefits at the expense of its host.';GLOSS['succession']='The sequence of community change after a disturbance.';GLOSS['species richness']='The number of different species in a community.';
+  TT.community='Ask which graph line peaks first in a predator–prey cycle and why the other follows.';
+})();
+(function(){
+  PROBS.push({id:'cm-simp',topic:'community',title:'Simpson\'s diversity index',gen(){const k=pick([3,4]),tot=pick([50,100,200]),pr=k===3?pick([[.5,.3,.2],[.6,.3,.1],[.4,.4,.2],[.7,.2,.1]]):pick([[.4,.3,.2,.1],[.5,.2,.2,.1],[.25,.25,.25,.25],[.7,.1,.1,.1]]),n=pr.map(p=>Math.round(p*tot)),N=n.reduce((a,b)=>a+b,0),ans=1-n.reduce((a,b)=>a+(b/N)*(b/N),0);return {q:`A sample contains ${k} species with ${n.join(', ')} individuals. Calculate Simpson's diversity index D = 1 − Σ(n/N)². (Three decimals.)`,ans,unit:'',abs:.0011,chk:1-n.reduce((a,b)=>a+Math.pow(b/N,2),0),hint:'N is the total. Square each fraction, add, subtract from 1.',sol:`N = ${N}. D = 1 − [${n.map(v=>'('+v+'/'+N+')²').join(' + ')}] = <b>${fmt(ans,3)}</b>.`};}});
+  const e=[['Two species compete for the same food and one is eliminated. This is','competitive exclusion',['mutualism','commensalism','succession']],['A flower and its pollinator both benefit. This is','mutualism',['commensalism','parasitism','competition']],['A tapeworm living in an intestine harms its host. This is','parasitism',['mutualism','commensalism','predation']],['Barnacles growing on a whale do not affect the whale. This is','commensalism',['mutualism','parasitism','competition']],['A sea star that keeps mussels from taking over a rocky shore and so increases diversity is a','keystone species',['dominant producer','invasive species','decomposer']],['Plants colonizing bare rock after a glacier retreats show','primary succession',['secondary succession','competitive exclusion','mutualism']],['A forest regrows after a fire, from soil that is still present. This is','secondary succession',['primary succession','a trophic cascade','adaptive radiation']]];
+  PROBS.push({id:'cm-int',topic:'community',title:'Species interaction',gen(){const p=pick(e),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Write the effect on each species (+, −, 0).',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/energyflow.js ===== */
+/* ---------------- Energy flow & trophic levels ---------------- */
+(function energyflow(){
+  const cv=$('#ef-canvas');if(!cv)return;
+  let P=50000,e=.1;
+  const lv=()=>[P,P*e,P*e*e,P*e*e*e,P*e*e*e*e];
+  const NM=['producers','primary consumers','secondary consumers','tertiary consumers','quaternary consumers'];
+  const fm=v=>v>=100?Math.round(v).toLocaleString('en-US'):fmt(v,v<1?3:1);
+  const sim=sim2d(cv,{h:w=>clamp(w*.5,250,320),draw(ctx,w,h){const L=lv(),n=5,bh=(h-30)/n,cx=w/2,mxw=w*.84,mn=Math.log10(.01),mx=Math.log10(1e5);L.forEach((v,i)=>{const frac=clamp((Math.log10(Math.max(v,.01))-mn)/(mx-mn),.04,1),wd=mxw*frac,y=h-14-(i+1)*bh,col=[T.cv,T.cx,T.accent,T.ca,T.bad][i];ctx.fillStyle=alpha(col,.6);ctx.fillRect(cx-wd/2,y+3,wd,bh-6);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(cx-wd/2,y+3,wd,bh-6);label(ctx,NM[i]+': '+fm(v)+' kJ',cx,y+bh/2,T.ink,'center','middle',MONO);});label(ctx,'bar widths on a log scale',w/2,h-4,T.muted,'center','middle',MONO);}});
+  function upd(){const L=lv();setText('ef-1',fm(L[1])+' kJ');setText('ef-2',fm(L[2])+' kJ');setText('ef-3',fm(L[3])+' kJ');setText('ef-4',fm(L[4])+' kJ');sim.render();}
+  bindRange('ef-p',v=>v.toLocaleString('en-US'),v=>{P=v;upd();});bindRange('ef-e',v=>Math.round(v*100)+'%',v=>{e=v;upd();});
+  $('#ef-lab').addEventListener('labreset',()=>{P=50000;e=.1;setCtl('ef-p',50000,v=>v.toLocaleString('en-US'));setCtl('ef-e',.1,v=>Math.round(v*100)+'%');upd();});upd();
+  let G=12000,R=.4;
+  const sim2=sim2d($('#ef-canvas2'),{h:w=>clamp(w*.26,130,170),draw(ctx,w,h){const L=14,Rr=w-14,y=h*.35,bh=34,rw=(Rr-L)*R;ctx.fillStyle=alpha(T.hot,.65);ctx.fillRect(L,y,rw,bh);ctx.strokeStyle=T.hot;ctx.lineWidth=2;ctx.strokeRect(L,y,rw,bh);ctx.fillStyle=alpha(T.cv,.65);ctx.fillRect(L+rw,y,(Rr-L)-rw,bh);ctx.strokeStyle=T.cv;ctx.strokeRect(L+rw,y,(Rr-L)-rw,bh);label(ctx,'respiration R',L+rw/2,y+bh/2,T.ink,'center','middle',MONO);label(ctx,'NPP',L+rw+((Rr-L)-rw)/2,y+bh/2,T.ink,'center','middle',MONO);label(ctx,'GPP = '+G.toLocaleString('en-US')+' kJ/m²/yr (full bar)',w/2,y-14,T.muted,'center','middle',MONO);}});
+  function upd2(){setText('ef-npp',Math.round(G*(1-R)).toLocaleString('en-US')+' kJ/m²/yr');setText('ef-pct',Math.round((1-R)*100)+'%');sim2.render();}
+  bindRange('ef-g',v=>v.toLocaleString('en-US'),v=>{G=v;upd2();});bindRange('ef-r',v=>Math.round(v*100)+'%',v=>{R=v;upd2();});
+  $('#ef-lab2').addEventListener('labreset',()=>{G=12000;R=.4;setCtl('ef-g',12000,v=>v.toLocaleString('en-US'));setCtl('ef-r',.4,v=>Math.round(v*100)+'%');upd2();});upd2();
+  drawers.energyflow=()=>{sim.render();sim2.render();};
+  KEYS['ef-canvas']=['Each bar is a trophic level. Energy drops sharply at each step.',[['cv','producers'],['cx','primary consumers'],['accent','secondary consumers'],['ca','tertiary consumers'],['bad','quaternary consumers']]];
+  KEYS['ef-canvas2']=['Orange: energy producers use in their own respiration. Green: net primary productivity.',[['hot','respiration'],['cv','NPP']]];
+  TIPS['ef-e']=()=>'Typical transfer efficiency is around 10%. The rest is lost as heat or not consumed.';
+  GLOSS['trophic level']='A position in a food chain: producers, primary consumers, and so on.';GLOSS['gpp']='Gross primary productivity: the total energy captured by producers.';GLOSS['npp']='Net primary productivity: GPP minus the producers\' own respiration.';GLOSS['decomposer']='An organism (bacterium or fungus) that breaks down dead material and recycles nutrients.';GLOSS['food web']='A network of interconnected food chains.';
+  TT.energyflow='Ask students to explain where the lost energy goes at each step.';
+})();
+(function(){
+  PROBS.push({id:'ef-pyr',topic:'energyflow',title:'Energy at a trophic level',gen(){const P=pick([10000,20000,50000,100000]),k=randInt(1,3),nm=['primary','secondary','tertiary'][k-1],ans=P*Math.pow(.1,k);return {q:`Producers in an ecosystem contain ${P.toLocaleString('en-US')} kJ of energy. Assuming 10% transfer between levels, how much energy is available to ${nm} consumers? (kJ)`,ans,unit:'kJ',abs:ans*.005+.01,chk:P/Math.pow(10,k),hint:'Multiply by 0.10 for each step up.',sol:`${P.toLocaleString('en-US')} × 0.1<sup>${k}</sup> = <b>${fmt(ans,2)} kJ</b>.`};}});
+  PROBS.push({id:'ef-npp',topic:'energyflow',title:'Net primary productivity',gen(){const G=pick([8000,12000,15000,20000]),R=pick([2000,3000,4500,6000]),ans=G-R;return {q:`A forest has a gross primary productivity of ${G.toLocaleString('en-US')} kJ per m² per year, and its producers use ${R.toLocaleString('en-US')} kJ in respiration. What is the net primary productivity?`,ans,unit:'kJ/m²/yr',tol:0,chk:G-R,hint:'NPP = GPP − R.',sol:`${G} − ${R} = <b>${ans.toLocaleString('en-US')}</b>.`};}});
+  const q=[['Why are food chains usually limited to four or five trophic levels?','energy is lost as heat at each transfer',['nutrients run out','predators are too large','producers cannot support herbivores']],['Energy in an ecosystem','flows in one direction and is lost as heat',['cycles back to producers','is recycled by decomposers','increases at higher trophic levels']],['Which organisms release nutrients from dead matter back to the ecosystem?','decomposers',['producers','primary consumers','tertiary consumers']],['The energy available to consumers is best represented by','net primary productivity',['gross primary productivity','respiration','sunlight reaching the ground']]];
+  PROBS.push({id:'ef-fact',topic:'energyflow',title:'Energy flow facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Energy is lost, matter cycles.',sol:`<b>${p[1]}</b>.`};}});
+})();
+
+/* ===== modules/cycles.js ===== */
+/* ---------------- Biogeochemical cycles ---------------- */
+(function cycles(){
+  const cv=$('#cy-canvas');if(!cv)return;
+  const CY={
+    c:{nodes:{atm:['atmosphere CO₂',.5,.12,T=>T.cx],prod:['producers',.14,.5,T=>T.cv],cons:['consumers',.42,.6,T=>T.ce],soil:['soil, dead matter, decomposers',.38,.9,T=>T.hot],fos:['fossil fuels',.86,.62,T=>T.muted],oce:['ocean',.88,.14,T=>T.cx]},
+      arr:[['atm','prod','photosynthesis'],['prod','atm','respiration'],['prod','cons','feeding'],['cons','atm','respiration'],['prod','soil','death'],['cons','soil','waste, death'],['soil','atm','decomposition'],['fos','atm','combustion'],['atm','oce','dissolving']],
+      key:'photosynthesis (producers), respiration (all organisms), decomposers',human:'burning fossil fuels and clearing forests raise atmospheric CO₂; the ocean absorbs some and becomes more acidic'},
+    n:{nodes:{n2:['N₂ in the air',.5,.12,T=>T.cx],nh4:['ammonium NH₄⁺',.18,.55,T=>T.ca],no3:['nitrate NO₃⁻',.52,.62,T=>T.ce],org:['plants and animals (organic N)',.84,.38,T=>T.cv],dec:['decomposers',.52,.92,T=>T.hot]},
+      arr:[['n2','nh4','fixation'],['nh4','no3','nitrification'],['no3','org','assimilation'],['org','dec','death, waste'],['dec','nh4','ammonification'],['no3','n2','denitrification']],
+      key:'nitrogen-fixing bacteria, nitrifying bacteria, denitrifying bacteria, decomposers',human:'fertilizer and fossil fuel burning add reactive nitrogen; runoff causes eutrophication'},
+    p:{nodes:{rock:['rock',.12,.5,T=>T.muted],soil:['soil and water (phosphate)',.42,.18,T=>T.ce],org:['organisms',.82,.22,T=>T.cv],sed:['sediments',.5,.88,T=>T.hot]},
+      arr:[['rock','soil','weathering'],['soil','org','uptake, feeding'],['org','soil','decomposition, waste'],['soil','sed','runoff, settling'],['sed','rock','geologic uplift']],
+      key:'plants take up phosphate; decomposers return it; there is no gas phase',human:'mining phosphate for fertilizer and runoff cause algal blooms'},
+    w:{nodes:{atm:['atmosphere (vapor, clouds)',.5,.12,T=>T.cx],oce:['ocean',.2,.85,T=>T.cx],land:['land and plants',.78,.85,T=>T.cv],gw:['groundwater',.8,.55,T=>T.ca]},
+      arr:[['oce','atm','evaporation'],['land','atm','evaporation, transpiration'],['atm','land','precipitation'],['atm','oce','precipitation'],['land','oce','runoff'],['land','gw','infiltration']],
+      key:'the sun drives evaporation; plants return water by transpiration',human:'deforestation, dams and groundwater pumping change flows and storage'}};
+  let sel='c';
+  const sim=sim2d(cv,{h:w=>clamp(w*.58,290,380),draw(ctx,w,h){const C=CY[sel],P=k=>[C.nodes[k][1]*w,C.nodes[k][2]*h];
+    ctx.font=MONO;C.arr.forEach(([a,b,nm],i)=>{const p=P(a),q=P(b),dx=q[0]-p[0],dy=q[1]-p[1],len=Math.hypot(dx,dy)||1,ux=dx/len,uy=dy/len,off=(C.arr.some(([x,y])=>x===b&&y===a))?9:0,nx=-uy*off,ny=ux*off,x1=p[0]+ux*34+nx,y1=p[1]+uy*20+ny,x2=q[0]-ux*34+nx,y2=q[1]-uy*20+ny;
+      ctx.strokeStyle=T.muted;ctx.fillStyle=T.muted;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-9*ux+5*uy,y2-9*uy-5*ux);ctx.lineTo(x2-9*ux-5*uy,y2-9*uy+5*ux);ctx.closePath();ctx.fill();label(ctx,nm,(x1+x2)/2+nx*1.2,(y1+y2)/2+ny*1.2-6,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));});
+    Object.values(C.nodes).forEach(([nm,x,y,col])=>{const c=col(T),tw=Math.max(70,nm.length*6.4+14);ctx.fillStyle=alpha(c,.3);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.fillRect(x*w-tw/2,y*h-15,tw,30);ctx.strokeRect(x*w-tw/2,y*h-15,tw,30);label(ctx,nm,x*w,y*h,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));});}});
+  function upd(){setText('cy-key',CY[sel].key);setText('cy-human',CY[sel].human);sim.render();}
+  segBind('cy-sel','k',v=>{sel=v;upd();});$('#cy-lab').addEventListener('labreset',()=>{sel='c';segSet('cy-sel',0);upd();});upd();
+  let em=10,yr=30;const base=420,AF=.45,GT=2.13;
+  const sim2=sim2d($('#cy-canvas2'),{h:w=>clamp(w*.42,210,270),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:100,y0:400,y1:900,xt:20,yt:100,xl:'years from now',yl:'CO₂ (ppm)',L:50});ctx.setLineDash([4,4]);ctx.strokeStyle=T.muted;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(A.L,A.Y(280));ctx.lineTo(A.R,A.Y(280));ctx.stroke();ctx.setLineDash([]);curve2(ctx,A,t=>Math.min(900,base+em*AF/GT*t),0,100,T.ca);dot2(ctx,A.X(yr),A.Y(Math.min(900,base+em*AF/GT*yr)),T.accent,6);label(ctx,'start: about 420 ppm',A.L+6,A.Y(base)-10,T.muted,'left','middle',MONO);}});
+  function upd2(){const inc=em*AF/GT*yr;setText('cy-co2',fmt(base+inc,0)+' ppm');setText('cy-inc',(inc>=0?'+':'')+fmt(inc,0)+' ppm');sim2.render();}
+  bindRange('cy-em',v=>fmt(v,1),v=>{em=v;upd2();});bindRange('cy-yr',v=>String(v),v=>{yr=v;upd2();});
+  $('#cy-lab2').addEventListener('labreset',()=>{em=10;yr=30;setCtl('cy-em',10,v=>fmt(v,1));setCtl('cy-yr',30);upd2();});upd2();
+  drawers.cycles=()=>{sim.render();sim2.render();};
+  KEYS['cy-canvas']=['Boxes are reservoirs. Arrows are the processes that move atoms between them.',[['cx','air or water'],['cv','producers'],['ce','consumers or nitrate'],['hot','decomposers or sediments'],['ca','ammonium or groundwater']]];
+  KEYS['cy-canvas2']=['Pink line: simple model of CO₂ with constant emissions. Dashed line: about 280 ppm before the industrial era.',[['ca','CO₂ concentration']]];
+  TIPS['cy-em']=()=>'This model assumes about 45% of emitted carbon stays in the air and 1 ppm is about 2.13 billion tonnes of carbon.';
+  GLOSS['nitrogen fixation']='Conversion of N₂ gas into ammonia by bacteria.';GLOSS['nitrification']='Conversion of ammonium to nitrite and then nitrate by soil bacteria.';GLOSS['denitrification']='Conversion of nitrate to N₂ gas by bacteria in low-oxygen conditions.';GLOSS['reservoir']='A place where an element is stored in a cycle.';GLOSS['greenhouse effect']='Warming of Earth because gases such as CO₂ trap heat.';
+  TT.cycles='Ask students to follow one atom from the air into an organism and back.';
+})();
+(function(){
+  const q=[['Which process converts N₂ gas into a form that plants can use after further steps?','nitrogen fixation by bacteria',['denitrification','combustion','photosynthesis']],['Which process moves carbon from the atmosphere into organic molecules?','photosynthesis',['respiration','combustion','decomposition']],['Which process returns nitrogen to the atmosphere as N₂?','denitrification',['nitrification','ammonification','assimilation']],['Which cycle has no significant atmospheric phase?','phosphorus',['carbon','nitrogen','water']],['The main reason atmospheric CO₂ has risen over the past 200 years is','burning fossil fuels',['more volcanoes','less respiration by animals','increased photosynthesis']],['Soil bacteria that convert ammonium to nitrate perform','nitrification',['nitrogen fixation','denitrification','ammonification']]];
+  PROBS.push({id:'cy-proc',topic:'cycles',title:'Which process?',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Name the starting and ending forms of the element.',sol:`<b>${p[1]}</b>.`};}});
+  PROBS.push({id:'cy-co2',topic:'cycles',title:'CO₂ increase',gen(){const em=pick([5,8,10,12]),yr=pick([10,20,30,50]),ans=em*.45/2.13*yr;return {q:`Emissions of ${em} billion tonnes of carbon per year continue for ${yr} years. Assume 45% of emitted carbon stays in the atmosphere and that 1 ppm of CO₂ corresponds to 2.13 billion tonnes of carbon. By how many ppm does atmospheric CO₂ rise?`,ans,unit:'ppm',abs:ans*.01+.15,chk:em*yr*.45/2.13,hint:'Carbon staying in the air = emissions × years × 0.45. Convert to ppm by dividing by 2.13.',sol:`${em} × ${yr} × 0.45 = ${fmt(em*yr*.45,1)} Gt; ÷ 2.13 = <b>${fmt(ans,1)} ppm</b>.`};}});
+})();
+
+/* ===== modules/disruption.js ===== */
+/* ---------------- Human impact & ecosystem disruption ---------------- */
+(function disruption(){
+  const cv=$('#dp-canvas2');if(!cv)return;
+  let w0=.01,f=10;
+  const NM=['algae','zooplankton','small fish','large fish','fish-eating bird'];
+  const val=k=>w0*Math.pow(f,k+1);
+  const sim=sim2d(cv,{h:w=>clamp(w*.44,220,290),draw(ctx,w,h){const L=110,R=w-16,mn=-3,mx=7,bh=22,gap=8,X=v=>L+(R-L)*(Math.log10(Math.max(v,1e-3))-mn)/(mx-mn);
+    ctx.strokeStyle=T.grid;ctx.lineWidth=1;for(let e=mn;e<=mx;e+=2){ctx.beginPath();ctx.moveTo(X(Math.pow(10,e)),8);ctx.lineTo(X(Math.pow(10,e)),h-26);ctx.stroke();label(ctx,'10^'+e,X(Math.pow(10,e)),h-12,T.muted,'center','middle',MONO);}
+    NM.forEach((nm,k)=>{const y=12+k*(bh+gap),v=val(k),col=[T.cv,T.cx,T.ce,T.ca,T.bad][k];ctx.fillStyle=alpha(col,.65);ctx.fillRect(L,y,X(v)-L,bh);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.strokeRect(L,y,X(v)-L,bh);label(ctx,nm,L-6,y+bh/2,T.ink,'right','middle',MONO);label(ctx,fmt(v,v<1?3:0)+' ppb',Math.min(X(v)+6,R-70),y+bh/2,T.ink,'left','middle',MONO);});}});
+  function upd(){for(let k=0;k<5;k++){const v=val(k);setText('dp-'+(k+1),fmt(v,v<1?3:0)+' ppb');}sim.render();}
+  bindRange('dp-w',v=>fmt(v,3)+' ppb',v=>{w0=v;upd();});bindRange('dp-f',v=>'×'+v,v=>{f=v;upd();});
+  $('#dp-lab').addEventListener('labreset',()=>{w0=.01;f=10;setCtl('dp-w',.01,v=>fmt(v,3)+' ppb');setCtl('dp-f',10,v=>'×'+v);upd();});upd();
+  const ST=[{n:'1 · nutrient runoff',t:'Fertilizer and sewage carry nitrogen and phosphorus into the lake.'},{n:'2 · algal bloom',t:'The nutrients let algae grow explosively. The water turns green and blocks light for plants below.'},{n:'3 · die-off and decomposition',t:'Algae die and sink. Decomposers use up the dissolved oxygen as they break them down.'},{n:'4 · oxygen depletion',t:'With almost no oxygen left, fish and other aerobic organisms die: a dead zone.'}];
+  const sc=stageLab('eu','dp-canvas',ST,(ctx,w,h,i,t)=>{const wy=h*.32,wh=h*.58;ctx.fillStyle=alpha(T.cx,.18);ctx.fillRect(10,wy,w-20,wh);ctx.strokeStyle=T.cx;ctx.lineWidth=2;ctx.strokeRect(10,wy,w-20,wh);
+    ctx.fillStyle=alpha(T.ce,.5);ctx.fillRect(10,h*.1,w*.3,h*.22);label(ctx,'farm field',10+w*.15,h*.21,T.ink,'center','middle',MONO);
+    if(i===0){ctx.strokeStyle=T.ce;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(10+w*.3,h*.28);ctx.bezierCurveTo(w*.42,h*.3,w*.4,wy,w*.5,wy+8);ctx.stroke();label(ctx,'N and P runoff',w*.5,h*.14,T.ce,'left','middle',MONO);}
+    const bloom=i===0?0:i===1?1:i===2?.8:.5;if(bloom>0){ctx.fillStyle=alpha(T.cv,.55*bloom);ctx.fillRect(10,wy,w-20,wh*.18);label(ctx,'algal bloom',w*.5,wy+wh*.09,T.ink,'center','middle',MONO);}
+    if(i>=2){for(let k=0;k<14;k++)dot2(ctx,30+(k*(w-60)/14),wy+wh*.55+Math.sin(k*3+t)*6+(k%3)*10,T.hot,3);label(ctx,'decomposers using O₂',w*.5,wy+wh*.45,T.hot,'center','middle',MONO);}
+    for(let k=0;k<5;k++){const x=w*.2+k*w*.14,y=wy+wh*.78;ctx.save();ctx.translate(x,y);if(i===3){ctx.rotate(Math.PI);ctx.fillStyle=alpha(T.muted,.8);}else ctx.fillStyle=alpha(T.ca,.8);ctx.beginPath();ctx.ellipse(0,0,15,7,0,0,6.283);ctx.fill();ctx.beginPath();ctx.moveTo(14,0);ctx.lineTo(24,-6);ctx.lineTo(24,6);ctx.closePath();ctx.fill();ctx.restore();}
+    const o2=[1,.9,.45,.05][i];ctx.fillStyle=T.line;ctx.fillRect(w-34,wy+8,14,wh-16);ctx.fillStyle=o2>.4?T.good:T.bad;ctx.fillRect(w-34,wy+8+(wh-16)*(1-o2),14,(wh-16)*o2);label(ctx,'O₂',w-27,wy-6,T.muted,'center','middle',MONO);},{h:w=>clamp(w*.48,240,320)});
+  $('#dp-lab2').addEventListener('labreset',()=>sc.go(0));
+  drawers.disruption=()=>{sim.render();sc.render();};
+  KEYS['dp-canvas2']=['Each bar is the concentration at one trophic level on a log scale. The bird has the most.',[['cv','algae'],['cx','zooplankton'],['ce','small fish'],['ca','large fish'],['bad','fish-eating bird']]];
+  KEYS['dp-canvas']=['Green layer: algae. The bar at the right shows dissolved oxygen. Gray fish at the end are dead.',[['cv','algae'],['ca','fish'],['hot','decomposers']]];
+  TIPS['dp-f']=()=>'The factor is how much more concentrated the toxin is at each step up the food chain.';
+  GLOSS['eutrophication']='Nutrient enrichment of water that leads to algal blooms and oxygen depletion.';GLOSS['biomagnification']='The increase in concentration of a persistent toxin at each higher trophic level.';GLOSS['invasive species']='A non-native species that spreads and harms the ecosystem.';GLOSS['habitat fragmentation']='Splitting of habitat into small isolated patches.';GLOSS['ocean acidification']='A decrease in ocean pH caused by dissolved CO₂.';GLOSS['resilience']='The ability of an ecosystem to recover from a disturbance.';
+  TT.disruption='Ask students to trace why decomposers, not algae, remove the oxygen.';
+})();
+(function(){
+  PROBS.push({id:'dp-mag',topic:'disruption',title:'Biomagnification',gen(){const w=pick([.01,.05,.1,.5]),f=pick([5,10]),k=randInt(2,4),nm=['algae','zooplankton','small fish','large fish','a heron'][k],ans=w*Math.pow(f,k+1);return {q:`A persistent pesticide is ${w} ppb in lake water. At each step it is concentrated ${f}-fold: algae take up ${f} times the water concentration, and each higher level concentrates it ${f}-fold again. What is the concentration in ${nm} (ppb)? The food chain is algae → zooplankton → small fish → large fish → heron.`,ans,unit:'ppb',abs:ans*.005+.001,chk:w*Math.pow(f,k+1),hint:'Multiply by the factor once for each level, starting with algae.',sol:`${w} × ${f}<sup>${k+1}</sup> = <b>${fmt(ans,3)} ppb</b>.`};}});
+  const q=[['Algal blooms cause fish kills mainly because','decomposers use up the dissolved oxygen',['algae release toxins that always kill fish','algae use all the carbon dioxide','algae block the fish\'s food']],['Fertilizer runoff most directly causes','eutrophication',['biomagnification','habitat fragmentation','ocean acidification']],['A pollutant that builds up to the highest concentration in top predators shows','biomagnification',['eutrophication','succession','competitive exclusion']],['Why do invasive species often spread quickly?','they lack the predators and competitors of their home range',['they are always larger','they mutate faster','they do not need resources']],['Habitat fragmentation harms populations mainly by','reducing gene flow and creating small isolated populations',['increasing mutation rate directly','removing producers only','warming the oceans']]];
+  PROBS.push({id:'dp-fact',topic:'disruption',title:'Human impact facts',gen(){const p=pick(q),m=mcq(p[1],p[2]);return {q:p[0],choices:m.choices,ans:m.ans,hint:'Think about the sequence of effects.',sol:`<b>${p[1]}</b>.`};}});
 })();
 
 /* ===== overview.js ===== */

@@ -1,0 +1,54 @@
+  <section class="view" id="v-popgrowth" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Population growth</h1>
+        <p class="lede">A population grows quickly when resources are plentiful and levels off when they run short. The shape of the curve says what is limiting it.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>If resources are unlimited, a population grows <b>exponentially</b>: the growth rate is proportional to the number of individuals, <b>dN/dt = r<sub>max</sub> N</b>, where r is the per capita growth rate (births minus deaths per individual). The curve is J-shaped and gets steeper as N rises. Real populations eventually face limits, so growth follows the <b>logistic model</b>: <b>dN/dt = r<sub>max</sub> N (K − N)/K</b>, with <b>carrying capacity K</b> the largest population the environment can sustain. Growth is fastest at N = K/2 and falls to zero at K.</p>
+        <p><b>Density-dependent</b> factors (competition, predation, disease, waste) slow growth more as the population gets crowded. <b>Density-independent</b> factors (fire, storms, freezes) affect a population regardless of its size. Species with high r and many small offspring that get little care are <b>r-selected</b>; species with low r, few offspring and heavy parental care are <b>K-selected</b>. <b>Survivorship curves</b> show how many individuals survive with age: Type I (most live long, die old: humans), Type II (constant death rate: many birds), Type III (high early death: oysters, most plants).</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>populations just grew until something stopped them</dd><dt>So we didn't need</dt><dd>that growth rate depends on population size, and limits shape the curve</dd><dt>Now</dt><dd>how to predict and calculate growth and what carrying capacity means</dd><dt>So we need</dt><dd>exponential and logistic growth, K, density dependence and survivorship</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>dN/dt = r_max N</span><small>exponential growth</small></div><div class="eqn"><span>dN/dt = r_max N (K − N)/K</span><small>logistic growth</small></div><div class="eqn"><span>growth is fastest at N = K/2</span><small>logistic maximum</small></div><div class="eqn"><span>Type I, II, III survivorship</span><small>life history</small></div></div>
+      <div class="lab" id="pg-lab" data-reset="own">
+        <div class="labbar"><span class="title">Exponential and logistic growth</span></div>
+        <div class="ctl"><span class="lbl">Model</span><div class="seg" id="pg-mode" role="group" aria-label="Model"><button type="button" data-k="exp" aria-pressed="true">exponential</button><button type="button" data-k="log" aria-pressed="false">logistic</button></div></div>
+        <canvas id="pg-canvas" aria-label="A graph of population size over time for exponential growth or logistic growth with a carrying capacity."></canvas>
+        <div class="controls"><div class="ctl"><label for="pg-r"><span>Growth rate r (per year)</span> <output id="pg-r-out"></output></label><input type="range" id="pg-r" min="0.05" max="1" step="0.01" value="0.4"></div><div class="ctl"><label for="pg-k"><span>Carrying capacity K</span> <output id="pg-k-out"></output></label><input type="range" id="pg-k" min="100" max="2000" step="50" value="1000"></div><div class="ctl"><label for="pg-n0"><span>Starting population</span> <output id="pg-n0-out"></output></label><input type="range" id="pg-n0" min="1" max="200" step="1" value="10"></div></div>
+        <div class="readout"><div><span>population at year 20</span><strong class="x" id="pg-n">—</strong></div><div><span>growth rate dN/dt at the end</span><strong class="a" id="pg-rate">—</strong></div><div><span>fastest growth at</span><strong class="v" id="pg-peak">—</strong></div></div>
+      </div>
+      <div class="lab" id="pg-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Survivorship curves</span></div>
+        <div class="ctl"><span class="lbl">Type</span><div class="seg" id="pg-type" role="group" aria-label="Type"><button type="button" data-k="1" aria-pressed="true">Type I</button><button type="button" data-k="2" aria-pressed="false">Type II</button><button type="button" data-k="3" aria-pressed="false">Type III</button></div></div>
+        <canvas id="pg-canvas2" aria-label="A graph of the number of survivors against age for the chosen survivorship type."></canvas>
+        <div class="readout"><div><span>examples</span><strong class="x" id="pg-ex">—</strong></div><div><span>strategy</span><strong class="a" id="pg-st">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Choose logistic with K = 1000. At what population is growth fastest? <button type="button" class="btn link" data-show='[["click", "#pg-mode [data-k=log]"], ["#pg-k", 1000]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>At N = K/2 = 500, where (K − N)/K and N are balanced. Past that, growth slows as resources run out.</p></details></li>
+        <li><p>Switch to exponential. What happens to the curve? <button type="button" class="btn link" data-show='[["click", "#pg-mode [data-k=exp]"]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>It keeps getting steeper (J-shaped) with no limit, which cannot continue for long in nature.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A population of 200 deer in a reserve has r<sub>max</sub> = 0.3 per year and K = 1,000. Find dN/dt at N = 200 and at N = 500.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>Formula.</b> dN/dt = r N (K − N)/K.</li>
+          <li hidden><b>At N = 200.</b> 0.3 × 200 × (800/1000) = 48 deer per year.</li>
+          <li hidden><b>At N = 500.</b> 0.3 × 500 × (500/1000) = 75 deer per year, the maximum.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Saying logistic growth is fastest at K.</li>
+        <li>Using r as the total growth rather than per capita.</li>
+        <li>Forgetting density-dependent factors act more strongly at high density.</li>
+        <li>Thinking carrying capacity never changes.</li>
+        <li>Confusing survivorship types with growth types.</li>
+      </ul></div>
+      <div class="prose"><h2>Using the equations</h2>
+        <p>Substitute the values into the formula from the sheet and keep units (individuals per year). For graph questions: a J-shape means unlimited resources; an S-shape that levels at K means limited resources. Explain the limit with a density-dependent factor (food, space, disease).</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="Growth rate r N (K − N)/K is largest at N = K/2.">
+        <p class="q">Check yourself: In logistic growth, the population growth rate is highest when N is about</p>
+        <div class="opts"><button type="button">K/2</button><button type="button">K</button><button type="button">0</button><button type="button">2K</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>

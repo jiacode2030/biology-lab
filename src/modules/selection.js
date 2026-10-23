@@ -3,7 +3,7 @@
   const cv=$('#ns-canvas');if(!cv)return;
   const NB=40;let mode='dir',s=5,gen=0,P=[],P0=[];
   function init(){P=[];let z=0;for(let i=0;i<NB;i++){const x=(i+.5)*100/NB;P.push(Math.exp(-Math.pow((x-50)/12,2)/2));z+=P[i];}P=P.map(v=>v/z);P0=P.slice();gen=0;}
-  const fit=(x)=>{const z=(x-50)/50;return mode==='dir'?Math.exp(.15*s*z):mode==='sta'?Math.exp(-s*z*z):Math.exp(.6*s*z*z);};
+  const fit=(x)=>{const z=(x-50)/50;return mode==='dir'?Math.exp(.15*s*z):mode==='sta'?Math.exp(-.4*s*z*z):Math.exp(.12*s*z*z);};
   function step(){let z=0;const q=P.map((v,i)=>{const w=v*fit((i+.5)*100/NB);z+=w;return w;}).map(v=>v/z);const r=q.map((v,i)=>.1*(q[i-1]||q[i])+.8*v+.1*(q[i+1]||q[i]));let t=0;r.forEach(v=>t+=v);P=r.map(v=>v/t);gen++;}
   const stats=()=>{let m=0;P.forEach((v,i)=>m+=v*(i+.5)*100/NB);let va=0;P.forEach((v,i)=>va+=v*Math.pow((i+.5)*100/NB-m,2));return [m,Math.sqrt(va)];};
   const sim=sim2d(cv,{h:w=>clamp(w*.46,230,300),draw(ctx,w,h){const A=axes2(ctx,w,h,{x0:0,x1:100,y0:0,y1:.2,xt:20,xl:'trait value (for example beak depth)',yl:'fraction of population',L:46}),bw=(A.R-A.L)/NB,mx=.2;

@@ -1,0 +1,54 @@
+  <section class="view" id="v-community" hidden>
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow"><span class="tag ap">AP Unit 8</span></div>
+        <h1>Communities & species interactions</h1>
+        <p class="lede">Species do not live alone. They compete, eat each other, and help each other, and those interactions shape which species live where.</p>
+      </div>
+      <div class="intuit"><b class="k">The idea</b>
+        <p>Interactions are described by their effect on each species. <b>Competition</b> (−/−): two species use the same limiting resource; <b>competitive exclusion</b> says that if their niches are identical, one will eliminate the other, so similar species often partition resources. <b>Predation</b> and <b>herbivory</b> (+/−), <b>parasitism</b> (+/−), <b>mutualism</b> (+/+) and <b>commensalism</b> (+/0). A <b>keystone species</b> (for example the sea star <i>Pisaster</i>) has an effect on community structure much larger than its abundance suggests. Predators and prey often show coupled population cycles.</p>
+        <p><b>Species richness</b> is the number of species; <b>species diversity</b> also takes relative abundance into account. <b>Simpson's diversity index</b>: <b>D = 1 − Σ(n/N)²</b> (n = number of individuals of one species, N = total). Values near 1 mean high diversity. After a disturbance, <b>ecological succession</b> follows: <b>primary</b> (starts without soil: bare rock after a volcano or glacier) and <b>secondary</b> (soil remains: after a fire or abandoned field). <b>Invasive species</b> can outcompete natives because they lack their natural predators.</p>
+      </div>
+      <div class="assume upgrade"><h3>Assumption upgrade</h3><dl><dt>Before</dt><dd>species just existed side by side</dd><dt>So we didn't need</dt><dd>that interactions have signs (+, −, 0) that determine who wins and who thrives</dd><dt>Now</dt><dd>how to quantify diversity and predict community change</dd><dt>So we need</dt><dd>competition, predation, symbiosis, keystone species, diversity indices</dd></dl></div>
+      <div class="eqgrid"><div class="eqn"><span>D = 1 − Σ(n/N)²</span><small>Simpson's index</small></div><div class="eqn"><span>mutualism +/+, commensalism +/0</span><small>parasitism and predation +/−</small></div><div class="eqn"><span>competitive exclusion</span><small>same niche cannot coexist</small></div><div class="eqn"><span>primary vs secondary succession</span><small>soil absent vs present</small></div></div>
+      <div class="lab" id="cm-lab" data-reset="own">
+        <div class="labbar"><span class="title">Predator and prey</span></div>
+        <div class="row"><button type="button" class="btn" id="cm-reset">Restart</button></div>
+        <canvas id="cm-canvas" aria-label="A graph of prey and predator numbers over time showing coupled cycles."></canvas>
+        <div class="controls"><div class="ctl"><label for="cm-b"><span>Prey growth rate</span> <output id="cm-b-out"></output></label><input type="range" id="cm-b" min="0.2" max="1.2" step="0.05" value="0.7"></div><div class="ctl"><label for="cm-a"><span>Predation rate</span> <output id="cm-a-out"></output></label><input type="range" id="cm-a" min="0.2" max="1.5" step="0.05" value="0.6"></div><div class="ctl"><label for="cm-d"><span>Predator death rate</span> <output id="cm-d-out"></output></label><input type="range" id="cm-d" min="0.2" max="1.2" step="0.05" value="0.5"></div></div>
+        <div class="readout"><div><span>prey</span><strong class="x" id="cm-pn">—</strong></div><div><span>predators</span><strong class="a" id="cm-qn">—</strong></div><div><span>what is happening</span><strong class="" id="cm-msg">—</strong></div></div>
+      </div>
+      <div class="lab" id="cm-lab2" data-reset="own">
+        <div class="labbar"><span class="title">Simpson's diversity index</span></div>
+        <canvas id="cm-canvas2" aria-label="Bars showing the number of individuals of four species in a sample and the resulting diversity index."></canvas>
+        <div class="controls"><div class="ctl"><label for="cm-s1"><span>Species A</span> <output id="cm-s1-out"></output></label><input type="range" id="cm-s1" min="0" max="100" step="1" value="40"></div><div class="ctl"><label for="cm-s2"><span>Species B</span> <output id="cm-s2-out"></output></label><input type="range" id="cm-s2" min="0" max="100" step="1" value="30"></div><div class="ctl"><label for="cm-s3"><span>Species C</span> <output id="cm-s3-out"></output></label><input type="range" id="cm-s3" min="0" max="100" step="1" value="20"></div><div class="ctl"><label for="cm-s4"><span>Species D</span> <output id="cm-s4-out"></output></label><input type="range" id="cm-s4" min="0" max="100" step="1" value="10"></div></div>
+        <div class="readout"><div><span>total individuals</span><strong class="x" id="cm-n">—</strong></div><div><span>species richness</span><strong class="a" id="cm-rich">—</strong></div><div><span>Simpson's D = 1 − Σ(n/N)²</span><strong class="v" id="cm-dx">—</strong></div></div>
+      </div>
+      <div class="try"><h3>Try this</h3><p class="small" style="margin:0">Predict what will happen first. Then set it up and check.</p><ol>
+        <li><p>Run the predator–prey lab as set. Which peaks first? <button type="button" class="btn link" data-show='[["click", "#cm-reset"]]'>Restart</button></p><details><summary>What you should see</summary><p>Prey peak first; predators follow with a delay because they need time to grow on the extra food, then crash after the prey decline.</p></details></li>
+        <li><p>Make all four species equal (25 each). <button type="button" class="btn link" data-show='[["#cm-s1", 25], ["#cm-s2", 25], ["#cm-s3", 25], ["#cm-s4", 25]]'>Set it up for me</button></p><details><summary>What you should see</summary><p>D = 1 − 4(0.25²) = 0.75, the maximum for four species: an even community is the most diverse.</p></details></li>
+      </ol></div>
+      <div class="example"><h3>Worked example</h3><p class="prob">A sample has 40 individuals of species A, 30 of B, 20 of C and 10 of D. Calculate Simpson's diversity index.</p><p class="small" style="margin:0">Try it yourself first, then reveal one step at a time.</p>
+        <div class="exbody"><ol class="exsteps">
+          <li hidden><b>N.</b> 100 individuals.</li>
+          <li hidden><b>Σ(n/N)².</b> 0.4² + 0.3² + 0.2² + 0.1² = 0.16 + 0.09 + 0.04 + 0.01 = 0.30.</li>
+          <li hidden><b>D.</b> 1 − 0.30 = 0.70.</li>
+        </ol><div class="row"><button type="button" class="btn primary" data-next>Show step 1 of 3</button><button type="button" class="btn" data-all>Show all steps</button></div></div>
+      </div>
+      <div class="oops"><h3>Common mistakes</h3><ul>
+        <li>Mixing up richness (how many species) and diversity (also evenness).</li>
+        <li>Forgetting to square each fraction.</li>
+        <li>Calling a +/0 relationship mutualism.</li>
+        <li>Thinking keystone species must be abundant.</li>
+        <li>Confusing primary succession (no soil) with secondary.</li>
+      </ul></div>
+      <div class="prose"><h2>Classifying interactions</h2>
+        <p>Write the effect on each species (+, −, 0). Both +: mutualism. One +, one 0: commensalism. One +, one −: predation, parasitism or herbivory. Both −: competition.</p>
+      </div>
+      <div class="quiz" data-correct="0" data-explain="The bird benefits and the grazer is unaffected: +/0.">
+        <p class="q">Check yourself: A bird eats insects from the skin of a grazing animal without affecting it. This is</p>
+        <div class="opts"><button type="button">commensalism</button><button type="button">mutualism</button><button type="button">parasitism</button><button type="button">competition</button></div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
