@@ -4739,15 +4739,16 @@ const compDNAs=s=>s.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c]||'?')).join('
 (function generegs(){
   const cv=$('#gr-canvas');if(!cv)return;
   let lac='no',glu=true;
-  function operon(ctx,w,h,t,o){const y=h*.5,x0=24,seg=[['promoter',.09,T.muted],['operator',.09,T.ce],['lacZ',.2,T.cv],['lacY',.2,T.cv],['lacA',.2,T.cv]],tot=w-48,xs=[];let x=x0;
-    ctx.fillStyle=alpha(T.ink,.35);ctx.fillRect(x0,y-3,tot,6);seg.forEach(([nm,f,c])=>{const wd=tot*f;xs.push([x,wd]);ctx.fillStyle=alpha(c,.55);ctx.fillRect(x,y-14,wd-2,28);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(x,y-14,wd-2,28);label(ctx,nm,x+wd/2-1,y,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));x+=wd;});
-    const pm=xs[0],op=xs[1];
-    if(o.bound){ctx.fillStyle=alpha(T.ca,.7);ctx.strokeStyle=T.ca;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(op[0]+op[1]/2,y-34,24,16,0,0,6.283);ctx.fill();ctx.stroke();label(ctx,'repressor',op[0]+op[1]/2,y-34,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));}
-    else if(o.repLabel){const rx=op[0]+op[1]/2-10,ry=y-64+Math.sin(t*2)*3;ctx.fillStyle=alpha(T.ca,.35);ctx.strokeStyle=T.ca;ctx.setLineDash([3,3]);ctx.beginPath();ctx.ellipse(rx,ry,24,14,0,0,6.283);ctx.fill();ctx.stroke();ctx.setLineDash([]);label(ctx,o.repLabel,rx,ry,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));}
-    if(o.cap){ctx.fillStyle=alpha(T.accent,.7);ctx.strokeStyle=T.accent;ctx.beginPath();ctx.ellipse(pm[0]-6,y+34,26,14,0,0,6.283);ctx.fill();ctx.stroke();label(ctx,'CAP–cAMP',pm[0]-6,y+34,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));}
-    const px=pm[0]+pm[1]*.5;ctx.fillStyle=alpha(T.accent,.5);ctx.strokeStyle=T.accent;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(o.level>0?px+(((t*(30+o.level*40))%(tot*.6))):px,y+(o.level>0?-2:22),22,14,0,0,6.283);ctx.fill();ctx.stroke();label(ctx,'RNA pol',o.level>0?px+(((t*(30+o.level*40))%(tot*.6))):px,y+(o.level>0?-2:22),T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));
-    if(o.level>0){for(let k=0;k<o.level*2;k++){const sx=xs[2][0]+k*18,sy=y+46+k*10;ctx.strokeStyle=T.cv;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(xs[2][0]-6+k*4,y+16);ctx.bezierCurveTo(sx,sy,sx+40,sy+10,xs[4][0]+xs[4][1]*(.4+.12*k),sy+4);ctx.stroke();}label(ctx,'mRNA: '+(o.level>1?'lots':'a little'),w-30,y+86,T.cv,'right','middle',MONO);}
-    else label(ctx,'no transcription',w-30,y+86,T.bad,'right','middle',MONO);}
+  function operon(ctx,w,h,t,o){const y=h*.42,x0=24,seg=[['promoter',.12,T.muted],['operator',.12,T.ce],['lacZ',.2,T.cv],['lacY',.2,T.cv],['lacA',.2,T.cv]],tot=w-48,xs=[],F='10px '+MONO.split(' ').slice(1).join(' ');let x=x0;
+    ctx.fillStyle=alpha(T.ink,.35);ctx.fillRect(x0,y-3,tot,6);seg.forEach(([nm,f,c])=>{const wd=tot*f;xs.push([x,wd]);ctx.fillStyle=alpha(c,.55);ctx.fillRect(x,y-12,wd-2,24);ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(x,y-12,wd-2,24);label(ctx,nm,x+wd/2-1,y-22,T.muted,'center','middle',F);x+=wd;});
+    const pm=xs[0],op=xs[1],ox=op[0]+op[1]/2;
+    const blob=(cx,cy,txt,col,dash)=>{const rx=txt.length*3.3+8;ctx.fillStyle=alpha(col,dash?.3:.65);ctx.strokeStyle=col;ctx.lineWidth=2;if(dash)ctx.setLineDash([3,3]);ctx.beginPath();ctx.ellipse(cx,cy,rx,13,0,0,6.283);ctx.fill();ctx.stroke();ctx.setLineDash([]);label(ctx,txt,cx,cy,T.ink,'center','middle',F);};
+    if(o.bound)blob(ox,y-48,'repressor',T.ca,false);else if(o.repLabel)blob(ox,y-62+Math.sin(t*2)*3,o.repLabel,T.ca,true);
+    const run=o.level>0,px=run?pm[0]+pm[1]/2+((t*(25+o.level*35))%(tot*.62)):pm[0]+pm[1]/2;
+    blob(px,y+30,'RNA pol',T.accent,false);if(!run){ctx.strokeStyle=T.bad;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(px+30,y+22);ctx.lineTo(px+44,y+38);ctx.moveTo(px+44,y+22);ctx.lineTo(px+30,y+38);ctx.stroke();}
+    if(o.cap)blob(pm[0]+38,y+68,'CAP–cAMP',T.accent,false);
+    if(run){for(let k=0;k<o.level*2;k++){const sx=xs[2][0]+4,ey=y+62+k*12;ctx.strokeStyle=T.cv;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(sx,y+14);ctx.bezierCurveTo(sx+10,ey,sx+30,ey,xs[2][0]+tot*(.2+.1*k+.1),ey);ctx.stroke();}label(ctx,'mRNA made: '+(o.level>1?'lots':'a little'),w-26,h-14,T.cv,'right','middle',MONO);}
+    else label(ctx,'no transcription',w-26,h-14,T.bad,'right','middle',MONO);}
   const sim=sim2d(cv,{h:w=>clamp(w*.46,240,300),draw(ctx,w,h,t){const lev=lac==='no'?0:glu?1:2;operon(ctx,w,h,t,{bound:lac==='no',repLabel:lac==='yes'?'repressor + lactose':'',cap:!glu&&lac==='yes',level:lev});}});
   function upd(){setText('gr-rep',lac==='no'?'bound to the operator: blocks RNA polymerase':'released (lactose derivative bound to it)');setText('gr-cap',glu?'inactive: glucose present, cAMP low':'active: glucose absent, cAMP high');setText('gr-out',lac==='no'?'none':glu?'low':'high');sim.render();}
   segBind('gr-lac','k',v=>{lac=v;upd();});$('#gr-glu').addEventListener('click',()=>{glu=!glu;$('#gr-glu').setAttribute('aria-pressed',String(glu));$('#gr-glu').textContent='Glucose: '+(glu?'present':'absent');upd();});
@@ -4822,7 +4823,7 @@ const compDNAs=s=>s.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c]||'?')).join('
     ctx.fillStyle=alpha(T.sunk,.8);ctx.fillRect(6,top-16,w-12,bot-top+30);ctx.strokeStyle=T.line;ctx.lineWidth=1.5;ctx.strokeRect(6,top-16,w-12,bot-top+30);
     const key={none:'none',E:'E',B:'B',EB:'E + B'}[enz];label(ctx,'wells ↑   DNA moves down toward the + electrode',w/2,top-26,T.muted,'center','middle',MONO);
     LANES.forEach(([nm,fr],k)=>{const x=gap+k*(lw+gap),sel=nm===key;ctx.fillStyle=alpha(T.ink,.55);ctx.fillRect(x,top-12,lw,6);if(sel){ctx.strokeStyle=T.accent;ctx.lineWidth=2;ctx.strokeRect(x-3,top-14,lw+6,bot-top+26);}
-      fr.forEach(s=>{ctx.fillStyle=nm==='ladder'?alpha(T.muted,.8):alpha(T.cx,.9);ctx.fillRect(x+4,Y(s)-2.5,lw-8,5);if(nm==='ladder')label(ctx,String(s),x-3,Y(s),T.muted,'right','middle','9px '+MONO.split(' ').slice(1).join(' '));else if(sel)label(ctx,String(s),x+lw/2,Y(s)-9,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));});label(ctx,nm,x+lw/2,bot+10,T.ink,'center','middle',MONO);});}});
+      fr.forEach(s=>{ctx.fillStyle=nm==='ladder'?alpha(T.muted,.8):alpha(T.cx,.9);ctx.fillRect(x+4,Y(s)-2.5,lw-8,5);if(nm==='ladder')label(ctx,String(s),x-3,Y(s),T.muted,'right','middle','9px '+MONO.split(' ').slice(1).join(' '));});label(ctx,nm,x+lw/2,bot+10,T.ink,'center','middle',MONO);});}});
   function upd2(){const f=FR[enz].slice().sort((a,b)=>b-a);setText('bt-fr',f.join(', '));setText('bt-n2',String(f.length));sim2.render();}
   segBind('bt-enz','k',v=>{enz=v;upd2();});$('#bt-lab2').addEventListener('labreset',()=>{enz='none';segSet('bt-enz',0);upd2();});upd2();
   drawers.biotech=()=>{sim.render();sim2.render();};

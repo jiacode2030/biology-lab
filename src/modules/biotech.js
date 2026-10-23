@@ -15,7 +15,7 @@
     ctx.fillStyle=alpha(T.sunk,.8);ctx.fillRect(6,top-16,w-12,bot-top+30);ctx.strokeStyle=T.line;ctx.lineWidth=1.5;ctx.strokeRect(6,top-16,w-12,bot-top+30);
     const key={none:'none',E:'E',B:'B',EB:'E + B'}[enz];label(ctx,'wells ↑   DNA moves down toward the + electrode',w/2,top-26,T.muted,'center','middle',MONO);
     LANES.forEach(([nm,fr],k)=>{const x=gap+k*(lw+gap),sel=nm===key;ctx.fillStyle=alpha(T.ink,.55);ctx.fillRect(x,top-12,lw,6);if(sel){ctx.strokeStyle=T.accent;ctx.lineWidth=2;ctx.strokeRect(x-3,top-14,lw+6,bot-top+26);}
-      fr.forEach(s=>{ctx.fillStyle=nm==='ladder'?alpha(T.muted,.8):alpha(T.cx,.9);ctx.fillRect(x+4,Y(s)-2.5,lw-8,5);if(nm==='ladder')label(ctx,String(s),x-3,Y(s),T.muted,'right','middle','9px '+MONO.split(' ').slice(1).join(' '));else if(sel)label(ctx,String(s),x+lw/2,Y(s)-9,T.ink,'center','middle','10px '+MONO.split(' ').slice(1).join(' '));});label(ctx,nm,x+lw/2,bot+10,T.ink,'center','middle',MONO);});}});
+      fr.forEach(s=>{ctx.fillStyle=nm==='ladder'?alpha(T.muted,.8):alpha(T.cx,.9);ctx.fillRect(x+4,Y(s)-2.5,lw-8,5);if(nm==='ladder')label(ctx,String(s),x-3,Y(s),T.muted,'right','middle','9px '+MONO.split(' ').slice(1).join(' '));});label(ctx,nm,x+lw/2,bot+10,T.ink,'center','middle',MONO);});}});
   function upd2(){const f=FR[enz].slice().sort((a,b)=>b-a);setText('bt-fr',f.join(', '));setText('bt-n2',String(f.length));sim2.render();}
   segBind('bt-enz','k',v=>{enz=v;upd2();});$('#bt-lab2').addEventListener('labreset',()=>{enz='none';segSet('bt-enz',0);upd2();});upd2();
   drawers.biotech=()=>{sim.render();sim2.render();};
