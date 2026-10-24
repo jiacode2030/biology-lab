@@ -15,4 +15,4 @@ node tests/flow.js
 N=400 node tests/audit.js
 node tests/check.js [moduleId ...]
 ```
-See `CLAUDE.md` for the layout and rules. localStorage keys start with `bio-`. Report issues with the **Report an issue** link on any page (opens an issue in `jiacode2030/ap-labs-feedback`).
+See `CLAUDE.md` for the layout and rules. localStorage keys start with `bio-`. Report issues with the **Report an issue** link on any page (opens an issue in `jiacode2030/intulab-feedback`).

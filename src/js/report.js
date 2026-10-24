@@ -2,7 +2,7 @@
 /* ---------------- Report an issue: opens a pre-filled GitHub issue (no server needed) ---------------- */
 (function report(){
   const dlg=$('#rp'),form=$('#rp-form'),where=$('#rp-where'),type=$('#rp-type'),det=$('#rp-details'),ctxEl=$('#rp-ctx'),msg=$('#rp-msg');
-  const REPO='https://github.com/jiacode2030/ap-labs-feedback';
+  const REPO='https://github.com/jiacode2030/intulab-feedback';
   const SITE_NAME='Biology Lab',COURSE_LABEL='course:bio',SITE_VERSION='2026-10-23';
   let ctx='';
   const viewName=v=>{if(v==='overview')return 'Overview';if(MODS[v])return MODS[v].t;const a=$(`#nav a[data-view="${v}"]`);return a?a.textContent.replace(/ \(\d+ due\)/,'').trim():v;};
@@ -33,3 +33,24 @@
   dlg.addEventListener('click',e=>{if(e.target===dlg)close();});
   document.addEventListener('click',e=>{const b=e.target.closest('[data-report]');if(b){e.preventDefault();open(b);}});
 })();
+/* Intulab app: offline support (sw.js). Only on the live site, and localhost for testing. */
+if('serviceWorker' in navigator&&(/\.github\.io$/.test(location.hostname)||location.hostname==='localhost'))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+/* Get the Intulab app (same app as the Intulab page; hidden once you're in it) */
+(function appInstall(){var btns=document.querySelectorAll('.appbtn,.appbtn2'),dlg=document.getElementById('app-dlg');if(!btns.length||!dlg)return;
+  var each=function(f){Array.prototype.forEach.call(btns,f);};
+  if(matchMedia('(display-mode: standalone)').matches||navigator.standalone===true)return;
+  each(function(b){b.hidden=false;});var prompt=null;
+  var ua=navigator.userAgent,os=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1)?'ios':/Android/.test(ua)?'android':'desktop';
+  var form=dlg.querySelector('form'),mine=dlg.querySelector('[data-os="'+os+'"]'),more=document.createElement('details');more.innerHTML='<summary>Other devices</summary>';
+  Array.prototype.forEach.call(dlg.querySelectorAll('.appos'),function(el){if(el!==mine)more.appendChild(el);});form.insertBefore(more,form.querySelector('.approw'));
+  addEventListener('beforeinstallprompt',function(e){e.preventDefault();prompt=e;});
+  addEventListener('appinstalled',function(){each(function(b){b.hidden=true;});});
+  each(function(b){b.addEventListener('click',function(){if(prompt){prompt.prompt();prompt=null;return;}if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');});});})();
+/* Pointer feel (same as the Intulab landing page): soft glow follows the mouse, module cards tilt and light up. Mouse and trackpad only, never with reduced motion. */
+(function pointerFeel(){var fine=matchMedia('(hover: hover) and (pointer: fine)'),rm=matchMedia('(prefers-reduced-motion: reduce)');if(!fine.matches||rm.matches)return;
+  var g=document.createElement('div');g.id='ptr';g.setAttribute('aria-hidden','true');document.body.appendChild(g);
+  var x=0,y=0,tx=0,ty=0,raf=0;function loop(){x+=(tx-x)*.18;y+=(ty-y)*.18;g.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)';raf=(Math.abs(tx-x)+Math.abs(ty-y)>.5)?requestAnimationFrame(loop):0;}
+  addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;tx=e.clientX;ty=e.clientY;g.classList.add('on');if(!raf)raf=requestAnimationFrame(loop);
+    var c=e.target.closest&&e.target.closest('a.mod');if(c){var r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+      c.style.setProperty('--mx',(px*100).toFixed(1)+'%');c.style.setProperty('--my',(py*100).toFixed(1)+'%');c.style.setProperty('--ry',((px-.5)*5).toFixed(2)+'deg');c.style.setProperty('--rx',((.5-py)*5).toFixed(2)+'deg');}},{passive:true});
+  document.addEventListener('pointerout',function(e){var c=e.target.closest&&e.target.closest('a.mod');if(c&&!c.contains(e.relatedTarget)){c.style.removeProperty('--rx');c.style.removeProperty('--ry');}if(!e.relatedTarget)g.classList.remove('on');});})();

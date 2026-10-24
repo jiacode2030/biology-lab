@@ -134,10 +134,10 @@ const myExamDate=()=>{try{return localStorage.getItem('bio-examdate')||'';}catch
 /* ---------------- AB / BC toggle ---------------- */
 (function course(){applyCourse();$$('#course-seg button').forEach(bt=>bt.addEventListener('click',()=>setCourse(bt.dataset.c)));})();
 
-/* ---------------- Anonymous page-view counts (GoatCounter, shared with the other AP Labs sites) ----------------
+/* ---------------- Anonymous page-view counts (GoatCounter, shared with the other Intulab sites) ----------------
    Counts each module view as its own page. Off locally, and off when the browser sends Do Not Track or Global Privacy Control. */
 (function analytics(){if(!/\.github\.io$/.test(location.hostname))return;
   if(navigator.doNotTrack==='1'||window.doNotTrack==='1'||navigator.globalPrivacyControl===true)return;window.goatcounter={no_onload:true};
-  const s=document.createElement('script');s.async=true;s.src='https://gc.zgo.at/count.js';s.dataset.goatcounter='https://aplabs.goatcounter.com/count';
+  const s=document.createElement('script');s.async=true;s.src='https://gc.zgo.at/count.js';s.dataset.goatcounter='https://intulab.goatcounter.com/count';
   const view=()=>{const id=(location.hash||'').slice(1)||'overview';if(window.goatcounter&&window.goatcounter.count){window.goatcounter.count({path:location.pathname.replace(/\/$/,'')+'/'+id,title:id});if(MODS[id])window.goatcounter.count({path:'module:'+id,title:'module:'+id,event:true});}};
   s.onload=()=>{view();addEventListener('hashchange',view);};document.head.appendChild(s);})();

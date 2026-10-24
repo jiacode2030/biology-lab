@@ -10,13 +10,13 @@ Interactive, intuition-first AP Biology study site. One self-contained `index.ht
 
 ## Rules that break the site if ignored
 - The page has no doctype (quirks mode): ids and class names match case-insensitively. Never use two names that differ only by case (`x-A` and `x-a`), and never reuse an id across modules (`build.py` stops on case clashes).
-- localStorage keys use the prefix `bio-`; "marked as done" is `bio-done` = `{moduleId: 1}` (the AP Labs landing page reads it).
+- localStorage keys use the prefix `bio-`; "marked as done" is `bio-done` = `{moduleId: 1}` (the Intulab landing page reads it).
 - A `sim2d`/`glab` step function must not call its own `render()`. Other sims' `render()` is fine.
 - In canvas draw code, do not shadow the global theme object `T` with a local variable.
 - Problem generators (`PROBS.push({id,topic,title,gen})`) return `{q, ans|choices, unit, tol|abs, hint, sol}`. Give numeric generators an independent `chk`; `tests/audit.js` compares it with `ans`.
 
-## AP Labs conventions
-Follow `jiacode2030/ap-labs` (README): `.morelabs` back link, head tags with `/ap-labs/` paths, issue reports to `ap-labs-feedback` with `course:bio`, analytics honor Do Not Track / GPC, privacy and terms at `/ap-labs/privacy.html` and `/terms.html`, `sw.js` with cache `aplabs-bio-v1`. Keep "Last updated" and `SITE_VERSION` (`src/js/report.js`) current. Landing-page entry: `ap-labs-integration.patch`.
+## Intulab conventions
+Follow `jiacode2030/intulab` (README): `.morelabs` back link, head tags with `/intulab/` paths, issue reports to `intulab-feedback` with `course:bio`, analytics honor Do Not Track / GPC, privacy and terms at `/intulab/privacy.html` and `/terms.html`, `sw.js` with cache `aplabs-bio-v1`. Keep "Last updated" and `SITE_VERSION` (`src/js/report.js`) current. Landing-page entry: `ap-labs-integration.patch`.
 
 ## Content rules
 - Accuracy first. Run `N=400 node tests/audit.js` after changing problems, and verify answers by hand.
