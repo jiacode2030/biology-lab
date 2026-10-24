@@ -16,7 +16,7 @@ Interactive, intuition-first AP Biology study site. One self-contained `index.ht
 - Problem generators (`PROBS.push({id,topic,title,gen})`) return `{q, ans|choices, unit, tol|abs, hint, sol}`. Give numeric generators an independent `chk`; `tests/audit.js` compares it with `ans`.
 
 ## Intulab conventions
-Follow `jiacode2030/intulab` (README): `.morelabs` back link, head tags with `/intulab/` paths, issue reports to `intulab-feedback` with `course:bio`, analytics honor Do Not Track / GPC, privacy and terms at `/intulab/privacy.html` and `/terms.html`, `sw.js` with cache `aplabs-bio-v1`. Keep "Last updated" and `SITE_VERSION` (`src/js/report.js`) current. Landing-page entry: `ap-labs-integration.patch`.
+Follow `jiacode2030/intulab` (README): `.morelabs` back link, head tags with `/intulab/` paths, issue reports to `intulab-feedback` with `course:bio`, analytics honor Do Not Track / GPC, privacy and terms at `/intulab/privacy.html` and `/terms.html`, `sw.js` with cache `aplabs-bio-v1`. Keep "Last updated" and `SITE_VERSION` (`src/js/report.js`) current. The landing-page entry already lives in `courses.js` of `jiacode2030/intulab`.
 
 ## Content rules
 - Accuracy first. Run `N=400 node tests/audit.js` after changing problems, and verify answers by hand.
