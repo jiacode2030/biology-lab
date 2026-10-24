@@ -18,9 +18,9 @@
   TT.dnastruct='Ask students to predict A, T, G, C from one base percentage before using the slider.';
 })();
 (function(){
-  PROBS.push({id:'dn-chargaff',topic:'dnastruct',title:'Chargaff\'s rules',gen(){const b=pick(['cytosine','guanine','adenine','thymine']),p=pick([18,20,22,24,26,28,30,32,34]),gcp=(b==='cytosine'||b==='guanine')?2*p:100-2*p,want=pick(['adenine','thymine','guanine','cytosine']);
+  PROBS.push({id:'dn-chargaff',topic:'dnastruct',title:'Chargaff\'s rules',gen(){const b=pick(['cytosine','guanine','adenine','thymine']),p=pick([18,20,22,24,26,28,30,32,34]),gcp=(b==='cytosine'||b==='guanine')?2*p:100-2*p,want=pick(['adenine','thymine','guanine','cytosine'].filter(x=>x!==b));
     const ans=(want==='cytosine'||want==='guanine')?gcp/2:(100-gcp)/2;
-    return {q:`A sample of double-stranded DNA is ${p}% ${b}. What percent is ${want}?`,ans,unit:'%',abs:.01,chk:ans,hint:'A = T and G = C. The four add to 100%.',sol:`${b[0]==='c'||b[0]==='g'?'C = G, so G + C = ':'A = T, so A + T = '}${2*p}%. That makes G + C = ${gcp}% and A + T = ${100-gcp}%, split evenly between the two bases of each pair: ${want} = <b>${ans}%</b>.`};}});
+    return {q:`A sample of double-stranded DNA is ${p}% ${b}. What percent is ${want}?`,ans,unit:'%',abs:.01,chk:want==={adenine:'thymine',thymine:'adenine',guanine:'cytosine',cytosine:'guanine'}[b]?p:50-p,hint:'A = T and G = C. The four add to 100%.',sol:`${b[0]==='c'||b[0]==='g'?'C = G, so G + C = ':'A = T, so A + T = '}${2*p}%. That makes G + C = ${gcp}% and A + T = ${100-gcp}%, split evenly between the two bases of each pair: ${want} = <b>${ans}%</b>.`};}});
   PROBS.push({id:'dn-hb',topic:'dnastruct',title:'Hydrogen bonds in a segment',gen(){const gcn=randInt(5,60),atn=randInt(5,60),ans=3*gcn+2*atn;
     return {q:`A DNA segment has ${gcn} G–C base pairs and ${atn} A–T base pairs. How many hydrogen bonds hold the two strands together?`,ans,unit:'',tol:0,chk:3*gcn+2*atn,hint:'G–C: 3 bonds. A–T: 2 bonds.',sol:`3 × ${gcn} + 2 × ${atn} = <b>${ans}</b>.`};}});
   const comp={A:'T',T:'A',G:'C',C:'G'};
